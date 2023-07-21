@@ -14,7 +14,7 @@ final locator = GetIt.I;
 abstract final class ServicesLocator {
   static void setup() {
     // API
-    locator.registerLazySingleton<ApiDbEnvelope>(() => ApiDb());
+    locator.registerLazySingleton<ApiDbEnvelope>(() => ApiDbDrift());
     // Repository
     locator.registerLazySingleton<AuthorizationRepository>(() => AuthorizationRepositoryImpl(locator()));
     // Use Cases
