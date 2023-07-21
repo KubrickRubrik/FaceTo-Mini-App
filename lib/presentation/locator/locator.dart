@@ -18,7 +18,7 @@ abstract final class ServicesLocator {
     // Repository
     locator.registerLazySingleton<AuthorizationRepository>(() => AuthorizationRepositoryImpl(locator()));
     // Use Cases
-    locator.registerLazySingleton<AuthorizationRepository>(() => AuthorizationCase(locator()));
+    locator.registerLazySingleton<AuthorizationCase>(() => AuthorizationCase(locator()));
     // Manager
     locator.registerLazySingleton<SessionProvider>(() => SessionProvider(locator()));
     // Pages
