@@ -1,4 +1,6 @@
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2.scenes/scenes.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/list_content/list.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/load_content.dart';
@@ -34,12 +36,12 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
       onHorizontalDragStart: (details) {
         // TO RIGHT TAB_1
         if (details.localPosition.dx < swipeVector) {
-          locator<ControllerPagesProvider>().swipeToScenes(2);
+          locator<PageControllerProvider>().swipeToScenes(2);
           print('RIGHT');
         }
         // TO LEFT TAB_2
         else {
-          locator<ControllerPagesProvider>().swipeToScenes(0);
+          locator<PageControllerProvider>().swipeToScenes(0);
           print('LEFT');
         }
         swipeVector = details.localPosition.dx;

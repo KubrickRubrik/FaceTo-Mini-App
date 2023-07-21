@@ -1,8 +1,9 @@
 {
-    "titleApp": "Title app",
+    "titleApp": "FaceTo Mini",
 
-    "titleInitPage": "Title home app",
-    "titleHomePage": "Title init app",
+    "titleSeriesPage": "FaceTo Mini series",
+    "titleScenesPage": "Scenes of series",
+    "titleScenePage": "Game",
 
     "titleErrorApp": "Oops!",
     "errorRepairsApp": "Application needs to be reinstalled",

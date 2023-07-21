@@ -5,7 +5,7 @@ class _AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<ControllerPagesProvider, int>(
+    return Selector<PageControllerProvider, int>(
       selector: (_, Model) => Model.indexTab,
       builder: (_, indexTab, child) {
         final appBar = _makeAppBar(indexTab, context);
@@ -146,7 +146,7 @@ class _InfoAppBar extends StatelessWidget {
             elevation: 8.0,
             itemBuilder: (BuildContext context) {
               // Make menu's item for select language app
-              return AppLocalization.defaultLanguage.map((language) {
+              return ConfigLocalization.defaultLanguage.map((language) {
                 return PopupMenuItem(
                   height: 40,
                   enabled: true,
@@ -185,12 +185,12 @@ class _InfoAppBar extends StatelessWidget {
         //! Sound
         InkWell(
           onTap: () {
-            context.read<SessionAppProvider>().setSound();
+            context.read<SessionProvider>().setSound();
           },
           child: Container(
             width: 35,
             alignment: Alignment.center,
-            child: Selector<SessionAppProvider, bool>(
+            child: Selector<SessionProvider, bool>(
               selector: (_, Model) => Model.sessionUser.settings.enabledSound,
               builder: (_, isSound, __) {
                 return Container(

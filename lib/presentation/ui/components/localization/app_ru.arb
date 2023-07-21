@@ -1,8 +1,9 @@
 {
-    "titleApp": "Название приложения",
+    "titleApp": "FaceTo Mini",
 
-    "titleInitPage": "Инициализация",
-    "titleHomePage": "Домашняя страница",
+    "titleSeriesPage": "FaceTo Mini серии",
+    "titleScenesPage": "Сцены серии",
+    "titleScenePage": "Игра",
 
     "titleErrorApp": "Упс!",
     "errorRepairsApp": "Требуется переустановка приложения",

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/load_content.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/list_content/list.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/no_content.dart';
@@ -55,16 +57,16 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
           ),
         ),
         alignment: Alignment.topCenter,
-        // child: Selector<SeriesProvider, StatusContent>(
-        //   selector: (_, Model) => Model.statusPage,
-        //   builder: (_, statusPage, child) {
-        //     return switch (statusPage) {
-        //       StatusContent.isLoadContent => const LoadPageSeries(),
-        //       StatusContent.isEmptyContent || StatusContent.isNoContent => const NoContentPageSeries(),
-        //       _ => ListContentSeries(controller: scrollController),
-        //     };
-        //   },
-        // ),
+        child: Selector<SeriesProvider, StatusContent>(
+          selector: (_, Model) => Model.statusPage,
+          builder: (_, statusPage, child) {
+            return switch (statusPage) {
+              StatusContent.isLoadContent => const LoadPageSeries(),
+              StatusContent.isEmptyContent || StatusContent.isNoContent => const NoContentPageSeries(),
+              _ => ListContentSeries(controller: scrollController),
+            };
+          },
+        ),
       ),
     );
   }
