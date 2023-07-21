@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
-part 'widgets/widget.dart';
 
 class InitPage extends StatelessWidget {
   const InitPage({super.key});
@@ -30,7 +29,7 @@ class InitPage extends StatelessWidget {
                 child: Text(
                   context.lcz.errorRepairsApp,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.titleLarge,
+                  // style: context.textStyle.bodyLarge,
                 ),
               ),
             ],
