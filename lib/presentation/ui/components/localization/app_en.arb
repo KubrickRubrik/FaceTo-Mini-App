@@ -1,0 +1,10 @@
+{
+    "titleApp": "Title app",
+
+    "titleInitPage": "Title home app",
+    "titleHomePage": "Title init app",
+
+    "titleErrorApp": "Oops!",
+    "errorRepairsApp": "Application needs to be reinstalled",
+    "isNoContent": "No content"
+}

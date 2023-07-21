@@ -1,0 +1,10 @@
+{
+    "titleApp": "Название приложения",
+
+    "titleInitPage": "Инициализация",
+    "titleHomePage": "Домашняя страница",
+
+    "titleErrorApp": "Упс!",
+    "errorRepairsApp": "Требуется переустановка приложения",
+    "isNoContent": "Контент отсутствует"
+}
