@@ -1,7 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 
-final class AppQueryDrift {
+final class SessionQueryDrift {
+  // Authorization user
   Future<({TableAppUser user, TableAppSettings settings})?> authirized(ConnectDataBase db) async {
     final userTable = db.alias(db.useTableAppUser, 'user');
     final query = db.select(userTable).join([
@@ -18,5 +19,23 @@ final class AppQueryDrift {
 
     if (app == null || settings == null) return null;
     return (user: app, settings: settings);
+  }
+
+  // Save a theme
+  Future<TableAppSettings?> setTheme(ConnectDataBase db, {required String theme}) async {
+    final userTable = db.alias(db.useTableAppUser, 'user');
+    return null;
+  }
+
+  // Locale saving
+  Future<TableAppSettings?> setLocale(ConnectDataBase db, {required String language}) async {
+    final userTable = db.alias(db.useTableAppUser, 'user');
+    return null;
+  }
+
+  // Saving sound
+  Future<TableAppSettings?> setSound(ConnectDataBase db, {required bool enebledSound}) async {
+    final userTable = db.alias(db.useTableAppUser, 'user');
+    return null;
   }
 }
