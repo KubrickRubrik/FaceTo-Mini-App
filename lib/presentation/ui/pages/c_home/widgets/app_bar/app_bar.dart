@@ -156,14 +156,17 @@ class _InfoAppBar extends StatelessWidget {
                       Navigator.pop(context, null);
                     },
                     child: Center(
-                      child: Container(
-                        height: 40.0,
-                        padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                        // color: (Provider.of<AppSessionBloc>(context, listen: false).language.code == appLang.code)
-                        //     ? const Color(0x18040672)
-                        //     : const Color(0xFFFFFFFF),
-                        alignment: Alignment.center,
-                        child: Text(language.title),
+                      child: Selector<SessionProvider, String>(
+                        selector: (_, Model) => Model.sessionUser.settings.locale.name,
+                        builder: (_, codeLanguage, __) {
+                          return Container(
+                            height: 40.0,
+                            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                            color: (codeLanguage == language.code) ? const Color(0x18040672) : const Color(0xFFFFFFFF),
+                            alignment: Alignment.center,
+                            child: Text(language.title),
+                          );
+                        },
                       ),
                     ),
                   ),

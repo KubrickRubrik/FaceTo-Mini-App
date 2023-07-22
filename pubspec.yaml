@@ -38,10 +38,10 @@ flutter:
   assets:
     - asset/app/error/
 
-fonts:
-  - family: Comfortaa
-    fonts:
-      - asset: asset/fonts/text/comfortaa-medium.ttf
-  - family: IconsFont
-    fonts:
-      - asset: asset/fonts/icons/faceto.ttf
+  fonts:
+    - family: Comfortaa
+      fonts:
+        - asset: asset/app/fonts/text/comfortaa-medium.ttf
+    - family: IconsApp
+      fonts:
+        - asset: asset/app/fonts/icons/faceto.ttf
