@@ -38,14 +38,20 @@ final class SessionProvider extends ChangeNotifier with _State {
   }
 
   // Set on/off sound
-  void setSound() {
-    super.sessionUser.settings.switchSound();
+  void setSound(bool val) {
+    super.sessionUser.settings.enabledSound = val;
     notifyListeners();
   }
 
   //
   void setActions(ActionStatus value) {
     actionStatus = value;
+    notifyListeners();
+  }
+
+  //
+  void setViewMenuSettings() {
+    super.sessionUser.settings.setViewMenu();
     notifyListeners();
   }
 }

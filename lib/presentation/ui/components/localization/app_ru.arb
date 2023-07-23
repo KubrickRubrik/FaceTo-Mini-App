@@ -7,5 +7,17 @@
 
     "titleErrorApp": "Упс!",
     "errorRepairsApp": "Требуется переустановка приложения",
-    "isNoContent": "Контент отсутствует"
+    "isNoContent": "Контент отсутствует",
+
+    "themeSettings": "Тема приложения",
+    "themeSettingsLight": "Светлая",
+    "themeSettingsDark": "Темная",
+
+    "languageSettings": "Язык",
+
+    "soundSettings": "Озвучка",
+    "soundSettingsOn": "Включить",
+    "soundSettingsOff": "Выключить",
+
+    "infoSettings": "Информация"
 }

@@ -7,5 +7,15 @@
 
     "titleErrorApp": "Oops!",
     "errorRepairsApp": "Application needs to be reinstalled",
-    "isNoContent": "No content"
+    "isNoContent": "No content",
+
+    "themeSettings": "App theme",
+    "themeSettingsLight": "Light",
+    "themeSettingsDark": "Dark",
+    "languageSettings": "Language",
+    "soundSettings": "Voice acting",
+    "soundSettingsOn": "Turn on",
+    "soundSettingsOff": "Switch off",
+
+    "infoSettings": "Information"
 }

@@ -1,3 +1,4 @@
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/settings_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/locale.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
@@ -72,6 +73,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 left: 0,
                 right: 0,
                 child: _AppBar(),
+              ),
+              //! Settings
+              const Positioned(
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: SettingsBar(),
               ),
               //! Info App
               // if (Provider.of<ControllerBloc>(context).state_view_info == ViewStatusPage.view_content)

@@ -8,14 +8,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ServicesLocator.setup();
   await locator<SessionProvider>().authorization();
-  runApp(const StartPage());
-  // runApp(
-  //   DevicePreview(
-  //     enabled: true,
-  //     // tools: [
-  //     //   ...DevicePreview.defaultTools,
-  //     // ],
-  //     builder: (context) => const StartPage(),
-  //   ),
-  // );
+  // runApp(const StartPage());
+  runApp(
+    DevicePreview(
+      enabled: true,
+      // tools: [
+      //   ...DevicePreview.defaultTools,
+      // ],
+      builder: (context) => const StartPage(),
+    ),
+  );
 }

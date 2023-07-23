@@ -17,9 +17,12 @@ class AppSession {
 }
 
 class AppSettings {
+  bool isViewMenu = false;
   var theme = CurrentThemeApp.light;
   var locale = AvailableAppLocale.en;
   var enabledSound = true;
 
-  switchSound() => enabledSound = !enabledSound;
+  void setViewMenu() {
+    isViewMenu = !isViewMenu;
+  }
 }

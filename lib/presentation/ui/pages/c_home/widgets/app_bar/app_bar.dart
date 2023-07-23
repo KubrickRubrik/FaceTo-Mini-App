@@ -138,85 +138,10 @@ class _InfoAppBar extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        //! Language
-        Container(
-          width: 35,
-          alignment: Alignment.center,
-          child: PopupMenuButton(
-            elevation: 8.0,
-            itemBuilder: (BuildContext context) {
-              // Make menu's item for select language app
-              return ConfigLocalization.defaultLanguage.map((language) {
-                return PopupMenuItem(
-                  height: 40,
-                  enabled: true,
-                  child: InkWell(
-                    onTap: () {
-                      // _FMD_AUTH.setChangeLanguage(appLang.code);
-                      Navigator.pop(context, null);
-                    },
-                    child: Center(
-                      child: Selector<SessionProvider, String>(
-                        selector: (_, Model) => Model.sessionUser.settings.locale.name,
-                        builder: (_, codeLanguage, __) {
-                          return Container(
-                            height: 40.0,
-                            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                            color: (codeLanguage == language.code) ? const Color(0x18040672) : const Color(0xFFFFFFFF),
-                            alignment: Alignment.center,
-                            child: Text(language.title),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                );
-              }).toList();
-            },
-            child: Container(
-              height: 25,
-              width: 25,
-              alignment: Alignment.center,
-              child: const Icon(
-                AppIcons.language,
-                color: Color(0xFF745291),
-                size: 22,
-              ),
-            ),
-          ),
-        ),
-        //! Sound
-        InkWell(
-          onTap: () {
-            context.read<SessionProvider>().setSound();
-          },
-          child: Container(
-            width: 35,
-            alignment: Alignment.center,
-            child: Selector<SessionProvider, bool>(
-              selector: (_, Model) => Model.sessionUser.settings.enabledSound,
-              builder: (_, isSound, __) {
-                return Container(
-                  height: 25,
-                  width: 25,
-                  decoration: BoxDecoration(
-                    color: isSound ? const Color(0xFF745291) : const Color(0xFFA50000),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Icon(
-                    AppIcons.sound,
-                    size: 16,
-                    color: (isSound) ? const Color(0xFFF8F8F8) : const Color(0xFFE7E7E7),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
         //! Info
         InkWell(
           onTap: () {
-            // _FMD_CONTROLLER.setViewInfo();
+            context.read<SessionProvider>().setViewMenuSettings();
           },
           child: Container(
             width: 35,
@@ -225,13 +150,12 @@ class _InfoAppBar extends StatelessWidget {
               height: 25,
               width: 25,
               decoration: BoxDecoration(
-                color: const Color(0xFF745291),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: const Icon(
-                AppIcons.info,
-                size: 16,
-                color: Color(0xFFF8F8F8),
+                AppIcons.settings,
+                size: 24,
+                color: Color(0xFF745291),
               ),
             ),
           ),
