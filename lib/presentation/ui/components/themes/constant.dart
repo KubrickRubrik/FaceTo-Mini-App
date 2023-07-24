@@ -29,7 +29,7 @@ abstract final class AppColors {
 }
 
 abstract class AppImages {
-  static const spinLight = "asset/app/spin/spin_1.gif";
-  static const spinDark = "asset/app/spin/spin_2.gif";
+  static const spinLight = "asset/spin/spin_1.gif";
+  static const spinDark = "asset/spin/spin_2.gif";
   static const errorApp = "asset/app/error/error_app.png";
 }

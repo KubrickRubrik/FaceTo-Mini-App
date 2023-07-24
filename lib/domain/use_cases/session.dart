@@ -10,7 +10,7 @@ final class SessionCase implements SessionRepository, SettingsRepository {
   final SettingsRepository _settingsRepository;
   // Authorized
   @override
-  Future<({Failure? fail, SessionEntity? data})> authorization(String languageName) async {
+  Future<({SessionEntity? data, Failure? fail})> authorization(String languageName) async {
     return await _sessionRepository.authorization(languageName);
   }
 

@@ -1,7 +1,7 @@
 part of 'controller.dart';
 
 mixin _State {
-  TabController? _tabController;
+  PageController? _pageController;
   SizePanelScene? _sizePanelScene;
   int indexTab = 0;
   SizePanelScene get sizePanelScene => _sizePanelScene!;

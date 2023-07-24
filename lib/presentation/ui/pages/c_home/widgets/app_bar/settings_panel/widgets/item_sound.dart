@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/core/config/locale.dart';
-import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';

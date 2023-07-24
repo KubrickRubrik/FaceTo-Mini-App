@@ -1,4 +1,4 @@
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2.scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
@@ -22,6 +22,12 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
   double swipeVector = 0.0;
 
   @override
+  void initState() {
+    print("INIT SCENE");
+    super.initState();
+  }
+
+  @override
   void dispose() {
     scrollController.dispose();
     super.dispose();
@@ -36,12 +42,13 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
       onHorizontalDragStart: (details) {
         // TO RIGHT TAB_1
         if (details.localPosition.dx < swipeVector) {
-          locator<PageControllerProvider>().swipeToScenes(2);
+          if (context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
+          locator<PagesControllerProvider>().swipeToScenes(2);
           print('RIGHT');
         }
         // TO LEFT TAB_2
         else {
-          locator<PageControllerProvider>().swipeToScenes(0);
+          locator<PagesControllerProvider>().swipeToScenes(0);
           print('LEFT');
         }
         swipeVector = details.localPosition.dx;

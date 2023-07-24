@@ -1,4 +1,4 @@
-part of 'series.dart';
+part of 'scene.dart';
 
 mixin _State {
   var actionStatus = ActionStatus.isDone;

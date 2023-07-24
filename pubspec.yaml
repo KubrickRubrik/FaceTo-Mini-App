@@ -37,6 +37,7 @@ flutter:
 
   assets:
     - asset/app/error/
+    - asset/spin/
 
   fonts:
     - family: Comfortaa

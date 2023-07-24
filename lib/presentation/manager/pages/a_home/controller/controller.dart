@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 part 'state.dart';
 
-final class PageControllerProvider extends ChangeNotifier with _State {
-  PageControllerProvider() {
-    print("INIT");
-  }
+final class PagesControllerProvider extends ChangeNotifier with _State {
   // Init default parameters
-  void initDefaultParameters(TabController controller, Size size) {
-    _tabController = controller;
+  void initDefaultParameters(PageController controller, Size size) {
+    _pageController = controller;
     _sizePanelScene = SizePanelScene(size);
   }
 
   // Swipe page/tab in any direction
   void _swipeToTab(int index) {
     indexTab = index;
-    _tabController!.animateTo(index);
+    _pageController!.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     notifyListeners();
   }
 

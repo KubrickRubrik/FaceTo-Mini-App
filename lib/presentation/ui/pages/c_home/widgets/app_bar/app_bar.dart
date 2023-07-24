@@ -5,7 +5,7 @@ class _AppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<PageControllerProvider, int>(
+    return Selector<PagesControllerProvider, int>(
       selector: (_, Model) => Model.indexTab,
       builder: (_, indexTab, child) {
         final appBar = _makeAppBar(indexTab, context);

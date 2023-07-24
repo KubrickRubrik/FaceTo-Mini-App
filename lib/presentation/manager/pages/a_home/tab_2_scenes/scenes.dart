@@ -1,18 +1,18 @@
-import 'package:facetomini/domain/use_cases/series.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';
 
-final class SeriesProvider extends ChangeNotifier with _State {
-  SeriesProvider(this._seriesCase);
-  final SeriesCase _seriesCase;
+final class ScenesProvider extends ChangeNotifier with _State {
+  ScenesProvider(this._scenesCase);
+  final ScenesCase _scenesCase;
 
-  Future<void> getSeries() async {
+  Future<void> getScenes(int idSeries) async {
     print("GET SERIES");
     if (super.actionStatus == ActionStatus.isAction) return;
     _setActions(ActionStatus.isAction, false);
     _setStatusPage(StatusContent.isLoadContent);
-    final response = await _seriesCase.getSeries();
+    final response = await _scenesCase.getScenes(idSeries);
     _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
       _setStatusPage(StatusContent.isNoContent);
@@ -21,7 +21,6 @@ final class SeriesProvider extends ChangeNotifier with _State {
     }
   }
 
-  //
   void _setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
     if (isUpdate) notifyListeners();
@@ -33,7 +32,7 @@ final class SeriesProvider extends ChangeNotifier with _State {
     notifyListeners();
   }
 
-  // // Setting page content status when data is loaded
+  // Setting page content status when data is loaded
   void _setStatusContentPage(StatusContent val) {
     statusContentPage = val;
     notifyListeners();

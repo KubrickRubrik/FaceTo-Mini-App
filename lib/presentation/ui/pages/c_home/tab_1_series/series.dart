@@ -1,11 +1,11 @@
+import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/load_content.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/list_content/list.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/no_content.dart';
-import 'package:facetomini/presentation/locator/locator.dart';
-
 import 'package:provider/provider.dart';
 
 class PageTabSeries extends StatefulWidget {
@@ -22,6 +22,13 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
   double swipeVector = 0.0;
 
   @override
+  void initState() {
+    print("INIT SERIES");
+
+    super.initState();
+  }
+
+  @override
   void dispose() {
     scrollController.dispose();
     super.dispose();
@@ -36,14 +43,12 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
       onHorizontalDragStart: (details) {
         // TO RIGHT TAB_1
         if (details.localPosition.dx < swipeVector) {
-          // locator<ControllerPagesProvider>().swipeToScenes(1);
+          if (context.read<SeriesProvider>().actionStatus != ActionStatus.isDone) return;
+          context.read<PagesControllerProvider>().swipeToScenes(1);
           // _FMD_CONTROLLER.setContentTab_2_SWIPE();
           print('RIGHT');
         } else {
           // TO LEFT TAB_2
-          // context.goNamed('series', pathParameters: {'page': "0"});
-          // context.read<ControllerPagesProvider>().swipeBackTab(0);
-          // _FMD_CONTROLLER.swipeTabBack(0);
           // print('LEFT');
         }
         swipeVector = details.localPosition.dx;
