@@ -1,3 +1,4 @@
+import 'package:facetomini/domain/entities/series.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
@@ -17,6 +18,7 @@ final class SeriesProvider extends ChangeNotifier with _State {
     if (response.fail != null || response.data == null) {
       _setStatusPage(StatusContent.isNoContent);
     } else {
+      listSeries.addAll(response.data!);
       _setStatusPage(StatusContent.isViewContent);
     }
   }

@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/domain/entities/series.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
-import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/ui/components/images.dart';
 part 'widgets/banner.dart';
 part 'widgets/description.dart';
 part 'widgets/rating.dart';
@@ -8,7 +11,8 @@ part 'widgets/count_scenes.dart';
 part 'widgets/status_series.dart';
 
 class ItemSeries extends StatelessWidget {
-  const ItemSeries({super.key});
+  const ItemSeries(this.item, {super.key});
+  final SeriesEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class ItemSeries extends StatelessWidget {
           onTap: () {},
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
-            child: const ColoredBox(
+            child: ColoredBox(
               color: Colors.white,
               child: Stack(
                 children: [
@@ -47,28 +51,28 @@ class ItemSeries extends StatelessWidget {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    child: _Banner(),
+                    child: _Banner(item),
                   ),
                   //! Author & stat
-                  Positioned(
+                  const Positioned(
                     top: 7,
                     left: 7,
                     child: _DescriptionSeries(),
                   ),
                   //! Rating
-                  Positioned(
+                  const Positioned(
                     bottom: 7,
                     left: 7,
                     child: _RatingSeries(),
                   ),
                   //! COUNT SCENES
-                  Positioned(
+                  const Positioned(
                     top: 7,
                     right: 7,
                     child: _CountScenes(),
                   ),
                   //! Status
-                  Positioned(
+                  const Positioned(
                     bottom: 7,
                     right: 7,
                     child: _StatusSeries(),

@@ -1,3 +1,4 @@
+import 'package:facetomini/domain/entities/scene.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
@@ -12,7 +13,7 @@ final class ScenesProvider extends ChangeNotifier with _State {
     if (super.actionStatus == ActionStatus.isAction) return;
     _setActions(ActionStatus.isAction, false);
     _setStatusPage(StatusContent.isLoadContent);
-    final response = await _scenesCase.getScenes(idSeries);
+    final response = await _scenesCase.getScenesInSeries(idSeries);
     _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
       _setStatusPage(StatusContent.isNoContent);

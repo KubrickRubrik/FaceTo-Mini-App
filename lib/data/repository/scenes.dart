@@ -6,8 +6,8 @@ import 'package:facetomini/domain/entities/scene.dart';
 import 'package:facetomini/domain/repository/scenes.dart';
 
 /// Class for performing operations on scene data
-final class SceneRepositoryImpl implements ScenesRepository {
-  SceneRepositoryImpl({required this.apiDB});
+final class ScenesRepositoryImpl implements ScenesRepository {
+  ScenesRepositoryImpl(this.apiDB);
   ApiDbEnvelope apiDB;
   // Get all scenes in series
   @override

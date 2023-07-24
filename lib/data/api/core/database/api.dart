@@ -12,14 +12,14 @@ final class ApiDbDrift implements ApiDbEnvelope {
   final _sessionQuery = SessionQueryDrift();
   final _seriesQuery = SeriesQueryDrift();
   final _scenesQuery = ScenesQueryDrift();
-
+  final apiDb = ConnectDataBase();
   // Authorization user
   @override
   Future<SessionModel?> authorized(String languageName) async {
     try {
-      final apiDb = ConnectDataBase(language: languageName);
+      // final apiDb = ConnectDataBase(language: languageName);
       final response = await _sessionQuery.authirized(apiDb);
-      apiDb.close();
+      // apiDb.close();
       if (response == null) return null;
       return SessionModel(
         idApp: response.user.idApp,
@@ -36,9 +36,9 @@ final class ApiDbDrift implements ApiDbEnvelope {
   @override
   Future<SessionModel?> setTheme(String themeName) async {
     try {
-      final apiDb = ConnectDataBase();
+      // final apiDb = ConnectDataBase();
       final response = await _sessionQuery.setTheme(apiDb, theme: themeName);
-      apiDb.close();
+      // apiDb.close();
       if (response == null) return null;
       return SessionModel.settings(theme: response.theme);
     } catch (e) {
@@ -50,9 +50,9 @@ final class ApiDbDrift implements ApiDbEnvelope {
   @override
   Future<SessionModel?> setLocale(String languageName) async {
     try {
-      final apiDb = ConnectDataBase();
+      // final apiDb = ConnectDataBase();
       final response = await _sessionQuery.setLocale(apiDb, language: languageName);
-      apiDb.close();
+      // apiDb.close();
       if (response == null) return null;
       return SessionModel.settings(language: response.language);
     } catch (e) {
@@ -64,9 +64,9 @@ final class ApiDbDrift implements ApiDbEnvelope {
   @override
   Future<SessionModel?> setSound(bool enebledSound) async {
     try {
-      final apiDb = ConnectDataBase();
+      // final apiDb = ConnectDataBase();
       final response = await _sessionQuery.setSound(apiDb, enebledSound: enebledSound);
-      apiDb.close();
+      // apiDb.close();
       if (response == null) return null;
       return SessionModel.settings(enabledSound: response.enabledSound);
     } catch (e) {
@@ -78,9 +78,10 @@ final class ApiDbDrift implements ApiDbEnvelope {
   @override
   Future<List<SeriesModel>?> getSeries() async {
     try {
-      final apiDb = ConnectDataBase();
+      print(">> SERIES");
+      // final apiDb = ConnectDataBase();
       final response = await _seriesQuery.getSeries(apiDb);
-      apiDb.close();
+      // apiDb.close();
       if (response == null) return null;
       final result = response.map((e) => SeriesModel(e)).toList();
       return result;
@@ -93,9 +94,9 @@ final class ApiDbDrift implements ApiDbEnvelope {
   @override
   Future<List<SceneModel>?> getScenesInSeries(int idSeries) async {
     try {
-      final apiDb = ConnectDataBase();
+      // final apiDb = ConnectDataBase();
       final response = await _scenesQuery.getScenesInSeries(apiDb, idSeries: idSeries);
-      apiDb.close();
+      // apiDb.close();
       if (response == null) return null;
       final result = response.map((e) => SceneModel(e)).toList();
       return result;

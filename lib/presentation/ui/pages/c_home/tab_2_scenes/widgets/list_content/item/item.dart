@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/domain/entities/scene.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
-import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/ui/components/images.dart';
 part 'widgets/banner.dart';
 part 'widgets/description.dart';
 part 'widgets/rating.dart';
@@ -8,7 +11,8 @@ part 'widgets/count_scenes.dart';
 part 'widgets/status_series.dart';
 
 class ItemScene extends StatelessWidget {
-  const ItemScene({super.key});
+  const ItemScene(this.item, {super.key});
+  final SceneEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class ItemScene extends StatelessWidget {
           onTap: () {},
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
-            child: const ColoredBox(
+            child: ColoredBox(
               color: Colors.white,
               child: Stack(
                 children: [
@@ -47,7 +51,7 @@ class ItemScene extends StatelessWidget {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    child: _Banner(),
+                    child: _Banner(item),
                   ),
                   //! Author & stat
                   Positioned(

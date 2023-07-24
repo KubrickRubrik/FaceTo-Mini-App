@@ -18,5 +18,11 @@ enum StatusContent {
   isViewContent,
 }
 
+/// Image source
+enum TypeSourceImage { server, file, asset }
+
 /// Target image source
-enum TargetImageSource { app, series, scenes }
+enum TargetSourceImage { app, series, scenes }
+
+/// To determine if it was worth caching an image from the Internet
+enum TypeCacheImage { cache, notCache }

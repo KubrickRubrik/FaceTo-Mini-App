@@ -1,3 +1,4 @@
+import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/domain/entities/scene.dart';
 
 final class SeriesEntity {
@@ -23,15 +24,25 @@ final class SeriesEntity {
 
 /// Image of series
 final class ImageSeries {
-  final int id;
+  final int idImage;
   final String url;
   final int typeView;
+  final TypeSourceImage typeSourceImage;
 
   ImageSeries({
-    required this.id,
+    required this.idImage,
     required this.url,
     required this.typeView,
-  });
+  }) : typeSourceImage = _setTypeSourceImage(url);
+
+  // Setting the image source
+  static _setTypeSourceImage(String url) {
+    if (url.startsWith('http')) {
+      return TypeSourceImage.server;
+    } else {
+      return TypeSourceImage.asset;
+    }
+  }
 }
 
 /// User data of series

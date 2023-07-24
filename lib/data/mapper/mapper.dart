@@ -32,7 +32,7 @@ abstract final class EntitiesMapper {
     return SeriesEntity(
       idSeries: model.idSeries,
       image: ImageSeries(
-        id: model.idImage,
+        idImage: model.idImage,
         url: model.idImage.toString(),
         typeView: model.typeView,
       ),
@@ -63,7 +63,7 @@ abstract final class EntitiesMapper {
       idScene: model.idScene,
       idSeries: model.idSeries,
       image: ImageScene(
-        id: model.idImage,
+        idImage: model.idImage,
         url: model.idImage.toString(),
         typeView: model.typeView,
       ),

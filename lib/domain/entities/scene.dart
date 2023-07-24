@@ -1,3 +1,5 @@
+import 'package:facetomini/core/config/entity.dart';
+
 final class SceneEntity {
   final int idScene;
   final int idSeries;
@@ -21,15 +23,25 @@ final class SceneEntity {
 
 /// Image of scene
 final class ImageScene {
-  final int id;
+  final int idImage;
   final String url;
   final int typeView;
+  final TypeSourceImage typeSourceImage;
 
   ImageScene({
-    required this.id,
+    required this.idImage,
     required this.url,
     required this.typeView,
-  });
+  }) : typeSourceImage = _setTypeSourceImage(url);
+
+  // Setting the image source
+  static _setTypeSourceImage(String url) {
+    if (url.startsWith('http')) {
+      return TypeSourceImage.server;
+    } else {
+      return TypeSourceImage.asset;
+    }
+  }
 }
 
 /// User data of scene

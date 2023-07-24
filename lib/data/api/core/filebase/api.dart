@@ -10,7 +10,7 @@ final class ApiFileServices {
 
   // Checking if an image file exists in the device's file system
   Future<bool> checkExistFileImage({
-    required TargetImageSource target,
+    required TargetSourceImage target,
     int? idSeries,
     int? idScene,
     int? idImage,
@@ -19,9 +19,9 @@ final class ApiFileServices {
     var documentDirectory = await getApplicationDocumentsDirectory();
 
     final filePath = switch (target) {
-      TargetImageSource.app => "${documentDirectory.path}$pathApp/$idImage.webp",
-      TargetImageSource.series => "${documentDirectory.path}$pathSeries/s_$idSeries/$idImage.webp",
-      TargetImageSource.scenes => "${documentDirectory.path}$pathSeries/s_$idSeries/$idScene/$idImage.webp",
+      TargetSourceImage.app => "${documentDirectory.path}$pathApp/$idImage.webp",
+      TargetSourceImage.series => "${documentDirectory.path}$pathSeries/s_$idSeries/$idImage.webp",
+      TargetSourceImage.scenes => "${documentDirectory.path}$pathSeries/s_$idSeries/$idScene/$idImage.webp",
     };
 
     if (await File(filePath).exists()) {
