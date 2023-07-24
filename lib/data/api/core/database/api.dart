@@ -1,15 +1,17 @@
 import 'package:facetomini/core/errors/exception.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 import 'package:facetomini/data/api/core/database/queries/session.dart';
-import 'package:facetomini/data/api/core/database/queries/scene.dart';
+import 'package:facetomini/data/api/core/database/queries/scenes.dart';
 import 'package:facetomini/data/api/core/database/queries/series.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
+import 'package:facetomini/data/models/scene.dart';
+import 'package:facetomini/data/models/series.dart';
 import 'package:facetomini/data/models/session.dart';
 
-class ApiDbDrift implements ApiDbEnvelope {
+final class ApiDbDrift implements ApiDbEnvelope {
   final _sessionQuery = SessionQueryDrift();
   final _seriesQuery = SeriesQueryDrift();
-  final _sceneQuery = SceneQueryDrift();
+  final _scenesQuery = ScenesQueryDrift();
 
   // Authorization user
   @override
@@ -67,6 +69,36 @@ class ApiDbDrift implements ApiDbEnvelope {
       apiDb.close();
       if (response == null) return null;
       return SessionModel.settings(enabledSound: response.enabledSound);
+    } catch (e) {
+      throw ApiException('Exception api database drift $e');
+    }
+  }
+
+  // Get series
+  @override
+  Future<List<SeriesModel>?> getSeries() async {
+    try {
+      final apiDb = ConnectDataBase();
+      final response = await _seriesQuery.getSeries(apiDb);
+      apiDb.close();
+      if (response == null) return null;
+      final result = response.map((e) => SeriesModel(e)).toList();
+      return result;
+    } catch (e) {
+      throw ApiException('Exception api database drift $e');
+    }
+  }
+
+  // Get scenes
+  @override
+  Future<List<SceneModel>?> getScenesInSeries(int idSeries) async {
+    try {
+      final apiDb = ConnectDataBase();
+      final response = await _scenesQuery.getScenesInSeries(apiDb, idSeries: idSeries);
+      apiDb.close();
+      if (response == null) return null;
+      final result = response.map((e) => SceneModel(e)).toList();
+      return result;
     } catch (e) {
       throw ApiException('Exception api database drift $e');
     }

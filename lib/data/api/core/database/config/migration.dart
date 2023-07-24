@@ -42,6 +42,7 @@ abstract final class MigrationDataBaseDrift {
             b.insertAll(db.useTableSeries, _DefaultData.listSeries.map((e) {
               return UseTableSeriesCompanion.insert(
                 idSeries: e.idSeries,
+                idImage: e.idImage,
                 typeView: e.typeView,
                 // author
                 idApp: e.idApp,

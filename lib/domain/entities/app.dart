@@ -1,7 +1,7 @@
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/core/config/locale.dart';
 
-class SessionEntity {
+final class SessionEntity {
   final int idApp;
   final bool enabledSound;
   final AvailableAppLocale locale;
