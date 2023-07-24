@@ -1,5 +1,7 @@
 import 'package:facetomini/core/errors/failure.dart';
+import 'package:facetomini/domain/entities/scene.dart';
 
 abstract interface class ScenesRepository {
-  Future<({List? data, Failure? fail})> getScenes(int idSeries);
+  // Get all scenes for series
+  Future<({List<SceneEntity>? data, Failure? fail})> getScenesInSeries(int idSeries);
 }

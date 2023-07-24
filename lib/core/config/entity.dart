@@ -17,3 +17,6 @@ enum StatusContent {
   isEmptyContent,
   isViewContent,
 }
+
+/// Target image source
+enum TargetImageSource { app, series, scenes }

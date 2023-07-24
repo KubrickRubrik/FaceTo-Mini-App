@@ -1,5 +1,7 @@
 import 'package:facetomini/core/errors/failure.dart';
+import 'package:facetomini/domain/entities/series.dart';
 
 abstract interface class SeriesRepository {
-  Future<({List? data, Failure? fail})> getSeries();
+  // Get all available default series
+  Future<({List<SeriesEntity>? data, Failure? fail})> getSeries();
 }
