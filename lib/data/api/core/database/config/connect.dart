@@ -13,13 +13,14 @@ part 'connect.g.dart';
 
 @DriftDatabase(tables: [UseTableAppUser, UseTableAppSettings, UseTableSeries, UseTableScenes])
 class ConnectDataBase extends _$ConnectDataBase {
-  ConnectDataBase() : super(_openConnection());
+  ConnectDataBase({this.language}) : super(_openConnection());
+  final String? language;
 
   @override
   int get schemaVersion => 1;
 
   @override
-  MigrationStrategy get migration => MigrationDataBaseDrift.migration(this);
+  MigrationStrategy get migration => MigrationDataBaseDrift.migration(this, language: language);
 }
 
 LazyDatabase _openConnection() {
