@@ -4,6 +4,7 @@ import 'package:drift/drift.dart';
 class UseTableSeries extends Table {
   IntColumn get id => integer().autoIncrement()();
   IntColumn get idSeries => integer().unique().named('id_series')();
+  IntColumn get idImage => integer().named('id_image')();
   IntColumn get typeView => integer().named('type_view')();
   // author
   IntColumn get idApp => integer().named('id_app')();

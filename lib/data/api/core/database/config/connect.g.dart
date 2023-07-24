@@ -483,6 +483,12 @@ class $UseTableSeriesTable extends UseTableSeries
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
+  static const VerificationMeta _idImageMeta =
+      const VerificationMeta('idImage');
+  @override
+  late final GeneratedColumn<int> idImage = GeneratedColumn<int>(
+      'id_image', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _typeViewMeta =
       const VerificationMeta('typeView');
   @override
@@ -567,6 +573,7 @@ class $UseTableSeriesTable extends UseTableSeries
   List<GeneratedColumn> get $columns => [
         id,
         idSeries,
+        idImage,
         typeView,
         idApp,
         nick,
@@ -599,6 +606,12 @@ class $UseTableSeriesTable extends UseTableSeries
           idSeries.isAcceptableOrUnknown(data['id_series']!, _idSeriesMeta));
     } else if (isInserting) {
       context.missing(_idSeriesMeta);
+    }
+    if (data.containsKey('id_image')) {
+      context.handle(_idImageMeta,
+          idImage.isAcceptableOrUnknown(data['id_image']!, _idImageMeta));
+    } else if (isInserting) {
+      context.missing(_idImageMeta);
     }
     if (data.containsKey('type_view')) {
       context.handle(_typeViewMeta,
@@ -704,6 +717,8 @@ class $UseTableSeriesTable extends UseTableSeries
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       idSeries: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id_series'])!,
+      idImage: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id_image'])!,
       typeView: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}type_view'])!,
       idApp: attachedDatabase.typeMapping
@@ -744,6 +759,7 @@ class $UseTableSeriesTable extends UseTableSeries
 class TableSeries extends DataClass implements Insertable<TableSeries> {
   final int id;
   final int idSeries;
+  final int idImage;
   final int typeView;
   final int idApp;
   final String nick;
@@ -761,6 +777,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
   const TableSeries(
       {required this.id,
       required this.idSeries,
+      required this.idImage,
       required this.typeView,
       required this.idApp,
       required this.nick,
@@ -780,6 +797,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['id_series'] = Variable<int>(idSeries);
+    map['id_image'] = Variable<int>(idImage);
     map['type_view'] = Variable<int>(typeView);
     map['id_app'] = Variable<int>(idApp);
     map['nick_app'] = Variable<String>(nick);
@@ -801,6 +819,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
     return UseTableSeriesCompanion(
       id: Value(id),
       idSeries: Value(idSeries),
+      idImage: Value(idImage),
       typeView: Value(typeView),
       idApp: Value(idApp),
       nick: Value(nick),
@@ -824,6 +843,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
     return TableSeries(
       id: serializer.fromJson<int>(json['id']),
       idSeries: serializer.fromJson<int>(json['idSeries']),
+      idImage: serializer.fromJson<int>(json['idImage']),
       typeView: serializer.fromJson<int>(json['typeView']),
       idApp: serializer.fromJson<int>(json['idApp']),
       nick: serializer.fromJson<String>(json['nick']),
@@ -846,6 +866,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'idSeries': serializer.toJson<int>(idSeries),
+      'idImage': serializer.toJson<int>(idImage),
       'typeView': serializer.toJson<int>(typeView),
       'idApp': serializer.toJson<int>(idApp),
       'nick': serializer.toJson<String>(nick),
@@ -866,6 +887,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
   TableSeries copyWith(
           {int? id,
           int? idSeries,
+          int? idImage,
           int? typeView,
           int? idApp,
           String? nick,
@@ -883,6 +905,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       TableSeries(
         id: id ?? this.id,
         idSeries: idSeries ?? this.idSeries,
+        idImage: idImage ?? this.idImage,
         typeView: typeView ?? this.typeView,
         idApp: idApp ?? this.idApp,
         nick: nick ?? this.nick,
@@ -903,6 +926,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
     return (StringBuffer('TableSeries(')
           ..write('id: $id, ')
           ..write('idSeries: $idSeries, ')
+          ..write('idImage: $idImage, ')
           ..write('typeView: $typeView, ')
           ..write('idApp: $idApp, ')
           ..write('nick: $nick, ')
@@ -925,6 +949,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
   int get hashCode => Object.hash(
       id,
       idSeries,
+      idImage,
       typeView,
       idApp,
       nick,
@@ -945,6 +970,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       (other is TableSeries &&
           other.id == this.id &&
           other.idSeries == this.idSeries &&
+          other.idImage == this.idImage &&
           other.typeView == this.typeView &&
           other.idApp == this.idApp &&
           other.nick == this.nick &&
@@ -964,6 +990,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
 class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
   final Value<int> id;
   final Value<int> idSeries;
+  final Value<int> idImage;
   final Value<int> typeView;
   final Value<int> idApp;
   final Value<String> nick;
@@ -981,6 +1008,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
   const UseTableSeriesCompanion({
     this.id = const Value.absent(),
     this.idSeries = const Value.absent(),
+    this.idImage = const Value.absent(),
     this.typeView = const Value.absent(),
     this.idApp = const Value.absent(),
     this.nick = const Value.absent(),
@@ -999,6 +1027,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
   UseTableSeriesCompanion.insert({
     this.id = const Value.absent(),
     required int idSeries,
+    required int idImage,
     required int typeView,
     required int idApp,
     required String nick,
@@ -1014,6 +1043,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     required int countUsers,
     required int countScenes,
   })  : idSeries = Value(idSeries),
+        idImage = Value(idImage),
         typeView = Value(typeView),
         idApp = Value(idApp),
         nick = Value(nick),
@@ -1031,6 +1061,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
   static Insertable<TableSeries> custom({
     Expression<int>? id,
     Expression<int>? idSeries,
+    Expression<int>? idImage,
     Expression<int>? typeView,
     Expression<int>? idApp,
     Expression<String>? nick,
@@ -1049,6 +1080,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (idSeries != null) 'id_series': idSeries,
+      if (idImage != null) 'id_image': idImage,
       if (typeView != null) 'type_view': typeView,
       if (idApp != null) 'id_app': idApp,
       if (nick != null) 'nick_app': nick,
@@ -1069,6 +1101,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
   UseTableSeriesCompanion copyWith(
       {Value<int>? id,
       Value<int>? idSeries,
+      Value<int>? idImage,
       Value<int>? typeView,
       Value<int>? idApp,
       Value<String>? nick,
@@ -1086,6 +1119,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     return UseTableSeriesCompanion(
       id: id ?? this.id,
       idSeries: idSeries ?? this.idSeries,
+      idImage: idImage ?? this.idImage,
       typeView: typeView ?? this.typeView,
       idApp: idApp ?? this.idApp,
       nick: nick ?? this.nick,
@@ -1111,6 +1145,9 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     }
     if (idSeries.present) {
       map['id_series'] = Variable<int>(idSeries.value);
+    }
+    if (idImage.present) {
+      map['id_image'] = Variable<int>(idImage.value);
     }
     if (typeView.present) {
       map['type_view'] = Variable<int>(typeView.value);
@@ -1162,6 +1199,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     return (StringBuffer('UseTableSeriesCompanion(')
           ..write('id: $id, ')
           ..write('idSeries: $idSeries, ')
+          ..write('idImage: $idImage, ')
           ..write('typeView: $typeView, ')
           ..write('idApp: $idApp, ')
           ..write('nick: $nick, ')
