@@ -14,7 +14,7 @@ final class SessionRepositoryImpl implements SessionRepository {
   Future<({SessionEntity? data, Failure? fail})> authorization(String languageName) async {
     try {
       final response = await apiDbEnvelope.authorized(languageName);
-      final result = EntitiesMapper.authorizedMapper(response);
+      final result = EntitiesMapper.setAuthorized(response);
       return (data: result, fail: null);
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));

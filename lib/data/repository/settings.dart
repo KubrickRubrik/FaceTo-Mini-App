@@ -13,8 +13,8 @@ final class SettingsRepositoryImpl implements SettingsRepository {
   Future<({SessionEntity? data, Failure? fail})> setTheme(String themeName) async {
     try {
       final response = await apiDbEnvelope.setTheme(themeName);
-      final result = EntitiesMapper.authorizedMapper(response);
-      return (fail: null, data: result);
+      final result = EntitiesMapper.setSettings(response);
+      return (data: result, fail: null);
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
     } catch (e) {
@@ -27,7 +27,7 @@ final class SettingsRepositoryImpl implements SettingsRepository {
   Future<({SessionEntity? data, Failure? fail})> setLocale(String languageName) async {
     try {
       final response = await apiDbEnvelope.setLocale(languageName);
-      final result = EntitiesMapper.authorizedMapper(response);
+      final result = EntitiesMapper.setSettings(response);
       return (data: result, fail: null);
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
@@ -41,7 +41,7 @@ final class SettingsRepositoryImpl implements SettingsRepository {
   Future<({SessionEntity? data, Failure? fail})> setSound(bool enebledSound) async {
     try {
       final response = await apiDbEnvelope.setSound(enebledSound);
-      final result = EntitiesMapper.authorizedMapper(response);
+      final result = EntitiesMapper.setSettings(response);
       return (data: result, fail: null);
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
