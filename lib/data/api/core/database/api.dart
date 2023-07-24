@@ -1,30 +1,72 @@
 import 'package:facetomini/core/errors/exception.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
-import 'package:facetomini/data/api/core/database/queries/app.dart';
+import 'package:facetomini/data/api/core/database/queries/session.dart';
 import 'package:facetomini/data/api/core/database/queries/scene.dart';
 import 'package:facetomini/data/api/core/database/queries/series.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
-import 'package:facetomini/data/models/app.dart';
+import 'package:facetomini/data/models/session.dart';
 
 class ApiDbDrift implements ApiDbEnvelope {
-  final _appQuery = AppQueryDrift();
+  final _sessionQuery = SessionQueryDrift();
   final _seriesQuery = SeriesQueryDrift();
   final _sceneQuery = SceneQueryDrift();
 
   // Authorization user
   @override
-  Future<AuthorizedModel?> authorized() async {
+  Future<SessionModel?> authorized(String languageName) async {
     try {
-      final apiDb = ConnectDataBase();
-      final response = await _appQuery.authirized(apiDb);
+      final apiDb = ConnectDataBase(language: languageName);
+      final response = await _sessionQuery.authirized(apiDb);
       apiDb.close();
       if (response == null) return null;
-      return AuthorizedModel(
+      return SessionModel(
         idApp: response.user.idApp,
         enabledSound: response.settings.enabledSound,
         language: response.settings.language,
         theme: response.settings.theme,
       );
+    } catch (e) {
+      throw ApiException('Exception api database drift $e');
+    }
+  }
+
+  // Save a theme
+  @override
+  Future<SessionModel?> setTheme(String themeName) async {
+    try {
+      final apiDb = ConnectDataBase();
+      final response = await _sessionQuery.setTheme(apiDb, theme: themeName);
+      apiDb.close();
+      if (response == null) return null;
+      return SessionModel.settings(theme: response.theme);
+    } catch (e) {
+      throw ApiException('Exception api database drift $e');
+    }
+  }
+
+  // Locale saving
+  @override
+  Future<SessionModel?> setLocale(String languageName) async {
+    try {
+      final apiDb = ConnectDataBase();
+      final response = await _sessionQuery.setLocale(apiDb, language: languageName);
+      apiDb.close();
+      if (response == null) return null;
+      return SessionModel.settings(language: response.language);
+    } catch (e) {
+      throw ApiException('Exception api database drift $e');
+    }
+  }
+
+  // Saving sound
+  @override
+  Future<SessionModel?> setSound(bool enebledSound) async {
+    try {
+      final apiDb = ConnectDataBase();
+      final response = await _sessionQuery.setSound(apiDb, enebledSound: enebledSound);
+      apiDb.close();
+      if (response == null) return null;
+      return SessionModel.settings(enabledSound: response.enabledSound);
     } catch (e) {
       throw ApiException('Exception api database drift $e');
     }

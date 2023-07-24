@@ -1,13 +1,13 @@
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/core/config/locale.dart';
 
-class AuhtorizedEntity {
+class SessionEntity {
   final int idApp;
   final bool enabledSound;
   final AvailableAppLocale locale;
   final CurrentThemeApp theme;
 
-  AuhtorizedEntity({
+  SessionEntity({
     required this.idApp,
     required int enabledSound,
     required String locale,

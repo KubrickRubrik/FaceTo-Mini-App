@@ -5,7 +5,8 @@ import 'package:facetomini/data/api/core/database/config/connect.dart';
 /// Class for performing database migration using default data
 abstract final class MigrationDataBaseDrift {
   // Migration databse
-  static migration(ConnectDataBase db) {
+  static migration(ConnectDataBase db, {String? language}) {
+    language ??= 'en';
     return MigrationStrategy(
       onCreate: (Migrator m) async {
         await m.createAll();
@@ -36,7 +37,7 @@ abstract final class MigrationDataBaseDrift {
             // Add default app-user
             b.insert(db.useTableAppUser, const UseTableAppUserCompanion());
             // Add default app-settings
-            b.insert(db.useTableAppSettings, const UseTableAppSettingsCompanion());
+            b.insert(db.useTableAppSettings, UseTableAppSettingsCompanion.insert(language: Value(language!)));
             // Add default series
             b.insertAll(db.useTableSeries, _DefaultData.listSeries.map((e) {
               return UseTableSeriesCompanion.insert(

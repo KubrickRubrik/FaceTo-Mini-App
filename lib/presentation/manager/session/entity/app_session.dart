@@ -7,7 +7,7 @@ class AppSession {
   int idApp = 0;
   final settings = AppSettings();
 
-  void authorized(AuhtorizedEntity inpuData) {
+  void authorized(SessionEntity inpuData) {
     stateAuthorization = StateApp.isAuth;
     idApp = inpuData.idApp;
     settings.enabledSound = inpuData.enabledSound;
