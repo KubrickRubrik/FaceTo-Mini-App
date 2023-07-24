@@ -9,6 +9,7 @@ abstract final class ThemesController {
     return switch (value) {
       CurrentThemeApp.dark => createDarkTheme(),
       CurrentThemeApp.light => createLightTheme(),
+      _ => createLightTheme(),
     };
   }
 }

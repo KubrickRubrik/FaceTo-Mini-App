@@ -1,10 +1,21 @@
 {
-    "titleApp": "Title app",
+    "titleApp": "FaceTo Mini",
 
-    "titleInitPage": "Title home app",
-    "titleHomePage": "Title init app",
+    "titleSeriesPage": "FaceTo Mini series",
+    "titleScenesPage": "Scenes of series",
+    "titleScenePage": "Game",
 
     "titleErrorApp": "Oops!",
     "errorRepairsApp": "Application needs to be reinstalled",
-    "isNoContent": "No content"
+    "isNoContent": "No content",
+
+    "themeSettings": "App theme",
+    "themeSettingsLight": "Light",
+    "themeSettingsDark": "Dark",
+    "languageSettings": "Language",
+    "soundSettings": "Voice acting",
+    "soundSettingsOn": "Turn on",
+    "soundSettingsOff": "Switch off",
+
+    "infoSettings": "Information"
 }

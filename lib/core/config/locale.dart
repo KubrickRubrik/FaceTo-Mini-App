@@ -4,13 +4,16 @@ import 'package:facetomini/core/config/entity.dart';
 /// Class for working with user's locale app
 abstract final class ConfigLocalization {
   // All language
-  static const EN = AppLanguage('en', 'English');
-  static const RU = AppLanguage('ru', 'Русский');
+  // static const EN = AppLanguage('en', 'English');
+  // static const RU = AppLanguage('ru', 'Русский');
   static const UK = AppLanguage('uk', 'Українська');
   static const ZH = AppLanguage('zh', '中文');
 
   // Default list language available for app
-  static List<AppLanguage> get defaultLanguage => [EN, RU];
+  static Map<AvailableAppLocale, AppLanguage> get defaultLanguage => {
+        AvailableAppLocale.en: const AppLanguage('en', 'English'),
+        AvailableAppLocale.ru: const AppLanguage('ru', 'Русский'),
+      };
 
   // Get locale by type
   static Locale getByType(AvailableAppLocale value) {

@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/domain/use_cases/session.dart';
 import 'package:facetomini/presentation/manager/session/entity/app_session.dart';
-import 'package:flutter/material.dart';
 
 part 'state.dart';
 
@@ -55,7 +55,7 @@ final class SessionProvider extends ChangeNotifier with _State {
   }
 
   // Set on/off sound
-  Future<void> setSound() async {
+  Future<void> setSound(bool val) async {
     if (super.actionStatus == ActionStatus.isAction) return;
     setActions(ActionStatus.isAction, false);
     final swithSound = !super.sessionUser.settings.enabledSound;
@@ -65,16 +65,20 @@ final class SessionProvider extends ChangeNotifier with _State {
       // sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
       // sessionUser.authorized(response.data!);
-      super.sessionUser.settings.switchSound();
+      super.sessionUser.settings.enabledSound = val;
       notifyListeners();
     }
-    super.sessionUser.settings.switchSound();
-    notifyListeners();
   }
 
   //
   void setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
     if (isUpdate) notifyListeners();
+  }
+
+  //
+  void setViewMenuSettings() {
+    super.sessionUser.settings.setViewMenu();
+    notifyListeners();
   }
 }

@@ -1,10 +1,23 @@
 {
-    "titleApp": "Название приложения",
+    "titleApp": "FaceTo Mini",
 
-    "titleInitPage": "Инициализация",
-    "titleHomePage": "Домашняя страница",
+    "titleSeriesPage": "FaceTo Mini серии",
+    "titleScenesPage": "Сцены серии",
+    "titleScenePage": "Игра",
 
     "titleErrorApp": "Упс!",
     "errorRepairsApp": "Требуется переустановка приложения",
-    "isNoContent": "Контент отсутствует"
+    "isNoContent": "Контент отсутствует",
+
+    "themeSettings": "Тема приложения",
+    "themeSettingsLight": "Светлая",
+    "themeSettingsDark": "Темная",
+
+    "languageSettings": "Язык",
+
+    "soundSettings": "Озвучка",
+    "soundSettingsOn": "Включить",
+    "soundSettingsOff": "Выключить",
+
+    "infoSettings": "Информация"
 }
