@@ -1,16 +1,14 @@
 import 'dart:math';
 import 'dart:ui';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
-import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
-import 'package:facetomini/presentation/ui/components/toast.dart';
 import 'package:flutter/material.dart';
 
+import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
+import 'package:facetomini/presentation/ui/components/toast.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/presentation/ui/components/images.dart';
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/domain/entities/scene.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:provider/provider.dart';
 part 'widgets/line.dart';

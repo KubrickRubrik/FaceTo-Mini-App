@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
-import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/load_content.dart';
@@ -49,7 +49,7 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
           if (context.read<SeriesProvider>().actionStatus != ActionStatus.isDone || context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
           // Getting the last used series or the first one on the series page for swiping
           final useIdSeries = context.read<ScenesProvider>().pageData.useIdSeries;
-          final idLastSeries = (useIdSeries != -1) ? useIdSeries : context.read<SeriesProvider>().listSeries.first.idSeries;
+          final idLastSeries = (useIdSeries != -1) ? useIdSeries : context.read<SeriesProvider>().pageData.listSeries.first.idSeries;
 
           context.read<ScenesProvider>().getScenes(idLastSeries).then((isDone) {
             if (isDone == null) return;
@@ -78,7 +78,7 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
           builder: (_, statusPage, child) {
             return switch (statusPage) {
               StatusContent.isLoadContent => const LoadPageSeries(),
-              StatusContent.isEmptyContent || StatusContent.isNoContent => const NoContentPageSeries(),
+              StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageSeries(),
               _ => ListContentSeries(controller: scrollController),
             };
           },

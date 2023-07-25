@@ -1,19 +1,20 @@
 part of '../item.dart';
 
 class _Banner extends StatelessWidget {
-  const _Banner(this.item);
-  final SeriesEntity item;
+  const _Banner(this.index);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final series = context.read<SeriesProvider>().pageData.listSeries.elementAt(index);
     return RotatedBox(
-      quarterTurns: (item.image.typeView == 1) ? -1 : 0,
+      quarterTurns: (series.image.typeView == 1) ? -1 : 0,
       child: ComponentImage(
-        typeSourceImage: item.image.typeSourceImage,
+        typeSourceImage: series.image.typeSourceImage,
         targetSourceImage: TargetSourceImage.series,
         typeCache: TypeCacheImage.notCache,
-        idSeries: item.idSeries,
-        idImage: item.image.idImage,
+        idSeries: series.idSeries,
+        idImage: series.image.idImage,
       ),
     );
   }

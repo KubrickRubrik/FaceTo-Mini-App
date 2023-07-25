@@ -7,6 +7,8 @@ abstract final class ConfigLinks {
   //! Limits
   static const limitAndroid = 7.1;
   static const limitIos = 10.0;
+  //! Links
+  static const links = LinksData();
 
   // Formation of the default path to images
   static String getAssetPathImage({
@@ -44,4 +46,9 @@ abstract final class ConfigLinks {
     // print("URL: $linkRes");
     return linkRes;
   }
+}
+
+final class LinksData {
+  const LinksData();
+  final String linkFaceTo = "https://play.google.com/store/apps/details?id=com.faceto.app.faceto&hl=ru";
 }

@@ -9,16 +9,15 @@ final class SeriesProvider extends ChangeNotifier with _State {
   final SeriesCase _seriesCase;
 
   Future<void> getSeries() async {
-    print("GET SERIES");
     if (super.actionStatus == ActionStatus.isAction) return;
     _setActions(ActionStatus.isAction, false);
     _setStatusPage(StatusContent.isLoadContent);
     final response = await _seriesCase.getSeries();
     _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
-      _setStatusPage(StatusContent.isNoContent);
+      _setStatusPage(StatusContent.isNoneContent);
     } else {
-      listSeries.addAll(response.data!);
+      pageData.overwritingPageData(response.data!);
       _setStatusPage(StatusContent.isViewContent);
     }
   }

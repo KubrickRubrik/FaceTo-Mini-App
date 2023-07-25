@@ -1,8 +1,8 @@
 part of '../item.dart';
 
 class _RatingSeries extends StatelessWidget {
-  const _RatingSeries(this.item);
-  final SeriesEntity item;
+  const _RatingSeries(this.index);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,17 @@ class _RatingSeries extends StatelessWidget {
               constraints: const BoxConstraints(minWidth: 40),
               padding: const EdgeInsets.symmetric(horizontal: 5),
               alignment: Alignment.center,
-              child: Text(
-                (item.stat.ratingSeries == 0) ? '-' : item.stat.ratingSeries.toString(),
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Color(0xFFFF8800),
-                ),
+              child: Selector<SeriesProvider, int>(
+                selector: (_, Model) => Model.pageData.listSeries.elementAt(index).stat.ratingSeries,
+                builder: (_, ratingSeries, __) {
+                  return Text(
+                    (ratingSeries == 0) ? '-' : ratingSeries.toString(),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Color(0xFFFF8800),
+                    ),
+                  );
+                },
               ),
             ),
             const _Spacer(),
@@ -36,16 +41,17 @@ class _RatingSeries extends StatelessWidget {
               constraints: const BoxConstraints(minWidth: 40),
               padding: const EdgeInsets.symmetric(horizontal: 2),
               alignment: Alignment.center,
-              child: Row(
-                children: [
-                  Text(
-                    (item.stat.countUsersRating == 0) ? '-' : item.stat.countUsersRating.toString(),
+              child: Selector<SeriesProvider, int>(
+                selector: (_, Model) => Model.pageData.listSeries.elementAt(index).stat.countUsersRating,
+                builder: (_, countUsersRating, __) {
+                  return Text(
+                    (countUsersRating == 0) ? '-' : countUsersRating.toString(),
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.white,
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
           ],

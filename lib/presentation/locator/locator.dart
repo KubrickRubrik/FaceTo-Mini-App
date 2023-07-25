@@ -11,6 +11,7 @@ import 'package:facetomini/domain/repository/settings.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
 import 'package:facetomini/domain/use_cases/session.dart';
+import 'package:facetomini/presentation/manager/author/author.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
@@ -37,6 +38,7 @@ abstract final class ServicesLocator {
     locator.registerLazySingleton<SessionProvider>(() => SessionProvider(locator()));
     // Pages
     locator.registerLazySingleton(() => PagesControllerProvider());
+    locator.registerLazySingleton(() => AuthorProvider());
     locator.registerLazySingleton(() => SeriesProvider(locator()));
     locator.registerLazySingleton(() => ScenesProvider(locator()));
     locator.registerLazySingleton(() => SceneProvider(locator()));

@@ -13,7 +13,7 @@ enum ActionStatus { isAction, isDone }
 /// Page loading status
 enum StatusContent {
   isLoadContent,
-  isNoContent,
+  isNoneContent,
   isEmptyContent,
   isViewContent,
 }

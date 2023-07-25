@@ -1,8 +1,19 @@
 part of 'series.dart';
 
 mixin _State {
-  final listSeries = <SeriesEntity>[];
+  final pageData = _PageData();
+  //
   var actionStatus = ActionStatus.isDone;
-  var statusPage = StatusContent.isNoContent;
-  var statusContentPage = StatusContent.isNoContent;
+  var statusPage = StatusContent.isNoneContent;
+  var statusContentPage = StatusContent.isNoneContent;
+}
+
+final class _PageData {
+  final listSeries = <SeriesEntity>[];
+
+  // Overwriting the used idSeries and clean for new data
+  void overwritingPageData(List<SeriesEntity> data) {
+    listSeries.clear();
+    listSeries.addAll(data);
+  }
 }

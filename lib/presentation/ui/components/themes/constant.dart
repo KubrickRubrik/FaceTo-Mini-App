@@ -39,6 +39,8 @@ abstract final class AppColors {
 }
 
 abstract class AppImages {
+  static const infoApp = "asset/app/info.png";
+  static const imageFaceto = "asset/app/faceto.png";
   static const winner = "asset/winner/winner.png";
   static const blot = "asset/scenes/blot.png";
   static const spinLight = "asset/spin/spin_1.gif";

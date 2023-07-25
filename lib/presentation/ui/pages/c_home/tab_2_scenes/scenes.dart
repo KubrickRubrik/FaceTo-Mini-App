@@ -67,7 +67,7 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
           builder: (_, statusPage, child) {
             return switch (statusPage) {
               StatusContent.isLoadContent => const LoadPageScenes(),
-              StatusContent.isEmptyContent || StatusContent.isNoContent => const NoContentPageScenes(),
+              StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageScenes(),
               _ => ListContentScenes(controller: scrollController),
             };
           },

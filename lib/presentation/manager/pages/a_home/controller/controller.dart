@@ -1,3 +1,4 @@
+import 'package:facetomini/core/config/entity.dart';
 import 'package:flutter/material.dart';
 part 'state.dart';
 
@@ -34,5 +35,23 @@ final class PagesControllerProvider extends ChangeNotifier with _State {
     _swipeToTab(index);
     // await APP_AUDIO.soundBack();
     // _FMD_SCENE.canselTimer();
+  }
+
+  // Displaying the series rating information page
+  void setViewInfoRatingPage() {
+    viewAdditionalPage.setViewInfoRatingPage();
+    notifyListeners();
+  }
+
+  // Displaying the author information page
+  void setViewInfoAuthorPage() {
+    viewAdditionalPage.setViewInfoAuthorPage();
+    notifyListeners();
+  }
+
+  // Displaying the winners information page
+  void setViewInfoWinnersPage() {
+    viewAdditionalPage.setViewInfoWinnersPage();
+    notifyListeners();
   }
 }

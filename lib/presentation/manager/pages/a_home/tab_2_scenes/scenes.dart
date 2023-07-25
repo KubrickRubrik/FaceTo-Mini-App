@@ -20,7 +20,7 @@ final class ScenesProvider extends ChangeNotifier with _State {
     _setActions(ActionStatus.isDone, false);
     // Result processing
     if (response.fail != null || response.data == null) {
-      _setStatusPage(StatusContent.isNoContent);
+      _setStatusPage(StatusContent.isNoneContent);
       return false;
     } else {
       pageData.overwritingPageData(idSeries, response.data!);

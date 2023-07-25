@@ -1,9 +1,9 @@
-import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/domain/entities/series.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:facetomini/presentation/ui/components/images.dart';
@@ -15,14 +15,14 @@ part 'widgets/count_scenes.dart';
 part 'widgets/status_series.dart';
 
 class ItemSeries extends StatelessWidget {
-  const ItemSeries(this.item, {super.key});
-  final SeriesEntity item;
+  const ItemSeries(this.index, {super.key});
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print(item.idSeries);
+        final item = context.read<SeriesProvider>().pageData.listSeries[index];
         context.read<ScenesProvider>().getScenes(item.idSeries).then((isDone) {
           if (isDone == null) return;
           if (!isDone) {
@@ -66,31 +66,31 @@ class ItemSeries extends StatelessWidget {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                    child: _Banner(item),
+                    child: _Banner(index),
                   ),
                   //! Author & stat
                   Positioned(
                     top: 7,
                     left: 7,
-                    child: _DescriptionSeries(item),
+                    child: _DescriptionSeries(index),
                   ),
                   //! Rating
                   Positioned(
                     bottom: 7,
                     left: 7,
-                    child: _RatingSeries(item),
+                    child: _RatingSeries(index),
                   ),
                   //! COUNT SCENES
                   Positioned(
                     top: 7,
                     right: 7,
-                    child: _CountScenes(item.stat.countScenes),
+                    child: _CountScenes(index),
                   ),
                   //! Status
                   Positioned(
                     bottom: 7,
                     right: 7,
-                    child: _StatusSeries(item),
+                    child: _StatusSeries(index),
                   ),
                 ],
               ),

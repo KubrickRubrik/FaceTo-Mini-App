@@ -10,7 +10,7 @@ class ListContentSeries extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<SeriesProvider, int>(
-      selector: (_, Model) => Model.listSeries.length,
+      selector: (_, Model) => Model.pageData.listSeries.length,
       builder: (_, length, __) {
         return ListView.separated(
           padding: const EdgeInsets.only(top: 50, bottom: 0, left: 5, right: 5),
@@ -21,9 +21,7 @@ class ListContentSeries extends StatelessWidget {
           },
           itemCount: length,
           itemBuilder: (context, index) {
-            final item = context.read<SeriesProvider>().listSeries[index];
-
-            return ItemSeries(item);
+            return ItemSeries(index);
           },
         );
       },

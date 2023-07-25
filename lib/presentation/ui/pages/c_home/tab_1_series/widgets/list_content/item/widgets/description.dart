@@ -1,11 +1,12 @@
 part of '../item.dart';
 
 class _DescriptionSeries extends StatelessWidget {
-  const _DescriptionSeries(this.item);
-  final SeriesEntity item;
+  const _DescriptionSeries(this.index);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final series = context.read<SeriesProvider>().pageData.listSeries.elementAt(index);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,7 +38,7 @@ class _DescriptionSeries extends StatelessWidget {
               //! Diagonal hard
               InkWell(
                 onTap: () {
-                  if (item.hardLevel != 1) {
+                  if (series.hardLevel != 1) {
                     ToastMassage.toast(context, context.lcz.hardLevelDifficult);
                   } else {
                     ToastMassage.toast(context, context.lcz.simplyLevelDifficult);
@@ -51,7 +52,7 @@ class _DescriptionSeries extends StatelessWidget {
                   child: Icon(
                     AppIcons.diagonal,
                     size: 17,
-                    color: (item.hardLevel != 1) ? const Color(0xFFFF006A) : const Color(0xFFD8D8D8),
+                    color: (series.hardLevel != 1) ? const Color(0xFFFF006A) : const Color(0xFFD8D8D8),
                   ),
                 ),
               ),
@@ -65,7 +66,7 @@ class _DescriptionSeries extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   child: FittedBox(
                     child: Text(
-                      item.idSeries.toString(),
+                      context.read<SeriesProvider>().pageData.listSeries.elementAt(index).idSeries.toString(),
                       style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontSize: 18,
@@ -99,9 +100,18 @@ class _DescriptionSeries extends StatelessWidget {
                 Container(
                   constraints: const BoxConstraints(minWidth: 30),
                   alignment: Alignment.center,
-                  child: Text(
-                    (item.stat.countUsers == 0) ? '-' : item.stat.countUsers.toString(),
-                    style: context.textStyle.bodyMedium,
+                  child: Selector<SeriesProvider, int>(
+                    selector: (_, Model) => Model.pageData.listSeries.elementAt(index).stat.countUsers,
+                    builder: (_, countUsers, __) {
+                      return Text(
+                        (countUsers == 0) ? '-' : countUsers.toString(),
+                        style: const TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
