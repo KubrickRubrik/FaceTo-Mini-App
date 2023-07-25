@@ -2,12 +2,12 @@ part of '../item.dart';
 
 //! Status series
 class _StatusSeries extends StatelessWidget {
-  const _StatusSeries({super.key});
+  const _StatusSeries(this.item);
+  final SeriesEntity item;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: EdgeInsets.symmetric(horizontal: 5),
       height: 35,
       decoration: BoxDecoration(
         color: const Color(0xAA000000),
@@ -15,6 +15,7 @@ class _StatusSeries extends StatelessWidget {
       ),
       child: Row(
         children: [
+          //! Best time
           InkWell(
             onTap: () {
               // Provider.of<CM_WinnersBloc>(context, listen: false).viewWinners('series', Provider.of<CM_SeriesBloc>(context, listen: false).content.idSeries);
@@ -22,94 +23,50 @@ class _StatusSeries extends StatelessWidget {
             child: Container(
               width: 40,
               alignment: Alignment.center,
-              child: Icon(AppIcons.timer, size: 25),
+              child: const Icon(AppIcons.timer, size: 25),
             ),
           ),
           const _Spacer(),
+          //! Status tree series
           Container(
             width: 40,
             alignment: Alignment.center,
             child: Builder(builder: (context) {
-              var _icon = AppIcons.openTree;
-              late String _tree;
-              // switch (Provider.of<CM_SeriesBloc>(context, listen: false).content.typeTree) {
-              //   //tournament
-              //   case 1:
-              //     _icon = AppIcons.openTree;
-              //     break;
-              //   // open
-              //   case 2:
-              //     _icon = AppIcons.closeTree;
-              //     break;
-              // }
-
+              final ({IconData icon, String title}) data = switch (item.typeTree) {
+                1 => (icon: AppIcons.openTree, title: context.lcz.allScenesOpens),
+                _ => (icon: AppIcons.closeTree, title: context.lcz.graduallyScenesOpens),
+              };
               return InkWell(
                 onTap: () {
-                  // switch (Provider.of<CM_SeriesBloc>(context, listen: false).content.typeTree) {
-                  //   //tournament
-                  //   case 1:
-                  //     _tree = APP_STRING.toastTreeOpenSeries;
-                  //     break;
-                  //   // open
-                  //   case 2:
-                  //     _tree = APP_STRING.toastTreeCloseSeries;
-                  //     break;
-                  // }
-                  // APP_UTILITY.viewToast(101, _tree);
+                  ToastMassage.toast(context, data.title);
                 },
                 child: Container(
                   width: 40,
                   alignment: Alignment.center,
-                  child: Icon(_icon, size: 25),
+                  child: Icon(data.icon, size: 25),
                 ),
               );
             }),
           ),
           const _Spacer(),
+          //!  Status completed series
           Container(
             width: 40,
             alignment: Alignment.center,
             child: Builder(builder: (_) {
-              IconData _icon = AppIcons.hot;
-              // String _stateSeries = APP_STRING.toastCompletedNoteActiveSeries;
-              int _color = 0xFFFF00FF;
-              // switch (Provider.of<CM_SeriesBloc>(context, listen: false).content.userView.completed) {
-              //   case -1:
-              //     _icon = AppIcons.hot;
-              //     _color = 0xFFFF00FF;
-              //     break;
-              //   case 0:
-              //     _icon = AppIcons.target;
-              //     _color = 0xFFFFD000;
-              //     break;
-              //   case 1:
-              //     _icon = AppIcons.completed;
-              //     _color = 0xFF9DFF00;
-              //     break;
-              // }
+              final ({IconData icon, int color, String title}) data = switch (item.user.stat.completed) {
+                0 => (icon: AppIcons.target, color: 0xFFFFD000, title: context.lcz.seriesActive),
+                1 => (icon: AppIcons.completed, color: 0xFF9DFF00, title: context.lcz.seriesCompleted),
+                _ => (icon: AppIcons.hot, color: 0xFFFF00FF, title: context.lcz.seriesAvailablePlay),
+              };
               return InkWell(
                 onTap: () {
-                  // switch (Provider.of<CM_SeriesBloc>(context, listen: false).content.userView.completed) {
-                  //   case -1:
-                  //     _stateSeries = APP_STRING.toastCompletedNoteActiveSeries;
-                  //     break;
-                  //   case 0:
-                  //     _stateSeries = APP_STRING.toastCompletedActiveSeries;
-                  //     break;
-                  //   case 1:
-                  //     _stateSeries = APP_STRING.toastCompletedDoneSeries;
-                  //     break;
-                  // }
-                  // APP_UTILITY.viewToast(101, _stateSeries);
+                  ToastMassage.toast(context, data.title);
                 },
-                child: Container(
-                  // width: 40,
-                  alignment: Alignment.center,
-                  child: Icon(
-                    _icon,
-                    color: Color(_color),
-                    size: 25,
-                  ),
+                child: Icon(
+                  data.icon,
+                  color: Color(data.color),
+                  size: 25,
                 ),
               );
             }),

@@ -1,3 +1,6 @@
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
+import 'package:facetomini/presentation/ui/components/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
@@ -42,13 +45,22 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
       onHorizontalDragStart: (details) {
         // TO RIGHT TAB_1
         if (details.localPosition.dx < swipeVector) {
-          if (context.read<SeriesProvider>().actionStatus != ActionStatus.isDone) return;
-          context.read<PagesControllerProvider>().swipeToScenes(1);
-          // _FMD_CONTROLLER.setContentTab_2_SWIPE();
-          print('RIGHT');
-        } else {
-          // TO LEFT TAB_2
-          // print('LEFT');
+          // If data is being loaded, the swipe is not available
+          if (context.read<SeriesProvider>().actionStatus != ActionStatus.isDone || context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
+          // Getting the last used series or the first one on the series page for swiping
+          final useIdSeries = context.read<ScenesProvider>().pageData.useIdSeries;
+          final idLastSeries = (useIdSeries != -1) ? useIdSeries : context.read<SeriesProvider>().listSeries.first.idSeries;
+
+          context.read<ScenesProvider>().getScenes(idLastSeries).then((isDone) {
+            if (isDone == null) return;
+            if (!isDone) {
+              // If the series does not have available prices
+              ToastMassage.toast(context, context.lcz.scenesNotAvailable, code: TypeMassage.error);
+              return;
+            }
+            context.read<PagesControllerProvider>().swipeToScenes();
+          });
+          print('SWIPE TO PAGE SCENES');
         }
         swipeVector = details.localPosition.dx;
       },

@@ -1,7 +1,7 @@
 part of '../item.dart';
 
 class _Banner extends StatelessWidget {
-  _Banner(this.item);
+  const _Banner(this.item);
   final SeriesEntity item;
 
   @override

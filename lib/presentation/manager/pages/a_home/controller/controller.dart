@@ -3,21 +3,27 @@ part 'state.dart';
 
 final class PagesControllerProvider extends ChangeNotifier with _State {
   // Init default parameters
-  void initDefaultParameters(PageController controller, Size size) {
-    _pageController = controller;
+  void initDefaultParameters(TabController controller, Size size) {
+    _tabBarController = controller;
     _sizePanelScene = SizePanelScene(size);
   }
 
   // Swipe page/tab in any direction
   void _swipeToTab(int index) {
     indexTab = index;
-    _pageController!.animateToPage(index, duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    _tabBarController?.animateTo(index);
     notifyListeners();
   }
 
-  Future<void> swipeToScenes(int indexTab) async {
-    // _FMD_SCENES.setContent(itemUseSeries);
-    _swipeToTab(indexTab);
+  Future<void> swipeToSeries() async {
+    _swipeToTab(0);
+    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
+    //   APP_AUDIO.soundToScenes();
+    // });
+  }
+
+  Future<void> swipeToScenes() async {
+    _swipeToTab(1);
     // await Future.delayed(Duration(milliseconds: 150)).then((value) {
     //   APP_AUDIO.soundToScenes();
     // });

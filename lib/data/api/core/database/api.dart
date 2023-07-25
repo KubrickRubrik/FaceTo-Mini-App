@@ -98,7 +98,7 @@ final class ApiDbDrift implements ApiDbEnvelope {
       final response = await _scenesQuery.getScenesInSeries(apiDb, idSeries: idSeries);
       // apiDb.close();
       if (response == null) return null;
-      final result = response.map((e) => SceneModel(e)).toList();
+      final result = response.map((e) => SceneModel(e.scene, e.typeTree)).toList();
       return result;
     } catch (e) {
       throw ApiException('Exception api database drift $e');

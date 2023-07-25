@@ -35,7 +35,7 @@ class ItemInfoThemeState extends State<ItemInfoTheme> {
 
 //! Header
 class _ItemHeader extends StatelessWidget {
-  const _ItemHeader({super.key});
+  const _ItemHeader();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _ItemHeader extends StatelessWidget {
 
 //! Body
 class _ItemBody extends StatelessWidget {
-  const _ItemBody({super.key});
+  const _ItemBody();
 
   @override
   Widget build(BuildContext context) {

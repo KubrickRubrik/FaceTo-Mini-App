@@ -25,6 +25,7 @@ dependencies:
   # Permission
   permission_handler: ^10.4.3
   cached_network_image: ^3.2.3
+  oktoast: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +42,8 @@ flutter:
   assets:
     - asset/app/error/
     - asset/spin/
+    - asset/scenes/
+    - asset/winner/
     - asset/series/s_41/373.webp
     - asset/series/s_41/300/373.webp
     - asset/series/s_41/301/374.webp

@@ -22,6 +22,7 @@ class ListContentSeries extends StatelessWidget {
           itemCount: length,
           itemBuilder: (context, index) {
             final item = context.read<SeriesProvider>().listSeries[index];
+
             return ItemSeries(item);
           },
         );

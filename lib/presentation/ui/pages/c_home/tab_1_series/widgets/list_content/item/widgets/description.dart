@@ -1,7 +1,8 @@
 part of '../item.dart';
 
 class _DescriptionSeries extends StatelessWidget {
-  const _DescriptionSeries({super.key});
+  const _DescriptionSeries(this.item);
+  final SeriesEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +37,21 @@ class _DescriptionSeries extends StatelessWidget {
               //! Diagonal hard
               InkWell(
                 onTap: () {
-                  // if (Provider.of<CM_SeriesBloc>(context, listen: false).content.diagonal != 1) {
-                  //   APP_UTILITY.viewToast(101, APP_STRING.helpHardLevelScene);
-                  // } else {
-                  //   APP_UTILITY.viewToast(101, APP_STRING.helpEasyLevelScene);
-                  // }
+                  if (item.hardLevel != 1) {
+                    ToastMassage.toast(context, context.lcz.hardLevelDifficult);
+                  } else {
+                    ToastMassage.toast(context, context.lcz.simplyLevelDifficult);
+                  }
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   height: 35,
                   width: 35,
                   alignment: Alignment.center,
-                  child: const Icon(
+                  child: Icon(
                     AppIcons.diagonal,
                     size: 17,
-                    // color: (Provider.of<CM_SeriesBloc>(context).content.diagonal != 1) ? const Color(0xFFFF006A) : const Color(0xFFD8D8D8),
+                    color: (item.hardLevel != 1) ? const Color(0xFFFF006A) : const Color(0xFFD8D8D8),
                   ),
                 ),
               ),
@@ -58,14 +59,20 @@ class _DescriptionSeries extends StatelessWidget {
               //! ID Series
               InkWell(
                 onTap: () {
-                  // APP_UTILITY.viewToast(101, APP_STRING.toastIdSeries);
+                  ToastMassage.toast(context, context.lcz.identificatorSeries);
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: const Text(''
-                      // "${Provider.of<CM_SeriesBloc>(context).content.idSeries}",
-                      // style: APP_STYLE.setFontStyle(14.0, null, 1.3, 0xFFffffff, FontWeight.w400, context),
+                  child: FittedBox(
+                    child: Text(
+                      item.idSeries.toString(),
+                      style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 18,
+                        color: Colors.white,
                       ),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -75,7 +82,7 @@ class _DescriptionSeries extends StatelessWidget {
         //! Count users
         InkWell(
           onTap: () {
-            // APP_UTILITY.viewToast(101, APP_STRING.toastCountUsersSeries);
+            ToastMassage.toast(context, context.lcz.usersSeries);
           },
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -93,10 +100,7 @@ class _DescriptionSeries extends StatelessWidget {
                   constraints: const BoxConstraints(minWidth: 30),
                   alignment: Alignment.center,
                   child: Text(
-                    '',
-                    // (Provider.of<CM_SeriesBloc>(context).content.stat.countUsers == 0)
-                    //     ? '-'
-                    //     : APP_UTILITY.setShortCount(Provider.of<CM_SeriesBloc>(context).content.stat.countUsers),
+                    (item.stat.countUsers == 0) ? '-' : item.stat.countUsers.toString(),
                     style: context.textStyle.bodyMedium,
                   ),
                 ),

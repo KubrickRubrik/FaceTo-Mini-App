@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:facetomini/core/config/entity.dart';
 
-abstract final class ConfigImages {
+abstract final class ConfigLinks {
   static const versionOs = 5.0;
   //! Limits
   static const limitAndroid = 7.1;

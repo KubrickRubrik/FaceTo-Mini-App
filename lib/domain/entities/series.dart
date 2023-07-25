@@ -1,5 +1,4 @@
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/domain/entities/scene.dart';
 
 final class SeriesEntity {
   final int idSeries;
@@ -10,7 +9,7 @@ final class SeriesEntity {
   final int hardLevel;
 
   final StatSeries stat;
-  final List<SceneEntity> scenes = [];
+  // final List<SceneEntity> scenes = [];
 
   SeriesEntity({
     required this.idSeries,

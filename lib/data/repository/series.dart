@@ -8,7 +8,7 @@ import 'package:facetomini/domain/repository/series.dart';
 /// Class for performing operations with series data
 final class SeriesRepositoryImpl implements SeriesRepository {
   SeriesRepositoryImpl(this._apiDb);
-  ApiDbEnvelope _apiDb;
+  final ApiDbEnvelope _apiDb;
   // Get all series
   @override
   Future<({List<SeriesEntity>? data, Failure? fail})> getSeries() async {

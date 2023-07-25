@@ -5,6 +5,8 @@ final class SceneEntity {
   final int idSeries;
 
   final ImageScene image;
+  final int typeTree;
+
   final UserScene user;
 
   final String grid;
@@ -15,6 +17,7 @@ final class SceneEntity {
     required this.idScene,
     required this.idSeries,
     required this.image,
+    required this.typeTree,
     required this.user,
     required this.grid,
     required this.stat,

@@ -12,8 +12,10 @@ class SceneModel {
   final String grid;
   final int countUsers;
   final int recordTime;
+  //
+  final int typeTree;
 
-  SceneModel(TableScenes tb)
+  SceneModel(TableScenes tb, this.typeTree)
       : id = tb.id,
         idScene = tb.idScene,
         idSeries = tb.idSeries,

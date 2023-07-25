@@ -4,7 +4,7 @@ import 'package:facetomini/domain/repository/scenes.dart';
 
 final class ScenesCase implements ScenesRepository {
   ScenesCase(this._scenesRepository);
-  ScenesRepository _scenesRepository;
+  final ScenesRepository _scenesRepository;
 
   @override
   Future<({List<SceneEntity>? data, Failure? fail})> getScenesInSeries(int idSeries) async {

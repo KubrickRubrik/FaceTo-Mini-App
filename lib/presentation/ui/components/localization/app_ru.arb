@@ -19,5 +19,23 @@
     "soundSettingsOn": "Включить",
     "soundSettingsOff": "Выключить",
 
-    "infoSettings": "Информация"
+    "infoSettings": "Информация",
+
+    "identificatorSeries":"Идентификатор серии",
+    "countScenes":"Сцен в серии",
+
+    "usersSeries":"Пользователи завершили серию",
+
+    "graduallyScenesOpens":"Сцены серии открываются постепенно",
+    "allScenesOpens":"Все сцены серии открыты",
+
+    "seriesAvailablePlay":"Серия доступна для прохождения",
+    "seriesActive":"Серия активна",
+    "seriesCompleted":"Серия завершена",
+
+    "simplyLevelDifficult":"Простой уровень сложности.\r\n Доступный диагональный свайп",
+    "hardLevelDifficult":"Высокий уровень сложности.\r\n  Диагональный свайп недоступен",
+
+    "scenesNotAvailable":"Сцены серии недоступны",
+    "lockScene":"Необходимо завершить предыдущую сцену"
 }

@@ -7,7 +7,7 @@ import 'package:facetomini/domain/repository/settings.dart';
 
 final class SettingsRepositoryImpl implements SettingsRepository {
   SettingsRepositoryImpl(this._apiDbEnvelope);
-  ApiDbEnvelope _apiDbEnvelope;
+  final ApiDbEnvelope _apiDbEnvelope;
   // Save a theme
   @override
   Future<({SessionEntity? data, Failure? fail})> setTheme(String themeName) async {

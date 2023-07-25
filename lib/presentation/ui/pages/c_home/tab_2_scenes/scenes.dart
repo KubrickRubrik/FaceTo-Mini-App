@@ -43,13 +43,13 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
         // TO RIGHT TAB_1
         if (details.localPosition.dx < swipeVector) {
           if (context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
-          locator<PagesControllerProvider>().swipeToScenes(2);
-          print('RIGHT');
+          locator<PagesControllerProvider>().swipeToScenes();
+          print('SWIPE TO PAGE SCENE');
         }
         // TO LEFT TAB_2
         else {
-          locator<PagesControllerProvider>().swipeToScenes(0);
-          print('LEFT');
+          locator<PagesControllerProvider>().swipeToSeries();
+          print('SWIPE TO PAGE SERIES');
         }
         swipeVector = details.localPosition.dx;
       },

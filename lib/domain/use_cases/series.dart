@@ -4,7 +4,7 @@ import 'package:facetomini/domain/repository/series.dart';
 
 final class SeriesCase implements SeriesRepository {
   SeriesCase(this._seriesRepository);
-  SeriesRepository _seriesRepository;
+  final SeriesRepository _seriesRepository;
 
   @override
   Future<({List<SeriesEntity>? data, Failure? fail})> getSeries() async {

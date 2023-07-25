@@ -23,14 +23,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late final TabController tabController = TabController(length: 3, vsync: this);
-  final PageController controller = PageController();
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (super.mounted) {
         // Set default parameters
         locator<PagesControllerProvider>().initDefaultParameters(
-          controller,
+          tabController,
           context.media.size,
         );
         // Get series
@@ -64,32 +63,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           ],
           child: Stack(
             children: [
-              PageView(
-                controller: controller,
+              TabBarView(
+                controller: tabController,
                 physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (value) {
-                  if (value == 1) {
-                    locator<ScenesProvider>().getScenes(1);
-                  } else if (value == 2) {
-                    // locator<SceneProvider>().getScenes();
-                  }
-                  print(value);
-                },
                 children: const [
                   PageTabSeries(),
                   PageTabScenes(),
                   PageTabScene(),
                 ],
               ),
-              // TabBarView(
-              //   controller: tabController,
-              //   physics: const NeverScrollableScrollPhysics(),
-              //   children: const [
-              //     PageTabSeries(),
-              //     PageTabScenes(),
-              //     PageTabScene(),
-              //   ],
-              // ),
               //! AppBar
               const Positioned(
                 top: 0,

@@ -1,7 +1,7 @@
 part of '../../controller.dart';
 
 class _AppBar extends StatelessWidget {
-  const _AppBar({super.key});
+  const _AppBar();
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class _AppBar extends StatelessWidget {
 
 /// Title appBar
 class _TitleAppBar extends StatelessWidget {
-  const _TitleAppBar(this.appBar, {super.key});
+  const _TitleAppBar(this.appBar);
   final _AppBarTabSettings appBar;
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,10 @@ class _TitleAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         //@ Icon tap back
-        _iconBack(appBar),
+        _iconBack(
+          appBar,
+          context,
+        ),
         //@ Title
         Text(
           appBar.title,
@@ -98,13 +101,14 @@ class _TitleAppBar extends StatelessWidget {
   }
 
   //  Set settings iconBack fro appBar
-  Widget _iconBack(_AppBarTabSettings appBar) {
+  Widget _iconBack(_AppBarTabSettings appBar, BuildContext context) {
     // For indexTab == 2 use different style icon
     if (appBar.indexTab == 0) return const SizedBox(width: 15);
     if (appBar.indexTab == 2) return const SizedBox(width: 15);
     return InkWell(
       onTap: () {
-        // _FMD_CONTROLLER.swipeTabBack(_clickBack);
+        if (appBar.indexTab == 1) context.read<PagesControllerProvider>().swipeToSeries();
+        if (appBar.indexTab == 2) context.read<PagesControllerProvider>().swipeToScenes();
       },
       enableFeedback: false,
       child: AnimatedContainer(

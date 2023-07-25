@@ -8,7 +8,7 @@ import 'package:facetomini/domain/repository/session.dart';
 /// User authorization execution contract (in addition, the first initialization of the database occurs)
 final class SessionRepositoryImpl implements SessionRepository {
   SessionRepositoryImpl(this._apiDbEnvelope);
-  ApiDbEnvelope _apiDbEnvelope;
+  final ApiDbEnvelope _apiDbEnvelope;
   // Authorized
   @override
   Future<({SessionEntity? data, Failure? fail})> authorization(String languageName) async {

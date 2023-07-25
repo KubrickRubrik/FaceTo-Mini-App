@@ -9,12 +9,10 @@ class PageTabScene extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        locator<PagesControllerProvider>().swipeToScenes(1);
-        // _FMD_CONTROLLER.setContentTab_2_SWIPE();
-        // context.goNamed('series', pathParameters: {'page': "2"});
-        print('LEFT');
+        locator<PagesControllerProvider>().swipeToScenes();
+        print('SWIPE TO PAGE SCENE');
       },
-      child: Placeholder(),
+      child: const Placeholder(),
     );
   }
 }

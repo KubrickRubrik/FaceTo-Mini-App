@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/core/config/images.dart';
+import 'package:facetomini/core/config/links.dart';
 
 class ComponentImage extends StatelessWidget {
   const ComponentImage({
@@ -26,7 +26,7 @@ class ComponentImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return switch (typeSourceImage) {
       TypeSourceImage.asset => Image.asset(
-          ConfigImages.getAssetPathImage(
+          ConfigLinks.getAssetPathImage(
             target: targetSourceImage,
             idSeries: idSeries,
             idScene: idScene,
@@ -36,12 +36,12 @@ class ComponentImage extends StatelessWidget {
         ),
       _ => (typeCache == TypeCacheImage.cache)
           ? CachedNetworkImage(
-              imageUrl: ConfigImages.parseLinks(imagePath!),
+              imageUrl: ConfigLinks.parseLinks(imagePath!),
               errorWidget: (context, url, error) => const Icon(Icons.error),
               fit: BoxFit.cover,
             )
           : Image.network(
-              ConfigImages.parseLinks(imagePath!),
+              ConfigLinks.parseLinks(imagePath!),
               fit: BoxFit.cover,
               alignment: Alignment.center,
             ),

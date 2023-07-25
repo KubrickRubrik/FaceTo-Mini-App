@@ -67,6 +67,7 @@ abstract final class EntitiesMapper {
         url: model.idImage.toString(),
         typeView: model.typeView,
       ),
+      typeTree: model.typeTree,
       user: UserScene(
           author: AuthorUserScene(model.idApp),
           stat: StateViewUserScene(

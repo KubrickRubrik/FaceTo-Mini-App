@@ -17,5 +17,26 @@
     "soundSettingsOn": "Turn on",
     "soundSettingsOff": "Switch off",
 
-    "infoSettings": "Information"
+    "infoSettings": "Information",
+
+    "identificatorSeries":"Series identifier",
+    "countScenes":"Scenes in a series",
+
+    "usersSeries":"Users completed the series",
+
+    "graduallyScenesOpens":"Scenes of the series open gradually",
+    "allScenesOpens":"All scenes of the series are open",
+
+    "seriesAvailablePlay":"The series is available to play",
+    "seriesActive":"Series active",
+    "seriesCompleted":"Series completed",
+
+    "simplyLevelDifficult":"Easy difficulty level.\r\nAvailable diagonal swipe",
+    "hardLevelDifficult":"High difficulty.\r\nDiagonal swipe not available",
+
+    "scenesNotAvailable":"Series scenes are not available",
+
+    
+    "usersScene":"Users completed the scene",
+    "lockScene":"Need to complete the previous scene"
 }

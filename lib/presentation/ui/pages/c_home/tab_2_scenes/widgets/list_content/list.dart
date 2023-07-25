@@ -10,7 +10,7 @@ class ListContentScenes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<ScenesProvider, int>(
-      selector: (_, Model) => Model.listScenes.length,
+      selector: (_, Model) => Model.pageData.countScene,
       builder: (_, length, __) {
         return ListView.separated(
           padding: const EdgeInsets.only(top: 50, bottom: 0, left: 5, right: 5),
@@ -21,8 +21,7 @@ class ListContentScenes extends StatelessWidget {
           },
           itemCount: length,
           itemBuilder: (context, index) {
-            final item = context.read<ScenesProvider>().listScenes[index];
-            return ItemScene(item);
+            return ItemScene(index);
           },
         );
       },
