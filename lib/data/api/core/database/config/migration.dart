@@ -35,7 +35,7 @@ abstract final class MigrationDataBaseDrift {
           // Insert default data of app
           await db.batch((b) {
             // Add default app-user
-            b.insert(db.useTableAppUser, const UseTableAppUserCompanion());
+            b.insert(db.useTableAppUser, UseTableAppUserCompanion.insert(publicKey: const Value("FaceTo_Mini_public_key")));
             // Add default app-settings
             b.insert(db.useTableAppSettings, UseTableAppSettingsCompanion.insert(language: Value(language!)));
             // Add default series

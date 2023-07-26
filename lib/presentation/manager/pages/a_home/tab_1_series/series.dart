@@ -1,4 +1,4 @@
-import 'package:facetomini/domain/entities/series.dart';
+import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';

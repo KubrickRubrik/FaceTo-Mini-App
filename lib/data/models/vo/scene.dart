@@ -1,6 +1,6 @@
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 
-class SceneModel {
+final class SceneModel {
   final int id;
   final int idScene;
   final int idSeries;

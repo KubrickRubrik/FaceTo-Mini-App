@@ -1,4 +1,4 @@
-class SessionModel {
+final class SessionModel {
   final int idApp;
   final int enabledSound;
   final String language;

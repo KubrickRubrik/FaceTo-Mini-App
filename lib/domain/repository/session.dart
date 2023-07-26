@@ -1,5 +1,5 @@
 import 'package:facetomini/core/errors/failure.dart';
-import 'package:facetomini/domain/entities/app.dart';
+import 'package:facetomini/domain/entities/vo/app.dart';
 
 abstract interface class SessionRepository {
   // Authorized

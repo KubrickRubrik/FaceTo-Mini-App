@@ -1,5 +1,5 @@
 import 'package:facetomini/core/errors/failure.dart';
-import 'package:facetomini/domain/entities/series.dart';
+import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/repository/series.dart';
 
 final class SeriesCase implements SeriesRepository {

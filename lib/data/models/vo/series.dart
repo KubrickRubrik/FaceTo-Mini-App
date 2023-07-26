@@ -1,6 +1,6 @@
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 
-class SeriesModel {
+final class SeriesModel {
   final int id;
   final int idSeries;
   final int idImage;

@@ -1,5 +1,5 @@
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/domain/entities/app.dart';
+import 'package:facetomini/domain/entities/vo/app.dart';
 
 class AppSession {
   AppSession();

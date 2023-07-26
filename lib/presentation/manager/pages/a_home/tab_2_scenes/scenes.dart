@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/domain/entities/scene.dart';
+import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';

@@ -29,14 +29,14 @@ final locator = GetIt.I;
 abstract final class ServicesLocator {
   static void setup() {
     // API
-    locator.registerLazySingleton<ApiDbEnvelope>(() => ApiDbDrift());
-    locator.registerLazySingleton<ApiServerEnvelope>(() => ApiServer());
+    locator.registerLazySingleton<ApiDbDAO>(() => ApiDbDrift());
+    locator.registerLazySingleton<ApiServerDAO>(() => ApiServer());
     // Repository
     locator.registerLazySingleton<SessionRepository>(() => SessionRepositoryImpl(locator()));
     locator.registerLazySingleton<SettingsRepository>(() => SettingsRepositoryImpl(locator()));
     locator.registerLazySingleton<SeriesRepository>(() => SeriesRepositoryImpl(locator()));
     locator.registerLazySingleton<ScenesRepository>(() => ScenesRepositoryImpl(locator()));
-    locator.registerLazySingleton<AuthorRepository>(() => AuthorRepositoryImpl(locator()));
+    locator.registerLazySingleton<AuthorRepository>(() => AuthorRepositoryImpl(locator(), locator()));
     // Use Cases
     locator.registerLazySingleton<SessionCase>(() => SessionCase(locator(), locator()));
     locator.registerLazySingleton<SeriesCase>(() => SeriesCase(locator()));

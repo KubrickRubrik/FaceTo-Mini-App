@@ -1,8 +1,11 @@
-import 'package:facetomini/data/models/scene.dart';
-import 'package:facetomini/data/models/series.dart';
-import 'package:facetomini/data/models/session.dart';
+import 'package:facetomini/data/models/vo/scene.dart';
+import 'package:facetomini/data/models/vo/series.dart';
+import 'package:facetomini/data/models/vo/server.dart';
+import 'package:facetomini/data/models/vo/session.dart';
 
-abstract interface class ApiDbEnvelope {
+abstract interface class ApiDbDAO {
+  //
+  Future<ClientModel?> getClientData();
   // Authorized and settings
   Future<SessionModel?> authorized(String languageName);
   Future<SessionModel?> setTheme(String themeName);

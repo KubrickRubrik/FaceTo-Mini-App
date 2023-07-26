@@ -1,5 +1,5 @@
 import 'package:facetomini/core/errors/failure.dart';
-import 'package:facetomini/domain/entities/scene.dart';
+import 'package:facetomini/domain/entities/vo/scene.dart';
 
 abstract interface class ScenesRepository {
   // Get all scenes for series

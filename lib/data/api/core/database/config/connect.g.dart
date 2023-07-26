@@ -25,8 +25,14 @@ class $UseTableAppUserTable extends UseTableAppUser
       type: DriftSqlType.int,
       requiredDuringInsert: false,
       defaultValue: const Constant(1));
+  static const VerificationMeta _publicKeyMeta =
+      const VerificationMeta('publicKey');
   @override
-  List<GeneratedColumn> get $columns => [id, idApp];
+  late final GeneratedColumn<String> publicKey = GeneratedColumn<String>(
+      'public_key', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [id, idApp, publicKey];
   @override
   String get aliasedName => _alias ?? 'use_table_app_user';
   @override
@@ -43,6 +49,10 @@ class $UseTableAppUserTable extends UseTableAppUser
       context.handle(
           _idAppMeta, idApp.isAcceptableOrUnknown(data['id_app']!, _idAppMeta));
     }
+    if (data.containsKey('public_key')) {
+      context.handle(_publicKeyMeta,
+          publicKey.isAcceptableOrUnknown(data['public_key']!, _publicKeyMeta));
+    }
     return context;
   }
 
@@ -56,6 +66,8 @@ class $UseTableAppUserTable extends UseTableAppUser
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       idApp: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id_app'])!,
+      publicKey: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}public_key']),
     );
   }
 
@@ -68,12 +80,16 @@ class $UseTableAppUserTable extends UseTableAppUser
 class TableAppUser extends DataClass implements Insertable<TableAppUser> {
   final int id;
   final int idApp;
-  const TableAppUser({required this.id, required this.idApp});
+  final String? publicKey;
+  const TableAppUser({required this.id, required this.idApp, this.publicKey});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     map['id'] = Variable<int>(id);
     map['id_app'] = Variable<int>(idApp);
+    if (!nullToAbsent || publicKey != null) {
+      map['public_key'] = Variable<String>(publicKey);
+    }
     return map;
   }
 
@@ -81,6 +97,9 @@ class TableAppUser extends DataClass implements Insertable<TableAppUser> {
     return UseTableAppUserCompanion(
       id: Value(id),
       idApp: Value(idApp),
+      publicKey: publicKey == null && nullToAbsent
+          ? const Value.absent()
+          : Value(publicKey),
     );
   }
 
@@ -90,6 +109,7 @@ class TableAppUser extends DataClass implements Insertable<TableAppUser> {
     return TableAppUser(
       id: serializer.fromJson<int>(json['id']),
       idApp: serializer.fromJson<int>(json['idApp']),
+      publicKey: serializer.fromJson<String?>(json['publicKey']),
     );
   }
   @override
@@ -98,57 +118,72 @@ class TableAppUser extends DataClass implements Insertable<TableAppUser> {
     return <String, dynamic>{
       'id': serializer.toJson<int>(id),
       'idApp': serializer.toJson<int>(idApp),
+      'publicKey': serializer.toJson<String?>(publicKey),
     };
   }
 
-  TableAppUser copyWith({int? id, int? idApp}) => TableAppUser(
+  TableAppUser copyWith(
+          {int? id,
+          int? idApp,
+          Value<String?> publicKey = const Value.absent()}) =>
+      TableAppUser(
         id: id ?? this.id,
         idApp: idApp ?? this.idApp,
+        publicKey: publicKey.present ? publicKey.value : this.publicKey,
       );
   @override
   String toString() {
     return (StringBuffer('TableAppUser(')
           ..write('id: $id, ')
-          ..write('idApp: $idApp')
+          ..write('idApp: $idApp, ')
+          ..write('publicKey: $publicKey')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, idApp);
+  int get hashCode => Object.hash(id, idApp, publicKey);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is TableAppUser &&
           other.id == this.id &&
-          other.idApp == this.idApp);
+          other.idApp == this.idApp &&
+          other.publicKey == this.publicKey);
 }
 
 class UseTableAppUserCompanion extends UpdateCompanion<TableAppUser> {
   final Value<int> id;
   final Value<int> idApp;
+  final Value<String?> publicKey;
   const UseTableAppUserCompanion({
     this.id = const Value.absent(),
     this.idApp = const Value.absent(),
+    this.publicKey = const Value.absent(),
   });
   UseTableAppUserCompanion.insert({
     this.id = const Value.absent(),
     this.idApp = const Value.absent(),
+    this.publicKey = const Value.absent(),
   });
   static Insertable<TableAppUser> custom({
     Expression<int>? id,
     Expression<int>? idApp,
+    Expression<String>? publicKey,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (idApp != null) 'id_app': idApp,
+      if (publicKey != null) 'public_key': publicKey,
     });
   }
 
-  UseTableAppUserCompanion copyWith({Value<int>? id, Value<int>? idApp}) {
+  UseTableAppUserCompanion copyWith(
+      {Value<int>? id, Value<int>? idApp, Value<String?>? publicKey}) {
     return UseTableAppUserCompanion(
       id: id ?? this.id,
       idApp: idApp ?? this.idApp,
+      publicKey: publicKey ?? this.publicKey,
     );
   }
 
@@ -161,6 +196,9 @@ class UseTableAppUserCompanion extends UpdateCompanion<TableAppUser> {
     if (idApp.present) {
       map['id_app'] = Variable<int>(idApp.value);
     }
+    if (publicKey.present) {
+      map['public_key'] = Variable<String>(publicKey.value);
+    }
     return map;
   }
 
@@ -168,7 +206,8 @@ class UseTableAppUserCompanion extends UpdateCompanion<TableAppUser> {
   String toString() {
     return (StringBuffer('UseTableAppUserCompanion(')
           ..write('id: $id, ')
-          ..write('idApp: $idApp')
+          ..write('idApp: $idApp, ')
+          ..write('publicKey: $publicKey')
           ..write(')'))
         .toString();
   }

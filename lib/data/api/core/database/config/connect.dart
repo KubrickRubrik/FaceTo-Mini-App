@@ -17,7 +17,7 @@ class ConnectDataBase extends _$ConnectDataBase {
   final String? language;
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 1;
 
   @override
   MigrationStrategy get migration => MigrationDataBaseDrift.migration(this, language: language);

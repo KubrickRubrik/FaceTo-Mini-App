@@ -2,12 +2,12 @@ import 'package:facetomini/core/errors/exception.dart';
 import 'package:facetomini/core/errors/failure.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
 import 'package:facetomini/data/mapper/mapper.dart';
-import 'package:facetomini/domain/entities/app.dart';
+import 'package:facetomini/domain/entities/vo/app.dart';
 import 'package:facetomini/domain/repository/settings.dart';
 
 final class SettingsRepositoryImpl implements SettingsRepository {
   SettingsRepositoryImpl(this._apiDbEnvelope);
-  final ApiDbEnvelope _apiDbEnvelope;
+  final ApiDbDAO _apiDbEnvelope;
   // Save a theme
   @override
   Future<({SessionEntity? data, Failure? fail})> setTheme(String themeName) async {

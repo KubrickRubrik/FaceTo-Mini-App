@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 
-final class ScenesQueryDrift {
+final class ScenesRequestDrift {
   // Selected available default scenes in series
   Future<List<({TableScenes scene, int typeTree})>?> getScenesInSeries(ConnectDataBase db, {required int idSeries}) async {
     final scenesTable = db.alias(db.useTableScenes, 'scenes');

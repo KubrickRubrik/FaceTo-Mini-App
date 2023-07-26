@@ -1,11 +1,11 @@
-import 'package:facetomini/data/models/author.dart';
-import 'package:facetomini/data/models/scene.dart';
-import 'package:facetomini/data/models/series.dart';
-import 'package:facetomini/data/models/session.dart';
-import 'package:facetomini/domain/entities/app.dart';
-import 'package:facetomini/domain/entities/author.dart';
-import 'package:facetomini/domain/entities/scene.dart';
-import 'package:facetomini/domain/entities/series.dart';
+import 'package:facetomini/data/models/vo/author.dart';
+import 'package:facetomini/data/models/vo/scene.dart';
+import 'package:facetomini/data/models/vo/series.dart';
+import 'package:facetomini/data/models/vo/session.dart';
+import 'package:facetomini/domain/entities/vo/scene.dart';
+import 'package:facetomini/domain/entities/vo/series.dart';
+import 'package:facetomini/domain/entities/vo/app.dart';
+import 'package:facetomini/domain/entities/vo/author.dart';
 
 /// Transformation of the 'raw' models in the entities used
 abstract final class EntitiesMapper {

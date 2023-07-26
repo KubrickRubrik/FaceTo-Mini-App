@@ -1,5 +1,6 @@
-import 'package:facetomini/data/models/author.dart';
+import 'package:facetomini/data/models/dto/dto.dart';
+import 'package:facetomini/data/models/vo/server.dart';
 
-abstract interface class ApiServerEnvelope {
-  Future<AuthorModel?> getAuthor(int idAuthor);
+abstract interface class ApiServerDAO {
+  Future<dynamic> getAuthor(Dto dto, ClientModel serverData);
 }
