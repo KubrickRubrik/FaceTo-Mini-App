@@ -8,6 +8,7 @@
     "titleErrorApp": "Упс!",
     "errorRepairsApp": "Требуется переустановка приложения",
     "isNoContent": "Контент отсутствует",
+    "actionNotAvailable": "Действие недоступно",
 
     "themeSettings": "Тема приложения",
     "themeSettingsLight": "Светлая",

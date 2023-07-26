@@ -29,6 +29,7 @@ final class ScenesProvider extends ChangeNotifier with _State {
     }
   }
 
+  // Setting the operation status
   void _setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
     if (isUpdate) notifyListeners();

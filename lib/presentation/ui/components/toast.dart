@@ -1,8 +1,8 @@
-import 'package:facetomini/core/config/entity.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/core/config/entity.dart';
 
 abstract final class ToastMassage {
-  static void toast(BuildContext context, String title, {code = TypeMassage.massage, int duration = 2}) {
+  static void toast(BuildContext context, String title, {TypeMassage code = TypeMassage.massage, int duration = 2}) {
     // Settings
     final ({int colorBackground, int colorText}) data = switch (code) {
       TypeMassage.error => (colorBackground: 0xFFDC0037, colorText: 0xFFFFFFFF),

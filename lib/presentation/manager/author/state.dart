@@ -2,10 +2,12 @@ part of 'author.dart';
 
 mixin _State {
   final pageData = _PageData();
+  final sectionLink = SectionLink();
   //
   // Load page
-  var statePage = StatusContent.isNoneContent;
-  // var stateSpinPage = StatusContent.isNoneContent;
+  var actionStatus = ActionStatus.isDone;
+  var statusPage = StatusContent.isNoneContent;
+  var isViewDescriptionLink = false;
 }
 
 final class _PageData {
@@ -14,12 +16,15 @@ final class _PageData {
   String about = '';
   final image = ImageProfile();
   final stat = StatProfile();
-  List<Link> links = [];
+  List<SectionLink> links = [];
 
-  clear() {
+  void _clear() {
     idApp = 0;
     about = '';
     stat.clear();
     links.clear();
   }
+
+  // Overwriting the used idSeries and clean for new data
+  void overwritingPageData(AuthorEntity data) {}
 }

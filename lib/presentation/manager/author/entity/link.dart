@@ -1,12 +1,12 @@
-class Link {
+class SectionLink {
   int id = 0;
   String address = '';
   var icon = _IconLinks();
 
-  setData(_data) {
-    id = _data['id'];
-    address = _data['address'];
-    icon.setData(_data['icon']);
+  setData(SectionLink data) {
+    id = data.id;
+    address = data.address;
+    icon.setData(data.icon);
   }
 
   clear() {
@@ -22,11 +22,11 @@ final class _IconLinks {
   int redirect = 0;
   String pattern = '';
 
-  setData(Map _data) {
-    id = _data['id'];
-    title = _data['title'];
-    url = _data['url'];
-    redirect = _data['redirect'];
-    pattern = _data['pattern'];
+  setData(_IconLinks data) {
+    id = data.id;
+    title = data.title;
+    url = data.url;
+    redirect = data.redirect;
+    pattern = data.pattern;
   }
 }

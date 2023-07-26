@@ -1,5 +1,5 @@
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/core/config/locale.dart';
+import 'package:facetomini/presentation/ui/components/localization/controller.dart';
 
 final class SessionEntity {
   final int idApp;
@@ -13,7 +13,7 @@ final class SessionEntity {
     required String locale,
     required String theme,
   })  : enabledSound = enabledSound == 1,
-        locale = ConfigLocalization.getByName(locale),
+        locale = LocalizationController.getByName(locale),
         theme = CurrentThemeApp.values.firstWhere(
           (element) => element.toString() == theme,
           orElse: () => CurrentThemeApp.light,

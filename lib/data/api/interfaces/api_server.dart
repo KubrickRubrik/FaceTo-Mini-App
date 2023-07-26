@@ -1,5 +1,5 @@
-import 'package:facetomini/data/models/session.dart';
+import 'package:facetomini/data/models/author.dart';
 
 abstract interface class ApiServerEnvelope {
-  Future<SessionModel?> authorized();
+  Future<AuthorModel?> getAuthor(int idAuthor);
 }

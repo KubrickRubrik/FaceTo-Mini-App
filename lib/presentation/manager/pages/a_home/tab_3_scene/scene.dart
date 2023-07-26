@@ -20,7 +20,7 @@ final class SceneProvider extends ChangeNotifier with _State {
   //     _setStatusPage(StatusContent.isViewContent);
   //   }
   // }
-
+  // Setting the operation status
   void _setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
     if (isUpdate) notifyListeners();

@@ -6,7 +6,7 @@ class _SpinAuthor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<AuthorProvider, StatusContent>(
-      selector: (_, Model) => Model.statePage,
+      selector: (_, Model) => Model.statusPage,
       builder: (_, statePage, __) {
         return AnimatedCrossFade(
           duration: const Duration(milliseconds: 300),

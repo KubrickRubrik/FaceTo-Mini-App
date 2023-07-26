@@ -30,10 +30,10 @@ class _ViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<AuthorProvider, StatusContent>(
-      selector: (_, Model) => Model.statePage,
+      selector: (_, Model) => Model.statusPage,
       builder: (_, statePage, __) {
         return switch (statePage) {
-          StatusContent.isViewContent => const ViewAuthorPage(),
+          StatusContent.isViewContent || StatusContent.isLoadContent => const ViewAuthorPage(),
           _ => const NoneViewAuthorPage(),
         };
       },

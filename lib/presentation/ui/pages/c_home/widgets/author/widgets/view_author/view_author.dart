@@ -1,14 +1,12 @@
-import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/core/config/links.dart';
-import 'package:facetomini/presentation/manager/author/author.dart';
-import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
-import 'package:facetomini/presentation/ui/components/icons.dart';
-import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/author/widgets/view_author/widgets/download_data/download_data.dart';
+import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/presentation/manager/author/author.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/author/widgets/view_author/widgets/downloaded_data/downloaded_data.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:provider/provider.dart';
 part 'widgets/spin.dart';
-part 'widgets/data.dart';
 
 class ViewAuthorPage extends StatelessWidget {
   const ViewAuthorPage({super.key});
@@ -32,32 +30,16 @@ class ViewAuthorPage extends StatelessWidget {
               children: [
                 //! Spin
                 const _SpinAuthor(),
-                //! Author
-                const _DataAuthor(),
-                //! View Link
-                _ViewLink(),
-
-                //! Link
-                Container(
-                  constraints: const BoxConstraints(minHeight: 60),
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 7,
-                    runSpacing: 7,
-                    children: (Provider.of<CM_AuthorBloc>(context).stateSpinPage == ViewStatusPage.load)
-                        ? [
-                            Container(
-                              height: 55,
-                              width: 55,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFDBDADA),
-                                border: Border.all(width: 1.5, color: const Color(0xFFffffff)),
-                                borderRadius: BorderRadius.circular(22),
-                              ),
-                            )
-                          ]
-                        : _listWidgetLink(),
-                  ),
+                //! Author downloaded data
+                Selector<AuthorProvider, StatusContent>(
+                  selector: (_, Model) => Model.statusPage,
+                  builder: (_, statePage, child) {
+                    return switch (statePage) {
+                      StatusContent.isLoadContent => const DownloadData(),
+                      StatusContent.isViewContent => const DownloadedData(),
+                      _ => const SizedBox.shrink(),
+                    };
+                  },
                 ),
               ],
             ),

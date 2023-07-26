@@ -1,31 +1,45 @@
 {
     "titleApp": "FaceTo Mini",
+
     "titleSeriesPage": "FaceTo Mini series",
     "titleScenesPage": "Scenes of series",
     "titleScenePage": "Game",
+
     "titleErrorApp": "Oops!",
     "errorRepairsApp": "Application needs to be reinstalled",
     "isNoContent": "No content",
+    "actionNotAvailable": "Action not available",
+
     "themeSettings": "App theme",
     "themeSettingsLight": "Light",
     "themeSettingsDark": "Dark",
+
     "languageSettings": "Language",
+
     "soundSettings": "Voice acting",
     "soundSettingsOn": "Turn on",
     "soundSettingsOff": "Switch off",
+
     "infoSettings": "Information",
+
     "identificatorSeries": "Series identifier",
     "countScenes": "Scenes in a series",
+
     "usersSeries": "Users completed the series",
+
     "graduallyScenesOpens": "Scenes of the series open gradually",
     "allScenesOpens": "All scenes of the series are open",
+
     "seriesAvailablePlay": "The series is available to play",
     "seriesActive": "Series active",
     "seriesCompleted": "Series completed",
+
     "simplyLevelDifficult": "Easy difficulty level.\r\nAvailable diagonal swipe",
     "hardLevelDifficult": "High difficulty.\r\nDiagonal swipe not available",
+
     "scenesNotAvailable": "Series scenes are not available",
     "usersScene": "Users completed the scene",
+
     "lockScene": "Need to complete the previous scene",
     "infoRatingLabel_1": "Many different series of images.",
     "infoRatingLabel_2": "Downloading series for offline play.",
@@ -36,8 +50,10 @@
     "infoRatingLabel_7": "More features in the Pro version of FaceTo.",
     "infoRatingInstall_1": "Install\r\nPro version",
     "infoCopy": "Copied",
+
     "noneAuthorOops": "Oops!",
     "noneAuthorLabel": "No information\r\nabout this author",
+
     "rank_1": "Newbie",
     "rank_2": "Salaga",
     "rank_3": "Neophyte",
@@ -58,6 +74,7 @@
     "rank_18": "Hand of god",
     "rank_19": "God",
     "rank_20": "Enlightened",
+    
     "typeAppUser": "User",
     "typeAppAuthor": "Аuthor",
     "typeAppCompany": "Company"

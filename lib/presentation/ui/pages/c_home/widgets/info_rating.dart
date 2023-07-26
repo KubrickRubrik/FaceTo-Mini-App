@@ -145,7 +145,7 @@ class _AboutRatingApp extends StatelessWidget {
             ),
             child: InkWell(
               onTap: () {
-                Future.delayed(Duration.zero, () async {
+                Future.microtask(() async {
                   final path = Uri.parse(ConfigLinks.links.linkFaceTo);
                   if (await canLaunchUrl(path)) {
                     await launchUrl(path);

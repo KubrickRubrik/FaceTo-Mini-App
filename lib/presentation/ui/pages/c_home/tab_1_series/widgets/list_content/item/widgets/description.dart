@@ -24,7 +24,8 @@ class _DescriptionSeries extends StatelessWidget {
               //! Author series
               InkWell(
                 onTap: () {
-                  // Provider.of<CM_AuthorBloc>(context, listen: false).getData(Provider.of<CM_SeriesBloc>(context, listen: false).content.userAuthor.idApp);
+                  context.read<PagesControllerProvider>().setViewInfoAuthorPage();
+                  context.read<AuthorProvider>().getAuthor(series.user.author.idApp);
                 },
                 child: Container(
                   padding: const EdgeInsets.only(right: 5),

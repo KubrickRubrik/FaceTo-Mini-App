@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/core/config/theme.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
@@ -85,7 +85,7 @@ class _ItemBody extends StatelessWidget {
       builder: (_, theme, __) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: ConfigThemes.defaultThemes(context).entries.map((e) {
+          children: ThemesController.defaultThemes(context).entries.map((e) {
             return InkWell(
               onTap: () {
                 context.read<SessionProvider>().setTheme(e.key);

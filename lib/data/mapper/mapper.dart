@@ -1,7 +1,9 @@
+import 'package:facetomini/data/models/author.dart';
 import 'package:facetomini/data/models/scene.dart';
 import 'package:facetomini/data/models/series.dart';
 import 'package:facetomini/data/models/session.dart';
 import 'package:facetomini/domain/entities/app.dart';
+import 'package:facetomini/domain/entities/author.dart';
 import 'package:facetomini/domain/entities/scene.dart';
 import 'package:facetomini/domain/entities/series.dart';
 
@@ -80,5 +82,9 @@ abstract final class EntitiesMapper {
         countUsers: model.countUsers,
       ),
     );
+  }
+
+  static AuthorEntity setAuthor(AuthorModel mode) {
+    return AuthorEntity();
   }
 }

@@ -8,6 +8,7 @@ final class SeriesProvider extends ChangeNotifier with _State {
   SeriesProvider(this._seriesCase);
   final SeriesCase _seriesCase;
 
+  // Series request
   Future<void> getSeries() async {
     if (super.actionStatus == ActionStatus.isAction) return;
     _setActions(ActionStatus.isAction, false);
@@ -22,7 +23,7 @@ final class SeriesProvider extends ChangeNotifier with _State {
     }
   }
 
-  //
+  // Setting the operation status
   void _setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
     if (isUpdate) notifyListeners();
