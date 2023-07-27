@@ -9,20 +9,23 @@ class ListContentScenes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<ScenesProvider, int>(
-      selector: (_, Model) => Model.pageData.countScene,
-      builder: (_, length, __) {
-        return ListView.separated(
+    return Selector<ScenesProvider, (int, int)>(
+      selector: (_, Model) => (Model.pageData.useIdSeries, Model.pageData.countScene),
+      builder: (_, data, __) {
+        return ListView(
           padding: const EdgeInsets.only(top: 50, bottom: 0, left: 5, right: 5),
           controller: controller,
           physics: const BouncingScrollPhysics(),
-          separatorBuilder: (BuildContext context, int index) {
-            return const SizedBox(height: 8);
-          },
-          itemCount: length,
-          itemBuilder: (context, index) {
+          // separatorBuilder: (BuildContext context, int index) {
+          //   return const SizedBox(height: 8);
+          // },
+          // itemCount: length,
+          // itemBuilder: (context, index) {
+          //   return ItemScene(index);
+          // },
+          children: List.generate(data.$2, (index) {
             return ItemScene(index);
-          },
+          }),
         );
       },
     );

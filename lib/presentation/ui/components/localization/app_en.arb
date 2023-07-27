@@ -38,6 +38,7 @@
     "hardLevelDifficult": "High difficulty.\r\nDiagonal swipe not available",
 
     "scenesNotAvailable": "Series scenes are not available",
+    "sceneNotAvailable":"Scene not available",
     "usersScene": "Users completed the scene",
 
     "lockScene": "Need to complete the previous scene",
@@ -77,5 +78,7 @@
     
     "typeAppUser": "User",
     "typeAppAuthor": "Аuthor",
-    "typeAppCompany": "Company"
+    "typeAppCompany": "Company",
+
+    "loadingScene":"Loading a scene"
 }

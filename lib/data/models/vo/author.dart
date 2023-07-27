@@ -25,7 +25,6 @@ final class AuthorModel {
           countSub: data['stat']['count_sub'],
         ),
         links = (data['links'] as List).map((link) {
-          print(link);
           return LinkAuthorModel(
             id: link['id'],
             address: link['address'],
@@ -38,9 +37,7 @@ final class AuthorModel {
             ),
           );
         }).toList(),
-        follower = data['follower'] {
-    print(data);
-  }
+        follower = data['follower'];
 }
 
 class ImageAuthorModel {

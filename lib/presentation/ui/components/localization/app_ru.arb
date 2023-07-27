@@ -38,6 +38,7 @@
     "hardLevelDifficult":"Высокий уровень сложности.\r\n  Диагональный свайп недоступен",
 
     "scenesNotAvailable":"Сцены серии недоступны",
+    "sceneNotAvailable":"Сцена недоступна",
     "lockScene":"Необходимо завершить предыдущую сцену",
 
     "infoRatingLabel_1":"Множество разнообразных серий изображений.",
@@ -76,5 +77,7 @@
     
     "typeAppUser":"Пользователь",
     "typeAppAuthor":"Автор",
-    "typeAppCompany":"Компания"
+    "typeAppCompany":"Компания",
+
+    "loadingScene":"Загрузка сцены"
 }

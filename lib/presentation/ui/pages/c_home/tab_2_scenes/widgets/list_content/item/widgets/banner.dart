@@ -39,6 +39,7 @@ class _Banner extends StatelessWidget {
                     onTap: () {
                       // int sizeScreen = APP_STYLE.setSizeElem(2, 1, context).toInt();
                       // _FMD_CONTROLLER.setContentTab_3_TAP(Provider.of<CM_SceneBloc>(context, listen: false).item, sizeScreen);
+                      context.read<PagesControllerProvider>().swipeToScene();
                     },
                     enableFeedback: false,
                     child: Container(

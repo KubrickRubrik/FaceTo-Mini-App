@@ -44,12 +44,6 @@ final class ScenesProvider extends ChangeNotifier with _State {
     notifyListeners();
   }
 
-  // Setting page content status when data is loaded
-  void _setStatusContentPage(StatusContent val) {
-    statusContentPage = val;
-    notifyListeners();
-  }
-
   // Checking the completion status of the previous scene to open the next one
   bool isCompletedPreviousScene(int index) {
     if (index == 0) return true;

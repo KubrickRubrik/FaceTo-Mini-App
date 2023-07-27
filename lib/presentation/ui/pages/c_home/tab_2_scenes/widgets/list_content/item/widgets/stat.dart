@@ -8,9 +8,7 @@ class _Stat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       flex: 3,
-      child: Container(
-        // color: Colors.blue,
-        alignment: Alignment.center,
+      child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -43,12 +41,7 @@ class _Stat extends StatelessWidget {
                 ),
               ),
             ),
-
-            Container(
-              height: 15,
-              alignment: Alignment.center,
-              child: dotSpaces(),
-            ),
+            SizedBox(height: 15, child: Center(child: dotSpaces())),
             //! Users
             InkWell(
               onTap: () {
@@ -130,24 +123,19 @@ class _Stat extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              height: 15,
-              alignment: Alignment.center,
-              child: dotSpaces(),
-            ),
+            SizedBox(height: 15, child: Center(child: dotSpaces())),
             //! Author
             InkWell(
               onTap: () {
-                //! context.read<ScenesProvider>().pageData.listScenes[index].user.author.idApp
-                // Provider.of<CM_AuthorBloc>(context, listen: false).getData(
-                //   Provider.of<CM_SceneBloc>(context, listen: false).content.userAuthor.idApp,
-                // );
+                final scene = context.read<ScenesProvider>().pageData.listScenes.elementAt(index);
+                context.read<PagesControllerProvider>().setViewInfoAuthorPage();
+                context.read<AuthorProvider>().getAuthor(scene.user.author.idApp);
               },
               child: Container(
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF313131F),
+                  color: const Color(0xFF313131),
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: const [
                     BoxShadow(

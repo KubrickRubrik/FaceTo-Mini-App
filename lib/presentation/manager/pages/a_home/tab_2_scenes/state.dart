@@ -5,11 +5,12 @@ mixin _State {
   //
   var actionStatus = ActionStatus.isDone;
   var statusPage = StatusContent.isNoneContent;
-  var statusContentPage = StatusContent.isNoneContent;
 }
 
 final class _PageData {
+  // Last used series
   int useIdSeries = -1;
+  // List of all series
   final listScenes = <SceneEntity>[];
   // Old (previously loaded) data will be returned if idSeries has not changed
   bool isOldSeriesUsed(int idNewSeires) => useIdSeries == idNewSeires;

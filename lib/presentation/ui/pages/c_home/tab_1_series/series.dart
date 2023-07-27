@@ -50,7 +50,7 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
           // Getting the last used series or the first one on the series page for swiping
           final useIdSeries = context.read<ScenesProvider>().pageData.useIdSeries;
           final idLastSeries = (useIdSeries != -1) ? useIdSeries : context.read<SeriesProvider>().pageData.listSeries.first.idSeries;
-
+          //
           context.read<ScenesProvider>().getScenes(idLastSeries).then((isDone) {
             if (isDone == null) return;
             if (!isDone) {

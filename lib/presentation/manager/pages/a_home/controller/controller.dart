@@ -30,6 +30,13 @@ final class PagesControllerProvider extends ChangeNotifier with _State {
     // });
   }
 
+  Future<void> swipeToScene() async {
+    _swipeToTab(2);
+    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
+    //   APP_AUDIO.soundToScenes();
+    // });
+  }
+
   // Swipe only to previous page/tab
   Future<void> swipeBackTab(int index) async {
     _swipeToTab(index);
