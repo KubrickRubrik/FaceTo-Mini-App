@@ -8,7 +8,7 @@ class _Rank extends StatelessWidget {
     return SizedBox(
       height: 65,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //! Nick
           Container(
@@ -23,7 +23,7 @@ class _Rank extends StatelessWidget {
               ),
             ),
           ),
-          //! Author
+          //! Rank
           Container(
             margin: const EdgeInsets.only(left: 3),
             height: 30,

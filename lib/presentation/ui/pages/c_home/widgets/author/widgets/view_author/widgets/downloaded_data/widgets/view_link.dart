@@ -9,7 +9,10 @@ class _ViewLink extends StatelessWidget {
     return Selector<AuthorProvider, bool>(
       selector: (_, Model) => Model.isViewDescriptionLink,
       builder: (_, isView, __) {
-        return switch (isView) { false => const SizedBox.shrink(), true => const _ViewLinkDescription() };
+        return switch (isView) {
+          false => const SizedBox.shrink(),
+          true => const _ViewLinkDescription(),
+        };
       },
     );
   }
@@ -26,107 +29,136 @@ class _ViewLinkDescription extends StatefulWidget {
 class __ViewLinkDescriptionState extends State<_ViewLinkDescription> {
   bool isSectionScaling = false;
   bool isSectionDisplay = false;
+  // Hide author contact display panel
+  void hideViewLink() {
+    isSectionDisplay = false;
+    setState(() {});
+    Future.delayed(const Duration(milliseconds: 200), () {
+      isSectionScaling = false;
+      setState(() {});
+    }).then((value) {
+      context.read<AuthorProvider>().setViewLinks(null);
+    });
+  }
+
+  void displayViewLink() {
+    isSectionScaling = true;
+    setState(() {});
+    Future.delayed(const Duration(milliseconds: 200), () {
+      isSectionDisplay = true;
+      setState(() {});
+    });
+  }
+
+  bool isUsedRedirect() {
+    return context.read<AuthorProvider>().pageData.sectionLink.link.icon.redirect == 1;
+  }
+
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      isSectionScaling = true;
-      setState(() {});
-      Future.delayed(const Duration(milliseconds: 200), () {
-        isSectionDisplay = true;
-        setState(() {});
-      });
-    });
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      displayViewLink();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.ease,
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      height: (isSectionScaling) ? 100 : 0,
-      child: AnimatedOpacity(
-        duration: const Duration(milliseconds: 200),
-        opacity: (isSectionDisplay) ? 1 : 0,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: const Color(0xFFffffff),
-            borderRadius: BorderRadius.circular(20),
+    return Selector<AuthorProvider, String>(
+      selector: (_, Model) => Model.pageData.sectionLink.link.address,
+      builder: (_, model, child) {
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.ease,
+          margin: const EdgeInsets.only(bottom: 8),
+          height: (isSectionScaling)
+              ? isUsedRedirect()
+                  ? 150
+                  : 100
+              : 0,
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.ease,
+            opacity: (isSectionDisplay) ? 1 : 0,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: const Color(0xFFffffff),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Wrap(
+                children: [
+                  //? The top panel of the contacts section
+                  _LabelContact(hideViewLink),
+                  //? Author contact resource
+                  const _AuthorContact(),
+                  //? Redirect to the author's contact
+                  const _RedirectToAuthorContact(),
+                ],
+              ),
+            ),
           ),
-          child: (!isSectionDisplay)
-              ? const SizedBox.shrink()
-              : const Wrap(
-                  children: [
-                    //? The top panel of the contacts section
-                    _LabelContact(),
-                    //? Author contact resource
-                    _AuthorContact(),
-                    //? Redirect to the author's contact
-                    _RedirectToAuthorContact(),
-                  ],
-                ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
 /// The top panel of the author contacts section
 class _LabelContact extends StatelessWidget {
-  const _LabelContact({super.key});
+  const _LabelContact(this.hideViewLink, {super.key});
+  final Function hideViewLink;
 
   @override
   Widget build(BuildContext context) {
-    final sectionLink = context.read<AuthorProvider>().sectionLink;
-    return Container(
-      height: 55,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF4F9FC),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            offset: Offset(0, 1),
-            blurRadius: 2,
-            spreadRadius: -1,
-          ),
-        ],
-      ),
-      child: Flex(
-        direction: Axis.horizontal,
-        children: [
-          //? icon
-          SizedBox(
-            width: 60,
-            child: Center(
-              child: SizedBox(
-                height: 30,
-                width: 30,
-                child: CachedNetworkImage(
-                  imageUrl: ConfigLinks.parseLinks(sectionLink.icon.url),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+    final authorLink = context.read<AuthorProvider>().pageData.sectionLink.link;
+    return InkWell(
+      onTap: () {
+        hideViewLink();
+      },
+      child: Container(
+        height: 55,
+        decoration: BoxDecoration(
+          color: const Color(0xFFF4F9FC),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(
+              offset: Offset(0, 1),
+              blurRadius: 2,
+              spreadRadius: -1,
+            ),
+          ],
+        ),
+        child: Flex(
+          direction: Axis.horizontal,
+          children: [
+            //? icon
+            SizedBox(
+              width: 60,
+              child: Center(
+                child: SizedBox(
+                  height: 30,
+                  width: 30,
+                  child: CachedNetworkImage(
+                    imageUrl: ConfigLinks.parseLinks(authorLink.icon.url),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                  ),
                 ),
               ),
             ),
-          ),
-          //? Tex
-          Flexible(
-            child: Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                sectionLink.icon.title,
-                style: const TextStyle(
-                  fontSize: 16,
+            //? Tex
+            Flexible(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  authorLink.icon.title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
-          ),
-          // Url
-          InkWell(
-            onTap: () {
-              context.read<AuthorProvider>().setViewLinks(null);
-            },
-            child: Container(
+            // Url
+            Container(
               width: 50,
               alignment: Alignment.centerLeft,
               child: const RotatedBox(
@@ -138,8 +170,8 @@ class _LabelContact extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -151,8 +183,7 @@ class _AuthorContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sectionLink = context.read<AuthorProvider>().sectionLink;
-
+    final linkAuthor = context.read<AuthorProvider>().pageData.sectionLink.link;
     return SizedBox(
       height: 45,
       child: Flex(
@@ -172,13 +203,13 @@ class _AuthorContact extends StatelessWidget {
           Flexible(
             child: InkWell(
               onTap: () {
-                Clipboard.setData(ClipboardData(text: sectionLink.address));
+                Clipboard.setData(ClipboardData(text: linkAuthor.address));
                 ToastMassage.toast(context, context.lcz.infoCopy);
               },
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  sectionLink.address,
+                  linkAuthor.address,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: Color(0xFF0D5788),
@@ -191,7 +222,7 @@ class _AuthorContact extends StatelessWidget {
           //? Cupy Url
           InkWell(
             onTap: () {
-              Clipboard.setData(ClipboardData(text: sectionLink.address));
+              Clipboard.setData(ClipboardData(text: linkAuthor.address));
               ToastMassage.toast(context, context.lcz.infoCopy, code: TypeMassage.warning);
             },
             child: const SizedBox(
@@ -216,8 +247,8 @@ class _RedirectToAuthorContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sectionLink = context.read<AuthorProvider>().sectionLink;
-    if (sectionLink.icon.redirect != 1) return const SizedBox();
+    final linkAuthor = context.read<AuthorProvider>().pageData.sectionLink.link;
+    if (linkAuthor.icon.redirect != 1) return const SizedBox();
     return SizedBox(
       height: 45,
       child: Flex(
@@ -236,13 +267,13 @@ class _RedirectToAuthorContact extends StatelessWidget {
           Flexible(
             child: InkWell(
               onTap: () {
-                Clipboard.setData(ClipboardData(text: "${sectionLink.icon.pattern}${sectionLink.address}"));
+                Clipboard.setData(ClipboardData(text: "${linkAuthor.icon.pattern}${linkAuthor.address}"));
                 ToastMassage.toast(context, context.lcz.infoCopy, code: TypeMassage.warning);
               },
               child: Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "${sectionLink.icon.pattern}${sectionLink.address}",
+                  "${linkAuthor.icon.pattern}${linkAuthor.address}",
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: Color(0xFF0D5788),
@@ -256,7 +287,7 @@ class _RedirectToAuthorContact extends StatelessWidget {
           InkWell(
             onTap: () {
               Future.microtask(() async {
-                final path = Uri.parse("${sectionLink.icon.pattern}${sectionLink.address}");
+                final path = Uri.parse("${linkAuthor.icon.pattern}${linkAuthor.address}");
                 if (await canLaunchUrl(path)) {
                   await launchUrl(path);
                   return true;

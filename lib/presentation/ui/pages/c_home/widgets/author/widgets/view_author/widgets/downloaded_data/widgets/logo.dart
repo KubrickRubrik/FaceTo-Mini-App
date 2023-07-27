@@ -15,7 +15,7 @@ class _Logo extends StatelessWidget {
         image: DecorationImage(
           image: NetworkImage(
             ConfigLinks.parseLinks(
-              context.read<AuthorProvider>().pageData.image.logo,
+              context.read<AuthorProvider>().pageData.author.image.logo,
             ),
           ),
           fit: BoxFit.cover,

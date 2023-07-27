@@ -4,16 +4,17 @@ import 'package:facetomini/data/models/dto/dto.dart';
 final class AuthorDTO extends Dto {
   final int idAuthor;
 
-  AuthorDTO(
-    super.actionApi, {
+  AuthorDTO({
     required this.idAuthor,
   });
 
   @override
   Map<String, dynamic> toMapRequest() {
     return {
-      "action": actionApi,
-      "id_app": idAuthor,
+      "action": super.actionApi,
+      "data": {
+        "id_app": idAuthor,
+      },
     };
   }
 }

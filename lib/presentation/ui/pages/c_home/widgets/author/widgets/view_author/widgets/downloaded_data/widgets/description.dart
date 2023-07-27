@@ -6,7 +6,7 @@ class _Description extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<AuthorProvider, String>(
-        selector: (_, Model) => Model.pageData.about,
+        selector: (_, Model) => Model.pageData.author.description,
         builder: (_, about, __) {
           if (about.isEmpty) return const SizedBox.shrink();
           return Container(

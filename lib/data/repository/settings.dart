@@ -20,7 +20,7 @@ final class SettingsRepositoryImpl implements SettingsRepository {
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
     } catch (e) {
-      throw (data: null, fail: DataFormatFailuer('Error api data'));
+      return (data: null, fail: DataFormatFailuer('Error api data: $e'));
     }
   }
 
@@ -36,7 +36,7 @@ final class SettingsRepositoryImpl implements SettingsRepository {
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
     } catch (e) {
-      throw (data: null, fail: DataFormatFailuer('Error api data'));
+      return (data: null, fail: DataFormatFailuer('Error api data: $e'));
     }
   }
 
@@ -52,7 +52,7 @@ final class SettingsRepositoryImpl implements SettingsRepository {
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
     } catch (e) {
-      throw (data: null, fail: DataFormatFailuer('Error api data'));
+      return (data: null, fail: DataFormatFailuer('Error api data: $e'));
     }
   }
 }

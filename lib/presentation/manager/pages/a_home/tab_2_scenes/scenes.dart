@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
@@ -20,6 +22,7 @@ final class ScenesProvider extends ChangeNotifier with _State {
     _setActions(ActionStatus.isDone, false);
     // Result processing
     if (response.fail != null || response.data == null) {
+      print(response.fail?.msg);
       _setStatusPage(StatusContent.isNoneContent);
       return false;
     } else {

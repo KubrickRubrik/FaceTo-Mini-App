@@ -10,9 +10,9 @@ class _ListLinks extends StatelessWidget {
       constraints: const BoxConstraints(minHeight: 60),
       alignment: Alignment.center,
       child: Selector<AuthorProvider, (int, int)>(
-        selector: (_, Model) => (Model.pageData.idApp, Model.pageData.links.length),
+        selector: (_, Model) => (Model.pageData.author.idApp, Model.pageData.author.links.length),
         builder: (_, model, __) {
-          final listLinks = Provider.of<AuthorProvider>(context).pageData.links;
+          final listLinks = Provider.of<AuthorProvider>(context).pageData.author.links;
           return Wrap(
             alignment: WrapAlignment.center,
             spacing: 7,
@@ -29,6 +29,7 @@ class _ListLinks extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: const Color(0xFFFFFFFF),
                     border: Border.all(width: 1.5, color: const Color(0xFFffffff)),
+                    borderRadius: BorderRadius.circular(22),
                   ),
                   child: CachedNetworkImage(
                     imageUrl: ConfigLinks.parseLinks(link.icon.url),

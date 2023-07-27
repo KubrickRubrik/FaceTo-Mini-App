@@ -1,4 +1,3 @@
-import 'package:facetomini/core/errors/exception.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 import 'package:facetomini/data/api/core/database/queries/server.dart';
 import 'package:facetomini/data/api/core/database/queries/session.dart';
@@ -20,109 +19,68 @@ final class ApiDbDrift implements ApiDbDAO {
   // Selecting the data required for a request to the server
   @override
   Future<ClientModel?> getClientData() async {
-    try {
-      final response = await _serverRequest.getServerData(apiDb);
-      if (response == null) return null;
-      return ClientModel(
-        idApp: response.user.idApp,
-        publicKey: response.user.publicKey,
-        language: response.settings.language,
-      );
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _serverRequest.getServerData(apiDb);
+    if (response == null) return null;
+    return ClientModel(
+      idApp: response.user.idApp,
+      publicKey: response.user.publicKey,
+      language: response.settings.language,
+    );
   }
 
   // Authorization user
   @override
   Future<SessionModel?> authorized(String languageName) async {
-    try {
-      // final apiDb = ConnectDataBase(language: languageName);
-      final response = await _sessionRequest.authirized(apiDb);
-      // apiDb.close();
-      if (response == null) return null;
-      return SessionModel(
-        idApp: response.user.idApp,
-        enabledSound: response.settings.enabledSound,
-        language: response.settings.language,
-        theme: response.settings.theme,
-      );
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.authirized(apiDb);
+    if (response == null) return null;
+    return SessionModel(
+      idApp: response.user.idApp,
+      enabledSound: response.settings.enabledSound,
+      language: response.settings.language,
+      theme: response.settings.theme,
+    );
   }
 
   // Save a theme
   @override
   Future<SessionModel?> setTheme(String themeName) async {
-    try {
-      // final apiDb = ConnectDataBase();
-      final response = await _sessionRequest.setTheme(apiDb, theme: themeName);
-      // apiDb.close();
-      if (response == null) return null;
-      return SessionModel.settings(theme: response.theme);
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.setTheme(apiDb, theme: themeName);
+    if (response == null) return null;
+    return SessionModel.settings(theme: response.theme);
   }
 
   // Locale saving
   @override
   Future<SessionModel?> setLocale(String languageName) async {
-    try {
-      // final apiDb = ConnectDataBase();
-      final response = await _sessionRequest.setLocale(apiDb, language: languageName);
-      // apiDb.close();
-      if (response == null) return null;
-      return SessionModel.settings(language: response.language);
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.setLocale(apiDb, language: languageName);
+    if (response == null) return null;
+    return SessionModel.settings(language: response.language);
   }
 
   // Saving sound
   @override
   Future<SessionModel?> setSound(bool enebledSound) async {
-    try {
-      // final apiDb = ConnectDataBase();
-      final response = await _sessionRequest.setSound(apiDb, enebledSound: enebledSound);
-      // apiDb.close();
-      if (response == null) return null;
-      return SessionModel.settings(enabledSound: response.enabledSound);
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.setSound(apiDb, enebledSound: enebledSound);
+    if (response == null) return null;
+    return SessionModel.settings(enabledSound: response.enabledSound);
   }
 
   // Get series
   @override
   Future<List<SeriesModel>?> getSeries() async {
-    try {
-      print(">> SERIES");
-      // final apiDb = ConnectDataBase();
-      final response = await _seriesRequest.getSeries(apiDb);
-      // apiDb.close();
-      if (response == null) return null;
-      final result = response.map((e) => SeriesModel(e)).toList();
-      return result;
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _seriesRequest.getSeries(apiDb);
+    if (response == null) return null;
+    final result = response.map((e) => SeriesModel(e)).toList();
+    return result;
   }
 
   // Get scenes
   @override
   Future<List<SceneModel>?> getScenesInSeries(int idSeries) async {
-    try {
-      // final apiDb = ConnectDataBase();
-      final response = await _scenesRequest.getScenesInSeries(apiDb, idSeries: idSeries);
-      // apiDb.close();
-      if (response == null) return null;
-      final result = response.map((e) => SceneModel(e.scene, e.typeTree)).toList();
-      return result;
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _scenesRequest.getScenesInSeries(apiDb, idSeries: idSeries);
+    if (response == null) return null;
+    final result = response.map((e) => SceneModel(e.scene, e.typeTree)).toList();
+    return result;
   }
 }
 

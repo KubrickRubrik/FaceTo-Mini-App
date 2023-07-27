@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/domain/use_cases/session.dart';
@@ -16,6 +18,7 @@ final class SessionProvider extends ChangeNotifier with _State {
     final response = await _sessionCase.authorization('ru');
     _setActions(ActionStatus.isDone);
     if (response.fail != null || response.data == null) {
+      print(response.fail?.msg);
       sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
       sessionUser.authorized(response.data!);

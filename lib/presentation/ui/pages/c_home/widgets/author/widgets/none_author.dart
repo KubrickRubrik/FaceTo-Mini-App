@@ -46,6 +46,7 @@ class NoneViewAuthorPage extends StatelessWidget {
                   color: Color(0xFFFFFFFF),
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
+                  height: 1.6,
                 ),
               ),
             ],

@@ -7,7 +7,7 @@ class _Subscribers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<AuthorProvider, int>(
-        selector: (_, Model) => Model.pageData.stat.countSub,
+        selector: (_, Model) => Model.pageData.author.stat.countSub,
         builder: (_, countSub, __) {
           if (countSub == 0) return const SizedBox.shrink();
           return Positioned(

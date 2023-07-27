@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ final class SeriesProvider extends ChangeNotifier with _State {
     final response = await _seriesCase.getSeries();
     _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
+      print(response.fail?.msg);
       _setStatusPage(StatusContent.isNoneContent);
     } else {
       pageData.overwritingPageData(response.data!);

@@ -8,11 +8,12 @@ class _Rank extends StatelessWidget {
     return SizedBox(
       height: 65,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          //! Nick
+          //? Nick
           Selector<AuthorProvider, String>(
-            selector: (_, Model) => Model.pageData.nick,
+            selector: (_, Model) => Model.pageData.author.nick,
             builder: (_, nick, __) {
               return Container(
                 height: 35,
@@ -25,12 +26,12 @@ class _Rank extends StatelessWidget {
               );
             },
           ),
-          //! Author
+          //? Rank & Nick
           Selector<AuthorProvider, int>(
-            selector: (_, Model) => Model.pageData.stat.rank.id,
+            selector: (_, Model) => Model.pageData.author.stat.rank.id,
             builder: (_, idRank, __) {
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                 height: 30,
                 decoration: BoxDecoration(
                   color: const Color(0xFF4114E0),
@@ -43,7 +44,6 @@ class _Rank extends StatelessWidget {
                     ),
                   ],
                 ),
-                alignment: Alignment.center,
                 child: Text(
                   LocalizationController.getRankUserDescription(context, idRank),
                   style: const TextStyle(

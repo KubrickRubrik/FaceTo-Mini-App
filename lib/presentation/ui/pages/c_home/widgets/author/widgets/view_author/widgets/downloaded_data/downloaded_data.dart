@@ -29,7 +29,7 @@ class DownloadedData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //! Main section
+        //? Main section
         Container(
           constraints: const BoxConstraints(minHeight: 200),
           decoration: const BoxDecoration(
@@ -40,47 +40,44 @@ class DownloadedData extends StatelessWidget {
           child: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              //! Author Banner & Logo & Nick
+              //? Author Banner & Logo & Nick
               Stack(
                 children: [
-                  //! Banner
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: _Banner(),
-                  ),
-                  //! Back
+                  //? Banner
+                  _Banner(),
+                  //? Back
                   Positioned(
                     top: 10,
                     left: 10,
                     child: _Back(),
                   ),
-                  //! Logo
+                  //? Logo
                   Positioned(
                     bottom: 0,
                     left: 25,
                     child: _Logo(),
                   ),
-                  //! Rank
+                  //? Rank
                   Positioned(
                     bottom: 0,
                     left: 155,
                     right: 0,
                     child: _Rank(),
                   ),
-                  //! Subscribers
+                  //? Subscribers
                   _Subscribers(),
                 ],
               ),
               SizedBox(height: 15),
-              //! Description
+              //? Description
               _Description(),
             ],
           ),
         ),
-        //! View link
+        const SizedBox(height: 8),
+        //? View link
         const _ViewLink(),
-        //! Link
+        //? Link
         const _ListLinks(),
       ],
     );

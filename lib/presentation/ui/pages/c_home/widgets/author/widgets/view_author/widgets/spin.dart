@@ -13,21 +13,19 @@ class _SpinAuthor extends StatelessWidget {
           sizeCurve: Curves.ease,
           crossFadeState: (statePage != StatusContent.isLoadContent) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
           firstChild: const SizedBox(height: 10),
-          secondChild: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 5),
-              SizedBox(
-                height: 40,
-                child: Center(
-                  child: Image.asset(
-                    AppImages.spinLight,
-                    width: 30,
-                    height: 30,
-                  ),
+          secondChild: Container(
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            alignment: Alignment.center,
+            child: SizedBox(
+              height: 40,
+              child: Center(
+                child: Image.asset(
+                  AppImages.spinLight,
+                  width: 30,
+                  height: 30,
                 ),
               ),
-            ],
+            ),
           ),
         );
       },

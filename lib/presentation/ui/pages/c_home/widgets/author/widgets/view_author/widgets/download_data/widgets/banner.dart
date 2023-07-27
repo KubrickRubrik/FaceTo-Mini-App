@@ -6,8 +6,8 @@ class _Banner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 65),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 65),
       child: AspectRatio(
         aspectRatio: 1.6,
         child: Container(

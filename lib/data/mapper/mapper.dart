@@ -84,7 +84,39 @@ abstract final class EntitiesMapper {
     );
   }
 
-  static AuthorEntity setAuthor(AuthorModel mode) {
-    return AuthorEntity();
+  // Unfolding raw author data
+  static AuthorEntity setAuthor(AuthorModel model) {
+    return AuthorEntity(
+      idApp: model.idApp,
+      nick: model.nick,
+      description: model.description,
+      image: ImageAuthor(
+        logo: model.image.logo,
+        banner: model.image.banner,
+      ),
+      stat: StatAuthor(
+        rank: RankAuthor(
+          id: model.stat.rank.id,
+          title: model.stat.rank.title,
+        ),
+        level: model.stat.level,
+        rating: model.stat.rating,
+        countSub: model.stat.countSub,
+      ),
+      links: model.links.map((link) {
+        return LinkAuthor(
+          id: link.id,
+          address: link.address,
+          icon: IconAuthor(
+            id: link.id,
+            redirect: link.icon.redirect,
+            title: link.icon.title,
+            url: link.icon.url,
+            pattern: link.icon.pattern,
+          ),
+        );
+      }).toList(),
+      follower: model.follower,
+    );
   }
 }

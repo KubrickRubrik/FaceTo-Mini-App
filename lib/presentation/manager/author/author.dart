@@ -1,9 +1,10 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
-import 'package:facetomini/domain/entities/author.dart';
+import 'package:facetomini/domain/entities/vo/author.dart';
+import 'package:facetomini/domain/entities/dto/author.dart';
 import 'package:facetomini/domain/use_cases/author.dart';
-import 'package:facetomini/presentation/manager/author/entity/image.dart';
 import 'package:facetomini/presentation/manager/author/entity/link.dart';
-import 'package:facetomini/presentation/manager/author/entity/stat.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';
 
@@ -13,15 +14,16 @@ final class AuthorProvider extends ChangeNotifier with _State {
 
   // Series request
   Future<void> getAuthor(int idAuthor) async {
-    if (pageData.idApp == idAuthor) {
+    if (pageData.author.idApp == idAuthor) {
       return;
     }
     if (super.actionStatus == ActionStatus.isAction) return;
     _setActions(ActionStatus.isAction, false);
     _setStatusPage(StatusContent.isLoadContent);
-    final response = await _authorCase.getAuthor(idAuthor);
+    final response = await _authorCase.getAuthor(AuthorDTO(idAuthor: idAuthor));
     _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
+      print(response.fail?.msg);
       _setStatusPage(StatusContent.isNoneContent);
     } else {
       pageData.overwritingPageData(response.data!);
@@ -37,14 +39,15 @@ final class AuthorProvider extends ChangeNotifier with _State {
 
   _setStatusPage(StatusContent val) {
     statusPage = val;
+    isViewDescriptionLink = false;
     notifyListeners();
   }
 
   // Link description display
-  setViewLinks(SectionLink? link) async {
+  setViewLinks(LinkAuthor? link) async {
     if (link != null) {
       isViewDescriptionLink = true;
-      sectionLink.setData(link);
+      pageData.sectionLink.setData(link);
     } else {
       isViewDescriptionLink = false;
     }

@@ -1,38 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:facetomini/core/config/actions.dart';
-import 'package:facetomini/core/errors/exception.dart';
+import 'package:facetomini/data/api/core/server/config/request.dart';
 import 'package:facetomini/data/api/interfaces/api_server.dart';
 import 'package:facetomini/data/models/dto/dto.dart';
+import 'package:facetomini/data/models/vo/author.dart';
 import 'package:facetomini/data/models/vo/server.dart';
 
 class ApiServer implements ApiServerDAO {
-  final dio = Dio();
+  final apiServer = Dio();
 
+  // Requesting the data of the author of a series or scene
   @override
-  Future getAuthor(Dto dto, ClientModel serverData) async {
-    try {
-      final data = _formDataObject(dto, serverData);
-      final response = await dio.post(ConfigActionsApi.linkServer, data: data);
-      _checkResponse(response);
-      return response.data;
-    } catch (e) {
-      throw ApiException('Exception api server dio: $e');
-    }
-  }
-
-  // Forming a data object for a request
-  Map<String, dynamic> _formDataObject(Dto dto, ClientModel serverData) {
-    return {
-      ...dto.toMapRequest(),
-      'id_app': serverData.idApp,
-      'public_key': serverData.publicKey,
-      'lang': serverData.language,
-      'timezoneOffset': DateTime.now().timeZoneOffset.inSeconds,
-    };
-  }
-
-  // Checking Server Response Codes
-  void _checkResponse(Response response) {
-    if (response.statusCode != 200) throw ApiException("${response.statusMessage}");
+  Future<AuthorModel?> getAuthor(Dto dto, ClientModel serverData) async {
+    dto.actionApi = ConfigActionsApi.authorGet;
+    final response = await ConfigRequestServer.request(apiServer, dto, serverData);
+    if (response == null) return null;
+    return AuthorModel(response['data']['author']);
   }
 }

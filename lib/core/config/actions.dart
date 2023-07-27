@@ -1,6 +1,6 @@
 /// All available operation configurations for remote api
 abstract final class ConfigActionsApi {
-  static const linkServer = "https://ft-app.oyavi.com/api-mini.php";
+  static const linkServer = "http://ft-app.oyavi.com/api-mini.php";
   //! PageAuth
   static const seriesGet = "series.get";
   static const seriesUpdate = "series.update";

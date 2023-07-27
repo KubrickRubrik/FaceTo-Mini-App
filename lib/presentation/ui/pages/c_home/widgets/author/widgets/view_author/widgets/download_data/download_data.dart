@@ -15,8 +15,9 @@ class DownloadData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        //! Main section
+        //? Main section
         Container(
           constraints: const BoxConstraints(minHeight: 200),
           decoration: const BoxDecoration(
@@ -27,28 +28,24 @@ class DownloadData extends StatelessWidget {
           child: const Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              //! Author Banner & Logo & Nick
+              //? Author Banner & Logo & Nick
               Stack(
                 children: [
-                  //! Banner
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: _Banner(),
-                  ),
-                  //! Back
+                  //? Banner
+                  _Banner(),
+                  //? Back
                   Positioned(
                     top: 10,
                     left: 10,
                     child: _ButtonBack(),
                   ),
-                  //! Logo
+                  //? Logo
                   Positioned(
                     bottom: 0,
                     left: 25,
                     child: _Logo(),
                   ),
-                  //! Rank
+                  //? Rank & Nick
                   Positioned(
                     bottom: 0,
                     left: 155,
@@ -61,7 +58,8 @@ class DownloadData extends StatelessWidget {
             ],
           ),
         ),
-        //! Link
+        const SizedBox(height: 8),
+        //? Link
         const _ListLinks(),
       ],
     );
