@@ -79,7 +79,7 @@ final class ApiDbDrift implements ApiDbDAO {
   Future<List<SceneModel>?> getScenesInSeries(int idSeries) async {
     final response = await _scenesRequest.getScenesInSeries(apiDb, idSeries: idSeries);
     if (response == null) return null;
-    final result = response.map((e) => SceneModel(e.scene, e.typeTree)).toList();
+    final result = response.map((e) => SceneModel(e.scene, e.typeTree, e.hardLevel)).toList();
     return result;
   }
 }

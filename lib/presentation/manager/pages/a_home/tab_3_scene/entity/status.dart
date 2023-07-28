@@ -8,4 +8,11 @@ final class _StatusAdditionPages {
   var statusWinnerPage = StatusContent.isNoneContent;
   //
   var statusSourceWinner = TypeSourceWinner.offline;
+
+  // Start new game
+  runNewGame() {
+    // Hide addition pages
+    statusDisplayImageHD = StatusContent.isNoneContent;
+    statusSourceWinner = TypeSourceWinner.offline;
+  }
 }

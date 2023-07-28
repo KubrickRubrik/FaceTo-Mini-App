@@ -6,6 +6,7 @@ final class SceneEntity {
 
   final ImageScene image;
   final int typeTree;
+  final hardLevel;
 
   final UserScene user;
 
@@ -18,6 +19,7 @@ final class SceneEntity {
     required this.idSeries,
     required this.image,
     required this.typeTree,
+    required this.hardLevel,
     required this.user,
     required this.grid,
     required this.stat,
