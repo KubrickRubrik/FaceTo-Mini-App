@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/domain/use_cases/session.dart';
@@ -12,10 +14,11 @@ final class SessionProvider extends ChangeNotifier with _State {
   // Session authorization
   Future<void> authorization() async {
     if (super.actionStatus == ActionStatus.isAction) return;
-    setActions(ActionStatus.isAction);
+    _setActions(ActionStatus.isAction);
     final response = await _sessionCase.authorization('ru');
-    setActions(ActionStatus.isDone);
+    _setActions(ActionStatus.isDone);
     if (response.fail != null || response.data == null) {
+      print(response.fail?.msg);
       sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
       sessionUser.authorized(response.data!);
@@ -26,9 +29,9 @@ final class SessionProvider extends ChangeNotifier with _State {
   Future<void> setTheme(CurrentThemeApp value) async {
     if (value == super.sessionUser.settings.theme) return;
     if (super.actionStatus == ActionStatus.isAction) return;
-    setActions(ActionStatus.isAction, false);
+    _setActions(ActionStatus.isAction, false);
     final response = await _sessionCase.setTheme(value.name);
-    setActions(ActionStatus.isDone, false);
+    _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
       // sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
@@ -42,9 +45,9 @@ final class SessionProvider extends ChangeNotifier with _State {
   Future<void> setLocale(AvailableAppLocale value) async {
     if (value == super.sessionUser.settings.locale) return;
     if (super.actionStatus == ActionStatus.isAction) return;
-    setActions(ActionStatus.isAction, false);
+    _setActions(ActionStatus.isAction, false);
     final response = await _sessionCase.setLocale(value.name);
-    setActions(ActionStatus.isDone, false);
+    _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
       // sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
@@ -57,10 +60,10 @@ final class SessionProvider extends ChangeNotifier with _State {
   // Set on/off sound
   Future<void> setSound(bool val) async {
     if (super.actionStatus == ActionStatus.isAction) return;
-    setActions(ActionStatus.isAction, false);
+    _setActions(ActionStatus.isAction, false);
     final swithSound = !super.sessionUser.settings.enabledSound;
     final response = await _sessionCase.setSound(swithSound);
-    setActions(ActionStatus.isDone, false);
+    _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
       // sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
@@ -70,8 +73,8 @@ final class SessionProvider extends ChangeNotifier with _State {
     }
   }
 
-  //
-  void setActions(ActionStatus value, [bool isUpdate = true]) {
+  // Setting the operation status
+  void _setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
     if (isUpdate) notifyListeners();
   }

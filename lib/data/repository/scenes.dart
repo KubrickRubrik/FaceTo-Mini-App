@@ -2,13 +2,13 @@ import 'package:facetomini/core/errors/exception.dart';
 import 'package:facetomini/core/errors/failure.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
 import 'package:facetomini/data/mapper/mapper.dart';
-import 'package:facetomini/domain/entities/scene.dart';
+import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/repository/scenes.dart';
 
 /// Class for performing operations on scene data
-final class SceneRepositoryImpl implements ScenesRepository {
-  SceneRepositoryImpl({required this.apiDB});
-  ApiDbEnvelope apiDB;
+final class ScenesRepositoryImpl implements ScenesRepository {
+  ScenesRepositoryImpl(this.apiDB);
+  ApiDbDAO apiDB;
   // Get all scenes in series
   @override
   Future<({List<SceneEntity>? data, Failure? fail})> getScenesInSeries(int idSeries) async {
@@ -21,7 +21,7 @@ final class SceneRepositoryImpl implements ScenesRepository {
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
     } catch (e) {
-      throw (data: null, fail: DataFormatFailuer('Error api data'));
+      return (data: null, fail: DataFormatFailuer('Error api data: $e'));
     }
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/core/config/locale.dart';
-import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
@@ -39,7 +37,7 @@ class ItemSoundThemeState extends State<ItemSoundTheme> {
 
 //! Header
 class _ItemHeader extends StatelessWidget {
-  const _ItemHeader({super.key});
+  const _ItemHeader();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +74,7 @@ class _ItemHeader extends StatelessWidget {
 
 //! Body
 class _ItemBody extends StatelessWidget {
-  const _ItemBody({super.key});
+  const _ItemBody();
 
   @override
   Widget build(BuildContext context) {

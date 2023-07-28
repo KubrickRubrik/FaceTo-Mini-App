@@ -8,14 +8,77 @@
     "titleErrorApp": "Oops!",
     "errorRepairsApp": "Application needs to be reinstalled",
     "isNoContent": "No content",
+    "actionNotAvailable": "Action not available",
 
     "themeSettings": "App theme",
     "themeSettingsLight": "Light",
     "themeSettingsDark": "Dark",
+
     "languageSettings": "Language",
+
     "soundSettings": "Voice acting",
     "soundSettingsOn": "Turn on",
     "soundSettingsOff": "Switch off",
 
-    "infoSettings": "Information"
+    "infoSettings": "Information",
+
+    "identificatorSeries": "Series identifier",
+    "countScenes": "Scenes in a series",
+
+    "usersSeries": "Users completed the series",
+
+    "graduallyScenesOpens": "Scenes of the series open gradually",
+    "allScenesOpens": "All scenes of the series are open",
+
+    "seriesAvailablePlay": "The series is available to play",
+    "seriesActive": "Series active",
+    "seriesCompleted": "Series completed",
+
+    "simplyLevelDifficult": "Easy difficulty level.\r\nAvailable diagonal swipe",
+    "hardLevelDifficult": "High difficulty.\r\nDiagonal swipe not available",
+
+    "scenesNotAvailable": "Series scenes are not available",
+    "sceneNotAvailable":"Scene not available",
+    "usersScene": "Users completed the scene",
+
+    "lockScene": "Need to complete the previous scene",
+    "infoRatingLabel_1": "Many different series of images.",
+    "infoRatingLabel_2": "Downloading series for offline play.",
+    "infoRatingLabel_3": "Setting series ratings.",
+    "infoRatingLabel_4": "Formation of a list of favorite series.",
+    "infoRatingLabel_5": "Subscribe to favorite authors.",
+    "infoRatingLabel_6": "Formation of the rank and rating of the user.",
+    "infoRatingLabel_7": "More features in the Pro version of FaceTo.",
+    "infoRatingInstall_1": "Install\r\nPro version",
+    "infoCopy": "Copied",
+
+    "noneAuthorOops": "Oops!",
+    "noneAuthorLabel": "No information\r\nabout this author",
+
+    "rank_1": "Newbie",
+    "rank_2": "Salaga",
+    "rank_3": "Neophyte",
+    "rank_4": "Enthusiast",
+    "rank_5": "Fan",
+    "rank_6": "Decided-Man",
+    "rank_7": "Perfectionist",
+    "rank_8": "Guru",
+    "rank_9": "Specialist",
+    "rank_10": "Profi",
+    "rank_11": "Genius",
+    "rank_12": "Legend",
+    "rank_13": "Cyber-cutlet",
+    "rank_14": "Your majesty",
+    "rank_15": "Prophet",
+    "rank_16": "The One",
+    "rank_17": "Titanium",
+    "rank_18": "Hand of god",
+    "rank_19": "God",
+    "rank_20": "Enlightened",
+    
+    "typeAppUser": "User",
+    "typeAppAuthor": "Аuthor",
+    "typeAppCompany": "Company",
+
+    "loadingScene":"Loading a scene"
 }

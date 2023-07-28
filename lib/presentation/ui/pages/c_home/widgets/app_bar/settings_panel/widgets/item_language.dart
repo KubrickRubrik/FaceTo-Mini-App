@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/core/config/locale.dart';
+import 'package:facetomini/presentation/ui/components/localization/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
@@ -39,7 +39,7 @@ class ItemLanguageThemeState extends State<ItemLanguageTheme> {
 
 //! Header
 class _ItemHeader extends StatelessWidget {
-  const _ItemHeader({super.key});
+  const _ItemHeader();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +76,7 @@ class _ItemHeader extends StatelessWidget {
 
 //! Body
 class _ItemBody extends StatelessWidget {
-  const _ItemBody({super.key});
+  const _ItemBody();
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class _ItemBody extends StatelessWidget {
       builder: (_, locale, __) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: ConfigLocalization.defaultLanguage.entries.map((e) {
+          children: LocalizationController.defaultLanguage.entries.map((e) {
             return InkWell(
               onTap: () {
                 context.read<SessionProvider>().setLocale(e.key);

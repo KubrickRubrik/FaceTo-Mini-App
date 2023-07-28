@@ -1,5 +1,7 @@
-import 'package:facetomini/data/models/session.dart';
+import 'package:facetomini/data/models/dto/dto.dart';
+import 'package:facetomini/data/models/vo/author.dart';
+import 'package:facetomini/data/models/vo/server.dart';
 
-abstract interface class ApiServerEnvelope {
-  Future<SessionModel?> authorized();
+abstract interface class ApiServerDAO {
+  Future<AuthorModel?> getAuthor(Dto dto, ClientModel serverData);
 }

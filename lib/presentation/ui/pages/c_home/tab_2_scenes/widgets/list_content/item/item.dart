@@ -1,101 +1,55 @@
-import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
-import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'dart:ui';
+import 'package:facetomini/presentation/manager/author/author.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
+
+import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
+import 'package:facetomini/presentation/ui/components/toast.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
+import 'package:facetomini/core/config/numbers.dart';
+import 'package:facetomini/presentation/ui/components/images.dart';
+import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/presentation/ui/components/icons.dart';
+import 'package:provider/provider.dart';
+part 'widgets/line.dart';
+part 'widgets/stat.dart';
 part 'widgets/banner.dart';
-part 'widgets/description.dart';
-part 'widgets/rating.dart';
-part 'widgets/count_scenes.dart';
-part 'widgets/status_series.dart';
 
 class ItemScene extends StatelessWidget {
-  const ItemScene({super.key});
+  const ItemScene(this.index, {super.key});
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.7,
-      child: Container(
-        padding: const EdgeInsets.all(4),
-        decoration: const BoxDecoration(
-          color: Color(0xFFeeeeee),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black,
-              offset: Offset(0, 4.0),
-              blurRadius: 10,
-              spreadRadius: -8,
-            ),
-          ],
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            bottomLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-            bottomRight: Radius.circular(25),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 400),
+      child: Stack(
+        children: [
+          const Positioned(
+            top: 0,
+            bottom: 0,
+            left: 5,
+            right: 5,
+            child: LineScene(),
           ),
-        ),
-        child: InkWell(
-          onTap: () {},
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(25),
-            child: const ColoredBox(
-              color: Colors.white,
-              child: Stack(
-                children: [
-                  //! Banner
-                  Positioned(
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: _Banner(),
-                  ),
-                  //! Author & stat
-                  Positioned(
-                    top: 7,
-                    left: 7,
-                    child: _DescriptionSeries(),
-                  ),
-                  //! Rating
-                  Positioned(
-                    bottom: 7,
-                    left: 7,
-                    child: _RatingSeries(),
-                  ),
-                  //! COUNT SCENES
-                  Positioned(
-                    top: 7,
-                    right: 7,
-                    child: _CountScenes(),
-                  ),
-                  //! Status
-                  Positioned(
-                    bottom: 7,
-                    right: 7,
-                    child: _StatusSeries(),
-                  ),
-                ],
+          Column(
+            children: [
+              const SizedBox(height: 5),
+              AspectRatio(
+                aspectRatio: 1.3,
+                child: Flex(
+                  direction: Axis.horizontal,
+                  children: [
+                    _Stat(index),
+                    _Banner(index),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-//! Dot between element
-class _Spacer extends StatelessWidget {
-  const _Spacer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      height: 2,
-      width: 2,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(2),
-        color: const Color(0xFFBBBBBB),
+        ],
       ),
     );
   }

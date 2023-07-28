@@ -26,7 +26,8 @@ class ConnectDataBase extends _$ConnectDataBase {
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await path.getApplicationDocumentsDirectory();
-    final file = File(path_2.join(dbFolder.path, 'db.sqlite'));
+    final pathDB = path_2.join(dbFolder.path, 'db.sqlite');
+    final file = File(pathDB);
     return NativeDatabase.createInBackground(file, logStatements: true);
   });
 }

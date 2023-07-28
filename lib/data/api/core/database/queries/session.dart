@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 
-final class SessionQueryDrift {
+final class SessionRequestDrift {
   // Authorization user
   Future<({TableAppUser user, TableAppSettings settings})?> authirized(ConnectDataBase db) async {
     final userTable = db.alias(db.useTableAppUser, 'user');

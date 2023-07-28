@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
+import 'package:facetomini/presentation/ui/components/toast.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/load_content.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/list_content/list.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/no_content.dart';
-import 'package:facetomini/presentation/locator/locator.dart';
-
 import 'package:provider/provider.dart';
 
 class PageTabSeries extends StatefulWidget {
@@ -22,6 +24,13 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
   double swipeVector = 0.0;
 
   @override
+  void initState() {
+    print("INIT SERIES");
+
+    super.initState();
+  }
+
+  @override
   void dispose() {
     scrollController.dispose();
     super.dispose();
@@ -36,15 +45,22 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
       onHorizontalDragStart: (details) {
         // TO RIGHT TAB_1
         if (details.localPosition.dx < swipeVector) {
-          // locator<ControllerPagesProvider>().swipeToScenes(1);
-          // _FMD_CONTROLLER.setContentTab_2_SWIPE();
-          print('RIGHT');
-        } else {
-          // TO LEFT TAB_2
-          // context.goNamed('series', pathParameters: {'page': "0"});
-          // context.read<ControllerPagesProvider>().swipeBackTab(0);
-          // _FMD_CONTROLLER.swipeTabBack(0);
-          // print('LEFT');
+          // If data is being loaded, the swipe is not available
+          if (context.read<SeriesProvider>().actionStatus != ActionStatus.isDone || context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
+          // Getting the last used series or the first one on the series page for swiping
+          final useIdSeries = context.read<ScenesProvider>().pageData.useIdSeries;
+          final idLastSeries = (useIdSeries != -1) ? useIdSeries : context.read<SeriesProvider>().pageData.listSeries.first.idSeries;
+          //
+          context.read<ScenesProvider>().getScenes(idLastSeries).then((isDone) {
+            if (isDone == null) return;
+            if (!isDone) {
+              // If the series does not have available prices
+              ToastMassage.toast(context, context.lcz.scenesNotAvailable, code: TypeMassage.error);
+              return;
+            }
+            context.read<PagesControllerProvider>().swipeToScenes();
+          });
+          print('SWIPE TO PAGE SCENES');
         }
         swipeVector = details.localPosition.dx;
       },
@@ -62,7 +78,7 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
           builder: (_, statusPage, child) {
             return switch (statusPage) {
               StatusContent.isLoadContent => const LoadPageSeries(),
-              StatusContent.isEmptyContent || StatusContent.isNoContent => const NoContentPageSeries(),
+              StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageSeries(),
               _ => ListContentSeries(controller: scrollController),
             };
           },

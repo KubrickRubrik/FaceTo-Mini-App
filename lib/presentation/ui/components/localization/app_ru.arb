@@ -8,6 +8,7 @@
     "titleErrorApp": "Упс!",
     "errorRepairsApp": "Требуется переустановка приложения",
     "isNoContent": "Контент отсутствует",
+    "actionNotAvailable": "Действие недоступно",
 
     "themeSettings": "Тема приложения",
     "themeSettingsLight": "Светлая",
@@ -19,5 +20,64 @@
     "soundSettingsOn": "Включить",
     "soundSettingsOff": "Выключить",
 
-    "infoSettings": "Информация"
+    "infoSettings": "Информация",
+
+    "identificatorSeries":"Идентификатор серии",
+    "countScenes":"Сцен в серии",
+
+    "usersSeries":"Пользователи завершили серию",
+
+    "graduallyScenesOpens":"Сцены серии открываются постепенно",
+    "allScenesOpens":"Все сцены серии открыты",
+
+    "seriesAvailablePlay":"Серия доступна для прохождения",
+    "seriesActive":"Серия активна",
+    "seriesCompleted":"Серия завершена",
+
+    "simplyLevelDifficult":"Простой уровень сложности.\r\n Доступный диагональный свайп",
+    "hardLevelDifficult":"Высокий уровень сложности.\r\n  Диагональный свайп недоступен",
+
+    "scenesNotAvailable":"Сцены серии недоступны",
+    "sceneNotAvailable":"Сцена недоступна",
+    "lockScene":"Необходимо завершить предыдущую сцену",
+
+    "infoRatingLabel_1":"Множество разнообразных серий изображений.",
+    "infoRatingLabel_2":"Скачивание серий для игры в офлайн.",
+    "infoRatingLabel_3":"Установка рейтинга серий.",
+    "infoRatingLabel_4":"Формирование списка избранных серий.",
+    "infoRatingLabel_5":"Подписка на понравившихся авторов.",
+    "infoRatingLabel_6":"Формирование ранга и рейтинга пользователя.",
+    "infoRatingLabel_7":"Больше возможностей в Pro версии FaceTo.",
+    "infoRatingInstall_1":"Установить\r\nPro версию",
+    "infoCopy":"Скопировано",
+
+    "noneAuthorOops":"Упс!",
+    "noneAuthorLabel":"Нет информации\r\nоб этом авторе",
+
+    "rank_1":"Новичок",
+    "rank_2":"Салага",
+    "rank_3":"Неофит",
+    "rank_4":"Энтузиаст",
+    "rank_5":"Фанат",
+    "rank_6":"Решала",
+    "rank_7":"Перфекционист",
+    "rank_8":"Гуру",
+    "rank_9":"Специалист",
+    "rank_10":"Профи",
+    "rank_11":"Гений",
+    "rank_12":"Легенда",
+    "rank_13":"Кибер-котлета",
+    "rank_14":"Ваше величество",
+    "rank_15":"Пророк",
+    "rank_16":"Избранный",
+    "rank_17":"Титан",
+    "rank_18":"Десница бога",
+    "rank_19":"Бог",
+    "rank_20":"Просвещенный",
+    
+    "typeAppUser":"Пользователь",
+    "typeAppAuthor":"Автор",
+    "typeAppCompany":"Компания",
+
+    "loadingScene":"Загрузка сцены"
 }

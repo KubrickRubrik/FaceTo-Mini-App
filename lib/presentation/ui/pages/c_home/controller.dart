@@ -1,9 +1,11 @@
-import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/settings_panel.dart';
 import 'package:flutter/material.dart';
-import 'package:facetomini/core/config/locale.dart';
+import 'package:facetomini/presentation/manager/author/author.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/info_rating.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/settings_panel.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2.scenes/scenes.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/scenes.dart';
@@ -12,6 +14,7 @@ import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:provider/provider.dart';
+import 'widgets/author/author.dart';
 part 'widgets/app_bar/app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,12 +30,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (super.mounted) {
-        locator<PageControllerProvider>().initDefaultParameters(
+        // Set default parameters
+        locator<PagesControllerProvider>().initDefaultParameters(
           tabController,
           context.media.size,
         );
+        // Get series
+        locator<SeriesProvider>().getSeries();
       }
     });
+
     super.initState();
   }
 
@@ -52,9 +59,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             // ChangeNotifierProvider(create: (_) => locator<ControllerPagesProvider>()),
             // ChangeNotifierProvider(create: (_) => locator<SeriesProvider>()),
             // ChangeNotifierProvider(create: (_) => locator<ScenesProvider>()),
-            ChangeNotifierProvider.value(value: locator<PageControllerProvider>()),
+            ChangeNotifierProvider.value(value: locator<PagesControllerProvider>()),
             ChangeNotifierProvider.value(value: locator<SeriesProvider>()),
             ChangeNotifierProvider.value(value: locator<ScenesProvider>()),
+            ChangeNotifierProvider.value(value: locator<SceneProvider>()),
+            ChangeNotifierProvider.value(value: locator<AuthorProvider>()),
           ],
           child: Stack(
             children: [
@@ -82,24 +91,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 right: 0,
                 child: SettingsBar(),
               ),
-              //! Info App
-              // if (Provider.of<ControllerBloc>(context).state_view_info == ViewStatusPage.view_content)
-              //   Positioned(
-              //     top: 0,
-              //     bottom: 0,
-              //     left: 0,
-              //     right: 0,
-              //     child: InfoApp(),
-              //   ),
               //! Info Rating app
-              // if (Provider.of<ControllerBloc>(context).state_view_info_rating == ViewStatusPage.view_content)
-              //   Positioned(
-              //     top: 0,
-              //     bottom: 0,
-              //     left: 0,
-              //     right: 0,
-              //     child: InfoRatingApp(),
-              //   ),
+              const Positioned(
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: InfoRatingApp(),
+              ),
               //! Winners
               // if (Provider.of<CM_WinnersBloc>(context).stateViewPage == ViewStatusPage.view_content)
               //   Positioned(
@@ -110,13 +109,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               //     child: CM_Winners(),
               //   ),
               //! Author page
-              // Positioned(
-              //   top: 0,
-              //   bottom: 0,
-              //   left: 0,
-              //   right: 0,
-              //   child: CM_Author(),
-              // ),
+              const Positioned(
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: ComponentAuthor(),
+              ),
             ],
           ),
         ),

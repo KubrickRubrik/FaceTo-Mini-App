@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/core/config/locale.dart';
+import 'package:facetomini/presentation/ui/components/localization/controller.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/gestures.dart';
@@ -37,7 +37,7 @@ class _StartPageState extends State<StartPage> {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           theme: ThemesController.set(sessionUser.settings.theme),
-          locale: ConfigLocalization.getByType(sessionUser.settings.locale),
+          locale: LocalizationController.getByType(sessionUser.settings.locale),
           supportedLocales: AppLocalization.supportedLocales,
           localizationsDelegates: AppLocalization.localizationsDelegates,
           // title: (context.nlcz != null) ? context.nlcz!.titleApp : 'New', //  "FaceTo Mini",

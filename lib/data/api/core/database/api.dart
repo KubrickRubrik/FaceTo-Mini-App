@@ -1,107 +1,86 @@
-import 'package:facetomini/core/errors/exception.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
+import 'package:facetomini/data/api/core/database/queries/server.dart';
 import 'package:facetomini/data/api/core/database/queries/session.dart';
 import 'package:facetomini/data/api/core/database/queries/scenes.dart';
 import 'package:facetomini/data/api/core/database/queries/series.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
-import 'package:facetomini/data/models/scene.dart';
-import 'package:facetomini/data/models/series.dart';
-import 'package:facetomini/data/models/session.dart';
+import 'package:facetomini/data/models/vo/scene.dart';
+import 'package:facetomini/data/models/vo/series.dart';
+import 'package:facetomini/data/models/vo/server.dart';
+import 'package:facetomini/data/models/vo/session.dart';
 
-final class ApiDbDrift implements ApiDbEnvelope {
-  final _sessionQuery = SessionQueryDrift();
-  final _seriesQuery = SeriesQueryDrift();
-  final _scenesQuery = ScenesQueryDrift();
+final class ApiDbDrift implements ApiDbDAO {
+  final _serverRequest = ServerRequestDrift();
+  final _sessionRequest = SessionRequestDrift();
+  final _seriesRequest = SeriesRequestDrift();
+  final _scenesRequest = ScenesRequestDrift();
+  final apiDb = ConnectDataBase();
+
+  // Selecting the data required for a request to the server
+  @override
+  Future<ClientModel?> getClientData() async {
+    final response = await _serverRequest.getServerData(apiDb);
+    if (response == null) return null;
+    return ClientModel(
+      idApp: response.user.idApp,
+      publicKey: response.user.publicKey,
+      language: response.settings.language,
+    );
+  }
 
   // Authorization user
   @override
   Future<SessionModel?> authorized(String languageName) async {
-    try {
-      final apiDb = ConnectDataBase(language: languageName);
-      final response = await _sessionQuery.authirized(apiDb);
-      apiDb.close();
-      if (response == null) return null;
-      return SessionModel(
-        idApp: response.user.idApp,
-        enabledSound: response.settings.enabledSound,
-        language: response.settings.language,
-        theme: response.settings.theme,
-      );
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.authirized(apiDb);
+    if (response == null) return null;
+    return SessionModel(
+      idApp: response.user.idApp,
+      enabledSound: response.settings.enabledSound,
+      language: response.settings.language,
+      theme: response.settings.theme,
+    );
   }
 
   // Save a theme
   @override
   Future<SessionModel?> setTheme(String themeName) async {
-    try {
-      final apiDb = ConnectDataBase();
-      final response = await _sessionQuery.setTheme(apiDb, theme: themeName);
-      apiDb.close();
-      if (response == null) return null;
-      return SessionModel.settings(theme: response.theme);
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.setTheme(apiDb, theme: themeName);
+    if (response == null) return null;
+    return SessionModel.settings(theme: response.theme);
   }
 
   // Locale saving
   @override
   Future<SessionModel?> setLocale(String languageName) async {
-    try {
-      final apiDb = ConnectDataBase();
-      final response = await _sessionQuery.setLocale(apiDb, language: languageName);
-      apiDb.close();
-      if (response == null) return null;
-      return SessionModel.settings(language: response.language);
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.setLocale(apiDb, language: languageName);
+    if (response == null) return null;
+    return SessionModel.settings(language: response.language);
   }
 
   // Saving sound
   @override
   Future<SessionModel?> setSound(bool enebledSound) async {
-    try {
-      final apiDb = ConnectDataBase();
-      final response = await _sessionQuery.setSound(apiDb, enebledSound: enebledSound);
-      apiDb.close();
-      if (response == null) return null;
-      return SessionModel.settings(enabledSound: response.enabledSound);
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _sessionRequest.setSound(apiDb, enebledSound: enebledSound);
+    if (response == null) return null;
+    return SessionModel.settings(enabledSound: response.enabledSound);
   }
 
   // Get series
   @override
   Future<List<SeriesModel>?> getSeries() async {
-    try {
-      final apiDb = ConnectDataBase();
-      final response = await _seriesQuery.getSeries(apiDb);
-      apiDb.close();
-      if (response == null) return null;
-      final result = response.map((e) => SeriesModel(e)).toList();
-      return result;
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _seriesRequest.getSeries(apiDb);
+    if (response == null) return null;
+    final result = response.map((e) => SeriesModel(e)).toList();
+    return result;
   }
 
   // Get scenes
   @override
   Future<List<SceneModel>?> getScenesInSeries(int idSeries) async {
-    try {
-      final apiDb = ConnectDataBase();
-      final response = await _scenesQuery.getScenesInSeries(apiDb, idSeries: idSeries);
-      apiDb.close();
-      if (response == null) return null;
-      final result = response.map((e) => SceneModel(e)).toList();
-      return result;
-    } catch (e) {
-      throw ApiException('Exception api database drift $e');
-    }
+    final response = await _scenesRequest.getScenesInSeries(apiDb, idSeries: idSeries);
+    if (response == null) return null;
+    final result = response.map((e) => SceneModel(e.scene, e.typeTree)).toList();
+    return result;
   }
 }
 
@@ -120,8 +99,7 @@ final class ApiDbDrift implements ApiDbEnvelope {
 //   return into(todos).insert(entry);
 // }
 
-  // return into(users).insertOnConflictUpdate(user);
-
+// return into(users).insertOnConflictUpdate(user);
 
 // return into(words).insert(
 //     WordsCompanion.insert(word: word),
@@ -135,23 +113,23 @@ final class ApiDbDrift implements ApiDbEnvelope {
 // );
 
 //! Множественная вставка
-  // await batch((batch) {
-  //   // functions in a batch don't have to be awaited - just
-  //   // await the whole batch afterwards.
-  //   batch.insertAll(todos, [
-  //     TodosCompanion.insert(
-  //       title: 'First entry',
-  //       content: 'My content',
-  //     ),
-  //     TodosCompanion.insert(
-  //       title: 'Another entry',
-  //       content: 'More content',
-  //       // columns that aren't required for inserts are still wrapped in a Value:
-  //       category: Value(3),
-  //     ),
-  //     // ...
-  //   ]);
-  // });
+// await batch((batch) {
+//   // functions in a batch don't have to be awaited - just
+//   // await the whole batch afterwards.
+//   batch.insertAll(todos, [
+//     TodosCompanion.insert(
+//       title: 'First entry',
+//       content: 'My content',
+//     ),
+//     TodosCompanion.insert(
+//       title: 'Another entry',
+//       content: 'More content',
+//       // columns that aren't required for inserts are still wrapped in a Value:
+//       category: Value(3),
+//     ),
+//     // ...
+//   ]);
+// });
 
 //! Insert c возвратом
 //   final row = await into(todos).insertReturning(TodosCompanion.insert(

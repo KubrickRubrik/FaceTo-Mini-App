@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 part 'state.dart';
 
-final class PageControllerProvider extends ChangeNotifier with _State {
-  PageControllerProvider() {
-    print("INIT");
-  }
+final class PagesControllerProvider extends ChangeNotifier with _State {
   // Init default parameters
   void initDefaultParameters(TabController controller, Size size) {
-    _tabController = controller;
+    _tabBarController = controller;
     _sizePanelScene = SizePanelScene(size);
   }
 
   // Swipe page/tab in any direction
   void _swipeToTab(int index) {
     indexTab = index;
-    _tabController!.animateTo(index);
+    _tabBarController?.animateTo(index);
     notifyListeners();
   }
 
-  Future<void> swipeToScenes(int indexTab) async {
-    // _FMD_SCENES.setContent(itemUseSeries);
-    _swipeToTab(indexTab);
+  Future<void> swipeToSeries() async {
+    _swipeToTab(0);
+    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
+    //   APP_AUDIO.soundToScenes();
+    // });
+  }
+
+  Future<void> swipeToScenes() async {
+    _swipeToTab(1);
+    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
+    //   APP_AUDIO.soundToScenes();
+    // });
+  }
+
+  Future<void> swipeToScene() async {
+    _swipeToTab(2);
     // await Future.delayed(Duration(milliseconds: 150)).then((value) {
     //   APP_AUDIO.soundToScenes();
     // });
@@ -31,5 +41,23 @@ final class PageControllerProvider extends ChangeNotifier with _State {
     _swipeToTab(index);
     // await APP_AUDIO.soundBack();
     // _FMD_SCENE.canselTimer();
+  }
+
+  // Displaying the series rating information page
+  void setViewInfoRatingPage() {
+    viewAdditionalPage.setViewInfoRatingPage();
+    notifyListeners();
+  }
+
+  // Displaying the author information page
+  void setViewInfoAuthorPage() {
+    viewAdditionalPage.setViewInfoAuthorPage();
+    notifyListeners();
+  }
+
+  // Displaying the winners information page
+  void setViewInfoWinnersPage() {
+    viewAdditionalPage.setViewInfoWinnersPage();
+    notifyListeners();
   }
 }

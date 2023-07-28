@@ -1,5 +1,5 @@
 import 'package:facetomini/core/errors/failure.dart';
-import 'package:facetomini/domain/entities/app.dart';
+import 'package:facetomini/domain/entities/vo/app.dart';
 import 'package:facetomini/domain/repository/session.dart';
 import 'package:facetomini/domain/repository/settings.dart';
 
@@ -10,7 +10,7 @@ final class SessionCase implements SessionRepository, SettingsRepository {
   final SettingsRepository _settingsRepository;
   // Authorized
   @override
-  Future<({Failure? fail, SessionEntity? data})> authorization(String languageName) async {
+  Future<({SessionEntity? data, Failure? fail})> authorization(String languageName) async {
     return await _sessionRepository.authorization(languageName);
   }
 

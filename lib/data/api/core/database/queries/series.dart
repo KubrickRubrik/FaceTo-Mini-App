@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:facetomini/data/api/core/database/config/connect.dart';
 
-final class SeriesQueryDrift {
+final class SeriesRequestDrift {
   // Selected available default series
   Future<List<TableSeries>?> getSeries(ConnectDataBase db) async {
     final query = db.select(db.useTableSeries);

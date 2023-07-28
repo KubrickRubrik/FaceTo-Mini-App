@@ -1,9 +1,11 @@
-import 'package:facetomini/data/models/scene.dart';
-import 'package:facetomini/data/models/series.dart';
-import 'package:facetomini/data/models/session.dart';
-import 'package:facetomini/domain/entities/app.dart';
-import 'package:facetomini/domain/entities/scene.dart';
-import 'package:facetomini/domain/entities/series.dart';
+import 'package:facetomini/data/models/vo/author.dart';
+import 'package:facetomini/data/models/vo/scene.dart';
+import 'package:facetomini/data/models/vo/series.dart';
+import 'package:facetomini/data/models/vo/session.dart';
+import 'package:facetomini/domain/entities/vo/scene.dart';
+import 'package:facetomini/domain/entities/vo/series.dart';
+import 'package:facetomini/domain/entities/vo/app.dart';
+import 'package:facetomini/domain/entities/vo/author.dart';
 
 /// Transformation of the 'raw' models in the entities used
 abstract final class EntitiesMapper {
@@ -32,7 +34,7 @@ abstract final class EntitiesMapper {
     return SeriesEntity(
       idSeries: model.idSeries,
       image: ImageSeries(
-        id: model.idImage,
+        idImage: model.idImage,
         url: model.idImage.toString(),
         typeView: model.typeView,
       ),
@@ -63,10 +65,11 @@ abstract final class EntitiesMapper {
       idScene: model.idScene,
       idSeries: model.idSeries,
       image: ImageScene(
-        id: model.idImage,
+        idImage: model.idImage,
         url: model.idImage.toString(),
         typeView: model.typeView,
       ),
+      typeTree: model.typeTree,
       user: UserScene(
           author: AuthorUserScene(model.idApp),
           stat: StateViewUserScene(
@@ -78,6 +81,42 @@ abstract final class EntitiesMapper {
         recordTime: model.recordTime,
         countUsers: model.countUsers,
       ),
+    );
+  }
+
+  // Unfolding raw author data
+  static AuthorEntity setAuthor(AuthorModel model) {
+    return AuthorEntity(
+      idApp: model.idApp,
+      nick: model.nick,
+      description: model.description,
+      image: ImageAuthor(
+        logo: model.image.logo,
+        banner: model.image.banner,
+      ),
+      stat: StatAuthor(
+        rank: RankAuthor(
+          id: model.stat.rank.id,
+          title: model.stat.rank.title,
+        ),
+        level: model.stat.level,
+        rating: model.stat.rating,
+        countSub: model.stat.countSub,
+      ),
+      links: model.links.map((link) {
+        return LinkAuthor(
+          id: link.id,
+          address: link.address,
+          icon: IconAuthor(
+            id: link.id,
+            redirect: link.icon.redirect,
+            title: link.icon.title,
+            url: link.icon.url,
+            pattern: link.icon.pattern,
+          ),
+        );
+      }).toList(),
+      follower: model.follower,
     );
   }
 }
