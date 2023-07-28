@@ -4,8 +4,8 @@ import 'package:facetomini/presentation/ui/components/images.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ImageAdditionPage extends StatelessWidget {
-  const ImageAdditionPage({super.key});
+class ImageSceneAdditionPage extends StatelessWidget {
+  const ImageSceneAdditionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +15,13 @@ class ImageAdditionPage extends StatelessWidget {
         typeSourceImage: TypeSourceImage.asset,
         targetSourceImage: TargetSourceImage.scenes,
         typeCache: TypeCacheImage.notCache,
+        imagePath: '',
         idSeries: 1,
-        idImage: 1,
+        idScene: 1,
+        scale: 1, // <-
+        alignment: Alignment.topLeft,
+        fit: BoxFit.none,
       ),
-      // CM_ViewImage(
-      //   TypeCacheImage.notCache,
-      //   TypeImageTarget.scenes,
-      //   Provider.of<SceneBloc>(context).content.imageScene.typeOriginImage,
-      //   Provider.of<SceneBloc>(context).content.idSeries,
-      //   Provider.of<SceneBloc>(context).content.idScene,
-      //   Provider.of<SceneBloc>(context).content.imageScene.urlMiddle,
-      //   Provider.of<SceneBloc>(context).aScale,
-      //   Alignment.topLeft,
-      //   BoxFit.none,
-      // ),
     );
   }
 }
