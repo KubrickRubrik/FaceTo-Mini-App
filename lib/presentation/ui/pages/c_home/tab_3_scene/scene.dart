@@ -41,7 +41,6 @@ class PageTabScene extends StatelessWidget {
           ),
           //? Help
           Positioned(
-            top: 0,
             bottom: 0,
             left: 0,
             right: 0,
@@ -57,7 +56,7 @@ class PageTabScene extends StatelessWidget {
           ),
           //? Winner
           Positioned(
-            top: 0,
+            top: 50,
             bottom: 0,
             left: 0,
             right: 0,
