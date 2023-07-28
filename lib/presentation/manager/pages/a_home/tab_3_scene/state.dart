@@ -26,5 +26,8 @@ final class _StatusAdditionPages {
   // High-resolution image display
   var statusDisplayImageHD = StatusContent.isNoneContent;
   // Display winners page
-  var statusWinnerPages = StatusContent.isNoneContent;
+  var statusWinnerPage = StatusContent.isNoneContent;
+  //
+  var statusSourceWinner = TypeSourceWinner.offline;
+  // var statusSpinSaveWinner = StatusContent.isNoneContent;
 }
