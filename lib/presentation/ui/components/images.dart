@@ -13,6 +13,9 @@ class ComponentImage extends StatelessWidget {
     this.idSeries,
     this.idScene,
     this.idImage,
+    this.scale = 1,
+    this.alignment = Alignment.center,
+    this.fit = BoxFit.cover,
   });
   final TypeSourceImage typeSourceImage; // Server, asset
   final TargetSourceImage targetSourceImage; // User image, series, scene
@@ -21,6 +24,9 @@ class ComponentImage extends StatelessWidget {
   final int? idSeries; // path (internet)/id(device) image
   final int? idScene; // path (internet)/id(device) image
   final int? idImage;
+  final double scale;
+  final AlignmentGeometry alignment;
+  final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +38,21 @@ class ComponentImage extends StatelessWidget {
             idScene: idScene,
             idImage: idImage,
           ),
-          fit: BoxFit.cover,
+          scale: scale,
+          alignment: alignment,
+          fit: fit,
         ),
       _ => (typeCache == TypeCacheImage.cache)
           ? CachedNetworkImage(
               imageUrl: ConfigLinks.parseLinks(imagePath!),
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              fit: BoxFit.cover,
+              fit: fit,
             )
           : Image.network(
               ConfigLinks.parseLinks(imagePath!),
-              fit: BoxFit.cover,
-              alignment: Alignment.center,
+              scale: scale,
+              alignment: alignment,
+              fit: fit,
             ),
     };
   }

@@ -81,6 +81,10 @@
 
     "loadingScene":"Загрузка сцены",
 
+    "gridScene":"Количество Х:Y элементов сцены",
+    "lowHardLevel":"Высокий уровень сложности.\r\nДиагональный свайп недоступен",
+    "higtHardLevel":"Простой уровень сложности.\r\nДиагональный свайп доступен",
+
     "labelWinnerScene":"Рекордсмены",
     "labelWinnerUsertScene":"Ваш результат",
     "labelWinnerInfoStatistic":"Статистика",
@@ -116,5 +120,4 @@
     "componentWinnerDiffTime":"Разница между рекордом и временем пользователя.\r\n\"+\" отставание; \"-\" обгон.",
     "componentWinnerRecord": "Рекорд",
     "componentNoneWinner": "Поставьте рекорд\r\nпервым в "
-
 }

@@ -81,6 +81,10 @@
     "typeAppCompany": "Company",
 
     "loadingScene":"Loading a scene",
+    
+    "gridScene":"Number X:Y elements of the scene",
+    "lowHardLevel":"High level of difficulty.\r\nDiagonal swipe not available",
+    "higtHardLevel":"Simple level of difficulty.\r\nDiagonal swipe available",
 
     "labelWinnerScene":"Record holders",
     "labelWinnerResultScene":"Your result",
