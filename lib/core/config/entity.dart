@@ -29,3 +29,6 @@ enum TypeCacheImage { cache, notCache }
 
 /// Type of toast
 enum TypeMassage { massage, error, warning }
+
+/// Winners section download source
+enum TypeSourceWinner { offline, online }

@@ -48,22 +48,19 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
           if (context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
           final listScenes = context.read<ScenesProvider>().pageData.listScenes;
           // Selects the first scene to run when swiping
-          var idLastScene = listScenes.first.idScene;
+          var scene = listScenes.first;
           // Getting the last used scene or the first one on the scenes page for swiping
-          final useIdScene = context.read<SceneProvider>().pageData.useIdScene;
-          if (useIdScene != -1) {
-            // Use the last used scene
-            idLastScene = useIdScene;
-          } else {
+          final useIdScene = context.read<SceneProvider>().pageData.puzzle.useIdScene;
+          if (useIdScene == -1) {
             // first run -> select the last completed element or the first from the list of scenes
             final lastIndex = listScenes.lastIndexWhere((element) => element.user.stat.completed == 1);
             if (lastIndex != -1 && (lastIndex + 1) < listScenes.length) {
               // if the last completed element is found, the next one is selected if it is in the scene list
-              idLastScene = listScenes.elementAt(lastIndex + 1).idScene;
+              scene = listScenes.elementAt(lastIndex + 1);
             }
           }
           //
-          context.read<SceneProvider>().setScene(idLastScene).then((isDone) {
+          context.read<SceneProvider>().setScene(scene).then((isDone) {
             if (isDone == null) return;
             if (!isDone) {
               // If the scene didn't load

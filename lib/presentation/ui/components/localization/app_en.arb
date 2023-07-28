@@ -81,7 +81,44 @@
     "typeAppCompany": "Company",
 
     "loadingScene":"Loading a scene",
+    
     "gridScene":"Number X:Y elements of the scene",
     "lowHardLevel":"High level of difficulty.\r\nDiagonal swipe not available",
-    "higtHardLevel":"Simple level of difficulty.\r\nDiagonal swipe available"
+    "higtHardLevel":"Simple level of difficulty.\r\nDiagonal swipe available",
+
+    "labelWinnerScene":"Record holders",
+    "labelWinnerResultScene":"Your result",
+    "labelWinnerInfoStatistic":"Statistics",
+
+    "minDataStatistics":"Min",
+    "midDataStatistics":"Mid",
+    "maxDataStatistics":"Max",
+    "helpBarGraph":"Distribution of the number of users by skill",
+    "helpSwipeBar":"The ratio of the number of\r\nswipes to user time",
+    
+    "labelGraph_1": "Skills",
+    "labelGraph_2": "Methodology",
+    "labelGraph2CoordX": "Num. of swipes",
+    "labelGraph2CoordY": "Time in milliseconds",
+
+    "playersCharacteristics":"Characteristics of the players",
+    "playerChar_1":"Players prefer to rush, take risks and hope for a successful combination, instead of thinking about the next.",
+    "playerChar_2":"Players prefer to think about each combination for a long time and not rush to implement it.",
+    "playerChar_3":"Players prefer not to rush, take risks and stick to cold calculation for the sake of an elegant solution.",
+    "playerChar_4":"Players prefer to think over combinations and are able to go to implementation even if there is no solution.",
+    
+    "playerCharacteristics":"Characteristics of the player",
+    "playersChar_1":"The player makes a lot of unnecessary combinations, is in a hurry: often makes mistakes and poorly predicts the result.",
+    "playersChar_2":"The player makes a moderate number of combinations: he often makes mistakes and spends a lot of time predicting the result.",
+    "playersChar_3":"The player makes a minimum of combinations, is slow: rarely makes mistakes, but spends a lot of time predicting the result.",
+    "playersChar_4":"The player makes a moderate number of combinations in the minimum time, is agile: makes few mistakes and predicts the result well.",
+
+    "componentWinnerPlases":"place",
+    "componentWinnerTime":"Scene time",
+    "componentWinnerPlus":"Lagging behind the record holder",
+    "componentWinnerMinus":"Break away from the next place in the list of record holders",
+    "componentWinnerMinTime":"Record of passing the series",
+    "componentWinnerDiffTime":"The difference between the record and the user's time.\r\n\"+\" lagging behind; \"-\" overtaking.",
+    "componentWinnerRecord": "Record",
+    "componentNoneWinner": "Be the first to set the\r\nrecord in "
 }
