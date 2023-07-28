@@ -3,15 +3,18 @@ import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';
+part 'entity/status.dart';
+part 'entity/page.dart';
+part 'entity/puzzle.dart';
 
 final class SceneProvider extends ChangeNotifier with _State {
   SceneProvider(this._scenesCase);
   final ScenesCase _scenesCase;
 
-  Future<bool?> setScene(int idScene) async {
-    print("SET Scene $idScene");
+  Future<bool?> setScene(SceneEntity scene) async {
+    print("SET Scene ${scene.idScene}");
     if (super.actionStatus == ActionStatus.isAction) return null;
-    if (pageData.isOldSceneUsed(idScene)) return true;
+    if (pageData.puzzle.isOldSceneUsed(scene.idScene)) return true;
     _setActions(ActionStatus.isAction, false);
     _setActions(ActionStatus.isAction, false);
     return null;
