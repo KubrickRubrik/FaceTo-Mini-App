@@ -14,6 +14,7 @@ final class SceneProvider extends ChangeNotifier with _State {
     if (pageData.isOldSceneUsed(idScene)) return true;
     _setActions(ActionStatus.isAction, false);
     _setActions(ActionStatus.isAction, false);
+    return null;
   }
 
   // Future<void> getScenes(int idSeries) async {

@@ -2,7 +2,7 @@ part of '../downloaded_data.dart';
 
 /// User banner
 class _Banner extends StatelessWidget {
-  const _Banner({super.key});
+  const _Banner();
 
   @override
   Widget build(BuildContext context) {

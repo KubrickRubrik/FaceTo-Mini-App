@@ -2,7 +2,7 @@ part of '../downloaded_data.dart';
 
 /// View selected user contact
 class _ViewLink extends StatelessWidget {
-  const _ViewLink({super.key});
+  const _ViewLink();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class _ViewLink extends StatelessWidget {
 
 /// Used to add logic for displaying the author's contact view section
 class _ViewLinkDescription extends StatefulWidget {
-  const _ViewLinkDescription({super.key});
+  const _ViewLinkDescription();
 
   @override
   State<_ViewLinkDescription> createState() => __ViewLinkDescriptionState();
@@ -105,7 +105,7 @@ class __ViewLinkDescriptionState extends State<_ViewLinkDescription> {
 
 /// The top panel of the author contacts section
 class _LabelContact extends StatelessWidget {
-  const _LabelContact(this.hideViewLink, {super.key});
+  const _LabelContact(this.hideViewLink);
   final Function hideViewLink;
 
   @override
@@ -179,7 +179,7 @@ class _LabelContact extends StatelessWidget {
 
 /// Author contact resource
 class _AuthorContact extends StatelessWidget {
-  const _AuthorContact({super.key});
+  const _AuthorContact();
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +243,7 @@ class _AuthorContact extends StatelessWidget {
 
 /// Redirect to the author's contact resource
 class _RedirectToAuthorContact extends StatelessWidget {
-  const _RedirectToAuthorContact({super.key});
+  const _RedirectToAuthorContact();
 
   @override
   Widget build(BuildContext context) {

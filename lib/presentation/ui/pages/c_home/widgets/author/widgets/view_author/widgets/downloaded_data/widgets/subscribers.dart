@@ -2,7 +2,7 @@ part of '../downloaded_data.dart';
 
 /// Author's followers
 class _Subscribers extends StatelessWidget {
-  const _Subscribers({super.key});
+  const _Subscribers();
 
   @override
   Widget build(BuildContext context) {

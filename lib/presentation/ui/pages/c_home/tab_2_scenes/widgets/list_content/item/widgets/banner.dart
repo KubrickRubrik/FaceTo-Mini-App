@@ -218,7 +218,7 @@ class _NotCompletedScene extends StatelessWidget {
 
 /// Scene number in series
 class _SceneNumber extends StatelessWidget {
-  const _SceneNumber({super.key});
+  const _SceneNumber();
 
   @override
   Widget build(BuildContext context) {

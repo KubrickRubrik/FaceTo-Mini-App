@@ -2,7 +2,7 @@ part of '../download_data.dart';
 
 /// Layout: author contact list
 class _ListLinks extends StatelessWidget {
-  const _ListLinks({super.key});
+  const _ListLinks();
 
   @override
   Widget build(BuildContext context) {

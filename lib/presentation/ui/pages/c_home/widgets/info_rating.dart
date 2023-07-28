@@ -27,7 +27,7 @@ class InfoRatingApp extends StatelessWidget {
 }
 
 class _ViewPage extends StatefulWidget {
-  const _ViewPage({super.key});
+  const _ViewPage();
 
   @override
   State<_ViewPage> createState() => _ViewPageState();
@@ -70,7 +70,7 @@ class _ViewPageState extends State<_ViewPage> {
 }
 
 class _AboutRatingApp extends StatelessWidget {
-  const _AboutRatingApp({super.key});
+  const _AboutRatingApp();
 
   @override
   Widget build(BuildContext context) {

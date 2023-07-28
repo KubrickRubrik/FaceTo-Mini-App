@@ -7,7 +7,7 @@ class PuzzleSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        child: SizedBox(),
+        child: const SizedBox(),
       ),
     );
   }

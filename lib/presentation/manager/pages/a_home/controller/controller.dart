@@ -1,4 +1,3 @@
-import 'package:facetomini/core/config/entity.dart';
 import 'package:flutter/material.dart';
 part 'state.dart';
 

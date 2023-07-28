@@ -1,7 +1,7 @@
 part of '../view_author.dart';
 
 class _SpinAuthor extends StatelessWidget {
-  const _SpinAuthor({super.key});
+  const _SpinAuthor();
 
   @override
   Widget build(BuildContext context) {

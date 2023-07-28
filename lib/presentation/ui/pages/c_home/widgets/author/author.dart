@@ -25,7 +25,7 @@ class ComponentAuthor extends StatelessWidget {
 }
 
 class _ViewPage extends StatelessWidget {
-  const _ViewPage({super.key});
+  const _ViewPage();
 
   @override
   Widget build(BuildContext context) {
