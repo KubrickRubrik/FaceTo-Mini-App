@@ -2,22 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/entity/page.dart';
 part 'state.dart';
 part 'entity/status.dart';
-part 'entity/page.dart';
-part 'entity/puzzle.dart';
 
 final class SceneProvider extends ChangeNotifier with _State {
   SceneProvider(this._scenesCase);
   final ScenesCase _scenesCase;
 
-  Future<bool?> setScene(SceneEntity scene) async {
+  /// Launching the game when swiping the scenes page [PageTabScenes]
+  /// Launching the game when clicking on a item of scene on the scenes page [PageTabScenes]
+  /// returns `true` when swipe to game page is allowed
+  Future<bool?> runPuzzleGame({required SceneEntity scene, required Size size}) async {
     print("SET Scene ${scene.idScene}");
     if (super.actionStatus == ActionStatus.isAction) return null;
-    if (pageData.puzzle.isOldSceneUsed(scene.idScene)) return true;
     _setActions(ActionStatus.isAction, false);
+    if (pageData.puzzle.isOldSceneUsed(scene.idScene)) {
+      _setActions(ActionStatus.isDone, false);
+      return true;
+    }
+    // Set page statuses to initial position
+    statusAdditionPages.setDefaultParameters(); // hide addition page
+    pageData.puzzle.setDefaultParameters(grid: scene.grid, sizeWindow: size); // [keysPuzzle] and [sizePuzzle]
+    //! Checking if the user is running the previous scene for the game
+    if (pageData.puzzle.checkingThisIsGameWithPreviousScene(idNewSeries: scene.idSeries, idNewScene: scene.idScene)) {
+      _setActions(ActionStatus.isDone, false);
+      return true;
+    }
+    // This part of the code is executed if the user starts the game with the parameters of a new scene
+    pageData.puzzle.setGameLaunchState(scene);
+    pageData.puzzle.setMainSettingsPuzzle();
     _setActions(ActionStatus.isAction, false);
-    return null;
+    pageData.puzzle.timer.start();
+    notifyListeners();
+    return true;
   }
 
   // Future<void> getScenes(int idSeries) async {
@@ -40,8 +58,8 @@ final class SceneProvider extends ChangeNotifier with _State {
   }
 
   // Setting page status when loading data
-  void _setStatusPage(StatusContent val) {
-    statusPage = val;
-    notifyListeners();
-  }
+  // void _setStatusPage(StatusContent val) {
+  //   statusPage = val;
+  //   notifyListeners();
+  // }
 }

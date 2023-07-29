@@ -6,6 +6,7 @@ final class SceneEntity {
 
   final ImageScene image;
   final int typeTree;
+  final int hardLevel;
 
   final UserScene user;
 
@@ -18,6 +19,7 @@ final class SceneEntity {
     required this.idSeries,
     required this.image,
     required this.typeTree,
+    required this.hardLevel,
     required this.user,
     required this.grid,
     required this.stat,
@@ -36,6 +38,12 @@ final class ImageScene {
     required this.url,
     required this.typeView,
   }) : typeSourceImage = _setTypeSourceImage(url);
+
+  ImageScene.empty()
+      : idImage = -1,
+        url = '',
+        typeView = 0,
+        typeSourceImage = TypeSourceImage.asset;
 
   // Setting the image source
   static _setTypeSourceImage(String url) {

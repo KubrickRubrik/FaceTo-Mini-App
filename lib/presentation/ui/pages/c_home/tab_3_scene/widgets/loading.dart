@@ -10,7 +10,7 @@ class LoadingScene extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<SceneProvider, StatusContent>(
-      selector: (_, Model) => Model.statusPage,
+      selector: (_, Model) => Model.pageData.puzzle.status.statusLoadingGame,
       builder: (_, statusPage, child) {
         return switch (statusPage) {
           StatusContent.isViewContent => const SizedBox.shrink(),

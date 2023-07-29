@@ -70,6 +70,7 @@ abstract final class EntitiesMapper {
         typeView: model.typeView,
       ),
       typeTree: model.typeTree,
+      hardLevel: model.hardLevel,
       user: UserScene(
           author: AuthorUserScene(model.idApp),
           stat: StateViewUserScene(
