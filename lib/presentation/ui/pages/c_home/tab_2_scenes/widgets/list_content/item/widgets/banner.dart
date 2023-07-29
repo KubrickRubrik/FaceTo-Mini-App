@@ -38,7 +38,11 @@ class _Banner extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       final size = MediaQuery.of(context).size;
+<<<<<<< HEAD
                       context.read<SceneProvider>().runPuzzleGame(scene: scene, size: size).then((isDone) {
+=======
+                      context.read<SceneProvider>().setScene(scene: scene, size: size).then((isDone) {
+>>>>>>> d5d523e151fc4c1af1c4c034f093a8af2bedd30b
                         if (isDone == null) return;
                         if (!isDone) {
                           // If the scene didn't load

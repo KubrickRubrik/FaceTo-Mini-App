@@ -10,7 +10,11 @@ final class _StatusAdditionPages {
   var statusSourceWinner = TypeSourceWinner.offline;
 
   // Start new game
+<<<<<<< HEAD
   setDefaultParameters() {
+=======
+  runNewGame() {
+>>>>>>> d5d523e151fc4c1af1c4c034f093a8af2bedd30b
     // Hide addition pages
     statusDisplayImageHD = StatusContent.isNoneContent;
     statusSourceWinner = TypeSourceWinner.offline;
