@@ -47,4 +47,7 @@ abstract final class ConfigNumbers {
     // RETURN
     return "${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(seconds)}  ${miliseconds(millisecinds)} ";
   }
+
+  /// Rounding to a certain precision
+  static double getNumRound(double num) => double.parse(num.toStringAsFixed(2));
 }

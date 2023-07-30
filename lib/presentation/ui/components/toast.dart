@@ -40,7 +40,7 @@ abstract final class ToastMassage {
               color: Color(data.colorText),
               fontWeight: FontWeight.normal,
               fontSize: 17,
-              // height: 1.6,
+              height: 1.4,
             ),
           ),
         ),

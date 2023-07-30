@@ -43,7 +43,7 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
         swipeVector = details.localPosition.dx;
       },
       onHorizontalDragStart: (details) {
-        // TO RIGHT TAB_1
+        // TO RIGHT
         if (details.localPosition.dx < swipeVector) {
           if (context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
           final listScenes = context.read<ScenesProvider>().pageData.listScenes;

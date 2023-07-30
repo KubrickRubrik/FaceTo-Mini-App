@@ -7,7 +7,7 @@ class _ButtonHelp extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // _FMD_SCENE.heplDetails();
+        context.read<SceneProvider>().displayHelper();
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5),

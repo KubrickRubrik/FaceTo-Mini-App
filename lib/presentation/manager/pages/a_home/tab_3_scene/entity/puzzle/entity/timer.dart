@@ -4,5 +4,11 @@ part of '../puzzle.dart';
 final class _TimerGame {
   final timer = Stopwatch();
 
-  get start => timer.start();
+  void start() => timer.start();
+  int stop() {
+    timer.stop();
+    final result = timer.elapsedMilliseconds;
+    timer.reset();
+    return result;
+  }
 }

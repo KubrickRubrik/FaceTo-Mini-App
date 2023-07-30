@@ -363,4 +363,13 @@ final class _CellsPuzzle {
       );
     }
   }
+
+  /// Setting cell display helper
+  void displayCellHelper(bool display) {
+    for (var cell in listMainCell) {
+      if ((cell.keyCell - 1) != cell.idPositionCell) {
+        cell.isDisplayHelper = display;
+      }
+    }
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 
 part 'entity/playarea.dart';
@@ -9,6 +10,7 @@ part 'entity/timer.dart';
 part 'entity/keys.dart';
 part 'entity/scene.dart';
 part 'entity/status.dart';
+part 'entity/swipe.dart';
 part 'entity/cells/cells.dart';
 part 'entity/cells/entity/side_units.dart';
 part 'entity/cells/entity/coord.dart';
@@ -33,6 +35,9 @@ final class PuzzleEntity {
 
   /// Сontains lists of the main and additional cells of the game
   final cells = _CellsPuzzle();
+
+  /// Сontains lists of the main and additional cells of the game
+  final swipe = _SwipePuzzle();
 
   /// Timer to keep track of puzzle folding time
   final timer = _TimerGame();
@@ -68,7 +73,7 @@ final class PuzzleEntity {
   /// 3. Setting the angle limit for a diagonal swipe
   void setMainSettingsPuzzle() async {
     // 1
-    playArea.aScale = actionAxisSwipe.getNumRound(720 / playArea.sizePlayArea.widthPlayArea);
+    playArea.aScale = ConfigNumbers.getNumRound(720 / playArea.sizePlayArea.widthPlayArea);
     playArea.grid.set(xCells: scene.grid.xCount, yCells: scene.grid.yCount);
     // 2 Obfuscation of the key (puzzle cells with the image will line up on it)
     keys.mixCurrentKeys(actionMixData.mixData(
@@ -79,12 +84,12 @@ final class PuzzleEntity {
     ));
     // 3 Adjusting play Area sizes and cell sizes
     playArea.adjustmentSize();
-    // 4 defining the angle range of a diagonal swipe
-    playArea.diagonalConstraints.set(
+    // 4 Defining the angle range of a diagonal swipe
+    swipe.diagonalConstraints.set(
       actionAxisSwipe.getConstraintRangeDiagonalSwipe(
         catetX: playArea.sizeCell.heightCell,
         catetY: playArea.sizeCell.widthCell,
-        rangeAngle: playArea.diagonalConstraints.rangeIdentDiagonalSwipe,
+        rangeAngle: swipe.diagonalConstraints.rangeIdentDiagonalSwipe,
       ),
     );
     // 5 Creation of basic and game cells of the puzzle
@@ -100,66 +105,3 @@ final class PuzzleEntity {
     );
   }
 }
-
-/// Image of scene
-// final class ImageScene {
-//   final int idImage;
-//   final String url;
-//   final int typeView;
-//   final TypeSourceImage typeSourceImage;
-
-//   ImageScene({
-//     required this.idImage,
-//     required this.url,
-//     required this.typeView,
-//   }) : typeSourceImage = _setTypeSourceImage(url);
-
-//   // Setting the image source
-//   static _setTypeSourceImage(String url) {
-//     if (url.startsWith('http')) {
-//       return TypeSourceImage.server;
-//     } else {
-//       return TypeSourceImage.asset;
-//     }
-//   }
-// }
-
-// /// User data of scene
-// final class UserScene {
-//   final AuthorUserScene author;
-//   final StateViewUserScene stat;
-
-//   UserScene({
-//     required this.author,
-//     required this.stat,
-//   });
-// }
-
-// /// User as author of scene
-// final class AuthorUserScene {
-//   final int idApp;
-
-//   AuthorUserScene(this.idApp);
-// }
-
-// /// Current user statistics in scene
-// final class StateViewUserScene {
-//   final int xp;
-//   final int completed;
-
-//   StateViewUserScene({
-//     required this.xp,
-//     required this.completed,
-//   });
-// }
-
-// /// General statistics of the series
-// final class StatScene {
-//   final int recordTime;
-//   final int countUsers;
-
-//   StatScene({
-//     required this.recordTime,
-//     required this.countUsers,
-//   });
-// }

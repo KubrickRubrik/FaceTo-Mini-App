@@ -40,19 +40,18 @@ class ViewCell {
   int idPositionCell = 0;
   // Initial cell position (count cell = 9 => indexCall = 0-8). Changes after cell shift
   final int idIndexCell;
+  // An immutable cell key equal to the index of its correct position
   final int keyCell;
   final double xCoord;
   final double yCoord;
   final double xHomeCoord;
   final double yHomeCoord;
 
-  int count = 0;
-  //
-  double helpOpacity = 0;
-  double helpHomeSize = 50;
-  double helpSize = 50;
+  // Helper display
+  bool isDisplayHelper = false;
 
   final ImageUnitScene image;
+  // Cell shift animation duration (different for linear and diagonal shifts)
   int duration = 0;
 
   ViewCell({
@@ -65,7 +64,7 @@ class ViewCell {
         yHomeCoord = yCoord,
         image = ImageUnitScene(offsetImage) {
     idPositionCell = idIndexCell;
-    count = idIndexCell;
+    // count = idIndexCell;
   }
 }
 

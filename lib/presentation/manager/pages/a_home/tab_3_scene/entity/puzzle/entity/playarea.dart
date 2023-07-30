@@ -6,9 +6,10 @@ final class _PlayArea {
   final durationDiagonalAnimation = 300; //1200;
   final paddingPlayArea = 5;
   final aspectRation = 0.8;
+  // Cell visual constraints
+  final cellRoundingRadius = 8.0;
+  final cellPadding = 0.6;
   //
-  // final radItem = 8.0;
-  // final paddItem = 0.6;
   final grid = _GridPuzzle();
   double aScale = 0.0;
 
@@ -16,14 +17,16 @@ final class _PlayArea {
   final sizePlayArea = _SizePlayArea();
   final sizeCell = _SizeCell();
 
-  ///
-  final diagonalConstraints = _DiagonalShiftConstraints();
-
+  /// Correction and adjustment of the size of the playing field and cells at the start of the game
   void adjustmentSize() {
-    sizePlayArea.widthPlayArea = double.parse((sizePlayArea.widthPlayArea - paddingPlayArea).toStringAsFixed(2));
-    sizePlayArea.heightPlayArea = double.parse((sizePlayArea.widthPlayArea / aspectRation).toStringAsFixed(2));
-    sizeCell.widthCell = double.parse((sizePlayArea.widthPlayArea / grid.xCountCells).toStringAsFixed(2));
-    sizeCell.heightCell = double.parse((sizeCell.heightCell / grid.yCountCells).toStringAsFixed(2));
+    // Adjusting the size of the playing field
+    final wBar = ConfigNumbers.getNumRound(sizePlayArea.widthPlayArea - paddingPlayArea);
+    final hBar = ConfigNumbers.getNumRound(wBar / aspectRation);
+    sizePlayArea.adjustment(width: wBar, height: hBar);
+    // Setting the dimensions of the matrix cell
+    final wCell = ConfigNumbers.getNumRound(wBar / grid.xCountCells);
+    final hCell = ConfigNumbers.getNumRound(hBar / grid.yCountCells);
+    sizeCell.adjustment(width: wCell, height: hCell);
   }
 }
 
@@ -38,6 +41,11 @@ final class _SizePlayArea {
     widthPlayArea = w;
     heightPlayArea = h;
   }
+
+  adjustment({required double width, required double height}) {
+    widthPlayArea = width;
+    heightPlayArea = height;
+  }
 }
 
 /// Class for the size of cell
@@ -45,6 +53,13 @@ final class _SizeCell {
   // Size of screen
   double widthCell = 0;
   double heightCell = 0;
+  double maxHelperSize = 0;
+
+  void adjustment({required double width, required double height}) {
+    widthCell = width;
+    heightCell = height;
+    maxHelperSize = min(width, height) * 0.8;
+  }
 }
 
 /// Class for storing scene grid data
@@ -57,22 +72,5 @@ final class _GridPuzzle {
     xCountCells = xCells;
     yCountCells = yCells;
     square = xCountCells * yCountCells;
-  }
-}
-
-///
-final class _DiagonalShiftConstraints {
-  /// Maximum angle below which a diagonal swipe will be identified
-  int maxAngleDiagonalSwipe = 1;
-
-  /// The minimum angle above which a diagonal swipe will be identified
-  int minAngleDiagonalSwipe = 0;
-
-  /// Sets the range in which the swipe will be identified as diagonal
-  final rangeIdentDiagonalSwipe = 15;
-
-  set(({int maxAngle, int minAnle}) data) {
-    maxAngleDiagonalSwipe = data.maxAngle;
-    minAngleDiagonalSwipe = data.minAnle;
   }
 }

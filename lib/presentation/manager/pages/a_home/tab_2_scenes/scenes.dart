@@ -11,7 +11,7 @@ final class ScenesProvider extends ChangeNotifier with _State {
   final ScenesCase _scenesCase;
 
   Future<bool?> getScenes(int idSeries) async {
-    print("GET Scene $idSeries");
+    print("GET scene of SERIES $idSeries");
     if (super.actionStatus == ActionStatus.isAction) return null;
     // Return old data if condition is met
     if (pageData.isOldSeriesUsed(idSeries)) return true;

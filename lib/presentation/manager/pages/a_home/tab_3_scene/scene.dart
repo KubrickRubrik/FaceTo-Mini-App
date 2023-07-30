@@ -14,7 +14,8 @@ final class SceneProvider extends ChangeNotifier with _State {
   /// Launching the game when clicking on a item of scene on the scenes page [PageTabScenes]
   /// returns `true` when swipe to game page is allowed
   Future<bool?> runPuzzleGame({required SceneEntity scene, required Size size}) async {
-    print("SET Scene ${scene.idScene}");
+    pageData.puzzle.timer.start();
+    print("RUN PUZZLE GAME ${scene.idScene}");
     if (super.actionStatus == ActionStatus.isAction) return null;
     _setActions(ActionStatus.isAction, false);
     if (pageData.puzzle.isOldSceneUsed(scene.idScene)) {
@@ -32,10 +33,17 @@ final class SceneProvider extends ChangeNotifier with _State {
     // This part of the code is executed if the user starts the game with the parameters of a new scene
     pageData.puzzle.setGameLaunchState(scene);
     pageData.puzzle.setMainSettingsPuzzle();
-    _setActions(ActionStatus.isAction, false);
-    pageData.puzzle.timer.start();
+    _setActions(ActionStatus.isDone, false);
+    // pageData.puzzle.timer.start();
+    print("ВРЕМЯ ${pageData.puzzle.timer.stop()}");
     notifyListeners();
     return true;
+  }
+
+  void runShift() {
+    if (!pageData.puzzle.status.isAvailableSwipe) return;
+    pageData.puzzle.status.runShift();
+    pageData.puzzle.status.completeShift();
   }
 
   // Future<void> getScenes(int idSeries) async {
@@ -51,6 +59,19 @@ final class SceneProvider extends ChangeNotifier with _State {
   //     _setStatusPage(StatusContent.isViewContent);
   //   }
   // }
+  Future<void> displayHelper() async {
+    print(123);
+    if (pageData.puzzle.status.isDisplayHelperPuzzle) return;
+    pageData.puzzle.status.displayHelper(true);
+    //
+    pageData.puzzle.cells.displayCellHelper(true);
+    notifyListeners();
+    await Future.delayed(const Duration(milliseconds: 1500));
+    pageData.puzzle.cells.displayCellHelper(false);
+    pageData.puzzle.status.displayHelper(false);
+    notifyListeners();
+  }
+
   // Setting the operation status
   void _setActions(ActionStatus value, [bool isUpdate = true]) {
     actionStatus = value;
