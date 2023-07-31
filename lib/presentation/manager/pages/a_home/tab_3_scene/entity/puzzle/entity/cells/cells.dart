@@ -8,8 +8,8 @@ final class _CellsPuzzle {
   /// Lists of additional cells (outside the scope) that are needed to move the puzzle
   AdditionalPuzzleCells additionalCells = AdditionalPuzzleCells();
 
-  /// Lists of coordinates and positions of each cell in each row, column, diagonal
-  SectionDataPuzzle sectionsDataPuzzle = SectionDataPuzzle();
+  /// Lists of coordinates and positions of each cell section and cells in each section (row, column, diagonal)
+  _SectionDataPuzzle sectionsDataPuzzle = _SectionDataPuzzle();
 
   ///! Setting game launch state
   void setGameLaunchState(SceneEntity dataScene) {
@@ -181,7 +181,7 @@ final class _CellsPuzzle {
         sectionsDataPuzzle.listSectionsAllRows.add(
           RowColumnCoord(
             listItemCells: listPosItemRow,
-            sectionCoordinates: listRowCoordItems[itemRow],
+            coordinates: listRowCoordItems[itemRow]!,
           ),
         );
         listPosItemRow = [];
@@ -208,7 +208,7 @@ final class _CellsPuzzle {
       sectionsDataPuzzle.listSectionsAllColumns.add(
         RowColumnCoord(
           listItemCells: list,
-          sectionCoordinates: listColumnsCoordItems[item],
+          coordinates: listColumnsCoordItems[item]!,
         ),
       );
     }
@@ -267,13 +267,13 @@ final class _CellsPuzzle {
 
     // Formation of forbidden indexes for a swipe depending on the swipe vector
     // Setting forbidden cells for swipe left-handed diagonal `\`
-    sectionsDataPuzzle.listCellsNotChangeWheneLeftDiagonalSwipe.addAll([
+    sectionsDataPuzzle.listNotAllowedCellsForLeftDiagonalSwipe.addAll([
       listMainCell[grid.xCountCells - 1].idIndexCell,
       listMainCell[grid.xCountCells * (grid.yCountCells - 1)].idIndexCell,
     ]);
 
     // Setting forbidden cells for swipe right-handed diagonal `/`
-    sectionsDataPuzzle.listCellsNotChangeWheneRightDiagonalSwipe.addAll([
+    sectionsDataPuzzle.listNotAllowedCellsForRightDiagonalSwipe.addAll([
       listMainCell.first.idIndexCell,
       listMainCell.last.idIndexCell,
     ]);
@@ -371,5 +371,23 @@ final class _CellsPuzzle {
         cell.isDisplayHelper = display;
       }
     }
+  }
+
+  /// Selecting an appropriate list of cells
+  List<ViewCell> getCorrectList(TypeListCellsPuzzle typeList) {
+    return switch (typeList) {
+      // Main
+      TypeListCellsPuzzle.main => listMainCell,
+      // Additional sides
+      TypeListCellsPuzzle.topSide => additionalCells.listTopAdditionalCells,
+      TypeListCellsPuzzle.bottomSide => additionalCells.listBottomAdditionalCells,
+      TypeListCellsPuzzle.leftSide => additionalCells.listLeftAdditionalCells,
+      TypeListCellsPuzzle.rightSide => additionalCells.listRightAdditionalCells,
+      // Additional diagonals
+      TypeListCellsPuzzle.leftTopDiagonal => additionalCells.additionalDiagonal.listLeftTopAdditionalDiagonal,
+      TypeListCellsPuzzle.leftBottomDiagonal => additionalCells.additionalDiagonal.listLeftBottomAdditionalDiagonal,
+      TypeListCellsPuzzle.rightTopDiagonal => additionalCells.additionalDiagonal.listRightTopAdditionalDiagonal,
+      TypeListCellsPuzzle.rightBottomDiagonal => additionalCells.additionalDiagonal.listRightBottomAdditionalDiagonal,
+    };
   }
 }

@@ -31,7 +31,7 @@ class ControllerWinnerSection extends StatelessWidget {
 
 /// Spin widget
 class _SpinLoadingScetion extends StatelessWidget {
-  const _SpinLoadingScetion({super.key});
+  const _SpinLoadingScetion();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _SpinLoadingScetion extends StatelessWidget {
 
 /// The content controller determines whether the winners section is shown offline or online.
 class _ControllerSourceWinner extends StatelessWidget {
-  const _ControllerSourceWinner({super.key});
+  const _ControllerSourceWinner();
 
   @override
   Widget build(BuildContext context) {

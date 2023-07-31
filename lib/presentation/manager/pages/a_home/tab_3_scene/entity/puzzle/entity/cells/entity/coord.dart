@@ -3,7 +3,7 @@ part of '../../../puzzle.dart';
 /// Class for storing lists of rows, columns, left and right diagonals,
 /// as well as lists of cells that should not be used when swiping left or right diagonals.
 /// Each list contains serial numbers and coordinates of each cell for each row, column, diagonal
-class SectionDataPuzzle {
+class _SectionDataPuzzle {
   /// List of coordinates and positions of each cell in each row
   final listSectionsAllRows = <RowColumnCoord>[];
 
@@ -17,11 +17,11 @@ class SectionDataPuzzle {
   final listRightDiagonals = <Diagonal>[];
 
   /// List of cell indexes on which the left swipe should not work
-  final listCellsNotChangeWheneLeftDiagonalSwipe = <int>[];
+  final listNotAllowedCellsForLeftDiagonalSwipe = <int>[];
 
   /// List of cell indexes on which the right swipe should not work
 
-  final listCellsNotChangeWheneRightDiagonalSwipe = <int>[];
+  final listNotAllowedCellsForRightDiagonalSwipe = <int>[];
 
   /// Clear all list
   void clear() {
@@ -29,8 +29,8 @@ class SectionDataPuzzle {
     listSectionsAllColumns.clear();
     listLeftDiagonals.clear();
     listRightDiagonals.clear();
-    listCellsNotChangeWheneLeftDiagonalSwipe.clear();
-    listCellsNotChangeWheneRightDiagonalSwipe.clear();
+    listNotAllowedCellsForLeftDiagonalSwipe.clear();
+    listNotAllowedCellsForRightDiagonalSwipe.clear();
   }
 }
 
@@ -41,9 +41,9 @@ class RowColumnCoord {
   final List<int> listItemCells;
 
   /// Contains the cell coordinates and the position (serial number) of the cell in a row or column
-  final SectionCoordinates? sectionCoordinates;
+  final SectionCoordinates coordinates;
 
-  RowColumnCoord({required this.listItemCells, required this.sectionCoordinates});
+  RowColumnCoord({required this.listItemCells, required this.coordinates});
 }
 
 /// The class contains the cell coordinates and the position (serial number) of the cell in a row or column

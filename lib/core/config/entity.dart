@@ -32,3 +32,22 @@ enum TypeMassage { massage, error, warning }
 
 /// Winners section download source
 enum TypeSourceWinner { offline, online }
+
+/// Different types of puzzle cell list
+enum TypeListCellsPuzzle {
+  main,
+  topSide,
+  bottomSide,
+  leftSide,
+  rightSide,
+  leftTopDiagonal,
+  leftBottomDiagonal,
+  rightTopDiagonal,
+  rightBottomDiagonal,
+}
+
+/// Swipe puzzle type
+enum TypeAxisSwipe { horisontal, vertical, diagonal }
+
+/// Swipe vector/direction
+enum DirectionSwipe { left, right, up, down, upLeft, upRight, downLeft, downRight }

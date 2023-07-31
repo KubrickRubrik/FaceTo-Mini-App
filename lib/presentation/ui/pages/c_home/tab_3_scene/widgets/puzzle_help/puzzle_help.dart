@@ -44,7 +44,7 @@ class PuzzleHelpSection extends StatelessWidget {
 }
 
 class _SpacerDot extends StatelessWidget {
-  const _SpacerDot({super.key});
+  const _SpacerDot();
 
   @override
   Widget build(BuildContext context) {

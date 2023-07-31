@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/a_start/start.dart';
 import 'package:facetomini/presentation/locator/locator.dart';
-import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

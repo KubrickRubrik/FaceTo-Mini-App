@@ -1,7 +1,7 @@
 part of '../puzzle.dart';
 
 final class _SwipePuzzle {
-  ///
+  /// Diagonal swipe performance limitation
   final diagonalConstraints = _DiagonalSwipeConstraints();
 
   /// Storing and setting the start and end coordinates of a swipe

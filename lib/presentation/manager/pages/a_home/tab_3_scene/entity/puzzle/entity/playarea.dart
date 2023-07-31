@@ -1,9 +1,7 @@
 part of '../puzzle.dart';
 
 final class _PlayArea {
-  /// Puzzle animation duration
-  final durationFullAnimation = 200; // 600;
-  final durationDiagonalAnimation = 300; //1200;
+  final durationAnimation = DurationShiftAnimation();
   final paddingPlayArea = 5;
   final aspectRation = 0.8;
   // Cell visual constraints

@@ -16,12 +16,23 @@ part 'entity/cells/entity/side_units.dart';
 part 'entity/cells/entity/coord.dart';
 part 'actions/swipe.dart';
 part 'actions/mix.dart';
+part 'actions/shift/shift.dart';
+part 'actions/shift/mixins/definition.dart';
+part 'actions/shift/mixins/performance.dart';
+part 'actions/entity/view_cell.dart';
+part 'actions/entity/swipe_data.dart';
+part 'actions/entity/cell_shifted.dart';
+part 'actions/entity/duration.dart';
 
+/// Main puzzle class
+/// Contains properties and methods for:
+///   1. shaping the puzzle;
+///   2. puzzle shear calculations;
+///   3. determining the solution to the puzzle;
+///   4. definition of winning a game;
+///   5. puzzle restarts.
 final class PuzzleEntity {
-  final actionAxisSwipe = _ActionAxisSwipe();
-  final actionMixData = _ActionMixData();
-
-  ///
+  /// Puzzle play area
   final playArea = _PlayArea();
 
   /// Data of scene
@@ -76,7 +87,7 @@ final class PuzzleEntity {
     playArea.aScale = ConfigNumbers.getNumRound(720 / playArea.sizePlayArea.widthPlayArea);
     playArea.grid.set(xCells: scene.grid.xCount, yCells: scene.grid.yCount);
     // 2 Obfuscation of the key (puzzle cells with the image will line up on it)
-    keys.mixCurrentKeys(actionMixData.mixData(
+    keys.mixCurrentKeys(_ActionMixData.mixData(
       currentKeys: keys._currentGameListKeysPuzzleWin,
       hardLevel: scene.hardLevel,
       xCountCells: playArea.grid.xCountCells,
@@ -86,7 +97,7 @@ final class PuzzleEntity {
     playArea.adjustmentSize();
     // 4 Defining the angle range of a diagonal swipe
     swipe.diagonalConstraints.set(
-      actionAxisSwipe.getConstraintRangeDiagonalSwipe(
+      _ActionSwipe.getConstraintRangeDiagonalSwipe(
         catetX: playArea.sizeCell.heightCell,
         catetY: playArea.sizeCell.widthCell,
         rangeAngle: swipe.diagonalConstraints.rangeIdentDiagonalSwipe,
@@ -102,6 +113,44 @@ final class PuzzleEntity {
     cells.addSectionsData(
       grid: playArea.grid,
       cell: playArea.sizeCell,
+    );
+  }
+
+  ///! Preparing cell coordinates for shifting.
+  /// Swipe may not be available if the user is swiping diagonally,
+  /// but the scene does not allow diagonal swiping or the initial
+  /// cell of a swipe is forbidden for a diagonal swipe
+  /// Therefore, a check is made on [SceneProvider].
+  CellsDataShifted? definitionCellsShift() {
+    // Storage and transfer of shift cells
+    final shiftedCells = CellsDataShifted();
+    // Swipe type and direction calculations
+    final dataSwipe = _ActionSwipe.getDataSwipe(
+      startCoord: swipe.coord.startCoord,
+      endCoord: swipe.coord.endCoord,
+      maxAngle: swipe.diagonalConstraints.maxAngleDiagonalSwipe,
+      minAnle: swipe.diagonalConstraints.minAngleDiagonalSwipe,
+    );
+    shiftedCells.setDataSwipe(dataSwipe);
+    // Calculating cell data to be shifted
+    return _ActionShift.shiftCellCalculation(
+      shiftedCells: shiftedCells,
+      swipeCoord: swipe.coord,
+      cells: cells,
+      sizeCell: playArea.sizeCell,
+      hardLevel: scene.hardLevel,
+      grid: playArea.grid,
+    );
+  }
+
+  ///! Perform shift now
+  void performShiftNow(CellsDataShifted shiftedCells) {
+    _ActionShift.performShiftNow(
+      shiftedCells: shiftedCells,
+      cells: cells,
+      sizeCell: playArea.sizeCell,
+      durationAnimation: playArea.durationAnimation,
+      grid: playArea.grid,
     );
   }
 }

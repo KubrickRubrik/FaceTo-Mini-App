@@ -7,9 +7,13 @@ import 'package:facetomini/presentation/ui/components/images.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 import 'package:provider/provider.dart';
-part 'widgets/main_cells.dart';
-part 'widgets/additional_cells.dart';
-part 'widgets/diagonal_cells.dart';
+part 'widgets/main_cells/controller.dart';
+part 'widgets/additional_cells/controller.dart';
+part 'widgets/diagonal_cells/controller.dart';
+// Cells layout
+part 'components/cell/cell.dart';
+part 'components/cell/widgets/image.dart';
+part 'components/cell/widgets/helper.dart';
 
 class PuzzleSection extends StatelessWidget {
   const PuzzleSection({super.key});
@@ -77,29 +81,29 @@ class PuzzleSection extends StatelessWidget {
           },
           child: const Stack(
             children: [
-              // Main puzzle cells (rows and columns)
+              //? Main puzzle cells (rows and columns)
               Positioned(
                 top: 0,
                 bottom: 0,
                 left: 0,
                 right: 0,
-                child: _MainCellsPuzle(),
+                child: _MainCellsControllerPuzle(),
               ),
-              // Additional puzzle cells (rows and columns)
+              //? Additional puzzle cells (rows and columns)
               Positioned(
                 top: 0,
                 bottom: 0,
                 left: 0,
                 right: 0,
-                child: SizedBox(),
+                child: _AdditionalCellsControllerPuzle(),
               ),
-              // Additional puzzle cells (diagonals)
+              //? Additional puzzle cells (diagonals)
               Positioned(
                 top: 0,
                 bottom: 0,
                 left: 0,
                 right: 0,
-                child: SizedBox(),
+                child: _DiagonalCellsControllerPuzle(),
               ),
             ],
           ),

@@ -1,7 +1,7 @@
 part of '../puzzle_help.dart';
 
 class _HardLevel extends StatelessWidget {
-  const _HardLevel({super.key});
+  const _HardLevel();
 
   @override
   Widget build(BuildContext context) {

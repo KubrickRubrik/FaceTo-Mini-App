@@ -1,7 +1,7 @@
 part of '../puzzle_help.dart';
 
 class _ButtonHelp extends StatelessWidget {
-  const _ButtonHelp({super.key});
+  const _ButtonHelp();
 
   @override
   Widget build(BuildContext context) {

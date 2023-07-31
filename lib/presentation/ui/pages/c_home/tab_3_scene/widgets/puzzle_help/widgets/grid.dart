@@ -1,7 +1,7 @@
 part of "../puzzle_help.dart";
 
 class _GridScene extends StatelessWidget {
-  const _GridScene({super.key});
+  const _GridScene();
 
   @override
   Widget build(BuildContext context) {

@@ -40,9 +40,19 @@ final class SceneProvider extends ChangeNotifier with _State {
     return true;
   }
 
-  void runShift() {
+  Future<void> runShift() async {
     if (!pageData.puzzle.status.isAvailableSwipe) return;
     pageData.puzzle.status.runShift();
+    // Definition of cells to shift.
+    final cellsForShifted = pageData.puzzle.definitionCellsShift();
+    if (cellsForShifted == null) {
+      pageData.puzzle.status.completeShift();
+      return;
+    }
+    // Perform shift now
+    pageData.puzzle.performShiftNow(cellsForShifted);
+
+    //
     pageData.puzzle.status.completeShift();
   }
 
@@ -60,7 +70,6 @@ final class SceneProvider extends ChangeNotifier with _State {
   //   }
   // }
   Future<void> displayHelper() async {
-    print(123);
     if (pageData.puzzle.status.isDisplayHelperPuzzle) return;
     pageData.puzzle.status.displayHelper(true);
     //
