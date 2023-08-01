@@ -22,7 +22,7 @@ class PuzzleHelpSection extends StatelessWidget {
             child: child!,
           );
         },
-        child: const Center(
+        child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,6 +35,10 @@ class PuzzleHelpSection extends StatelessWidget {
               //! Help
               _SpacerDot(),
               _ButtonHelp(),
+              _SpacerDot(),
+              FloatingActionButton.small(onPressed: () {
+                context.read<SceneProvider>().test();
+              }),
             ],
           ),
         ),

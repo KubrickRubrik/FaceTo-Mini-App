@@ -2,10 +2,12 @@ import 'package:facetomini/data/models/vo/author.dart';
 import 'package:facetomini/data/models/vo/scene.dart';
 import 'package:facetomini/data/models/vo/series.dart';
 import 'package:facetomini/data/models/vo/session.dart';
+import 'package:facetomini/data/models/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/entities/vo/app.dart';
 import 'package:facetomini/domain/entities/vo/author.dart';
+import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 
 /// Transformation of the 'raw' models in the entities used
 abstract final class EntitiesMapper {
@@ -118,6 +120,50 @@ abstract final class EntitiesMapper {
         );
       }).toList(),
       follower: model.follower,
+    );
+  }
+
+  static PuzzleUpdatesEntity setPuzzleUpdates(PuzzleUpdatesModel model) {
+    return PuzzleUpdatesEntity(
+      series: SeriesPuzzleUpdatesEntity(
+        idSeires: model.series.idSeires,
+        time: model.series.time,
+        xp: model.series.xp,
+        completed: model.series.completed,
+        rating: model.series.rating,
+        countUsersRating: model.series.countUsersRating,
+        countUsers: model.series.countUsers,
+      ),
+      scene: ScenePuzzleUpdatesEntity(
+        idScene: model.scene.idScene,
+        time: model.scene.time,
+        xp: model.scene.xp,
+        completed: model.scene.completed,
+        countUsers: model.scene.countUsers,
+        recordTime: model.scene.recordTime,
+      ),
+      winner: WinnerPuzzleUpdatesEntity(
+        idApp: model.winner.idApp,
+        nick: model.winner.nick,
+        logo: model.winner.logo,
+        stat: StatWinnerPuzzleUpdatesEntity(
+          position: model.winner.stat.position,
+          time: model.winner.stat.time,
+          xp: model.winner.stat.xp,
+        ),
+      ),
+      viewUser: ViewUserPuzzleUpdatesEntity(
+        idApp: model.viewUser.idApp,
+        nick: model.viewUser.nick,
+        logo: model.viewUser.logo,
+        stat: StatViewUserPuzzleUpdatesEntity(
+          position: model.viewUser.stat.position,
+          time: model.viewUser.stat.time,
+          xp: model.viewUser.stat.xp,
+          toNextTime: model.viewUser.stat.toNextTime,
+          toLastTime: model.viewUser.stat.toLastTime,
+        ),
+      ),
     );
   }
 }

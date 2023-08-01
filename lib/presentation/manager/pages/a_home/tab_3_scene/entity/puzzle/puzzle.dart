@@ -19,6 +19,8 @@ part 'actions/mix.dart';
 part 'actions/shift/shift.dart';
 part 'actions/shift/mixins/definition.dart';
 part 'actions/shift/mixins/performance.dart';
+part 'actions/shift/mixins/relocation.dart';
+part 'actions/shift/mixins/updates.dart';
 part 'actions/entity/view_cell.dart';
 part 'actions/entity/swipe_data.dart';
 part 'actions/entity/cell_shifted.dart';
@@ -69,6 +71,15 @@ final class PuzzleEntity {
 
   /// Old (previously loaded) data will be returned if idScene has not changed
   bool isOldSceneUsed(int idNewSeires) => scene.useIdScene == idNewSeires;
+
+  /// Waiting for puzzle cells to shift
+  Future<void> puzzleShiftWaiting(TypeAxisSwipe axis) async {
+    final waitingTime = switch (axis) {
+      TypeAxisSwipe.diagonal => playArea.durationAnimation.durationDiagonalAnimation,
+      _ => playArea.durationAnimation.durationSimpleAnimation,
+    };
+    await Future.delayed(Duration(milliseconds: waitingTime));
+  }
 
   ///! Setting game launch state
   void setGameLaunchState(SceneEntity dataScene) {
@@ -152,5 +163,42 @@ final class PuzzleEntity {
       durationAnimation: playArea.durationAnimation,
       grid: playArea.grid,
     );
+  }
+
+  /// Relocation a cell from the main list of cells, which, during
+  /// the shift, went outside the play area, to the start or end
+  /// position, depending on the type and direction of the swipe
+  void relocationMainCellFromOutsideZone(CellsDataShifted shiftedCells) {
+    _ActionShift.relocationCell(
+      shiftedCells: shiftedCells,
+      cells: cells,
+      sizeCell: playArea.sizeCell,
+      grid: playArea.grid,
+    );
+  }
+
+  /// Updating the image of all additional cells;
+  /// Offset of a cell of an additional cell to its original position.
+  void updateAdditionCell(CellsDataShifted shiftedCells) {
+    _ActionShift.updateAdditionCell(
+      shiftedCells: shiftedCells,
+      cells: cells,
+      grid: playArea.grid,
+    );
+  }
+
+  /// Checking the scene combination to show the winner
+  ({bool isWin, int time}) checkingWinningPuzzleCombination(CellsDataShifted shiftedCells) {
+    // Checking the winning combination of puzzle cells
+    final isWin = keys.checkingWinningCombination(
+      _ActionShift.formatingCellKeysCombination(
+        shiftedCells: shiftedCells,
+        cells: cells,
+      ),
+    );
+    if (!isWin) return (isWin: false, time: 0);
+    status.isAvailableSwipe = false;
+    final resultTime = timer.stop();
+    return (isWin: true, time: resultTime);
   }
 }

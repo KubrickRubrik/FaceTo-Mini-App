@@ -76,7 +76,7 @@ final class AuthorUserScene {
 /// Current user statistics in scene
 final class StateViewUserScene {
   final int xp;
-  final int completed;
+  int completed;
 
   StateViewUserScene({
     required this.xp,

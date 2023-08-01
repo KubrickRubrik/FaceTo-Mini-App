@@ -10,5 +10,5 @@ abstract final class ConfigActionsApi {
   static const winnersSeriesGet = "winners.series.get";
   static const winnersSceneGet = "winners.scene.get";
   //! WINNER
-  static const winnersSceneSet = "winners.set";
+  static const setWinnersScene = "winners.set";
 }

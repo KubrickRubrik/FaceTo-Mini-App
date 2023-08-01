@@ -29,19 +29,30 @@ class ViewCell {
         yHomeCoord = yCoord,
         image = ImageUnitScene(offsetImage) {
     idPositionCell = idIndexCell;
-    // count = idIndexCell;
+  }
+  // Performing relocation of an additional cell to home init position
+  toHome() {
+    xCoord = xHomeCoord;
+    yCoord = yHomeCoord;
+    duration = 0;
   }
 }
 
 /// The class contains the image path and image offset coordinates for each cell
 final class ImageUnitScene {
-  String url = ""; // Адрес изображения
+  String url = ""; // for image
   /// Offset coordinates for the image. Use minus, because it is necessary
   /// to move down from the 0.0 coordinate of the upper left corner of the image
-  final double xOffset;
-  final double yOffset;
+  double xOffset;
+  double yOffset;
 
   ImageUnitScene(Offset offset)
       : xOffset = -offset.dx,
         yOffset = -offset.dy;
+
+  update(ImageUnitScene image) {
+    xOffset = image.xOffset;
+    yOffset = image.yOffset;
+    url = image.url;
+  }
 }

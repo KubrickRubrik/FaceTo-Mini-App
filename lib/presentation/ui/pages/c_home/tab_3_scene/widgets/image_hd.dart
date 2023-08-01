@@ -12,7 +12,7 @@ class ImageSceneAdditionPage extends StatelessWidget {
     return Center(
       child: Selector<SceneProvider, (StatusContent, int)>(
         selector: (_, Model) => (
-          Model.statusAdditionPages.statusDisplayImageHD,
+          Model.statusAdditionPages.displayImageHD,
           Model.pageData.puzzle.scene.imageScene.idImage,
         ),
         builder: (_, model, __) {

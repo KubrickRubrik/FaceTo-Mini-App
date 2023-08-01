@@ -1,20 +1,24 @@
+import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
+import 'package:facetomini/domain/use_cases/scene.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
-import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/entity/page.dart';
 part 'state.dart';
 part 'entity/status.dart';
 
 final class SceneProvider extends ChangeNotifier with _State {
-  SceneProvider(this._scenesCase);
-  final ScenesCase _scenesCase;
+  SceneProvider(this._seriesProvider, this._scenesProvider, this._sceneCase);
+  final SeriesProvider _seriesProvider;
+  final ScenesProvider _scenesProvider;
+  final SceneCase _sceneCase;
 
   /// Launching the game when swiping the scenes page [PageTabScenes]
   /// Launching the game when clicking on a item of scene on the scenes page [PageTabScenes]
   /// returns `true` when swipe to game page is allowed
   Future<bool?> runPuzzleGame({required SceneEntity scene, required Size size}) async {
-    pageData.puzzle.timer.start();
     print("RUN PUZZLE GAME ${scene.idScene}");
     if (super.actionStatus == ActionStatus.isAction) return null;
     _setActions(ActionStatus.isAction, false);
@@ -34,12 +38,13 @@ final class SceneProvider extends ChangeNotifier with _State {
     pageData.puzzle.setGameLaunchState(scene);
     pageData.puzzle.setMainSettingsPuzzle();
     _setActions(ActionStatus.isDone, false);
-    // pageData.puzzle.timer.start();
-    print("ВРЕМЯ ${pageData.puzzle.timer.stop()}");
+    pageData.puzzle.timer.start();
     notifyListeners();
     return true;
   }
 
+  /// Method for shifting puzzle cells.
+  /// After the shift, the winning combination is checked.
   Future<void> runShift() async {
     if (!pageData.puzzle.status.isAvailableSwipe) return;
     pageData.puzzle.status.runShift();
@@ -51,24 +56,63 @@ final class SceneProvider extends ChangeNotifier with _State {
     }
     // Perform shift now
     pageData.puzzle.performShiftNow(cellsForShifted);
-
-    //
+    // await APP_AUDIO.soundSwipe();
+    notifyListeners();
+    // Waiting for the shift to execute
+    await pageData.puzzle.puzzleShiftWaiting(cellsForShifted.swipe.axis);
+    await Future.delayed(const Duration(milliseconds: 5));
+    // Shift relocation
+    pageData.puzzle.relocationMainCellFromOutsideZone(cellsForShifted);
+    notifyListeners();
+    await Future.delayed(const Duration(milliseconds: 5));
+    // Updating the image of all additional cells
+    // Relocation of an additional cell
+    pageData.puzzle.updateAdditionCell(cellsForShifted);
+    notifyListeners();
+    await Future.delayed(const Duration(milliseconds: 15));
     pageData.puzzle.status.completeShift();
+    // Checking the scene combination to show the winner
+    final result = pageData.puzzle.checkingWinningPuzzleCombination(cellsForShifted);
+    if (result.isWin) await _formationWinner(result.time);
   }
 
-  // Future<void> getScenes(int idSeries) async {
-  //   print("GET SERIES");
-  //   if (super.actionStatus == ActionStatus.isAction) return;
-  //   _setActions(ActionStatus.isAction, false);
-  //   _setStatusPage(StatusContent.isLoadContent);
-  //   final response = await _scenesCase.getScenes(idSeries);
-  //   _setActions(ActionStatus.isDone, false);
-  //   if (response.fail != null || response.data == null) {
-  //     _setStatusPage(StatusContent.isNoContent);
-  //   } else {
-  //     _setStatusPage(StatusContent.isViewContent);
-  //   }
-  // }
+  /// Formation of data of the winner
+  /// Data is requested from the server, for comparison with other winners
+  /// If the Internet is not available, the data is saved to the device database
+  Future<void> _formationWinner(int timeGame) async {
+    // Page output for the winner
+    statusAdditionPages.displayImageHD = StatusContent.isViewContent;
+    statusAdditionPages.winnerPage = StatusContent.isViewContent;
+    // await APP_AUDIO.soundWinner();
+    notifyListeners();
+    // Installing default update data
+    final winnerData = PuzzleDataDTO(
+     idSeries: pageData.puzzle.scene.useIdSeries,
+     idScene: pageData.puzzle.scene.useIdScene,
+      timeUser:timeGame,
+      timeRecord: pageData.puzzle.scene.s
+
+    );
+    _setActions(ActionStatus.isAction, false);
+    await pageData.winner.saveDataWinner(
+      seriesProvider:_seriesProvider
+      scenesProvider:_scenesProvider
+      sceneCase:_sceneCase,
+      winnerData: winnerData,
+    );
+    _setActions(ActionStatus.isDone, false);
+  }
+
+  test() async {
+    final winnerData = PuzzleDataDTO(
+      pageData.puzzle.scene.useIdSeries,
+      pageData.puzzle.scene.useIdScene,
+      12312123,
+    );
+    var a = await pageData.winner.saveDataWinner(_sceneCase, winnerData);
+  }
+
+  /// Puzzle hint display
   Future<void> displayHelper() async {
     if (pageData.puzzle.status.isDisplayHelperPuzzle) return;
     pageData.puzzle.status.displayHelper(true);
@@ -86,10 +130,4 @@ final class SceneProvider extends ChangeNotifier with _State {
     actionStatus = value;
     if (isUpdate) notifyListeners();
   }
-
-  // Setting page status when loading data
-  // void _setStatusPage(StatusContent val) {
-  //   statusPage = val;
-  //   notifyListeners();
-  // }
 }

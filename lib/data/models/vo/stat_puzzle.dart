@@ -1,0 +1,185 @@
+final class PuzzleUpdatesModel {
+  final SeiresPuzzleUpdatesModel series;
+  final ScenePuzzleUpdatesModel scene;
+  final WinnerPuzzleUpdatesModel winner;
+  final ViewUserPuzzleUpdatesModel viewUser;
+
+  PuzzleUpdatesModel(Map<String, dynamic> data)
+      : series = SeiresPuzzleUpdatesModel(
+          idSeires: data['update']['series']['id_series'],
+          time: data['update']['series']['time'],
+          xp: data['update']['series']['xp'],
+          completed: data['update']['series']['completed'],
+          rating: data['update']['series']['rating'],
+          countUsersRating: data['update']['series']['count_users_rating'],
+          countUsers: data['update']['series']['count_users'],
+        ),
+        scene = ScenePuzzleUpdatesModel(
+          idScene: data['update']['scene']['id_scene'],
+          time: data['update']['scene']['time'],
+          xp: data['update']['scene']['xp'],
+          completed: data['update']['scene']['completed'],
+          countUsers: data['update']['scene']['count_users'],
+          recordTime: data['update']['scene']['record_time'],
+        ),
+        winner = WinnerPuzzleUpdatesModel(
+          idApp: data['winner_user']['id_app'],
+          nick: data['winner_user']['nick'],
+          logo: data['winner_user']['logo'],
+          stat: StatWinnerPuzzleUpdatesModel(
+            position: data['winner_user']['stat']['pos'],
+            time: data['winner_user']['stat']['time'],
+            xp: data['winner_user']['stat']['xp'],
+          ),
+        ),
+        viewUser = ViewUserPuzzleUpdatesModel(
+          idApp: data['view_user']['id_app'],
+          nick: data['view_user']['nick'],
+          logo: data['view_user']['logo'],
+          stat: StatViewUserPuzzleUpdatesModel(
+            position: data['winner_user']['stat']['pos'],
+            time: data['winner_user']['stat']['time'],
+            xp: data['winner_user']['stat']['xp'],
+            toNextTime: data['winner_user']['stat']['toNextTime'],
+            toLastTime: data['winner_user']['stat']['toLastTime'],
+          ),
+        );
+}
+
+final class SeiresPuzzleUpdatesModel {
+  final int idSeires;
+  final int time;
+  final int xp;
+  final int completed;
+  final double rating;
+  final int countUsersRating;
+  final int countUsers;
+
+  SeiresPuzzleUpdatesModel({
+    required this.idSeires,
+    required this.time,
+    required this.xp,
+    required this.completed,
+    required this.rating,
+    required this.countUsersRating,
+    required this.countUsers,
+  });
+}
+
+final class ScenePuzzleUpdatesModel {
+  final int idScene;
+  final int time;
+  final int xp;
+  final int completed;
+  final int countUsers;
+  final int recordTime;
+
+  ScenePuzzleUpdatesModel({
+    required this.idScene,
+    required this.time,
+    required this.xp,
+    required this.completed,
+    required this.countUsers,
+    required this.recordTime,
+  });
+}
+
+final class WinnerPuzzleUpdatesModel {
+  final int idApp;
+  final String nick;
+  final String logo;
+  final StatWinnerPuzzleUpdatesModel stat;
+
+  WinnerPuzzleUpdatesModel({
+    required this.idApp,
+    required this.nick,
+    required this.logo,
+    required this.stat,
+  });
+}
+
+final class StatWinnerPuzzleUpdatesModel {
+  final int position;
+  final int time;
+  final int xp;
+
+  StatWinnerPuzzleUpdatesModel({
+    required this.position,
+    required this.time,
+    required this.xp,
+  });
+}
+
+final class ViewUserPuzzleUpdatesModel {
+  final int idApp;
+  final String nick;
+  final String logo;
+  final StatViewUserPuzzleUpdatesModel stat;
+
+  ViewUserPuzzleUpdatesModel({
+    required this.idApp,
+    required this.nick,
+    required this.logo,
+    required this.stat,
+  });
+}
+
+final class StatViewUserPuzzleUpdatesModel {
+  final int position;
+  final int time;
+  final int xp;
+  final int? toNextTime;
+  final int? toLastTime;
+
+  StatViewUserPuzzleUpdatesModel({
+    required this.position,
+    required this.time,
+    required this.xp,
+    required this.toNextTime,
+    required this.toLastTime,
+  });
+}
+
+// {
+//   update: {
+//     // series:{
+//     //   id_series: 37,
+//     //    time: 0,
+//     //    xp: 0,
+//     //    completed: -1,
+//     //    rating: 5,
+//     //    count_users_rating: 4,
+//     //    count_users: 6
+//     // },
+//     scene: {
+//       id_scene: 270,
+//        time: 12312123,
+//        xp: 0,
+//        completed: 1,
+//        count_users: 7,
+//        record_time: 64454
+//       }
+//     },
+//   winner_user: {
+//     id_app: 89,
+//      nick: СвойКраб,
+//      logo: https://ft-gallery.oyavi.com/images/aa6c/4488/small/283.webp,
+//      stat: {
+//         pos: 1,
+//         time: 64454,
+//         xp: 0
+//      }
+//   }, 
+//   view_user: {
+//     id_app: -1,
+//      nick: ,
+//      logo: ,
+//      stat: {
+//         pos: 8,
+//         xp: 0,
+//         time: 12312123,
+//         toNextTime: 64454,
+//         toLastTime: 12312123
+//       }
+//   }
+// }

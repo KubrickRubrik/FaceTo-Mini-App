@@ -21,7 +21,7 @@ class ControllerWinnerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusWinnerPage = context.read<SceneProvider>().statusAdditionPages.statusWinnerPage;
+    final statusWinnerPage = context.read<SceneProvider>().statusAdditionPages.winnerPage;
     return switch (statusWinnerPage) {
       StatusContent.isLoadContent => const _SpinLoadingScetion(),
       _ => const _ControllerSourceWinner(),

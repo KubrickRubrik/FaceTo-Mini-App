@@ -1,6 +1,8 @@
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/entity/puzzle/puzzle.dart';
+import 'puzzle/puzzle.dart';
+import 'winner/winner.dart';
 
 /// Class for basic page data
 final class PageData {
   final puzzle = PuzzleEntity();
+  final winner = WinnerEntity();
 }

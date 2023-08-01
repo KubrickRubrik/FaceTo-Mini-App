@@ -19,7 +19,7 @@ mixin _PerfomanceShift {
         cell.xCoord -= sizeCell.widthCell;
         cell.duration = durationAnimation.durationSimpleAnimation;
       }
-      // Swipe to left additional cell
+      //  Swipe additional cell
       shiftedCells.additionalShiftCell?.xCoord -= sizeCell.widthCell;
       shiftedCells.additionalShiftCell?.duration = durationAnimation.durationSimpleAnimation;
     } else {
@@ -33,7 +33,7 @@ mixin _PerfomanceShift {
         cell.xCoord += sizeCell.widthCell;
         cell.duration = durationAnimation.durationSimpleAnimation;
       }
-      // Swipe to left additional cell
+      // Swipe additional cell
       shiftedCells.additionalShiftCell?.xCoord += sizeCell.widthCell;
       shiftedCells.additionalShiftCell?.duration = durationAnimation.durationSimpleAnimation;
     }
@@ -58,7 +58,7 @@ mixin _PerfomanceShift {
         cell.yCoord -= sizeCell.heightCell;
         cell.duration = durationAnimation.durationSimpleAnimation;
       }
-      // Swipe to left additional cell
+      // Swipe additional cell
       shiftedCells.additionalShiftCell?.yCoord -= sizeCell.heightCell;
       shiftedCells.additionalShiftCell?.duration = durationAnimation.durationSimpleAnimation;
     } else {
@@ -72,7 +72,7 @@ mixin _PerfomanceShift {
         cell.yCoord += sizeCell.heightCell;
         cell.duration = durationAnimation.durationSimpleAnimation;
       }
-      // Swipe to left additional cell
+      // Swipe additional cell
       shiftedCells.additionalShiftCell?.yCoord += sizeCell.heightCell;
       shiftedCells.additionalShiftCell?.duration = durationAnimation.durationSimpleAnimation;
     }
@@ -87,13 +87,69 @@ mixin _PerfomanceShift {
     required _GridPuzzle grid,
   }) {
     if (shiftedCells.swipe.direction == DirectionSwipe.upLeft) {
-      // Swipe upLeft
-    } else if (shiftedCells.swipe.direction == DirectionSwipe.downLeft) {
-      // Swipe downLeft
+      //? Swipe upLeft
+      for (ViewCell cell in shiftedCells.listMainShiftCells) {
+        if (cell.idPositionCell == cells.sectionsDataPuzzle.listLeftDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.first) {
+          cell.idPositionCell = cells.sectionsDataPuzzle.listLeftDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.last;
+        } else {
+          cell.idPositionCell += grid.xCountCells + 1;
+        }
+        cell.xCoord -= sizeCell.widthCell;
+        cell.yCoord -= sizeCell.heightCell;
+        cell.duration = durationAnimation.durationDiagonalAnimation;
+      }
+      // Swipe additional cell
+      shiftedCells.additionalShiftCell?.xCoord -= sizeCell.widthCell;
+      shiftedCells.additionalShiftCell?.yCoord -= sizeCell.widthCell;
+      shiftedCells.additionalShiftCell?.duration = durationAnimation.durationDiagonalAnimation;
+    } else if (shiftedCells.swipe.direction == DirectionSwipe.downRight) {
+      //? Swipe downLeft
+      for (ViewCell cell in shiftedCells.listMainShiftCells) {
+        if (cell.idPositionCell == cells.sectionsDataPuzzle.listLeftDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.last) {
+          cell.idPositionCell = cells.sectionsDataPuzzle.listLeftDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.first;
+        } else {
+          cell.idPositionCell += grid.xCountCells + 1;
+        }
+        cell.xCoord += sizeCell.widthCell;
+        cell.yCoord += sizeCell.heightCell;
+        cell.duration = durationAnimation.durationDiagonalAnimation;
+      }
+      // Swipe additional cell
+      shiftedCells.additionalShiftCell?.xCoord += sizeCell.widthCell;
+      shiftedCells.additionalShiftCell?.yCoord += sizeCell.heightCell;
+      shiftedCells.additionalShiftCell?.duration = durationAnimation.durationDiagonalAnimation;
     } else if (shiftedCells.swipe.direction == DirectionSwipe.upRight) {
-      // Swipe upRight
+      //? Swipe upRight
+      for (ViewCell cell in shiftedCells.listMainShiftCells) {
+        if (cell.idPositionCell == cells.sectionsDataPuzzle.listRightDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.first) {
+          cell.idPositionCell = cells.sectionsDataPuzzle.listRightDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.last;
+        } else {
+          cell.idPositionCell -= (grid.xCountCells - 1);
+        }
+        cell.xCoord += sizeCell.widthCell;
+        cell.yCoord -= sizeCell.heightCell;
+        cell.duration = durationAnimation.durationDiagonalAnimation;
+      }
+      // Swipe additional cell
+      shiftedCells.additionalShiftCell?.xCoord += sizeCell.widthCell;
+      shiftedCells.additionalShiftCell?.yCoord -= sizeCell.heightCell;
+      shiftedCells.additionalShiftCell?.duration = durationAnimation.durationDiagonalAnimation;
     } else {
-      // Swipe downRight
+      //? Swipe downRight
+      for (ViewCell cell in shiftedCells.listMainShiftCells) {
+        if (cell.idPositionCell == cells.sectionsDataPuzzle.listRightDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.last) {
+          cell.idPositionCell = cells.sectionsDataPuzzle.listRightDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.first;
+        } else {
+          cell.idPositionCell += (grid.xCountCells - 1);
+        }
+        cell.xCoord -= sizeCell.widthCell;
+        cell.yCoord += sizeCell.heightCell;
+        cell.duration = durationAnimation.durationDiagonalAnimation;
+      }
+      // Swipe additional cell
+      shiftedCells.additionalShiftCell?.xCoord -= sizeCell.widthCell;
+      shiftedCells.additionalShiftCell?.yCoord += sizeCell.heightCell;
+      shiftedCells.additionalShiftCell?.duration = durationAnimation.durationDiagonalAnimation;
     }
   }
 }
