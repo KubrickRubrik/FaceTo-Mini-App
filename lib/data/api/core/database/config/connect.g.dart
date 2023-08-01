@@ -549,10 +549,11 @@ class $UseTableSeriesTable extends UseTableSeries
   late final GeneratedColumn<int> xp = GeneratedColumn<int>(
       'xp', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _ratingMeta = const VerificationMeta('rating');
+  static const VerificationMeta _ratingUserMeta =
+      const VerificationMeta('ratingUser');
   @override
-  late final GeneratedColumn<int> rating = GeneratedColumn<int>(
-      'rating', aliasedName, false,
+  late final GeneratedColumn<int> ratingUser = GeneratedColumn<int>(
+      'rating_user', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _completedMeta =
       const VerificationMeta('completed');
@@ -587,9 +588,9 @@ class $UseTableSeriesTable extends UseTableSeries
   static const VerificationMeta _ratingSeriesMeta =
       const VerificationMeta('ratingSeries');
   @override
-  late final GeneratedColumn<int> ratingSeries = GeneratedColumn<int>(
+  late final GeneratedColumn<double> ratingSeries = GeneratedColumn<double>(
       'rating_series', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+      type: DriftSqlType.double, requiredDuringInsert: true);
   static const VerificationMeta _countUsersRatingMeta =
       const VerificationMeta('countUsersRating');
   @override
@@ -617,7 +618,7 @@ class $UseTableSeriesTable extends UseTableSeries
         idApp,
         nick,
         xp,
-        rating,
+        ratingUser,
         completed,
         favorites,
         typeTree,
@@ -675,11 +676,13 @@ class $UseTableSeriesTable extends UseTableSeries
     } else if (isInserting) {
       context.missing(_xpMeta);
     }
-    if (data.containsKey('rating')) {
-      context.handle(_ratingMeta,
-          rating.isAcceptableOrUnknown(data['rating']!, _ratingMeta));
+    if (data.containsKey('rating_user')) {
+      context.handle(
+          _ratingUserMeta,
+          ratingUser.isAcceptableOrUnknown(
+              data['rating_user']!, _ratingUserMeta));
     } else if (isInserting) {
-      context.missing(_ratingMeta);
+      context.missing(_ratingUserMeta);
     }
     if (data.containsKey('completed')) {
       context.handle(_completedMeta,
@@ -766,8 +769,8 @@ class $UseTableSeriesTable extends UseTableSeries
           .read(DriftSqlType.string, data['${effectivePrefix}nick_app'])!,
       xp: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}xp'])!,
-      rating: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}rating'])!,
+      ratingUser: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}rating_user'])!,
       completed: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}completed'])!,
       favorites: attachedDatabase.typeMapping
@@ -779,7 +782,7 @@ class $UseTableSeriesTable extends UseTableSeries
       bestTime: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}best_time'])!,
       ratingSeries: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}rating_series'])!,
+          .read(DriftSqlType.double, data['${effectivePrefix}rating_series'])!,
       countUsersRating: attachedDatabase.typeMapping.read(
           DriftSqlType.int, data['${effectivePrefix}count_users_rating'])!,
       countUsers: attachedDatabase.typeMapping
@@ -803,13 +806,13 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
   final int idApp;
   final String nick;
   final int xp;
-  final int rating;
+  final int ratingUser;
   final int completed;
   final int favorites;
   final int typeTree;
   final int hardLevel;
   final int bestTime;
-  final int ratingSeries;
+  final double ratingSeries;
   final int countUsersRating;
   final int countUsers;
   final int countScenes;
@@ -821,7 +824,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       required this.idApp,
       required this.nick,
       required this.xp,
-      required this.rating,
+      required this.ratingUser,
       required this.completed,
       required this.favorites,
       required this.typeTree,
@@ -841,13 +844,13 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
     map['id_app'] = Variable<int>(idApp);
     map['nick_app'] = Variable<String>(nick);
     map['xp'] = Variable<int>(xp);
-    map['rating'] = Variable<int>(rating);
+    map['rating_user'] = Variable<int>(ratingUser);
     map['completed'] = Variable<int>(completed);
     map['favorites'] = Variable<int>(favorites);
     map['type_tree'] = Variable<int>(typeTree);
     map['hard_level'] = Variable<int>(hardLevel);
     map['best_time'] = Variable<int>(bestTime);
-    map['rating_series'] = Variable<int>(ratingSeries);
+    map['rating_series'] = Variable<double>(ratingSeries);
     map['count_users_rating'] = Variable<int>(countUsersRating);
     map['count_users'] = Variable<int>(countUsers);
     map['count_scenes'] = Variable<int>(countScenes);
@@ -863,7 +866,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       idApp: Value(idApp),
       nick: Value(nick),
       xp: Value(xp),
-      rating: Value(rating),
+      ratingUser: Value(ratingUser),
       completed: Value(completed),
       favorites: Value(favorites),
       typeTree: Value(typeTree),
@@ -887,13 +890,13 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       idApp: serializer.fromJson<int>(json['idApp']),
       nick: serializer.fromJson<String>(json['nick']),
       xp: serializer.fromJson<int>(json['xp']),
-      rating: serializer.fromJson<int>(json['rating']),
+      ratingUser: serializer.fromJson<int>(json['ratingUser']),
       completed: serializer.fromJson<int>(json['completed']),
       favorites: serializer.fromJson<int>(json['favorites']),
       typeTree: serializer.fromJson<int>(json['typeTree']),
       hardLevel: serializer.fromJson<int>(json['hardLevel']),
       bestTime: serializer.fromJson<int>(json['bestTime']),
-      ratingSeries: serializer.fromJson<int>(json['ratingSeries']),
+      ratingSeries: serializer.fromJson<double>(json['ratingSeries']),
       countUsersRating: serializer.fromJson<int>(json['countUsersRating']),
       countUsers: serializer.fromJson<int>(json['countUsers']),
       countScenes: serializer.fromJson<int>(json['countScenes']),
@@ -910,13 +913,13 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       'idApp': serializer.toJson<int>(idApp),
       'nick': serializer.toJson<String>(nick),
       'xp': serializer.toJson<int>(xp),
-      'rating': serializer.toJson<int>(rating),
+      'ratingUser': serializer.toJson<int>(ratingUser),
       'completed': serializer.toJson<int>(completed),
       'favorites': serializer.toJson<int>(favorites),
       'typeTree': serializer.toJson<int>(typeTree),
       'hardLevel': serializer.toJson<int>(hardLevel),
       'bestTime': serializer.toJson<int>(bestTime),
-      'ratingSeries': serializer.toJson<int>(ratingSeries),
+      'ratingSeries': serializer.toJson<double>(ratingSeries),
       'countUsersRating': serializer.toJson<int>(countUsersRating),
       'countUsers': serializer.toJson<int>(countUsers),
       'countScenes': serializer.toJson<int>(countScenes),
@@ -931,13 +934,13 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
           int? idApp,
           String? nick,
           int? xp,
-          int? rating,
+          int? ratingUser,
           int? completed,
           int? favorites,
           int? typeTree,
           int? hardLevel,
           int? bestTime,
-          int? ratingSeries,
+          double? ratingSeries,
           int? countUsersRating,
           int? countUsers,
           int? countScenes}) =>
@@ -949,7 +952,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
         idApp: idApp ?? this.idApp,
         nick: nick ?? this.nick,
         xp: xp ?? this.xp,
-        rating: rating ?? this.rating,
+        ratingUser: ratingUser ?? this.ratingUser,
         completed: completed ?? this.completed,
         favorites: favorites ?? this.favorites,
         typeTree: typeTree ?? this.typeTree,
@@ -970,7 +973,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
           ..write('idApp: $idApp, ')
           ..write('nick: $nick, ')
           ..write('xp: $xp, ')
-          ..write('rating: $rating, ')
+          ..write('ratingUser: $ratingUser, ')
           ..write('completed: $completed, ')
           ..write('favorites: $favorites, ')
           ..write('typeTree: $typeTree, ')
@@ -993,7 +996,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
       idApp,
       nick,
       xp,
-      rating,
+      ratingUser,
       completed,
       favorites,
       typeTree,
@@ -1014,7 +1017,7 @@ class TableSeries extends DataClass implements Insertable<TableSeries> {
           other.idApp == this.idApp &&
           other.nick == this.nick &&
           other.xp == this.xp &&
-          other.rating == this.rating &&
+          other.ratingUser == this.ratingUser &&
           other.completed == this.completed &&
           other.favorites == this.favorites &&
           other.typeTree == this.typeTree &&
@@ -1034,13 +1037,13 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
   final Value<int> idApp;
   final Value<String> nick;
   final Value<int> xp;
-  final Value<int> rating;
+  final Value<int> ratingUser;
   final Value<int> completed;
   final Value<int> favorites;
   final Value<int> typeTree;
   final Value<int> hardLevel;
   final Value<int> bestTime;
-  final Value<int> ratingSeries;
+  final Value<double> ratingSeries;
   final Value<int> countUsersRating;
   final Value<int> countUsers;
   final Value<int> countScenes;
@@ -1052,7 +1055,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     this.idApp = const Value.absent(),
     this.nick = const Value.absent(),
     this.xp = const Value.absent(),
-    this.rating = const Value.absent(),
+    this.ratingUser = const Value.absent(),
     this.completed = const Value.absent(),
     this.favorites = const Value.absent(),
     this.typeTree = const Value.absent(),
@@ -1071,13 +1074,13 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     required int idApp,
     required String nick,
     required int xp,
-    required int rating,
+    required int ratingUser,
     required int completed,
     required int favorites,
     required int typeTree,
     required int hardLevel,
     required int bestTime,
-    required int ratingSeries,
+    required double ratingSeries,
     required int countUsersRating,
     required int countUsers,
     required int countScenes,
@@ -1087,7 +1090,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
         idApp = Value(idApp),
         nick = Value(nick),
         xp = Value(xp),
-        rating = Value(rating),
+        ratingUser = Value(ratingUser),
         completed = Value(completed),
         favorites = Value(favorites),
         typeTree = Value(typeTree),
@@ -1105,13 +1108,13 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     Expression<int>? idApp,
     Expression<String>? nick,
     Expression<int>? xp,
-    Expression<int>? rating,
+    Expression<int>? ratingUser,
     Expression<int>? completed,
     Expression<int>? favorites,
     Expression<int>? typeTree,
     Expression<int>? hardLevel,
     Expression<int>? bestTime,
-    Expression<int>? ratingSeries,
+    Expression<double>? ratingSeries,
     Expression<int>? countUsersRating,
     Expression<int>? countUsers,
     Expression<int>? countScenes,
@@ -1124,7 +1127,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
       if (idApp != null) 'id_app': idApp,
       if (nick != null) 'nick_app': nick,
       if (xp != null) 'xp': xp,
-      if (rating != null) 'rating': rating,
+      if (ratingUser != null) 'rating_user': ratingUser,
       if (completed != null) 'completed': completed,
       if (favorites != null) 'favorites': favorites,
       if (typeTree != null) 'type_tree': typeTree,
@@ -1145,13 +1148,13 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
       Value<int>? idApp,
       Value<String>? nick,
       Value<int>? xp,
-      Value<int>? rating,
+      Value<int>? ratingUser,
       Value<int>? completed,
       Value<int>? favorites,
       Value<int>? typeTree,
       Value<int>? hardLevel,
       Value<int>? bestTime,
-      Value<int>? ratingSeries,
+      Value<double>? ratingSeries,
       Value<int>? countUsersRating,
       Value<int>? countUsers,
       Value<int>? countScenes}) {
@@ -1163,7 +1166,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
       idApp: idApp ?? this.idApp,
       nick: nick ?? this.nick,
       xp: xp ?? this.xp,
-      rating: rating ?? this.rating,
+      ratingUser: ratingUser ?? this.ratingUser,
       completed: completed ?? this.completed,
       favorites: favorites ?? this.favorites,
       typeTree: typeTree ?? this.typeTree,
@@ -1200,8 +1203,8 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
     if (xp.present) {
       map['xp'] = Variable<int>(xp.value);
     }
-    if (rating.present) {
-      map['rating'] = Variable<int>(rating.value);
+    if (ratingUser.present) {
+      map['rating_user'] = Variable<int>(ratingUser.value);
     }
     if (completed.present) {
       map['completed'] = Variable<int>(completed.value);
@@ -1219,7 +1222,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
       map['best_time'] = Variable<int>(bestTime.value);
     }
     if (ratingSeries.present) {
-      map['rating_series'] = Variable<int>(ratingSeries.value);
+      map['rating_series'] = Variable<double>(ratingSeries.value);
     }
     if (countUsersRating.present) {
       map['count_users_rating'] = Variable<int>(countUsersRating.value);
@@ -1243,7 +1246,7 @@ class UseTableSeriesCompanion extends UpdateCompanion<TableSeries> {
           ..write('idApp: $idApp, ')
           ..write('nick: $nick, ')
           ..write('xp: $xp, ')
-          ..write('rating: $rating, ')
+          ..write('ratingUser: $ratingUser, ')
           ..write('completed: $completed, ')
           ..write('favorites: $favorites, ')
           ..write('typeTree: $typeTree, ')

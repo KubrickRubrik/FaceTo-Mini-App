@@ -27,7 +27,6 @@ final class ScenesRequestDrift {
         result.add((scene: scenes, typeTree: series.typeTree, hardLevel: series.hardLevel));
       }
     }
-
     return result;
   }
 }

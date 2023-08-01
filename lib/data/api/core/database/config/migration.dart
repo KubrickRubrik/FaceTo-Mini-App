@@ -49,7 +49,7 @@ abstract final class MigrationDataBaseDrift {
                 nick: 'Maksim Tyunin',
                 // view iser
                 xp: 0,
-                rating: 0,
+                ratingUser: 0,
                 completed: -1,
                 favorites: 0,
                 //

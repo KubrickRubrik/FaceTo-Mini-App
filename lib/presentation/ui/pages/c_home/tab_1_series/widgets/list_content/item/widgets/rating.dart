@@ -23,7 +23,7 @@ class _RatingSeries extends StatelessWidget {
               constraints: const BoxConstraints(minWidth: 40),
               padding: const EdgeInsets.symmetric(horizontal: 5),
               alignment: Alignment.center,
-              child: Selector<SeriesProvider, int>(
+              child: Selector<SeriesProvider, double>(
                 selector: (_, Model) => Model.pageData.listSeries.elementAt(index).stat.ratingSeries,
                 builder: (_, ratingSeries, __) {
                   return Text(

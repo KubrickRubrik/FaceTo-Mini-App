@@ -5,15 +5,16 @@ import 'package:facetomini/data/models/dto/dto.dart';
 final class PuzzleDataDTO extends Dto {
   final int idSeries;
   final int idScene;
+  // Time to solve the puzzle by the user
   final int timeUser;
-  final int timeRecord;
+  // Record time to solve the puzzle (must be less than or equal to the user's one)
+  int timeRecord;
 
   PuzzleDataDTO({
     required this.idSeries,
     required this.idScene,
     required this.timeUser,
-    required this.timeRecord,
-  });
+  }) : timeRecord = timeUser;
 
   @override
   Map<String, dynamic> toMapRequest() {

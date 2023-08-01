@@ -1,3 +1,5 @@
+import 'package:facetomini/data/api/core/database/config/connect.dart';
+
 final class PuzzleUpdatesModel {
   final SeiresPuzzleUpdatesModel series;
   final ScenePuzzleUpdatesModel scene;
@@ -10,7 +12,7 @@ final class PuzzleUpdatesModel {
           time: data['update']['series']['time'],
           xp: data['update']['series']['xp'],
           completed: data['update']['series']['completed'],
-          rating: data['update']['series']['rating'],
+          ratingSeries: data['update']['series']['rating'],
           countUsersRating: data['update']['series']['count_users_rating'],
           countUsers: data['update']['series']['count_users'],
         ),
@@ -44,6 +46,27 @@ final class PuzzleUpdatesModel {
             toLastTime: data['winner_user']['stat']['toLastTime'],
           ),
         );
+
+  PuzzleUpdatesModel.db({required TableSeries series, required TableScenes scene})
+      : series = SeiresPuzzleUpdatesModel(
+          idSeires: series.idSeries,
+          time: series.bestTime,
+          xp: series.xp,
+          completed: series.completed,
+          ratingSeries: series.ratingSeries,
+          countUsersRating: series.countUsersRating,
+          countUsers: series.countUsers,
+        ),
+        scene = ScenePuzzleUpdatesModel(
+          idScene: scene.idScene,
+          time: scene.recordTime,
+          xp: scene.xp,
+          completed: scene.completed,
+          countUsers: scene.countUsers,
+          recordTime: scene.recordTime,
+        ),
+        winner = WinnerPuzzleUpdatesModel.empty(),
+        viewUser = ViewUserPuzzleUpdatesModel.empty();
 }
 
 final class SeiresPuzzleUpdatesModel {
@@ -51,7 +74,7 @@ final class SeiresPuzzleUpdatesModel {
   final int time;
   final int xp;
   final int completed;
-  final double rating;
+  final double ratingSeries;
   final int countUsersRating;
   final int countUsers;
 
@@ -60,7 +83,7 @@ final class SeiresPuzzleUpdatesModel {
     required this.time,
     required this.xp,
     required this.completed,
-    required this.rating,
+    required this.ratingSeries,
     required this.countUsersRating,
     required this.countUsers,
   });
@@ -96,6 +119,11 @@ final class WinnerPuzzleUpdatesModel {
     required this.logo,
     required this.stat,
   });
+  WinnerPuzzleUpdatesModel.empty()
+      : idApp = 0,
+        nick = '',
+        logo = '',
+        stat = StatWinnerPuzzleUpdatesModel.empty();
 }
 
 final class StatWinnerPuzzleUpdatesModel {
@@ -108,6 +136,10 @@ final class StatWinnerPuzzleUpdatesModel {
     required this.time,
     required this.xp,
   });
+  StatWinnerPuzzleUpdatesModel.empty()
+      : position = 0,
+        time = 0,
+        xp = 0;
 }
 
 final class ViewUserPuzzleUpdatesModel {
@@ -122,6 +154,12 @@ final class ViewUserPuzzleUpdatesModel {
     required this.logo,
     required this.stat,
   });
+
+  ViewUserPuzzleUpdatesModel.empty()
+      : idApp = 0,
+        nick = '',
+        logo = '',
+        stat = StatViewUserPuzzleUpdatesModel.empty();
 }
 
 final class StatViewUserPuzzleUpdatesModel {
@@ -138,6 +176,12 @@ final class StatViewUserPuzzleUpdatesModel {
     required this.toNextTime,
     required this.toLastTime,
   });
+  StatViewUserPuzzleUpdatesModel.empty()
+      : position = 0,
+        time = 0,
+        xp = 0,
+        toNextTime = 0,
+        toLastTime = 0;
 }
 
 // {

@@ -1,19 +1,23 @@
 import 'package:facetomini/data/api/core/database/config/connect.dart';
+import 'package:facetomini/data/api/core/database/queries/puzzle.dart';
 import 'package:facetomini/data/api/core/database/queries/server.dart';
 import 'package:facetomini/data/api/core/database/queries/session.dart';
 import 'package:facetomini/data/api/core/database/queries/scenes.dart';
 import 'package:facetomini/data/api/core/database/queries/series.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
+import 'package:facetomini/data/models/dto/dto.dart';
 import 'package:facetomini/data/models/vo/scene.dart';
 import 'package:facetomini/data/models/vo/series.dart';
 import 'package:facetomini/data/models/vo/server.dart';
 import 'package:facetomini/data/models/vo/session.dart';
+import 'package:facetomini/data/models/vo/stat_puzzle.dart';
 
 final class ApiDbDrift implements ApiDbDAO {
   final _serverRequest = ServerRequestDrift();
   final _sessionRequest = SessionRequestDrift();
   final _seriesRequest = SeriesRequestDrift();
   final _scenesRequest = ScenesRequestDrift();
+  final _puzzleRequest = PuzzleRequestDrift();
   final apiDb = ConnectDataBase();
 
   // Selecting the data required for a request to the server
@@ -81,6 +85,22 @@ final class ApiDbDrift implements ApiDbDAO {
     if (response == null) return null;
     final result = response.map((e) => SceneModel(e.scene, e.typeTree, e.hardLevel)).toList();
     return result;
+  }
+
+  // Puzzle
+  @override
+  Future<PuzzleUpdatesModel?> getPuzzleStatisticsOffline(Dto dto) async {
+    final response = await _puzzleRequest.getPuzzleStatisticsOffline(apiDb, dto: dto);
+    if (response == null) return null;
+    final result = PuzzleUpdatesModel.db(series: response.series, scene: response.scene);
+    return result;
+  }
+
+  @override
+  Future<bool?> updatePuzzleStatistics(Dto dto) async {
+    final response = await _puzzleRequest.updatePuzzleStatistics(apiDb, dto: dto);
+    if (response == null) return null;
+    return response;
   }
 }
 

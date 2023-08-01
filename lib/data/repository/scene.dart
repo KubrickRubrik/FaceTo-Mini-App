@@ -30,9 +30,24 @@ final class SceneRepositoryImpl implements SceneRepository {
   }
 
   @override
-  Future<({PuzzleUpdatesEntity? data, Failure? fail})> updatePuzzleStatistics(Dto data) async {
+  Future<({PuzzleUpdatesEntity? data, Failure? fail})> getPuzzleStatisticsOffline(Dto dto) async {
     try {
-      return (data: null, fail: null);
+      final response = await apiDB.getPuzzleStatisticsOffline(dto);
+      if (response == null) return (data: null, fail: null);
+      final result = EntitiesMapper.setPuzzleUpdates(response);
+      return (data: result, fail: null);
+    } on ApiException catch (e) {
+      return (data: null, fail: ApiFailure(e.msg));
+    } catch (e) {
+      return (data: null, fail: DataFormatFailuer('Error api data: $e'));
+    }
+  }
+
+  @override
+  Future<({bool? data, Failure? fail})> updatePuzzleStatistics(Dto dto) async {
+    try {
+      final response = await apiDB.updatePuzzleStatistics(dto);
+      return (data: response, fail: null);
     } on ApiException catch (e) {
       return (data: null, fail: ApiFailure(e.msg));
     } catch (e) {

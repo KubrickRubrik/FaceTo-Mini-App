@@ -45,7 +45,7 @@ abstract final class EntitiesMapper {
         stat: StateViewUserSeries(
           xp: model.xp,
           completed: model.completed,
-          rating: model.rating,
+          rating: model.ratingUser,
           favorites: model.favorites,
         ),
       ),
@@ -127,10 +127,10 @@ abstract final class EntitiesMapper {
     return PuzzleUpdatesEntity(
       series: SeriesPuzzleUpdatesEntity(
         idSeires: model.series.idSeires,
-        time: model.series.time,
+        timeRecord: model.series.time,
         xp: model.series.xp,
         completed: model.series.completed,
-        rating: model.series.rating,
+        ratingSeries: model.series.ratingSeries,
         countUsersRating: model.series.countUsersRating,
         countUsers: model.series.countUsers,
       ),

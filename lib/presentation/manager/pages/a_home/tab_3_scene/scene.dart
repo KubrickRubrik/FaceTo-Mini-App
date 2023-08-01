@@ -82,34 +82,42 @@ final class SceneProvider extends ChangeNotifier with _State {
   Future<void> _formationWinner(int timeGame) async {
     // Page output for the winner
     statusAdditionPages.displayImageHD = StatusContent.isViewContent;
-    statusAdditionPages.winnerPage = StatusContent.isViewContent;
+    statusAdditionPages.winnerPage = StatusContent.isLoadContent;
     // await APP_AUDIO.soundWinner();
     notifyListeners();
-    // Installing default update data
-    final winnerData = PuzzleDataDTO(
-     idSeries: pageData.puzzle.scene.useIdSeries,
-     idScene: pageData.puzzle.scene.useIdScene,
-      timeUser:timeGame,
-      timeRecord: pageData.puzzle.scene.s
-
+    // Installing default puzzle data
+    final puzzleData = PuzzleDataDTO(
+      idSeries: pageData.puzzle.scene.useIdSeries,
+      idScene: pageData.puzzle.scene.useIdScene,
+      timeUser: timeGame,
     );
     _setActions(ActionStatus.isAction, false);
-    await pageData.winner.saveDataWinner(
-      seriesProvider:_seriesProvider
-      scenesProvider:_scenesProvider
-      sceneCase:_sceneCase,
-      winnerData: winnerData,
+    // Request for online or offline puzzle statistics.
+    // Generation of game scene and series statistics update data.
+    // Formation of data for the page of winners.
+    final response = await pageData.winner.saveDataWinner(
+      seriesProvider: _seriesProvider,
+      scenesProvider: _scenesProvider,
+      sceneCase: _sceneCase,
+      data: puzzleData,
     );
     _setActions(ActionStatus.isDone, false);
+    if (response == null) {
+      statusAdditionPages.winnerPage = StatusContent.isNoneContent;
+      notifyListeners();
+      return;
+    }
+    // Formation of the page of winners
+    // Overwriting game series and scene statistics data.
   }
 
   test() async {
-    final winnerData = PuzzleDataDTO(
-      pageData.puzzle.scene.useIdSeries,
-      pageData.puzzle.scene.useIdScene,
-      12312123,
-    );
-    var a = await pageData.winner.saveDataWinner(_sceneCase, winnerData);
+    // final winnerData = PuzzleDataDTO(
+    //   pageData.puzzle.scene.useIdSeries,
+    //   pageData.puzzle.scene.useIdScene,
+    //   12312123,
+    // );
+    // var a = await pageData.winner.saveDataWinner(_sceneCase, winnerData);
   }
 
   /// Puzzle hint display

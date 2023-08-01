@@ -2,6 +2,7 @@ import 'package:collection/collection.dart';
 import 'package:facetomini/core/errors/failure.dart';
 import 'package:facetomini/data/models/dto/dto.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
+import 'package:facetomini/domain/entities/dto/puzzle_update.dart';
 import 'package:facetomini/domain/entities/vo/author.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/use_cases/scene.dart';
@@ -27,7 +28,7 @@ final class WinnerEntity {
     // ({PuzzleUpdatesEntity? data, Failure? fail})? response;
     PuzzleUpdatesEntity? updatesData;
 
-    //? If the Internet connected, try to get the stat of the puzzle of the scene
+    //? If the Internet connected, try to get the stat of the puzzle of the scene in online
     if (hasConnection) {
       final response = await sceneCase.getPuzzleStatisticsOnline(data);
       if (response.fail == null && response.data != null) {
@@ -39,7 +40,8 @@ final class WinnerEntity {
       }
     }
 
-    //? If there is no Internet or the data could not be obtained
+    //? If there is no Internet or the data could not be obtained,
+    //?  try to get the stat of the puzzle of the scene in offline
     if (!hasConnection || updatesData == null) {
       // If the Internet is unavailable
       final response = await sceneCase.getPuzzleStatisticsOffline(data);
@@ -52,22 +54,37 @@ final class WinnerEntity {
       }
     }
     if (updatesData == null) return null;
-    // else {
-
-    //   if (response != null && response.fail == null && response.data != null) {}
-    //   updatesData = _checkingCompletenessScenes(
-    //     seriesProvider: seriesProvider,
-    //     scenesProvider: scenesProvider,
-    //     updatesData: updatesData,
-    //   );
-    //   // response = await sceneCase.saveWinner(data);
-    // }
-    // if (updatesData == null) return null;
-    // Performing an update of scene and series data in the device database
-    sceneCase.updatePuzzleStatistics(updatesData);
+    //? Change key scene data to be overwritten in the database
+    data.timeRecord = updatesData.scene.recordTime;
+    if (data.timeUser < data.timeRecord) updatesData.scene.recordTime = data.timeUser;
+    //? Data generation rewrite statistics puzzle
+    final dto = PuzzleUpdateDTO(
+      series: SeriesPuzzleUpdate(
+        idSeries: updatesData.series.idSeires,
+        xp: updatesData.series.xp,
+        completed: updatesData.series.completed,
+        ratingSeries: updatesData.series.ratingSeries,
+        countUsersRating: updatesData.series.countUsersRating,
+      ),
+      scene: ScenePuzzleUpdate(
+        idScene: updatesData.scene.idScene,
+        xp: updatesData.scene.xp,
+        completed: updatesData.scene.completed,
+        recordTime: updatesData.scene.recordTime,
+        countUsers: updatesData.scene.countUsers,
+      ),
+    );
+    //? Performing an update of scene and series data in the device database
+    final response = await sceneCase.updatePuzzleStatistics(dto);
+    if (response.data != true || response.fail != null) {
+      print(response.fail?.msg);
+      return null;
+    }
+    return updatesData;
   }
 
-  /// Checking the completeness of all scenes in the series and completeness of series
+  /// Checking the completeness of all scenes in the series and completeness of series.
+  /// Setting the `completed = 1` or `not completed = -1` status for a scene and series
   PuzzleUpdatesEntity? _checkingCompletenessScenes({
     required SeriesProvider seriesProvider,
     required ScenesProvider scenesProvider,
@@ -77,12 +94,13 @@ final class WinnerEntity {
     final scene = scenesProvider.pageData.listScenes.firstWhereOrNull((s) => s.idScene == updatesData.scene.idScene);
     if (series == null || scene == null) return null;
     scene.user.stat.completed = 1;
+    updatesData.scene.completed = 1;
     final countCompleteScenes = scenesProvider.pageData.listScenes.where((s) => s.user.stat.completed == 1).length;
     // Set series completion status
     if (series.stat.countScenes == countCompleteScenes) {
       updatesData.series.completed = 1;
     } else {
-      updatesData.series.completed = 0;
+      updatesData.series.completed = -1;
     }
     return updatesData;
   }

@@ -20,7 +20,7 @@ final class SceneCase implements SceneRepository {
   }
 
   @override
-  Future<({PuzzleUpdatesEntity? data, Failure? fail})> updatePuzzleStatistics(Dto dto) async {
+  Future<({bool? data, Failure? fail})> updatePuzzleStatistics(Dto dto) async {
     final response = await _scenesRepository.updatePuzzleStatistics(dto);
     return response;
   }

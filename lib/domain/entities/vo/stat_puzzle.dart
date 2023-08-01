@@ -20,28 +20,28 @@ final class PuzzleUpdatesEntity {
 
 final class SeriesPuzzleUpdatesEntity {
   int idSeires;
-  final int time;
+  final int timeRecord;
   final int xp;
   int completed;
-  final double rating;
+  final double ratingSeries;
   final int countUsersRating;
   final int countUsers;
 
   SeriesPuzzleUpdatesEntity({
     required this.idSeires,
-    required this.time,
+    required this.timeRecord,
     required this.xp,
     required this.completed,
-    required this.rating,
+    required this.ratingSeries,
     required this.countUsersRating,
     required this.countUsers,
   });
   SeriesPuzzleUpdatesEntity.empty()
       : idSeires = 0,
-        time = 0,
+        timeRecord = 0,
         xp = 0,
         completed = -1,
-        rating = 0,
+        ratingSeries = 0,
         countUsersRating = 0,
         countUsers = 0;
 }
@@ -52,7 +52,7 @@ final class ScenePuzzleUpdatesEntity {
   final int xp;
   int completed;
   final int countUsers;
-  final int recordTime;
+  int recordTime;
 
   ScenePuzzleUpdatesEntity({
     required this.idScene,

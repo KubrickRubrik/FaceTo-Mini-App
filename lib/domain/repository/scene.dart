@@ -10,5 +10,5 @@ abstract interface class SceneRepository {
   Future<({PuzzleUpdatesEntity? data, Failure? fail})> getPuzzleStatisticsOffline(Dto dto);
 
   /// Saving the winner's data to the database
-  Future<({PuzzleUpdatesEntity? data, Failure? fail})> updatePuzzleStatistics(Dto dto);
+  Future<({bool? data, Failure? fail})> updatePuzzleStatistics(Dto dto);
 }

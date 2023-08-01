@@ -81,7 +81,7 @@ final class StateViewUserSeries {
 /// General statistics of the series
 final class StatSeries {
   final int bestTime;
-  final int ratingSeries;
+  final double ratingSeries;
   final int countUsersRating;
   final int countUsers;
   final int countScenes;
