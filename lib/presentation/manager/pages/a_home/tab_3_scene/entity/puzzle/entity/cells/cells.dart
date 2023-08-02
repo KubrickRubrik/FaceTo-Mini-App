@@ -73,7 +73,7 @@ final class _CellsPuzzle {
     if (indexCell < grid.xCountCells) {
       // Bottom [0-2]
       final xCoord = cell.widthCell * itemColumn;
-      final yCoord = cell.heightCell * itemRow;
+      final yCoord = cell.heightCell * grid.yCountCells;
       final idIndexCell = itemColumn;
       final keyCell = listKeys[indexCell];
       final xOffset = ((keyCell - 1) % grid.xCountCells) * cell.widthCell;
@@ -108,7 +108,7 @@ final class _CellsPuzzle {
     // Left [2,5,8]
     if (indexCell != 0 && (indexCell + 1) % (grid.xCountCells) == 0) {
       final xCoord = -cell.widthCell;
-      final yCoord = cell.heightCell * itemRow;
+      final yCoord = cell.heightCell * itemRow - 1;
       final idIndexCell = indexCell;
       final keyCell = listKeys[indexCell];
       final xOffset = ((keyCell - 1) % grid.xCountCells) * cell.widthCell;
@@ -238,7 +238,7 @@ final class _CellsPuzzle {
     for (int startIndexDiagonal in leftDiagonalStartIndex) {
       final listIndexDiagonal = <int>[];
       for (int k = 0; k < minCount; k++) {
-        final bufIndex = startIndexDiagonal + (grid.xCountCells + 1) * k; // вычесляемый индекс ячейки
+        final bufIndex = startIndexDiagonal + (grid.xCountCells + 1) * k;
         if (bufIndex < grid.square && (k == 0 || bufIndex != (k + 1) * grid.xCountCells && k != 0)) {
           listIndexDiagonal.add(bufIndex);
         } else {
@@ -296,6 +296,7 @@ final class _CellsPuzzle {
       //
       final xFirsCoord = firstBufferUnitScene.xCoord - cell.widthCell;
       final xFirstOffset = lastBufferUnitScene.image.xOffset.abs();
+
       final yFirstCoord = firstBufferUnitScene.yCoord - cell.heightCell;
       final yFirstOffset = lastBufferUnitScene.image.yOffset.abs();
       //

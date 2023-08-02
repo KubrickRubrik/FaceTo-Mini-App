@@ -52,7 +52,7 @@ abstract final class EntitiesMapper {
       typeTree: model.typeTree,
       hardLevel: model.hardLevel,
       stat: StatSeries(
-        bestTime: model.bestTime,
+        timeRecord: model.bestTime,
         ratingSeries: model.ratingSeries,
         countUsersRating: model.countUsersRating,
         countUsers: model.countUsers,
@@ -152,16 +152,16 @@ abstract final class EntitiesMapper {
           xp: model.winner.stat.xp,
         ),
       ),
-      viewUser: ViewUserPuzzleUpdatesEntity(
+      viewUser: WinnerPuzzleUpdatesEntity(
         idApp: model.viewUser.idApp,
         nick: model.viewUser.nick,
         logo: model.viewUser.logo,
-        stat: StatViewUserPuzzleUpdatesEntity(
+        stat: StatWinnerPuzzleUpdatesEntity(
           position: model.viewUser.stat.position,
           time: model.viewUser.stat.time,
           xp: model.viewUser.stat.xp,
-          toNextTime: model.viewUser.stat.toNextTime,
-          toLastTime: model.viewUser.stat.toLastTime,
+          toNextTime: model.viewUser.stat.toNextTime ?? 0,
+          toLastTime: model.viewUser.stat.toLastTime ?? 0,
         ),
       ),
     );

@@ -30,9 +30,9 @@ abstract final class _ActionSwipe {
     required int minAnle,
   }) {
     final vectorX = endCoord.coordX - startCoord.coordX; // To determine the horizontal direction of the swipe
-    double vectorY = endCoord.coordY - startCoord.coordY; // To determine the vertical direction of the swipe
-    double catetX = (vectorX != 0) ? vectorX.abs() : 1;
-    double catetY = vectorY.abs();
+    final vectorY = endCoord.coordY - startCoord.coordY; // To determine the vertical direction of the swipe
+    final double catetX = (vectorX != 0) ? vectorX.abs() : 1;
+    final double catetY = vectorY.abs();
     final swipeData = SwipeData();
     //
     final degSwipe = _getAngleSwipe(catetX: catetX, catetY: catetY).ceil();

@@ -15,6 +15,7 @@ class _ImageCellPuzzle extends StatelessWidget {
       ),
       builder: (_, model, __) {
         final scene = context.read<SceneProvider>().pageData.puzzle.scene;
+        final scale = context.read<SceneProvider>().pageData.puzzle.playArea.aScale;
         return Positioned(
           top: model.yOffset,
           bottom: 0,
@@ -29,6 +30,7 @@ class _ImageCellPuzzle extends StatelessWidget {
             idScene: scene.useIdScene,
             idImage: scene.imageScene.idImage,
             alignment: Alignment.topLeft,
+            scale: scale,
             fit: BoxFit.none,
           ),
         );

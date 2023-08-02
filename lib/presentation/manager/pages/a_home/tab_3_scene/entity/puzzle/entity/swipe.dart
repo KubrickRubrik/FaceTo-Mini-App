@@ -37,7 +37,7 @@ final class _SwipeCoordinates {
 
   /// Setting the end coordinates of the swipe
   setEndCoord(Offset offset) {
-    startCoord.set(offset);
+    endCoord.set(offset);
   }
 
   /// Rounding to a certain precision

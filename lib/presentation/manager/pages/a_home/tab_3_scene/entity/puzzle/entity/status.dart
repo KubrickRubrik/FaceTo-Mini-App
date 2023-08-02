@@ -19,7 +19,7 @@ final class _StatusPuzzle {
   /// Setting the run status of a shift
   void runShift() {
     isAvailableSwipe = false;
-    statusLoadingGame = StatusContent.isNoneContent;
+    statusLoadingGame = StatusContent.isViewContent;
   }
 
   /// Setting the complete status of a shift

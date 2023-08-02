@@ -92,7 +92,7 @@ mixin _PerfomanceShift {
         if (cell.idPositionCell == cells.sectionsDataPuzzle.listLeftDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.first) {
           cell.idPositionCell = cells.sectionsDataPuzzle.listLeftDiagonals.elementAt(shiftedCells.indexSectionShift).listItemCells.last;
         } else {
-          cell.idPositionCell += grid.xCountCells + 1;
+          cell.idPositionCell -= (grid.xCountCells + 1);
         }
         cell.xCoord -= sizeCell.widthCell;
         cell.yCoord -= sizeCell.heightCell;
@@ -100,7 +100,7 @@ mixin _PerfomanceShift {
       }
       // Swipe additional cell
       shiftedCells.additionalShiftCell?.xCoord -= sizeCell.widthCell;
-      shiftedCells.additionalShiftCell?.yCoord -= sizeCell.widthCell;
+      shiftedCells.additionalShiftCell?.yCoord -= sizeCell.heightCell;
       shiftedCells.additionalShiftCell?.duration = durationAnimation.durationDiagonalAnimation;
     } else if (shiftedCells.swipe.direction == DirectionSwipe.downRight) {
       //? Swipe downLeft

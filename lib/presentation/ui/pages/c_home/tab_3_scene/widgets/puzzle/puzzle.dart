@@ -37,23 +37,22 @@ class PuzzleSection extends StatelessWidget {
         },
         //! Used to get the end coordinates of a swipe while moving horizontally
         //! Puzzle shift starts
-        onHorizontalDragStart: (details) {
+        onHorizontalDragUpdate: (details) {
           final puzzle = context.read<SceneProvider>().pageData.puzzle;
           // Touched screen moves horizontally
           if (!puzzle.status.isAvailableSwipe) {
             // If the puzzle is shifted, the puzzle swipe is unavailable
             return;
           }
+          Future.delayed(const Duration(milliseconds: 30), () {});
           puzzle.swipe.coord.setEndCoord(Offset(
             details.localPosition.dx,
             details.localPosition.dy,
           ));
-          // Run shift puzzle
-          context.read<SceneProvider>().runShift();
         },
         //! Used to get the end coordinates of a swipe while moving vertically
         //! Puzzle shift starts
-        onVerticalDragStart: (details) {
+        onVerticalDragUpdate: (details) {
           final puzzle = context.read<SceneProvider>().pageData.puzzle;
           // Touched the screen with the main button moves vertically.
           if (!puzzle.status.isAvailableSwipe) {
@@ -64,9 +63,28 @@ class PuzzleSection extends StatelessWidget {
             details.localPosition.dx,
             details.localPosition.dy,
           ));
+        },
+        onHorizontalDragEnd: (details) {
+          final puzzle = context.read<SceneProvider>().pageData.puzzle;
+          // Touched screen moves horizontally
+          if (!puzzle.status.isAvailableSwipe) {
+            // If the puzzle is shifted, the puzzle swipe is unavailable
+            return;
+          }
           // Run shift puzzle
           context.read<SceneProvider>().runShift();
         },
+        onVerticalDragEnd: (details) {
+          final puzzle = context.read<SceneProvider>().pageData.puzzle;
+          // Touched screen moves horizontally
+          if (!puzzle.status.isAvailableSwipe) {
+            // If the puzzle is shifted, the puzzle swipe is unavailable
+            return;
+          }
+          // Run shift puzzle
+          context.read<SceneProvider>().runShift();
+        },
+
         child: Selector<SceneProvider, (double, double)>(
           selector: (_, Model) => (
             Model.pageData.puzzle.playArea.sizePlayArea.heightPlayArea,

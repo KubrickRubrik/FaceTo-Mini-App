@@ -104,13 +104,13 @@ final class PuzzleEntity {
       xCountCells: playArea.grid.xCountCells,
       yCountCells: playArea.grid.yCountCells,
     ));
-    // 3 Adjusting play Area sizes and cell sizes
+    // 3 Adjusting play area sizes and cell sizes
     playArea.adjustmentSize();
     // 4 Defining the angle range of a diagonal swipe
     swipe.diagonalConstraints.set(
       _ActionSwipe.getConstraintRangeDiagonalSwipe(
-        catetX: playArea.sizeCell.heightCell,
-        catetY: playArea.sizeCell.widthCell,
+        catetX: playArea.sizeCell.widthCell,
+        catetY: playArea.sizeCell.heightCell,
         rangeAngle: swipe.diagonalConstraints.rangeIdentDiagonalSwipe,
       ),
     );

@@ -13,8 +13,8 @@ class LoadingScene extends StatelessWidget {
       selector: (_, Model) => Model.pageData.puzzle.status.statusLoadingGame,
       builder: (_, statusPage, child) {
         return switch (statusPage) {
-          StatusContent.isViewContent => const SizedBox.shrink(),
-          _ => child!,
+          StatusContent.isLoadContent => child!,
+          _ => const SizedBox.shrink(),
         };
       },
       child: Center(

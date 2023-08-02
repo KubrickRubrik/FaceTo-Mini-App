@@ -40,7 +40,7 @@ mixin _RelocationCells {
       //? Relocation when shifting to the up
       for (ViewCell cell in shiftedCells.listMainShiftCells) {
         if (cell.idPositionCell == cells.sectionsDataPuzzle.listSectionsAllColumns.elementAt(shiftedCells.indexSectionShift).listItemCells.last) {
-          cell.yCoord += sizeCell.heightCell * (grid.yCountCells - 1);
+          cell.yCoord = sizeCell.heightCell * (grid.yCountCells - 1);
           cell.duration = 0;
           break;
         }

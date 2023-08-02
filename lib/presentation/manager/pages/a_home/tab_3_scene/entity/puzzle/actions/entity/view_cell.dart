@@ -53,6 +53,5 @@ final class ImageUnitScene {
   update(ImageUnitScene image) {
     xOffset = image.xOffset;
     yOffset = image.yOffset;
-    url = image.url;
   }
 }

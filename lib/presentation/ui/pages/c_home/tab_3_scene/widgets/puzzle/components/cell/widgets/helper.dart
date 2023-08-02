@@ -23,8 +23,8 @@ class _HelperCellPuzzle extends StatelessWidget {
             child: AnimatedContainer(
               duration: Duration(milliseconds: model.duration),
               curve: Curves.easeInOutBack,
-              height: model.isDisplayHelp ? maxHelperSize : 0,
-              width: model.isDisplayHelp ? maxHelperSize : 0,
+              height: model.isDisplayHelp ? maxHelperSize : 30,
+              width: model.isDisplayHelp ? maxHelperSize : 30,
               alignment: Alignment.center,
               child: child!,
             ),

@@ -65,7 +65,7 @@ final class AuthorUserSeires {
 /// Current user statistics in series
 final class StateViewUserSeries {
   final int xp;
-  final int completed;
+  int completed;
   final int rating;
   final int favorites;
   final int offline = 1;
@@ -80,14 +80,14 @@ final class StateViewUserSeries {
 
 /// General statistics of the series
 final class StatSeries {
-  final int bestTime;
+  int timeRecord;
   final double ratingSeries;
   final int countUsersRating;
   final int countUsers;
   final int countScenes;
 
   StatSeries({
-    required this.bestTime,
+    required this.timeRecord,
     required this.ratingSeries,
     required this.countUsersRating,
     required this.countUsers,

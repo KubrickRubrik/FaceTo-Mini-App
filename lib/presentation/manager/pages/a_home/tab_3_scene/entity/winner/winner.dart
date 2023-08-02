@@ -1,19 +1,15 @@
 import 'package:collection/collection.dart';
-import 'package:facetomini/core/errors/failure.dart';
-import 'package:facetomini/data/models/dto/dto.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_update.dart';
-import 'package:facetomini/domain/entities/vo/author.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/use_cases/scene.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/entity/winner/entity/data/controller.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final class WinnerEntity {
-  final winnerRecordUser = RecordUser();
-  final winnerViewUser = RecordUser();
-  final winnerOffline = WinnerOffline();
+  final data = WinnerControllerData();
 
   /// Saving updated puzzle statistics.
   /// Request statistics of puzzle winners to compare with user statistics.
@@ -25,7 +21,6 @@ final class WinnerEntity {
     required PuzzleDataDTO data,
   }) async {
     final hasConnection = await InternetConnectionChecker().hasConnection;
-    // ({PuzzleUpdatesEntity? data, Failure? fail})? response;
     PuzzleUpdatesEntity? updatesData;
 
     //? If the Internet connected, try to get the stat of the puzzle of the scene in online
@@ -37,6 +32,7 @@ final class WinnerEntity {
           scenesProvider: scenesProvider,
           updatesData: response.data!,
         );
+        if (updatesData != null) updatesData.isOnline = true;
       }
     }
 
@@ -51,6 +47,7 @@ final class WinnerEntity {
           scenesProvider: scenesProvider,
           updatesData: response.data!,
         );
+        if (updatesData != null) updatesData.isOnline = false;
       }
     }
     if (updatesData == null) return null;
@@ -100,61 +97,16 @@ final class WinnerEntity {
     if (series.stat.countScenes == countCompleteScenes) {
       updatesData.series.completed = 1;
     } else {
-      updatesData.series.completed = -1;
+      updatesData.series.completed = 0;
     }
     return updatesData;
   }
-}
 
-class RecordUser {
-  int? idApp = 0;
-  String nick = '';
-  ImageAuthor image = ImageAuthor.empty();
-  int pos = 0;
-  int xp = 0;
-  int time = 0;
-  int toNextTime = 0;
-  int toLastTime = 0;
-  int _diff = 0;
-
-  setData(Map _data, int _toNextTime, int _toLastTime) {
-    // 15,11
-    // idApp = _data['id_app'];
-    // nick = _data['nick'];
-    // pos = _data['stat']['pos'];
-    // time = _data['stat']['time'];
-    // xp = _data['stat']['xp'];
-    // image.setLogoData(_data);
-    // toNextTime = time - _toNextTime;
-    // _diff = _toLastTime - time;
-    // toLastTime = (_diff > 0) ? _diff : 0;
-  }
-
-  void clear() {
-    idApp = 0;
-  }
-}
-
-class WinnerOffline {
-  int recordTime = 0;
-  int userTime = 0;
-  int diffTime = 0;
-  int record = -1;
-  int places = 1;
-
-  setData(int _recordTime, int _userTime) {
-    recordTime = _recordTime;
-    userTime = _userTime;
-    diffTime = _userTime - _recordTime;
-    record = (diffTime < 0) ? 1 : -1;
-
-    if (diffTime < 0)
-      places = 1;
-    else if (diffTime == 0)
-      places = 2;
-    else {
-      places = (diffTime / 5000).round();
-      if (places == 0) places = 2;
-    }
+  ///
+  void formatWinner({
+    required PuzzleUpdatesEntity updateData,
+    required PuzzleDataDTO puzzleData,
+  }) {
+    data.setWinner(updateData: updateData, puzzleData: puzzleData);
   }
 }

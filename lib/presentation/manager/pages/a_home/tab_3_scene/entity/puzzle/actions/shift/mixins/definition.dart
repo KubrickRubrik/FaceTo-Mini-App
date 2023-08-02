@@ -33,6 +33,7 @@ mixin _DefinitionCells {
     } else {
       shiftedCells.additionalShiftCell = cells.additionalCells.listLeftAdditionalCells.elementAt(itemRowShift);
     }
+
     return shiftedCells;
   }
 
@@ -64,9 +65,9 @@ mixin _DefinitionCells {
     }
     //? 2. Defining an additional shift cell for column
     if (shiftedCells.swipe.direction == DirectionSwipe.up) {
-      shiftedCells.additionalShiftCell == cells.additionalCells.listBottomAdditionalCells.elementAt(itemColumnShift);
+      shiftedCells.additionalShiftCell = cells.additionalCells.listBottomAdditionalCells.elementAt(itemColumnShift);
     } else {
-      shiftedCells.additionalShiftCell == cells.additionalCells.listTopAdditionalCells.elementAt(itemColumnShift);
+      shiftedCells.additionalShiftCell = cells.additionalCells.listTopAdditionalCells.elementAt(itemColumnShift);
     }
     return shiftedCells;
   }
@@ -115,7 +116,7 @@ mixin _DefinitionCells {
     //? 3. Getting a list of available diagonals for the corresponding swipe: `/` or `\`
     // List of diagonals of left or right type
     final listDiagonals = switch (shiftedCells.swipe.direction) {
-      DirectionSwipe.upRight || DirectionSwipe.downLeft => cells.sectionsDataPuzzle.listLeftDiagonals,
+      DirectionSwipe.upLeft || DirectionSwipe.downRight => cells.sectionsDataPuzzle.listLeftDiagonals,
       _ => cells.sectionsDataPuzzle.listRightDiagonals,
     };
     final listCellInDiagonal = <int>[];
@@ -135,7 +136,7 @@ mixin _DefinitionCells {
 
     //? 5. Definition of main shift cells
     for (ViewCell cell in cells.listMainCell) {
-      if (listCellInDiagonal.contains(cell.idIndexCell)) {
+      if (listCellInDiagonal.contains(cell.idPositionCell)) {
         shiftedCells.listMainShiftCells.add(cell);
         if (shiftedCells.listMainShiftCells.length == listCellInDiagonal.length) break;
       }

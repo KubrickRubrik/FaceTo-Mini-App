@@ -64,7 +64,7 @@ mixin _UpdatesCells {
     required ViewCell shiftedCell,
     required _CellsPuzzle cells,
   }) {
-    for (ViewCell cell in cells.additionalCells.listLeftAdditionalCells) {
+    for (ViewCell cell in cells.additionalCells.listRightAdditionalCells) {
       if (shiftedCells.swipe.axis == TypeAxisSwipe.vertical && shiftedCells.indexSectionShift != 0) {
         //  If the swipe is not on the far left column - exit
         break;

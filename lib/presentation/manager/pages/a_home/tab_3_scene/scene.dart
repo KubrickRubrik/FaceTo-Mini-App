@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
-import 'package:flutter/material.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
 import 'package:facetomini/domain/use_cases/scene.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
@@ -48,8 +48,10 @@ final class SceneProvider extends ChangeNotifier with _State {
   Future<void> runShift() async {
     if (!pageData.puzzle.status.isAvailableSwipe) return;
     pageData.puzzle.status.runShift();
+
     // Definition of cells to shift.
     final cellsForShifted = pageData.puzzle.definitionCellsShift();
+
     if (cellsForShifted == null) {
       pageData.puzzle.status.completeShift();
       return;
@@ -69,6 +71,7 @@ final class SceneProvider extends ChangeNotifier with _State {
     // Relocation of an additional cell
     pageData.puzzle.updateAdditionCell(cellsForShifted);
     notifyListeners();
+
     await Future.delayed(const Duration(milliseconds: 15));
     pageData.puzzle.status.completeShift();
     // Checking the scene combination to show the winner
@@ -107,8 +110,12 @@ final class SceneProvider extends ChangeNotifier with _State {
       notifyListeners();
       return;
     }
-    // Formation of the page of winners
     // Overwriting game series and scene statistics data.
+    _seriesProvider.updateSeries(response);
+    _scenesProvider.updateScene(response);
+    // Formation of the page of winners
+    pageData.winner.formatWinner(updateData: response, puzzleData: puzzleData);
+    notifyListeners();
   }
 
   test() async {
