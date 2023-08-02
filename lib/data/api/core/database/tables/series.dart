@@ -11,7 +11,7 @@ class UseTableSeries extends Table {
   TextColumn get nick => text().named('nick_app')();
   // view user
   IntColumn get xp => integer()();
-  IntColumn get rating => integer()();
+  IntColumn get ratingUser => integer()();
   IntColumn get completed => integer()();
   IntColumn get favorites => integer()();
   //
@@ -20,7 +20,7 @@ class UseTableSeries extends Table {
   //
   IntColumn get bestTime => integer().named('best_time')();
   // stat
-  IntColumn get ratingSeries => integer().named('rating_series')();
+  RealColumn get ratingSeries => real().named('rating_series')();
   IntColumn get countUsersRating => integer().named('count_users_rating')();
   IntColumn get countUsers => integer().named('count_users')();
   IntColumn get countScenes => integer().named('count_scenes')();

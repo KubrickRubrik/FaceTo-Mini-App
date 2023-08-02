@@ -1,14 +1,8 @@
-part of '../scene.dart';
+import 'puzzle/puzzle.dart';
+import 'winner/winner.dart';
 
 /// Class for basic page data
-final class _PageData {
-  final puzzle = _PuzzleEntity();
-  // Last used scene
-
-  //
-
-  // Overwriting the used idScene and clean for new data
-  void overwritingPageData(SceneEntity data) {
-    puzzle.set(data);
-  }
+final class PageData {
+  final puzzle = PuzzleEntity();
+  final winner = WinnerEntity();
 }

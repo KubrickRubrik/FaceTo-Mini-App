@@ -1,7 +1,7 @@
 part of '../../controller.dart';
 
 class _OnlineWinnerSection extends StatelessWidget {
-  const _OnlineWinnerSection({super.key});
+  const _OnlineWinnerSection();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _OnlineWinnerSection extends StatelessWidget {
 }
 
 class _LabelWinnerSection extends StatelessWidget {
-  const _LabelWinnerSection({super.key});
+  const _LabelWinnerSection();
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class _LabelWinnerSection extends StatelessWidget {
 
 /// User game result
 class _UserResult extends StatelessWidget {
-  const _UserResult({super.key});
+  const _UserResult();
 
   @override
   Widget build(BuildContext context) {
@@ -139,16 +139,16 @@ class RecordUser {
   int toLastTime = 0;
   int _diff = 0;
 
-  setData(Map _data, int _toNextTime, int _toLastTime) {
+  setData(Map data, int toNextTime, int toLastTime) {
     // 15,11
-    idApp = _data['id_app'];
-    nick = _data['nick'];
-    pos = _data['stat']['pos'];
-    time = _data['stat']['time'];
-    xp = _data['stat']['xp'];
+    idApp = data['id_app'];
+    nick = data['nick'];
+    pos = data['stat']['pos'];
+    time = data['stat']['time'];
+    xp = data['stat']['xp'];
     // image.setLogoData(_data);
-    toNextTime = time - _toNextTime;
-    _diff = _toLastTime - time;
+    toNextTime = time - toNextTime;
+    _diff = toLastTime - time;
     toLastTime = (_diff > 0) ? _diff : 0;
   }
 

@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
-import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/list_content/list.dart';
@@ -43,15 +43,14 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
         swipeVector = details.localPosition.dx;
       },
       onHorizontalDragStart: (details) {
-        // TO RIGHT TAB_1
+        // TO RIGHT
         if (details.localPosition.dx < swipeVector) {
           if (context.read<ScenesProvider>().actionStatus != ActionStatus.isDone) return;
           final listScenes = context.read<ScenesProvider>().pageData.listScenes;
           // Selects the first scene to run when swiping
           var scene = listScenes.first;
           // Getting the last used scene or the first one on the scenes page for swiping
-          final useIdScene = context.read<SceneProvider>().pageData.puzzle.useIdScene;
-          if (useIdScene == -1) {
+          if (context.read<SceneProvider>().pageData.puzzle.isFirstRunThisScene()) {
             // first run -> select the last completed element or the first from the list of scenes
             final lastIndex = listScenes.lastIndexWhere((element) => element.user.stat.completed == 1);
             if (lastIndex != -1 && (lastIndex + 1) < listScenes.length) {
@@ -60,7 +59,8 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
             }
           }
           //
-          context.read<SceneProvider>().setScene(scene).then((isDone) {
+          final size = MediaQuery.of(context).size;
+          context.read<SceneProvider>().runPuzzleGame(scene: scene, size: size).then((isDone) {
             if (isDone == null) return;
             if (!isDone) {
               // If the scene didn't load

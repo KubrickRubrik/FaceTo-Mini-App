@@ -1,7 +1,7 @@
 part of '../../controller.dart';
 
 class _OfflineWinnerSection extends StatelessWidget {
-  const _OfflineWinnerSection({super.key});
+  const _OfflineWinnerSection();
 
   @override
   Widget build(BuildContext context) {

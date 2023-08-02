@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/manager/author/author.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
@@ -43,8 +44,14 @@ class ItemScene extends StatelessWidget {
                 child: Flex(
                   direction: Axis.horizontal,
                   children: [
-                    _Stat(index),
-                    _Banner(index),
+                    Flexible(
+                      flex: 3,
+                      child: _Stat(index),
+                    ),
+                    Flexible(
+                      flex: 4,
+                      child: _Banner(index),
+                    ),
                   ],
                 ),
               ),

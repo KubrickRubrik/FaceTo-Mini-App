@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:facetomini/domain/entities/vo/series.dart';
+import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/list_content/list.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';
@@ -24,6 +26,18 @@ final class SeriesProvider extends ChangeNotifier with _State {
       pageData.overwritingPageData(response.data!);
       _setStatusPage(StatusContent.isViewContent);
     }
+  }
+
+  // Game series statistics update after solving a puzzle
+  void updateSeries(PuzzleUpdatesEntity updateData) {
+    for (final series in pageData.listSeries) {
+      if (series.idSeries == updateData.series.idSeires) {
+        series.user.stat.completed = updateData.series.completed;
+        series.stat.timeRecord = updateData.series.timeRecord;
+        break;
+      }
+    }
+    notifyListeners();
   }
 
   // Setting the operation status

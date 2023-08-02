@@ -1,11 +1,12 @@
 part of '../item.dart';
 
 class _CountScenes extends StatelessWidget {
-  const _CountScenes(this.countScenes);
-  final int countScenes;
+  const _CountScenes(this.index);
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final series = context.read<SeriesProvider>().pageData.listSeries.elementAt(index);
     return InkWell(
       onTap: () {
         ToastMassage.toast(context, context.lcz.countScenes);
@@ -22,7 +23,7 @@ class _CountScenes extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: FittedBox(
-          child: Text(countScenes.toString(),
+          child: Text(series.stat.countScenes.toString(),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 18,

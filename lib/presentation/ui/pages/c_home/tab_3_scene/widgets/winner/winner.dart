@@ -12,7 +12,7 @@ class WinnerAdditionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Selector<SceneProvider, StatusContent>(
-      selector: (_, Model) => Model.statusAdditionPages.statusWinnerPage,
+      selector: (_, Model) => Model.statusAdditionPages.winnerPage,
       builder: (_, statusWinnerPages, __) {
         return switch (statusWinnerPages) {
           StatusContent.isViewContent || StatusContent.isLoadContent => const _ControllerLoadingWinnerPage(),

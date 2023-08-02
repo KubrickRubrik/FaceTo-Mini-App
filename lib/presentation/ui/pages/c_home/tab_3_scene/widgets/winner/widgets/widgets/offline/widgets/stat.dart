@@ -43,7 +43,7 @@ class StatWinnerPlace extends StatelessWidget {
 
 /// Minimum travel time for a given scene
 class _MinSecondsItem extends StatelessWidget {
-  const _MinSecondsItem({super.key});
+  const _MinSecondsItem();
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class _MinSecondsItem extends StatelessWidget {
 
 /// User transit time for a given scene
 class _UserTime extends StatelessWidget {
-  const _UserTime({super.key});
+  const _UserTime();
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,7 @@ class _UserTime extends StatelessWidget {
 
 /// Difference between custom travel time and minimum travel time
 class _Difference extends StatelessWidget {
-  const _Difference({super.key});
+  const _Difference();
 
   @override
   Widget build(BuildContext context) {

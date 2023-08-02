@@ -1,7 +1,9 @@
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
+import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
-import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 part "widgets/grid.dart";
 part 'widgets/hardlevel.dart';
 part 'widgets/help.dart';
@@ -11,10 +13,15 @@ class PuzzleHelpSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: SizedBox(
-        //  height: (MediaQuery.of(context).size.height - Provider.of<SceneBloc>(context).hSizeBar - 30) / 2,
-        height: 60,
+    return Center(
+      child: Selector<SceneProvider, double>(
+        selector: (_, Model) => Model.pageData.puzzle.playArea.sizePlayArea.heightPlayArea,
+        builder: (_, heightBar, child) {
+          return SizedBox(
+            height: (MediaQuery.of(context).size.height - heightBar - 30) / 2,
+            child: child!,
+          );
+        },
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -28,6 +35,10 @@ class PuzzleHelpSection extends StatelessWidget {
               //! Help
               _SpacerDot(),
               _ButtonHelp(),
+              _SpacerDot(),
+              FloatingActionButton.small(onPressed: () {
+                context.read<SceneProvider>().test();
+              }),
             ],
           ),
         ),
@@ -37,7 +48,7 @@ class PuzzleHelpSection extends StatelessWidget {
 }
 
 class _SpacerDot extends StatelessWidget {
-  const _SpacerDot({super.key});
+  const _SpacerDot();
 
   @override
   Widget build(BuildContext context) {

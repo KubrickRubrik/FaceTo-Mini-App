@@ -70,7 +70,7 @@ class ButtonsWinnerPage extends StatelessWidget {
 }
 
 class _Separator extends StatelessWidget {
-  const _Separator({super.key});
+  const _Separator();
 
   @override
   Widget build(BuildContext context) {

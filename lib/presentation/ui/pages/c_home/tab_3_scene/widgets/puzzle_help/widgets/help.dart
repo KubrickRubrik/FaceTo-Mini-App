@@ -1,13 +1,13 @@
 part of '../puzzle_help.dart';
 
 class _ButtonHelp extends StatelessWidget {
-  const _ButtonHelp({super.key});
+  const _ButtonHelp();
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // _FMD_SCENE.heplDetails();
+        context.read<SceneProvider>().displayHelper();
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5),

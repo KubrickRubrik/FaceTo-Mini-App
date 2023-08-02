@@ -6,6 +6,7 @@ final class SceneModel {
   final int idSeries;
   final int idImage;
   final int typeView;
+  final int hardLevel;
   final int idApp;
   final int xp;
   final int completed;
@@ -15,7 +16,7 @@ final class SceneModel {
   //
   final int typeTree;
 
-  SceneModel(TableScenes tb, this.typeTree)
+  SceneModel(TableScenes tb, this.typeTree, this.hardLevel)
       : id = tb.id,
         idScene = tb.idScene,
         idSeries = tb.idSeries,

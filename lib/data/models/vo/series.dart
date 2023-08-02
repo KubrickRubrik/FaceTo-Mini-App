@@ -8,13 +8,13 @@ final class SeriesModel {
   final int idApp;
   final String nick;
   final int xp;
-  final int rating;
+  final int ratingUser;
   final int completed;
   final int favorites;
   final int typeTree;
   final int hardLevel;
   final int bestTime;
-  final int ratingSeries;
+  final double ratingSeries;
   final int countUsersRating;
   final int countUsers;
   final int countScenes;
@@ -27,7 +27,7 @@ final class SeriesModel {
         idApp = tb.idApp,
         nick = tb.nick,
         xp = tb.xp,
-        rating = tb.rating,
+        ratingUser = tb.ratingUser,
         completed = tb.completed,
         favorites = tb.favorites,
         typeTree = tb.typeTree,
