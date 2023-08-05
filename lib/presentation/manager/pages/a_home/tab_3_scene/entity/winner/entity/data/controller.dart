@@ -18,16 +18,11 @@ final class WinnerControllerData {
     online.clear();
     offline.clear();
     if (updateData.isOnline) {
+      isOnline = true;
       online.setWinner(updateData);
     } else {
+      isOnline = false;
       offline.setWinner(puzzleData);
     }
-  }
-
-  dynamic getWinner() {
-    return switch (isOnline) {
-      true => online,
-      false => offline,
-    };
   }
 }

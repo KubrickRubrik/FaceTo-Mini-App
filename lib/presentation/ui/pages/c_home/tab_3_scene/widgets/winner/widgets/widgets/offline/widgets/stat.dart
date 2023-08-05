@@ -1,5 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 
 import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
@@ -53,10 +53,10 @@ class _MinSecondsItem extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.centerLeft,
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
               width: 40,
               child: Center(
@@ -67,14 +67,14 @@ class _MinSecondsItem extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             Flexible(
               child: Text(
-                '13:13:13',
-                // ConfigNumbers.convertTime(time),
-                // APP_UTILITY.convertTime(Provider.of<SceneBloc>(context).winnerOffline.recordTime),
+                ConfigNumbers.convertTime(
+                  context.read<SceneProvider>().pageData.winner.data.offline.timeRecord,
+                ),
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFF029bf9),
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
@@ -100,10 +100,10 @@ class _UserTime extends StatelessWidget {
       },
       child: Container(
         alignment: Alignment.centerLeft,
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
               width: 40,
               child: Center(
@@ -114,14 +114,14 @@ class _UserTime extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             Flexible(
               child: Text(
-                "13:13:13",
-                // ConfigNumbers.convertTime(time)
-                // APP_UTILITY.convertTime(Provider.of<SceneBloc>(context, listen: false).winnerOffline.userTime),
+                ConfigNumbers.convertTime(
+                  context.read<SceneProvider>().pageData.winner.data.offline.timeUser,
+                ),
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFF8718e1),
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
@@ -141,50 +141,45 @@ class _Difference extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<Scene, int>(
-      selector: (_, Model) => 1,
-      builder: (_, diffTime, child) {
-        ({String sim, int color}) data = switch (diffTime) {
-          > 0 => (sim: "+", color: 0xFFF54500),
-          < 0 => (sim: "-", color: 0xFF2C9E10),
-          _ => (sim: "", color: 0xFF727272),
-        };
-
-        return InkWell(
-          onTap: () {
-            ToastMassage.toast(context, context.lcz.componentWinnerDiffTime);
-          },
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 40,
-                  width: 40,
-                  child: Center(
-                    child: Icon(
-                      AppIcons.minTime,
-                      color: Color(0xFF384869),
-                      size: 25,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  "${data.sim}${ConfigNumbers.convertTime(diffTime.abs())}",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: Color(data.color),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
+    final diffTime = context.read<SceneProvider>().pageData.winner.data.offline.diffTime;
+    final data = switch (diffTime) {
+      > 0 => (sim: "+", color: 0xFFF54500),
+      < 0 => (sim: "-", color: 0xFF2C9E10),
+      _ => (sim: "", color: 0xFF727272),
+    };
+    return InkWell(
+      onTap: () {
+        ToastMassage.toast(context, context.lcz.componentWinnerDiffTime);
       },
+      child: Container(
+        alignment: Alignment.centerLeft,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 40,
+              width: 40,
+              child: Center(
+                child: Icon(
+                  AppIcons.minTime,
+                  color: Color(0xFF384869),
+                  size: 25,
+                ),
+              ),
+            ),
+            const SizedBox(width: 5),
+            Text(
+              "${data.sim}${ConfigNumbers.convertTime(diffTime.abs())}",
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: Color(data.color),
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

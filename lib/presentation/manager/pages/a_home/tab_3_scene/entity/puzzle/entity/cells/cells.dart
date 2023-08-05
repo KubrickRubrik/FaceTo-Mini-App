@@ -12,7 +12,7 @@ final class _CellsPuzzle {
   _SectionDataPuzzle sectionsDataPuzzle = _SectionDataPuzzle();
 
   ///! Setting game launch state
-  void setGameLaunchState(SceneEntity dataScene) {
+  void setGameLaunchState() {
     listMainCell.clear();
     additionalCells.clear();
     sectionsDataPuzzle.clear();

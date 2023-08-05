@@ -3,7 +3,6 @@
 import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
-import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/list_content/list.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';
@@ -34,6 +33,9 @@ final class SeriesProvider extends ChangeNotifier with _State {
       if (series.idSeries == updateData.series.idSeires) {
         series.user.stat.completed = updateData.series.completed;
         series.stat.timeRecord = updateData.series.timeRecord;
+        series.stat.ratingSeries = updateData.series.ratingSeries;
+        series.stat.countUsersRating = updateData.series.countUsers;
+        series.stat.countUsers = updateData.series.countUsers;
         break;
       }
     }
@@ -52,7 +54,7 @@ final class SeriesProvider extends ChangeNotifier with _State {
     notifyListeners();
   }
 
-  // // Setting page content status when data is loaded
+  // Setting page content status when data is loaded
   void _setStatusContentPage(StatusContent val) {
     statusContentPage = val;
     notifyListeners();

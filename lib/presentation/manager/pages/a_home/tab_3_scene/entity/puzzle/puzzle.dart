@@ -34,45 +34,45 @@ part 'actions/entity/duration.dart';
 ///   4. definition of winning a game;
 ///   5. puzzle restarts.
 final class PuzzleEntity {
-  /// Puzzle play area
+  /// Puzzle play area.
   final playArea = _PlayArea();
 
-  /// Data of scene
+  /// Data of scene.
   final scene = _DataScene();
 
-  /// Puzzle statuses
+  /// Puzzle statuses.
   final status = _StatusPuzzle();
 
-  /// The unique key of a correctly folded puzzle
+  /// The unique key of a correctly folded puzzle.
   final keys = _KeysPuzzle();
 
-  /// Сontains lists of the main and additional cells of the game
+  /// Сontains lists of the main and additional cells of the game.
   final cells = _CellsPuzzle();
 
-  /// Сontains lists of the main and additional cells of the game
+  /// Сontains lists of the main and additional cells of the game.
   final swipe = _SwipePuzzle();
 
-  /// Timer to keep track of puzzle folding time
+  /// Timer to keep track of puzzle folding time.
   final timer = _TimerGame();
 
-  /// Set default options when launching any game
+  /// Set default options when launching any game.
   void setDefaultParameters({required String grid, required Size sizeWindow}) {
     keys.setDefaultParameters(grid);
     playArea.sizePlayArea.setDefaultParameters(w: sizeWindow.width, h: sizeWindow.height);
   }
 
-  /// Checking the first start when swiping the scene page
+  /// Checking the first start when swiping the scene page.
   bool isFirstRunThisScene() => scene.useIdScene == -1;
-  // Checking if the user is running the previous scene for the game
+  // Checking if the user is running the previous scene for the game.
   bool checkingThisIsGameWithPreviousScene({required int idNewSeries, required int idNewScene}) {
-    // true - if the new game is launched with the parameters of the old scene
+    // true - if the new game is launched with the parameters of the old scene.
     return (idNewSeries == scene.useIdSeries && idNewScene == scene.useIdScene && keys.isKeysPuzzleEqual());
   }
 
-  /// Old (previously loaded) data will be returned if idScene has not changed
+  /// Old (previously loaded) data will be returned if idScene has not changed.
   bool isOldSceneUsed(int idNewSeires) => scene.useIdScene == idNewSeires;
 
-  /// Waiting for puzzle cells to shift
+  /// Waiting for puzzle cells to shift.
   Future<void> puzzleShiftWaiting(TypeAxisSwipe axis) async {
     final waitingTime = switch (axis) {
       TypeAxisSwipe.diagonal => playArea.durationAnimation.durationDiagonalAnimation,
@@ -86,18 +86,50 @@ final class PuzzleEntity {
     status.setGameLaunchState();
     scene.setGameLaunchState(dataScene);
     keys.setGameLaunchState(dataScene.grid);
-    cells.setGameLaunchState(dataScene);
+    cells.setGameLaunchState();
+  }
+
+  /// Repeated return to the scene (for example,
+  /// when the user returns to the scenes page, and
+  /// then goes back to the game to the same scene).
+  void repeatedReturnToScene() {
+    status.setGameLaunchState();
+  }
+
+  /// Restarting the puzzle scene.
+  void restartGameLaunchState() {
+    // 1 Setting default status for game.
+    status.setGameLaunchState();
+    cells.setGameLaunchState();
+    // 2 Obfuscation of the key (puzzle cells with the image will line up on it).
+    keys.mixCurrentKeys(_ActionMixData.mixData(
+      currentKeys: keys._currentGameListKeysPuzzleWin,
+      hardLevel: scene.hardLevel,
+      xCountCells: playArea.grid.xCountCells,
+      yCountCells: playArea.grid.yCountCells,
+    ));
+    // 3 Creation of basic and game cells of the puzzle.
+    cells.creatingCellsPuzzle(
+      listKeys: keys._currentGameListKeysPuzzleWin,
+      grid: playArea.grid,
+      cell: playArea.sizeCell,
+    );
+    // 4 Create data and cell coordinates.
+    cells.addSectionsData(
+      grid: playArea.grid,
+      cell: playArea.sizeCell,
+    );
   }
 
   ///! Installing and configuring the basic parameters of the puzzle:
-  /// 1. Scene key shuffle
-  /// 2. Formation of image cell parameters
-  /// 3. Setting the angle limit for a diagonal swipe
+  /// 1. Scene key shuffle.
+  /// 2. Formation of image cell parameters.
+  /// 3. Setting the angle limit for a diagonal swipe.
   void setMainSettingsPuzzle() async {
     // 1
     playArea.aScale = ConfigNumbers.getNumRound(720 / playArea.sizePlayArea.widthPlayArea);
     playArea.grid.set(xCells: scene.grid.xCount, yCells: scene.grid.yCount);
-    // 2 Obfuscation of the key (puzzle cells with the image will line up on it)
+    // 2 Obfuscation of the key (puzzle cells with the image will line up on it).
     keys.mixCurrentKeys(_ActionMixData.mixData(
       currentKeys: keys._currentGameListKeysPuzzleWin,
       hardLevel: scene.hardLevel,
@@ -114,13 +146,13 @@ final class PuzzleEntity {
         rangeAngle: swipe.diagonalConstraints.rangeIdentDiagonalSwipe,
       ),
     );
-    // 5 Creation of basic and game cells of the puzzle
+    // 5 Creation of basic and game cells of the puzzle.
     cells.creatingCellsPuzzle(
       listKeys: keys._currentGameListKeysPuzzleWin,
       grid: playArea.grid,
       cell: playArea.sizeCell,
     );
-    // 6 Create data and cell coordinates
+    // 6 Create data and cell coordinates.
     cells.addSectionsData(
       grid: playArea.grid,
       cell: playArea.sizeCell,
@@ -130,7 +162,7 @@ final class PuzzleEntity {
   ///! Preparing cell coordinates for shifting.
   /// Swipe may not be available if the user is swiping diagonally,
   /// but the scene does not allow diagonal swiping or the initial
-  /// cell of a swipe is forbidden for a diagonal swipe
+  /// cell of a swipe is forbidden for a diagonal swipe.
   /// Therefore, a check is made on [SceneProvider].
   CellsDataShifted? definitionCellsShift() {
     // Storage and transfer of shift cells
@@ -167,7 +199,7 @@ final class PuzzleEntity {
 
   /// Relocation a cell from the main list of cells, which, during
   /// the shift, went outside the play area, to the start or end
-  /// position, depending on the type and direction of the swipe
+  /// position, depending on the type and direction of the swipe.
   void relocationMainCellFromOutsideZone(CellsDataShifted shiftedCells) {
     _ActionShift.relocationCell(
       shiftedCells: shiftedCells,
@@ -187,9 +219,9 @@ final class PuzzleEntity {
     );
   }
 
-  /// Checking the scene combination to show the winner
+  /// Checking the scene combination to show the winner.
   ({bool isWin, int time}) checkingWinningPuzzleCombination(CellsDataShifted shiftedCells) {
-    // Checking the winning combination of puzzle cells
+    // Checking the winning combination of puzzle cells.
     final isWin = keys.checkingWinningCombination(
       _ActionShift.formatingCellKeysCombination(
         shiftedCells: shiftedCells,

@@ -12,7 +12,7 @@ final class PuzzleUpdatesModel {
           time: data['update']['series']['time'],
           xp: data['update']['series']['xp'],
           completed: data['update']['series']['completed'],
-          ratingSeries: data['update']['series']['rating'],
+          ratingSeries: double.parse("${data['update']['series']['rating']}"),
           countUsersRating: data['update']['series']['count_users_rating'],
           countUsers: data['update']['series']['count_users'],
         ),

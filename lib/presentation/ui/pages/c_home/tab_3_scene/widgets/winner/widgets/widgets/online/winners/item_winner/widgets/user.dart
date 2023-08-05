@@ -2,13 +2,13 @@ part of '../item.dart';
 
 class _UserData extends StatelessWidget {
   const _UserData(this.data);
-  final RecordUser data;
+  final UserRecordsData data;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Provider.of<CM_AuthorBloc>(context, listen: false).getData(_data.idApp);
+        context.read<AuthorProvider>().getAuthor(data.idApp);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -32,11 +32,11 @@ class _UserData extends StatelessWidget {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(22),
-                child: const ComponentImage(
+                child: ComponentImage(
                   typeSourceImage: TypeSourceImage.server, // _data.image.typeOriginLogo,
                   targetSourceImage: TargetSourceImage.app,
                   typeCache: TypeCacheImage.notCache,
-                  imagePath: '',
+                  imagePath: data.image.logo,
                 ),
               ),
             ),
@@ -47,7 +47,7 @@ class _UserData extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: Color(0xFF1F1F1F),
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
               ),

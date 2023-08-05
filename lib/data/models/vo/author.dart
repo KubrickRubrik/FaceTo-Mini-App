@@ -100,38 +100,3 @@ class IconAuthorModel {
     required this.pattern,
   });
 }
-
-
-// {
-//   author: {
-   
-//     nick: KubrickRubrik, 
-//     about: Разработчик клиент-серверных приложений Android | iOS | Web. Developer of client-server applications for Android | iOS, 
-//     image: {
-//       logo: https://ft-gallery.oyavi.com/images/1ebf/7908/small/230.webp, 
-//       banner: https://ft-gallery.oyavi.com/images/afc1/4ef3/middle/229.webp
-//       }, 
-//     stat: {
-//         rank: {
-//           id: 11, title: '',
-//           }, 
-//         level: 353, 
-//         rating: 635897, 
-//         count_sub: 7
-//       }, 
-//       links: [
-//         {
-//           id: 143, 
-//           icon: {
-//             id: 13, 
-//             redirect: 1, 
-//             title: Telegram, 
-//             url: https://ft-gallery.oyavi.com/icons//13.png,
-//             pattern: https://t.me/
-//         }, 
-//         address: regrevers
-//         }
-//       ], 
-//       follower: -1
-//   },
-// }

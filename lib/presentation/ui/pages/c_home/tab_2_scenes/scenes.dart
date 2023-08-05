@@ -73,7 +73,7 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
         }
         // TO LEFT TAB_2
         else {
-          locator<PagesControllerProvider>().swipeToSeries();
+          context.read<PagesControllerProvider>().swipeBack();
           print('SWIPE TO PAGE SERIES');
         }
         swipeVector = details.localPosition.dx;

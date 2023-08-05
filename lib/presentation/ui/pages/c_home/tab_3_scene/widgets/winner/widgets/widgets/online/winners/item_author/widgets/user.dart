@@ -2,7 +2,7 @@ part of '../item.dart';
 
 class _UserData extends StatelessWidget {
   const _UserData(this.data);
-  final RecordUser data;
+  final UserRecordsData data;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class _UserData extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "${data.pos}",
+                    "${data.position}",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Color(0xFF000000),

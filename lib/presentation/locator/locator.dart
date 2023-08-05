@@ -25,6 +25,7 @@ import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.I;
@@ -55,5 +56,7 @@ abstract final class ServicesLocator {
     locator.registerLazySingleton(() => ScenesProvider(locator()));
     locator.registerLazySingleton(() => SceneProvider(locator(), locator(), locator()));
     locator.registerLazySingleton(() => AuthorProvider(locator()));
+    // Sound
+    locator.registerLazySingleton(() => SoundController());
   }
 }

@@ -21,6 +21,7 @@ final class SeriesPuzzleUpdate {
   final int completed;
   final double ratingSeries;
   final int countUsersRating;
+  final int countUsers;
 
   SeriesPuzzleUpdate({
     required this.idSeries,
@@ -28,6 +29,7 @@ final class SeriesPuzzleUpdate {
     required this.completed,
     required this.ratingSeries,
     required this.countUsersRating,
+    required this.countUsers,
   });
 }
 

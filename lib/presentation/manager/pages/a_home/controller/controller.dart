@@ -1,3 +1,5 @@
+import 'package:facetomini/presentation/locator/locator.dart';
+import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:flutter/material.dart';
 part 'state.dart';
 
@@ -15,32 +17,20 @@ final class PagesControllerProvider extends ChangeNotifier with _State {
     notifyListeners();
   }
 
-  Future<void> swipeToSeries() async {
-    _swipeToTab(0);
-    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
-    //   APP_AUDIO.soundToScenes();
-    // });
-  }
-
   Future<void> swipeToScenes() async {
     _swipeToTab(1);
-    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
-    //   APP_AUDIO.soundToScenes();
-    // });
+    await locator<SoundController>().playScenes();
   }
 
   Future<void> swipeToScene() async {
     _swipeToTab(2);
-    // await Future.delayed(Duration(milliseconds: 150)).then((value) {
-    //   APP_AUDIO.soundToScenes();
-    // });
+    await locator<SoundController>().playScene();
   }
 
   // Swipe only to previous page/tab
-  Future<void> swipeBackTab(int index) async {
-    _swipeToTab(index);
-    // await APP_AUDIO.soundBack();
-    // _FMD_SCENE.canselTimer();
+  Future<void> swipeBack() async {
+    _swipeToTab(indexTab - 1);
+    await locator<SoundController>().playBack();
   }
 
   // Displaying the series rating information page

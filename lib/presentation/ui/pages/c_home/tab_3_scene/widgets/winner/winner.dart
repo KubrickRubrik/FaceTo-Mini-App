@@ -29,25 +29,30 @@ class _ControllerLoadingWinnerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xCC000000),
-      alignment: Alignment.center,
+    return InkWell(
+      onTap: () {
+        context.read<SceneProvider>().displayImagePage();
+      },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15),
-        width: 350,
-        decoration: BoxDecoration(
-          color: const Color(0xFFffffff),
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: const SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              //? Controller loading
-              ControllerWinnerSection(),
-              //? Buttons navigation winner page
-              ButtonsWinnerPage(),
-            ],
+        color: const Color(0xCC000000),
+        alignment: Alignment.center,
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 15),
+          width: 350,
+          decoration: BoxDecoration(
+            color: const Color(0xFFffffff),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: const SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                //? Controller loading
+                ControllerWinnerSection(),
+                //? Buttons navigation winner page
+                ButtonsWinnerPage(),
+              ],
+            ),
           ),
         ),
       ),
