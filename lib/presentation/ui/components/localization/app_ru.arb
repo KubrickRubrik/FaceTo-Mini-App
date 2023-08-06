@@ -88,6 +88,7 @@
     "labelWinnerScene":"Рекордсмены",
     "labelWinnerUsertScene":"Ваш результат",
     "labelWinnerInfoStatistic":"Статистика",
+    "descriptionNoneWinners":"Поставьте рекорд\r\nпервым в ",
 
     "minDataStatistics":"Мин",
     "midDataStatistics":"Средн",

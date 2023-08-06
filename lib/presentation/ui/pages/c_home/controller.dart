@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/winners/winners.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/winners/winners.dart';
 import 'package:facetomini/presentation/manager/author/author.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/info_rating.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
@@ -64,6 +66,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ChangeNotifierProvider.value(value: locator<ScenesProvider>()),
             ChangeNotifierProvider.value(value: locator<SceneProvider>()),
             ChangeNotifierProvider.value(value: locator<AuthorProvider>()),
+            ChangeNotifierProvider.value(value: locator<WinnersProvider>()),
           ],
           child: Stack(
             children: [
@@ -100,14 +103,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 child: InfoRatingApp(),
               ),
               //! Winners
-              // if (Provider.of<CM_WinnersBloc>(context).stateViewPage == ViewStatusPage.view_content)
-              //   Positioned(
-              //     top: 0,
-              //     bottom: 0,
-              //     left: 0,
-              //     right: 0,
-              //     child: CM_Winners(),
-              //   ),
+              const Positioned(
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: ComponentWinners(),
+              ),
               //! Author page
               const Positioned(
                 top: 0,

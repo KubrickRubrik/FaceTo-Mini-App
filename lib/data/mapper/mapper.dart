@@ -3,11 +3,13 @@ import 'package:facetomini/data/models/vo/scene.dart';
 import 'package:facetomini/data/models/vo/series.dart';
 import 'package:facetomini/data/models/vo/session.dart';
 import 'package:facetomini/data/models/vo/stat_puzzle.dart';
+import 'package:facetomini/data/models/vo/winners.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/entities/vo/app.dart';
 import 'package:facetomini/domain/entities/vo/author.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
+import 'package:facetomini/domain/entities/vo/winners.dart';
 
 /// Transformation of the 'raw' models in the entities used
 abstract final class EntitiesMapper {
@@ -165,5 +167,10 @@ abstract final class EntitiesMapper {
         ),
       ),
     );
+  }
+
+  //
+  static WinnersEntity setWinners(WinnersModel model) {
+    return WinnersEntity();
   }
 }

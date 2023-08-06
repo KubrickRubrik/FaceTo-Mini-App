@@ -17,8 +17,7 @@ class ViewAuthorPage extends StatelessWidget {
       onTap: () {
         Provider.of<PagesControllerProvider>(context, listen: false).setViewInfoAuthorPage();
       },
-      child: Container(
-        color: const Color(0xAA000000),
+      child: Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),

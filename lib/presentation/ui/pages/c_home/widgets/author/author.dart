@@ -29,14 +29,19 @@ class _ViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<AuthorProvider, StatusContent>(
-      selector: (_, Model) => Model.statusPage,
-      builder: (_, statePage, __) {
-        return switch (statePage) {
-          StatusContent.isViewContent || StatusContent.isLoadContent => const ViewAuthorPage(),
-          _ => const NoneViewAuthorPage(),
-        };
-      },
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        color: Color(0xCC000000),
+      ),
+      child: Selector<AuthorProvider, StatusContent>(
+        selector: (_, Model) => Model.statusPage,
+        builder: (_, statePage, __) {
+          return switch (statePage) {
+            StatusContent.isViewContent || StatusContent.isLoadContent => const ViewAuthorPage(),
+            _ => const NoneViewAuthorPage(),
+          };
+        },
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
-import 'package:facetomini/presentation/manager/author/author.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/author/author.dart';
+import 'package:facetomini/presentation/manager/winners/winners.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
