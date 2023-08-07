@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/winners/winners.dart';
-import 'package:facetomini/presentation/ui/pages/c_home/widgets/winners/winners.dart';
-import 'package:facetomini/presentation/manager/author/author.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/winners/winners.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/additions/author/author.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/additions/winners/winners.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/info_rating.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/settings_panel.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
-import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_1_series/series.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/scene.dart';
@@ -16,7 +17,6 @@ import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:provider/provider.dart';
-import 'widgets/author/author.dart';
 part 'widgets/app_bar/app_bar.dart';
 
 class HomePage extends StatefulWidget {

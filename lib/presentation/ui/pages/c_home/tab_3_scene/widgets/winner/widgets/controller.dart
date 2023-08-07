@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:facetomini/presentation/ui/pages/c_home/widgets/item_winner/item.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/core/config/links.dart';
-import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/widgets/winner/widgets/widgets/online/winners/item_winner/item.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/widgets/winner/widgets/widgets/online/winners/item_author/item.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/widgets/winner/widgets/widgets/offline/widgets/places.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/widgets/winner/widgets/widgets/offline/widgets/stat.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';

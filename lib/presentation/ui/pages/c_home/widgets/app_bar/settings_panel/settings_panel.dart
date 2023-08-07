@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/widgets/item_info.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/widgets/item_sound.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/widgets/item_language.dart';

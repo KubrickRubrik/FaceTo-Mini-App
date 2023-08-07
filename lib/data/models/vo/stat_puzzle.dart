@@ -47,6 +47,7 @@ final class PuzzleUpdatesModel {
           ),
         );
 
+  //
   PuzzleUpdatesModel.db({required TableSeries series, required TableScenes scene})
       : series = SeiresPuzzleUpdatesModel(
           idSeires: series.idSeries,

@@ -5,7 +5,7 @@ import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:facetomini/presentation/ui/components/images.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:provider/provider.dart';
 part 'widgets/main_cells/controller.dart';
 part 'widgets/additional_cells/controller.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/widgets/winner/widgets/buttons.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/widgets/winner/widgets/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:provider/provider.dart';
 
 /// Widget to show/hide the winners page
