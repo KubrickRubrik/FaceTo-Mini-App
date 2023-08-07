@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/entities/stat.dart';
 
 import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
@@ -67,19 +68,19 @@ class _View extends StatelessWidget {
                 _DescriptionWinnersStat(
                   label: context.lcz.minDataStatistics,
                   color: 0xFF008500,
-                  data: Provider.of<CM_WinnersBloc>(context).infoStat.min,
+                  data: context.read<WinnersProvider>().dataPage.winners.stat.min,
                 ),
                 spaces(),
                 _DescriptionWinnersStat(
                   label: context.lcz.midDataStatistics,
                   color: 0xFF0059FF,
-                  data: Provider.of<CM_WinnersBloc>(context).infoStat.mid,
+                  data: context.read<WinnersProvider>().dataPage.winners.stat.mid,
                 ),
                 spaces(),
                 _DescriptionWinnersStat(
                   label: context.lcz.maxDataStatistics,
                   color: 0xFFFF0000,
-                  data: Provider.of<CM_WinnersBloc>(context).infoStat.max,
+                  data: context.read<WinnersProvider>().dataPage.winners.stat.max,
                 ),
                 //
                 const _LineGraph(),

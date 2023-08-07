@@ -3,38 +3,27 @@ part of '../stat.dart';
 class _PublicChar extends StatelessWidget {
   const _PublicChar({super.key});
 
- if (Provider.of<CM_WinnersBloc>(context).infoStat.publicState == 0) return const SizedBox();
-    //
-    String labelCharacteristics = '';
-    String valCharacteristics = '';
-
-    labelCharacteristics = APP_STRING.labelCharPublicScenes;
-    switch (Provider.of<CM_WinnersBloc>(context).infoStat.publicState) {
-      case 1:
-        valCharacteristics = APP_STRING.charPublicScenes_1;
-        break;
-      case 2:
-        valCharacteristics = APP_STRING.charPublicScenes_2;
-        break;
-      case 3:
-        valCharacteristics = APP_STRING.charPublicScenes_3;
-        break;
-      case 4:
-        valCharacteristics = APP_STRING.charPublicScenes_4;
-        break;
-    }
+  String getTitle(BuildContext context) {
+    return switch (context.read<WinnersProvider>().dataPage.winners.stat.publicState) {
+      1 => context.lcz.playerChar_1,
+      2 => context.lcz.playerChar_2,
+      3 => context.lcz.playerChar_3,
+      _ => context.lcz.playerChar_4,
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (context.read<WinnersProvider>().dataPage.winners.stat.publicState == 0) return const SizedBox();
     return Column(
       children: [
-        //! Label
+        //? Label
         Container(
           margin: const EdgeInsets.only(top: 10),
           height: 50,
           alignment: Alignment.center,
           child: Text(
-            labelCharacteristics,
+            context.lcz.playersCharacteristics,
             style: const TextStyle(
               color: Color(0xFFffffff),
               fontSize: 14,
@@ -42,7 +31,7 @@ class _PublicChar extends StatelessWidget {
             ),
           ),
         ),
-        //!
+        //?
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -51,9 +40,9 @@ class _PublicChar extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
-            valCharacteristics,
+            getTitle(context),
             style: const TextStyle(
-              color: Color(0xFFffffff),
+              color: Colors.white,
               fontSize: 12,
               height: 1.5,
             ),

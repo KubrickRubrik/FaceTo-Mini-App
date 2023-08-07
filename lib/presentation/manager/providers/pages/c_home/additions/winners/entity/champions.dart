@@ -3,8 +3,24 @@ part of '../winners.dart';
 final class _Winners {
   final listWinners = <ChampionData>[];
   final winnerUser = ChampionData();
-  // final stat = ChampionStat();
+  final stat = InfoStatData();
+
+  // Adding winner data and puzzle statistics.
   void set(WinnersEntity data) {
+    _clear();
+    //? Set winners
+    _addWinners(data);
+    //? Set stata
+    stat.set(data.stat!);
+  }
+
+  // Method to add winners when scrolling.
+  void addScrollList(WinnersEntity data) {
+    _addWinners(data);
+  }
+
+  // Method for adding winners.
+  void _addWinners(WinnersEntity data) {
     final lengthNewListChampions = data.listWinner.length;
     for (var i = 0, j = 1; i < data.listWinner.length; i++, j++) {
       final champion = data.listWinner[i];
@@ -34,16 +50,6 @@ final class _Winners {
           ),
       );
     }
-    // winnerRecordUser.set(
-    //   data: data.winner,
-    //   toNextTime: data.winner.stat.time,
-    //   toLastTime: data.winner.stat.time,
-    // );
-    // winnerViewUser.set(
-    //   data: data.viewUser,
-    //   toNextTime: data.viewUser.stat.toNextTime,
-    //   toLastTime: data.viewUser.stat.toLastTime,
-    // );
   }
 
   // Formation of lag and lead time indicators for the current user (next and previous).
@@ -77,7 +83,7 @@ final class _Winners {
     return (toNextTime: nextTime, toLastTime: lastTime);
   }
 
-  void clear() {
+  void _clear() {
     listWinners.clear();
     winnerUser.clear();
   }

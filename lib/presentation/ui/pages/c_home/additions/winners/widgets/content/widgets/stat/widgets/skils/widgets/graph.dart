@@ -32,7 +32,7 @@ class _GraphSkils extends StatelessWidget {
                           direction: Axis.vertical,
                           children: [
                             Spacer(
-                              flex: 100 - Provider.of<CM_WinnersBloc>(context).infoStat.graph.flexRight,
+                              flex: 100 - context.read<WinnersProvider>().dataPage.winners.stat.graph.flexRight,
                             ),
                             SizedBox(
                               height: 30,
@@ -54,7 +54,7 @@ class _GraphSkils extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 5),
                                   Text(
-                                    ConfigNumbers.shortValue(Provider.of<WinnersProvider>(context).infoStat.graph.countUsersMax),
+                                    ConfigNumbers.shortValue(context.read<WinnersProvider>().dataPage.winners.stat.graph.countUsersMax),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
@@ -64,7 +64,7 @@ class _GraphSkils extends StatelessWidget {
                               ),
                             ),
                             Flexible(
-                              flex: Provider.of<WinnersProvider>(context).infoStat.graph.flexRight,
+                              flex: context.read<WinnersProvider>().dataPage.winners.stat.graph.flexRight,
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: 5),
                                 decoration: BoxDecoration(
@@ -105,7 +105,7 @@ class _GraphSkils extends StatelessWidget {
                         direction: Axis.vertical,
                         children: [
                           Spacer(
-                            flex: 100 - Provider.of<WinnersProvider>(context).infoStat.graph.flexLeft,
+                            flex: 100 - context.read<WinnersProvider>().dataPage.winners.stat.graph.flexLeft,
                           ),
                           SizedBox(
                             height: 30,
@@ -127,7 +127,7 @@ class _GraphSkils extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 5),
                                 Text(
-                                  ConfigNumbers.shortValue(Provider.of<WinnersProvider>(context).infoStat.graph.countUsersMin),
+                                  ConfigNumbers.shortValue(context.read<WinnersProvider>().dataPage.winners.stat.graph.countUsersMin),
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 12,
@@ -137,7 +137,7 @@ class _GraphSkils extends StatelessWidget {
                             ),
                           ),
                           Flexible(
-                            flex: Provider.of<WinnersProvider>(context).infoStat.graph.flexLeft,
+                            flex: context.read<WinnersProvider>().dataPage.winners.stat.graph.flexLeft,
                             child: Container(
                               margin: const EdgeInsets.only(bottom: 5),
                               decoration: BoxDecoration(

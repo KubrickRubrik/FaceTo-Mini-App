@@ -1,5 +1,6 @@
-import 'package:facetomini/domain/entities/vo/winners.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/domain/entities/vo/winners.dart';
+import 'package:facetomini/presentation/manager/entities/stat.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/presentation/manager/entities/champion.dart';
 import 'package:facetomini/core/config/entity.dart';
@@ -16,11 +17,10 @@ final class WinnersProvider extends ChangeNotifier with _State {
 
   /// Request series or scene winners
   Future<void> getWinners(int idSource, TypeWinnersSource type) async {
-    if (dataPage.idSource == idSource && dataPage.type == type) return;
     if (super.actionStatus == ActionStatus.isAction) return;
     //
     dataPage.source.set(idSource: idSource, type: type);
-    dataPage.winners.clear();
+    dataPage.winners._clear();
     _setActions(ActionStatus.isAction, false);
     _setStatusPage(StatusContent.isLoadContent);
     final dto = WinnersDTO(idSource: idSource, type: type);
@@ -57,7 +57,7 @@ final class WinnersProvider extends ChangeNotifier with _State {
       _setStatusPage(StatusContent.isNoneContent);
       _setStatusWinnersList(StatusContent.isEmptyContent);
     } else {
-      // pageData.overwritingPageData(response.data!);
+      dataPage.winners.addScrollList(response.data!);
       _setStatusPage(StatusContent.isViewContent);
     }
   }
