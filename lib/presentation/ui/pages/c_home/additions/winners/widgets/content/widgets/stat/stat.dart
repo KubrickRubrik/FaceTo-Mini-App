@@ -35,7 +35,7 @@ class ViewInfoStat extends StatelessWidget {
           true => child!,
         };
       },
-      child: const SizedBox(),
+      child: const _View(),
     );
   }
 }
@@ -56,36 +56,39 @@ class _View extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
         child: DecoratedBox(
           decoration: const BoxDecoration(
-            color: Color(0x93000000),
+            color: Color(0xB1000000),
           ),
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.only(top: 10, bottom: 7, left: 0, right: 0),
-            child: Column(
-              children: [
-                const _SkilsWinnersStat(),
-                const SizedBox(height: 20),
-                _DescriptionWinnersStat(
-                  label: context.lcz.minDataStatistics,
-                  color: 0xFF008500,
-                  data: context.read<WinnersProvider>().dataPage.winners.stat.min,
-                ),
-                spaces(),
-                _DescriptionWinnersStat(
-                  label: context.lcz.midDataStatistics,
-                  color: 0xFF0059FF,
-                  data: context.read<WinnersProvider>().dataPage.winners.stat.mid,
-                ),
-                spaces(),
-                _DescriptionWinnersStat(
-                  label: context.lcz.maxDataStatistics,
-                  color: 0xFFFF0000,
-                  data: context.read<WinnersProvider>().dataPage.winners.stat.max,
-                ),
-                //
-                const _LineGraph(),
-                const _PublicChar(),
-              ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.only(top: 10, bottom: 7, left: 0, right: 0),
+              child: Column(
+                children: [
+                  const _SkilsWinnersStat(),
+                  const SizedBox(height: 20),
+                  _DescriptionWinnersStat(
+                    label: context.lcz.minDataStatistics,
+                    color: 0xFF00FF00,
+                    data: context.read<WinnersProvider>().dataPage.winners.stat.min,
+                  ),
+                  spaces(),
+                  _DescriptionWinnersStat(
+                    label: context.lcz.midDataStatistics,
+                    color: 0xFF0084FF,
+                    data: context.read<WinnersProvider>().dataPage.winners.stat.mid,
+                  ),
+                  spaces(),
+                  _DescriptionWinnersStat(
+                    label: context.lcz.maxDataStatistics,
+                    color: 0xFFFF2600,
+                    data: context.read<WinnersProvider>().dataPage.winners.stat.max,
+                  ),
+                  //
+                  const _LineGraph(),
+                  const _PublicChar(),
+                ],
+              ),
             ),
           ),
         ),

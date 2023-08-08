@@ -97,7 +97,7 @@ class _LineGraph extends StatelessWidget {
               fontSize: 9,
             ),
             margin: 10,
-            interval: double.parse("${halfIntervalX}"),
+            interval: double.parse("$halfIntervalX"),
             getTitles: (value) {
               final item = value.toInt();
               String data = '';
@@ -114,23 +114,21 @@ class _LineGraph extends StatelessWidget {
           leftTitles: SideTitles(
             showTitles: true,
             reservedSize: 20,
-            // getTextStyles:(),
-            getTextStyles: (context, value) => TextStyle(
+            getTextStyles: (context, value) => const TextStyle(
               color: Color(0xffdddddd),
-              fontWeight: FontWeight.w400,
               fontSize: 9,
             ),
             margin: 10,
-            interval: double.parse("${intervalY}"),
+            interval: double.parse("$intervalY"),
             getTitles: (value) {
               int item = value.toInt();
               String data = '';
-              if (item == step_1Y) data = ConfigNumbers.setShortSecond(step_1Y);
-              if (item == step_2Y) data = ConfigNumbers.setShortSecond(step_2Y);
-              if (item == step_3Y) data = ConfigNumbers.setShortSecond(step_3Y);
-              if (item == step_4Y) data = ConfigNumbers.setShortSecond(step_4Y);
-              if (item == step_5Y) data = ConfigNumbers.setShortSecond(step_5Y);
-              if (item == step_6Y) data = ConfigNumbers.setShortSecond(step_6Y);
+              if (item == step_1Y) data = ConfigNumbers.shortValue(step_1Y);
+              if (item == step_2Y) data = ConfigNumbers.shortValue(step_2Y);
+              if (item == step_3Y) data = ConfigNumbers.shortValue(step_3Y);
+              if (item == step_4Y) data = ConfigNumbers.shortValue(step_4Y);
+              if (item == step_5Y) data = ConfigNumbers.shortValue(step_5Y);
+              if (item == step_6Y) data = ConfigNumbers.shortValue(step_6Y);
               return data;
             },
           ),
@@ -143,6 +141,7 @@ class _LineGraph extends StatelessWidget {
             textStyle: const TextStyle(
               color: Colors.white,
               fontSize: 12,
+              letterSpacing: 1,
             ),
           ),
           rightTitle: AxisTitle(
@@ -155,6 +154,7 @@ class _LineGraph extends StatelessWidget {
             textStyle: const TextStyle(
               color: Colors.white,
               fontSize: 12,
+              letterSpacing: 1,
             ),
           ),
         ),
@@ -177,7 +177,7 @@ class _LineGraph extends StatelessWidget {
             height: 50,
             alignment: Alignment.center,
             child: Text(
-              context.lcz.labelGraph_1,
+              context.lcz.labelGraph_2,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -189,7 +189,7 @@ class _LineGraph extends StatelessWidget {
             aspectRatio: 1.8,
             child: LineChart(
               _sampleData(),
-              swapAnimationDuration: Duration(milliseconds: 350),
+              swapAnimationDuration: const Duration(milliseconds: 350),
               swapAnimationCurve: Curves.linear,
             ),
           ),

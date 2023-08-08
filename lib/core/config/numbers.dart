@@ -52,10 +52,10 @@ abstract final class ConfigNumbers {
   static String setShortSecond(int? count) {
     return switch (count) {
       null || 0 => "",
-      _ => "${getNumRound((count / 1000))} k",
+      _ => "${getNumRound((count / 1000), 0)} k",
     };
   }
 
   /// Rounding to a certain precision
-  static double getNumRound(double num) => double.parse(num.toStringAsFixed(2));
+  static double getNumRound(double nums, [int round = 2]) => double.parse(nums.toStringAsFixed(round));
 }

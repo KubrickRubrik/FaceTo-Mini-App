@@ -1,10 +1,7 @@
-// ignore_for_file: avoid_print
-
+import 'package:flutter/material.dart';
 import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/use_cases/series.dart';
-import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/widgets/list_content/list.dart';
-import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 part 'state.dart';
 

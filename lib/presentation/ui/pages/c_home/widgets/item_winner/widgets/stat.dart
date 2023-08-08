@@ -94,6 +94,7 @@ class _LabelStat extends StatelessWidget {
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
+            height: 1.4,
           ),
         ),
       ),
@@ -130,10 +131,10 @@ class _DifferenceStat extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                toNextTime(context),
+                _toNextTime(context),
                 const SizedBox(height: 5),
                 //? Minus
-                topPeviousTime(context),
+                _topPeviousTime(context),
               ],
             ),
           ),
@@ -142,32 +143,8 @@ class _DifferenceStat extends StatelessWidget {
     );
   }
 
-  // The time the player is behind the user in front of him
-  Widget topPeviousTime(BuildContext context) {
-    if (data.toLastTime == 0) return const SizedBox(height: 15);
-    return InkWell(
-      onTap: () {
-        ToastMassage.toast(context, context.lcz.componentWinnerMinus);
-      },
-      child: SizedBox(
-        height: 15,
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: Text(
-            "-${ConfigNumbers.convertTime(data.toLastTime)}",
-            style: const TextStyle(
-              color: Color(0xFF3FAD14),
-              fontWeight: FontWeight.w400,
-              fontSize: 12,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   // Difference between player's time and user's time after him
-  Widget toNextTime(BuildContext context) {
+  Widget _toNextTime(BuildContext context) {
     if (data.pos == 1 || data.toNextTime == 0) return const SizedBox(height: 15);
     return InkWell(
       onTap: () {
@@ -181,6 +158,31 @@ class _DifferenceStat extends StatelessWidget {
             "+${ConfigNumbers.convertTime(data.toNextTime)}",
             style: const TextStyle(
               color: Color(0xFFDB0B0B),
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // The time the player is behind the user in front of him
+  Widget _topPeviousTime(BuildContext context) {
+    print("${data.toLastTime}");
+    if (data.toLastTime == 0) return const SizedBox(height: 15);
+    return InkWell(
+      onTap: () {
+        ToastMassage.toast(context, context.lcz.componentWinnerMinus);
+      },
+      child: SizedBox(
+        height: 15,
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Text(
+            "-${ConfigNumbers.convertTime(data.toLastTime)}",
+            style: const TextStyle(
+              color: Color(0xFF3FAD14),
               fontWeight: FontWeight.w400,
               fontSize: 12,
             ),

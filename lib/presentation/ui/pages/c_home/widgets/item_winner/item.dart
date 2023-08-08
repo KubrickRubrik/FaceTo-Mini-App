@@ -1,10 +1,13 @@
+import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
 import 'package:facetomini/presentation/manager/entities/champion.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/images.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
+import 'package:provider/provider.dart';
 part 'widgets/user.dart';
 part 'widgets/stat.dart';
 

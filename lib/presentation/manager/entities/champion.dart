@@ -23,9 +23,9 @@ class ChampionData {
     time = data.stat.time;
     xp = data.stat.xp;
     image.setLogo(data.logo);
-    toNextTime = time - toNextTime;
+    this.toNextTime = time - toNextTime;
     _diff = toLastTime - time;
-    toLastTime = (_diff > 0) ? _diff : 0;
+    this.toLastTime = (_diff > 0) ? _diff : 0;
   }
 
   void clear() {
@@ -46,7 +46,7 @@ class ImageWinner {
   var typeOriginLogo = TypeSourceImage.server;
 
   void setLogo(String logo) {
-    logo = '';
+    this.logo = logo;
   }
 
   void clear() {

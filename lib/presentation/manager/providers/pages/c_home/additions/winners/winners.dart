@@ -26,6 +26,7 @@ final class WinnersProvider extends ChangeNotifier with _State {
     final dto = WinnersDTO(idSource: idSource, type: type);
     final response = await _winnersCase.getWinners(dto);
     _setActions(ActionStatus.isDone, false);
+
     if (response.fail != null || response.data == null) {
       print(response.fail?.msg);
       _setStatusPage(StatusContent.isNoneContent);
@@ -41,6 +42,7 @@ final class WinnersProvider extends ChangeNotifier with _State {
 
   /// Loading winners when scrolling through the list
   Future<void> getScrollData() async {
+    print("SCROLL");
     if (super.actionStatus == ActionStatus.isAction) return;
     if (status.statusLoadWinners == StatusContent.isEmptyContent) return;
     _setActions(ActionStatus.isAction, false);
@@ -58,7 +60,7 @@ final class WinnersProvider extends ChangeNotifier with _State {
       _setStatusWinnersList(StatusContent.isEmptyContent);
     } else {
       dataPage.winners.addScrollList(response.data!);
-      _setStatusPage(StatusContent.isViewContent);
+      _setStatusWinnersList(StatusContent.isViewContent);
     }
   }
 

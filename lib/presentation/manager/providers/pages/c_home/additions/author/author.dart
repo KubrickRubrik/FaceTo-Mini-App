@@ -12,6 +12,7 @@ final class AuthorProvider extends ChangeNotifier with _State {
 
   // Series request
   Future<void> getAuthor(int idAuthor) async {
+    print("GET AUTHOR $idAuthor");
     if (pageData.author.idApp == idAuthor) {
       return;
     }

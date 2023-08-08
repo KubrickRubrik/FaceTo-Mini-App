@@ -28,7 +28,6 @@ final class _Winners {
       final times = _separationTimeFormation(
         index: i,
         lengthNewListChampions: lengthNewListChampions,
-        listMainWinners: listWinners,
         champion: champion,
         nextChampion: nextChampion,
       );
@@ -56,19 +55,18 @@ final class _Winners {
   ({int toNextTime, int toLastTime}) _separationTimeFormation({
     required int index,
     required int lengthNewListChampions,
-    required List<ChampionData> listMainWinners,
     required ChampionsEntity champion,
     required ChampionsEntity? nextChampion,
   }) {
     int nextTime = 0;
     int lastTime = 0;
     //? Update data for previous item
-    if (listMainWinners.isNotEmpty && index == 0) {
-      listMainWinners.last.toLastTime = champion.stat.time - listMainWinners.last.time;
+    if (listWinners.isNotEmpty && index == 0) {
+      listWinners.last.toLastTime = champion.stat.time - listWinners.last.time;
     }
     //? Previous
-    if (listMainWinners.isNotEmpty) {
-      nextTime = listMainWinners.first.time;
+    if (listWinners.isNotEmpty) {
+      nextTime = listWinners.first.time;
     } else {
       nextTime = 0;
     }
@@ -78,7 +76,7 @@ final class _Winners {
     } else {
       lastTime = 0;
     }
-    if (listMainWinners.isEmpty) nextTime = champion.stat.time;
+    if (listWinners.isEmpty) nextTime = champion.stat.time;
     //
     return (toNextTime: nextTime, toLastTime: lastTime);
   }

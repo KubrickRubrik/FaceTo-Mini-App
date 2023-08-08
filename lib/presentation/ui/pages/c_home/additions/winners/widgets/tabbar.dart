@@ -62,7 +62,7 @@ class TabBarWinner extends StatelessWidget {
                 selector: (_, Model) => Model.dataPage.isDisplayStat,
                 builder: (_, isDisplayStat, __) {
                   return Text(
-                    isDisplayStat ? context.lcz.labelWinnerScene : context.lcz.labelWinnerInfoStatistic,
+                    !isDisplayStat ? context.lcz.labelWinnerScene : context.lcz.labelWinnerInfoStatistic,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -86,6 +86,7 @@ class TabBarWinner extends StatelessWidget {
                   return Icon(
                     isDisplayStat ? AppIcons.close : AppIcons.info,
                     color: const Color(0xFFFF1E00),
+                    size: 23,
                   );
                 },
               ),

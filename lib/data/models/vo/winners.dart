@@ -6,7 +6,7 @@ final class WinnersModel {
         stat = StatAllChampionsModel(data['stat']);
 
   // Make winners
-  static List<ChampionsModel> _makeListWinner(List<Map<String, dynamic>>? data) {
+  static List<ChampionsModel> _makeListWinner(List<dynamic>? data) {
     if (data == null) return [];
     return data.map((winner) {
       return ChampionsModel(winner);
@@ -46,15 +46,15 @@ final class StatAllChampionsModel {
 
   StatAllChampionsModel(Map<String, dynamic> data)
       : min = MinMidMaxModel(
-          swipe: double.parse(data['time_swipe']['min']['swipe']),
+          swipe: double.parse(data['time_swipe']['min']['swipe'].toString()),
           time: data['time_swipe']['min']['time'],
         ),
         mid = MinMidMaxModel(
-          swipe: double.parse(data['time_swipe']['mid']['swipe']),
+          swipe: double.parse(data['time_swipe']['mid']['swipe'].toString()),
           time: data['time_swipe']['mid']['time'],
         ),
         max = MinMidMaxModel(
-          swipe: double.parse(data['time_swipe']['max']['swipe']),
+          swipe: double.parse(data['time_swipe']['max']['swipe'].toString()),
           time: data['time_swipe']['max']['time'],
         ),
         graph = GraphModel(data['graph']);

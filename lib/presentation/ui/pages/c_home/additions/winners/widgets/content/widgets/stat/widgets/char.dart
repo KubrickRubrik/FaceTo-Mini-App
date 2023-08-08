@@ -42,7 +42,7 @@ class _PublicChar extends StatelessWidget {
           child: Text(
             getTitle(context),
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 12,
               height: 1.5,
             ),

@@ -37,26 +37,30 @@ class _ListWinnersState extends State<ListWinners> {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<WinnersProvider, ({int length, StatusContent status})>(
-      selector: (_, Model) => (length: 1, status: Model.status.statusLoadWinners),
-      builder: (_, model, child) {
+    return Selector<WinnersProvider, ({int idSource, int length, StatusContent status})>(
+      selector: (_, Model) => (
+        idSource: Model.dataPage.idSource,
+        length: Model.dataPage.winners.listWinners.length,
+        status: Model.status.statusLoadWinners,
+      ),
+      builder: (_, model, __) {
         return ListView.builder(
           controller: scrollController,
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.only(top: 5, bottom: 5, left: 0, right: 0),
+          padding: const EdgeInsets.only(top: 8, bottom: 8, left: 0, right: 0),
           itemCount: model.length + 1,
           itemBuilder: (context, index) {
             if (index == model.length) {
               switch (model.status) {
                 case StatusContent.isLoadContent:
                   return SizedBox(
-                    height: 60,
+                    height: 30,
                     child: Image.asset(AppImages.spinDark),
                   );
                 case StatusContent.isEmptyContent:
                   return const SizedBox(height: 60);
                 default:
-                  const SizedBox();
+                  return const SizedBox();
               }
             }
             return ComponentWinnerItem(context.read<WinnersProvider>().dataPage.winners.listWinners.elementAt(index));

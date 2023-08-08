@@ -15,8 +15,11 @@ final class WinnersDTO extends Dto {
   @override
   Map<String, dynamic> toMapRequest() {
     return {
-      'id': idSource,
-      'id_last': idLast,
+      "action": super.actionApi,
+      "data": {
+        "id": idSource,
+        "id_last": idLast,
+      },
     };
   }
 }

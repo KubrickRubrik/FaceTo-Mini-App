@@ -12,11 +12,16 @@ class ContentWinners extends StatefulWidget {
 
 class _ContentWinnersState extends State<ContentWinners> {
   bool isView = false;
+  bool isViewContent = false;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       isView = true;
       setState(() {});
+      Future.delayed(const Duration(milliseconds: 350), () {
+        isViewContent = true;
+        setState(() {});
+      });
     });
     super.initState();
   }
@@ -37,24 +42,26 @@ class _ContentWinnersState extends State<ContentWinners> {
         ),
         clipBehavior: Clip.hardEdge,
         alignment: Alignment.center,
-        child: const Stack(
-          children: [
-            Flex(
-              direction: Axis.vertical,
-              children: [
-                TabBarWinner(),
-                Flexible(child: ListWinners()),
-              ],
-            ),
-            Positioned(
-              top: 50,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: ViewInfoStat(),
-            ),
-          ],
-        ),
+        child: (!isViewContent)
+            ? const SizedBox()
+            : const Stack(
+                children: [
+                  Flex(
+                    direction: Axis.vertical,
+                    children: [
+                      TabBarWinner(),
+                      Flexible(child: ListWinners()),
+                    ],
+                  ),
+                  Positioned(
+                    top: 50,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: ViewInfoStat(),
+                  ),
+                ],
+              ),
       ),
     );
   }

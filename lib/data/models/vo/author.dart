@@ -17,7 +17,7 @@ final class AuthorModel {
         follower = data['follower'];
 
   // Forming a list of these icons
-  static List<LinkAuthorModel> _makeListIcons(List<Map<String, dynamic>> data) {
+  static List<LinkAuthorModel> _makeListIcons(List<dynamic> data) {
     return data.map((link) {
       return LinkAuthorModel(
         id: link['id'],
