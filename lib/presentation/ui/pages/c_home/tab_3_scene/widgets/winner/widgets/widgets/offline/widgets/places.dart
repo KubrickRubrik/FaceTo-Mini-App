@@ -1,8 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
 
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
+import 'package:provider/provider.dart';
 
 class ImageWinnerPlace extends StatelessWidget {
   const ImageWinnerPlace({super.key});
@@ -36,11 +38,10 @@ class ImageWinnerPlace extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  "1",
-                  // "${Provider.of<SceneBloc>(context).winnerOffline.places}",
+                Text(
+                  "${context.read<SceneProvider>().pageData.winner.data.offline.placesUser}",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFF000000),
                     fontWeight: FontWeight.bold,
                     fontSize: 14,

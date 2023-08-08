@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'package:facetomini/presentation/locator/locator.dart';
+import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/domain/use_cases/session.dart';
@@ -22,6 +24,7 @@ final class SessionProvider extends ChangeNotifier with _State {
       sessionUser.stateAuthorization = StateApp.errorRepairs;
     } else {
       sessionUser.authorized(response.data!);
+      locator<SoundController>().setSound(sessionUser.settings.enabledSound);
     }
   }
 
@@ -69,6 +72,7 @@ final class SessionProvider extends ChangeNotifier with _State {
     } else {
       // sessionUser.authorized(response.data!);
       super.sessionUser.settings.enabledSound = val;
+      locator<SoundController>().setSound(val);
       notifyListeners();
     }
   }

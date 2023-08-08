@@ -11,51 +11,49 @@ class SettingsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Selector<SessionProvider, bool>(
-      selector: (_, Model) => Model.sessionUser.settings.isViewMenu,
-      builder: (_, isViewMenu, child) {
-        return AnimatedCrossFade(
+    return Center(
+      child: Selector<SessionProvider, bool>(
+        selector: (_, Model) => Model.sessionUser.settings.isViewMenu,
+        builder: (_, isViewMenu, child) {
+          return AnimatedCrossFade(
             duration: const Duration(milliseconds: 300),
             sizeCurve: Curves.ease,
             crossFadeState: (!isViewMenu) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
             firstChild: const SizedBox.shrink(),
-            secondChild: child!);
-      },
-      child: menu(context),
+            secondChild: child!,
+          );
+        },
+        child: const _Menu(),
+      ),
     );
   }
+}
 
-  //
-  Widget menu(BuildContext context) {
+class _Menu extends StatelessWidget {
+  const _Menu({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         context.read<SessionProvider>().setViewMenuSettings();
       },
-      child: Center(
-        child: Container(
-          margin: const EdgeInsets.only(left: 50, right: 50, top: 70, bottom: 50),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: const [
-              BoxShadow(
-                offset: Offset(0, 4),
-                blurRadius: 2,
-                spreadRadius: -2,
-              ),
+      child: Container(
+        margin: const EdgeInsets.only(left: 50, right: 50, top: 70, bottom: 50),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        clipBehavior: Clip.hardEdge,
+        child: const SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ItemSettingsTheme(),
+              ItemLanguageTheme(),
+              ItemSoundTheme(),
+              ItemInfoTheme(),
             ],
-          ),
-          clipBehavior: Clip.hardEdge,
-          child: const SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ItemSettingsTheme(),
-                ItemLanguageTheme(),
-                ItemSoundTheme(),
-                ItemInfoTheme(),
-              ],
-            ),
           ),
         ),
       ),

@@ -21,11 +21,17 @@ class ControllerWinnerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusWinnerPage = context.read<SceneProvider>().statusAdditionPages.winnerPage;
-    return switch (statusWinnerPage) {
-      StatusContent.isLoadContent => const _SpinLoadingScetion(),
-      _ => const _ControllerSourceWinner(),
-    };
+    return Selector<SceneProvider, StatusContent>(
+      selector: (_, Model) => Model.statusAdditionPages.winnerPage,
+      builder: (_, statusWinnerPage, child) {
+        return switch (statusWinnerPage) {
+          StatusContent.isLoadContent => const _SpinLoadingScetion(),
+          StatusContent.isViewContent => child!,
+          _ => const SizedBox.shrink(),
+        };
+      },
+      child: const _ControllerSourceWinner(),
+    );
   }
 }
 
@@ -54,10 +60,14 @@ class _ControllerSourceWinner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusSourceWinner = context.read<SceneProvider>().statusAdditionPages.statusSourceWinner;
-    return switch (statusSourceWinner) {
-      TypeSourceWinner.offline => const _OfflineWinnerSection(),
-      TypeSourceWinner.online => const _OnlineWinnerSection(),
-    };
+    return Selector<SceneProvider, bool>(
+      selector: (_, Model) => Model.pageData.winner.data.isOnline,
+      builder: (_, isOnline, __) {
+        return switch (isOnline) {
+          false => const _OfflineWinnerSection(),
+          true => const _OnlineWinnerSection(),
+        };
+      },
+    );
   }
 }

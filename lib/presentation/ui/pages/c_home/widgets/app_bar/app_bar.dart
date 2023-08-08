@@ -111,11 +111,9 @@ class _TitleAppBar extends StatelessWidget {
   Widget _iconBack(_AppBarTabSettings appBar, BuildContext context) {
     // For indexTab == 2 use different style icon
     if (appBar.indexTab == 0) return const SizedBox(width: 15);
-    // if (appBar.indexTab == 2) return const SizedBox(width: 15);
     return InkWell(
       onTap: () {
-        if (appBar.indexTab == 1) context.read<PagesControllerProvider>().swipeToSeries();
-        if (appBar.indexTab == 2) context.read<PagesControllerProvider>().swipeToScenes();
+        context.read<PagesControllerProvider>().swipeBack();
       },
       enableFeedback: false,
       child: AnimatedContainer(

@@ -40,9 +40,13 @@ final class _SizePlayArea {
     heightPlayArea = h;
   }
 
-  adjustment({required double width, required double height}) {
+  void adjustment({required double width, required double height}) {
     widthPlayArea = width;
     heightPlayArea = height;
+  }
+
+  Size getSize() {
+    return Size(widthPlayArea, heightPlayArea);
   }
 }
 

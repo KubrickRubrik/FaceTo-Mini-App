@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:collection/collection.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_update.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
@@ -20,13 +22,17 @@ final class WinnerEntity {
     required SceneCase sceneCase,
     required PuzzleDataDTO data,
   }) async {
-    final hasConnection = await InternetConnectionChecker().hasConnection;
+    // final hasConnection = await InternetConnectionChecker().hasConnection;
+    final hasConnection = await (Connectivity().checkConnectivity());
+    // final hasConnection = false;
     PuzzleUpdatesEntity? updatesData;
-
+    print("ПОДКЛЮЧЕНИЕ: $hasConnection");
     //? If the Internet connected, try to get the stat of the puzzle of the scene in online
-    if (hasConnection) {
+    if (hasConnection != ConnectivityResult.none) {
       final response = await sceneCase.getPuzzleStatisticsOnline(data);
-      if (response.fail == null && response.data != null) {
+      if (response.fail != null) {
+        print(response.fail?.msg);
+      } else if (response.fail == null && response.data != null) {
         updatesData = _checkingCompletenessScenes(
           seriesProvider: seriesProvider,
           scenesProvider: scenesProvider,
@@ -38,10 +44,12 @@ final class WinnerEntity {
 
     //? If there is no Internet or the data could not be obtained,
     //?  try to get the stat of the puzzle of the scene in offline
-    if (!hasConnection || updatesData == null) {
+    if (hasConnection == ConnectivityResult.none || updatesData == null) {
       // If the Internet is unavailable
       final response = await sceneCase.getPuzzleStatisticsOffline(data);
-      if (response.fail == null && response.data != null) {
+      if (response.fail != null) {
+        print(response.fail?.msg);
+      } else if (response.fail == null && response.data != null) {
         updatesData = _checkingCompletenessScenes(
           seriesProvider: seriesProvider,
           scenesProvider: scenesProvider,
@@ -62,6 +70,7 @@ final class WinnerEntity {
         completed: updatesData.series.completed,
         ratingSeries: updatesData.series.ratingSeries,
         countUsersRating: updatesData.series.countUsersRating,
+        countUsers: updatesData.series.countUsers,
       ),
       scene: ScenePuzzleUpdate(
         idScene: updatesData.scene.idScene,

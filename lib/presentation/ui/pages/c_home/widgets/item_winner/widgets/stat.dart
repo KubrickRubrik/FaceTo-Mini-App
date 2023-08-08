@@ -13,7 +13,7 @@ class _StatData extends StatelessWidget {
         children: [
           //? Position
           const SizedBox(width: 5),
-          _LabelStat(data.pos),
+          _LabelStat(data.position),
           //? Difference
           _DifferenceStat(data),
           //? Time
@@ -63,6 +63,7 @@ class _LabelStat extends StatelessWidget {
             color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 14,
+            height: 1.3,
           ),
         ),
       ),
@@ -145,7 +146,7 @@ class _DifferenceStat extends StatelessWidget {
 
   // Difference between player's time and user's time after him
   Widget _toNextTime(BuildContext context) {
-    if (data.pos == 1 || data.toNextTime == 0) return const SizedBox(height: 15);
+    if (data.position == 1 || data.toNextTime == 0) return const SizedBox(height: 15);
     return InkWell(
       onTap: () {
         ToastMassage.toast(context, context.lcz.componentWinnerPlus);
@@ -169,7 +170,6 @@ class _DifferenceStat extends StatelessWidget {
 
   // The time the player is behind the user in front of him
   Widget _topPeviousTime(BuildContext context) {
-    print("${data.toLastTime}");
     if (data.toLastTime == 0) return const SizedBox(height: 15);
     return InkWell(
       onTap: () {

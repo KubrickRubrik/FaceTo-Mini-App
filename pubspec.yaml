@@ -29,6 +29,8 @@ dependencies:
   dio: ^5.3.0
   internet_connection_checker: ^1.0.0+1
   fl_chart: ^0.40.0
+  connectivity_plus: ^4.0.2
+  audio_in_app: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -44,6 +46,7 @@ flutter:
 
   assets:
     - asset/app/
+    - asset/app/sound/
     - asset/app/error/
     - asset/spin/
     - asset/scenes/

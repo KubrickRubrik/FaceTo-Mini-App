@@ -48,7 +48,7 @@ class _UserData extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: Color(0xFF1F1F1F),
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
               ),

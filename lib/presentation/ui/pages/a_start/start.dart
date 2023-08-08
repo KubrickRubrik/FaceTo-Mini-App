@@ -31,8 +31,8 @@ class _StartPageState extends State<StartPage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => locator<SessionProvider>(),
-      builder: (context, child) {
-        final sessionUser = Provider.of<SessionProvider>(context).sessionUser;
+      builder: (context, _) {
+        final sessionUser = context.read<SessionProvider>().sessionUser;
         print("START");
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
@@ -42,7 +42,7 @@ class _StartPageState extends State<StartPage> {
           localizationsDelegates: AppLocalization.localizationsDelegates,
           // title: (context.nlcz != null) ? context.nlcz!.titleApp : 'New', //  "FaceTo Mini",
           routerConfig: PagesNavigator.goRoutes(sessionUser.stateAuthorization),
-          builder: DevicePreview.appBuilder,
+          // builder: DevicePreview.appBuilder,
           scrollBehavior: AppScrollBehavior(),
         );
       },

@@ -36,7 +36,7 @@ class _UserData extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "${data.pos}",
+                    "${data.position}",
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Color(0xFF000000),

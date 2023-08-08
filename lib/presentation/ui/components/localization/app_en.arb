@@ -115,11 +115,11 @@
     "playersChar_4":"The player makes a moderate number of combinations in the minimum time, is agile: makes few mistakes and predicts the result well.",
 
     "componentWinnerPlases":"place",
-    "componentWinnerTime":"Scene time",
+    "componentWinnerTime":"Puzzle time",
     "componentWinnerPlus":"Lagging behind the record holder",
     "componentWinnerMinus":"Break away from the next place in the list of record holders",
     "componentWinnerMinTime":"Record of passing the series",
-    "componentWinnerDiffTime":"The difference between the record and the user's time.\r\n\"+\" lagging behind; \"-\" overtaking.",
-    "componentWinnerRecord": "Record",
+    "componentWinnerDiffTime":"The difference between the record and the user's time.\r\n(+) lagging behind; (-) overtaking.",
+    "componentWinnerRecord": "Record time to solve a puzzle",
     "componentNoneWinner": "Be the first to set the\r\nrecord in "
 }

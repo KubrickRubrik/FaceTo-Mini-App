@@ -36,9 +36,10 @@ final class ScenesProvider extends ChangeNotifier with _State {
   // Game series statistics update after solving a puzzle
   void updateScene(PuzzleUpdatesEntity updateData) {
     for (final scene in pageData.listScenes) {
-      if (scene.idSeries == updateData.series.idSeires) {
+      if (scene.idScene == updateData.scene.idScene) {
         scene.user.stat.completed = updateData.scene.completed;
         scene.stat.recordTime = updateData.scene.recordTime;
+        scene.stat.countUsers = updateData.scene.countUsers;
         break;
       }
     }

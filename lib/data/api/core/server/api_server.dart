@@ -26,6 +26,7 @@ class ApiServer implements ApiServerDAO {
     dto.actionApi = ConfigActionsApi.setWinnersScene;
     final response = await ConfigRequestServer.request(apiServer, dto, serverData);
     if (response == null) return null;
+    print(">> STAT ${response['data']}");
     return PuzzleUpdatesModel(response['data']);
   }
 

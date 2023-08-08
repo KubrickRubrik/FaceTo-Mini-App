@@ -1,5 +1,8 @@
-import 'package:facetomini/presentation/ui/components/icons.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/ui/components/icons.dart';
+import 'package:provider/provider.dart';
 
 class ButtonsWinnerPage extends StatelessWidget {
   const ButtonsWinnerPage({super.key});
@@ -16,7 +19,7 @@ class ButtonsWinnerPage extends StatelessWidget {
             flex: 5,
             child: InkWell(
               onTap: () {
-                // Provider.of<SceneBloc>(context, listen: false).viewImage();
+                context.read<SceneProvider>().displayImagePage();
               },
               child: Container(
                 // color: Colors.green,
@@ -35,7 +38,7 @@ class ButtonsWinnerPage extends StatelessWidget {
             flex: 4,
             child: InkWell(
               onTap: () {
-                // Provider.of<SceneBloc>(context, listen: false).reloadMix();
+                context.read<SceneProvider>().restartPuzzleScene();
               },
               child: const Center(
                 child: Icon(
@@ -52,7 +55,10 @@ class ButtonsWinnerPage extends StatelessWidget {
             flex: 5,
             child: InkWell(
               onTap: () {
-                // Provider.of<SceneBloc>(context, listen: false).nextMix();
+                final response = context.read<SceneProvider>().nextPuzzleScene();
+                if (!response) {
+                  context.read<PagesControllerProvider>().swipeToScenes();
+                }
               },
               child: const Center(
                 child: Icon(
