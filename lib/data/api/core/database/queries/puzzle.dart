@@ -28,23 +28,22 @@ final class PuzzleRequestDrift {
   /// Puzzle statistics update
   Future<bool?> updatePuzzleStatistics(ConnectDataBase db, {required Dto dto}) async {
     dto as PuzzleUpdateDTO;
-    final seriesTable = db.alias(db.useTableSeries, 'series');
-    final sceneTable = db.alias(db.useTableScenes, 'scene');
     await db.batch((b) {
       // Series statistics update
       b.update(
-        seriesTable,
+        db.useTableSeries,
         UseTableSeriesCompanion(
           xp: Value(dto.series.xp),
           completed: Value(dto.series.completed),
           ratingSeries: Value(dto.series.ratingSeries),
           countUsersRating: Value(dto.series.countUsersRating),
+          countUsers: Value(dto.series.countUsers),
         ),
         where: (table) => table.idSeries.equals(dto.series.idSeries),
       );
       // Scene statistics update
       b.update(
-        sceneTable,
+        db.useTableScenes,
         UseTableScenesCompanion(
           xp: Value(dto.scene.xp),
           completed: Value(dto.scene.completed),

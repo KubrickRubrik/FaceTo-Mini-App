@@ -6,13 +6,11 @@ final class _StatusAdditionPages {
   var displayImageHD = StatusContent.isNoneContent;
   // Display winners page
   var winnerPage = StatusContent.isNoneContent;
-  //
-  var statusSourceWinner = TypeSourceWinner.offline;
 
   // Start new game
   setDefaultParameters() {
     // Hide addition pages
     displayImageHD = StatusContent.isNoneContent;
-    statusSourceWinner = TypeSourceWinner.offline;
+    winnerPage = StatusContent.isNoneContent;
   }
 }

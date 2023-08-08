@@ -87,7 +87,7 @@ final class StateViewUserScene {
 /// General statistics of the series
 final class StatScene {
   int recordTime;
-  final int countUsers;
+  int countUsers;
 
   StatScene({
     required this.recordTime,

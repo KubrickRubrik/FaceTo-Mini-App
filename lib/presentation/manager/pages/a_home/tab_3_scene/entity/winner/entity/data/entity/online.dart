@@ -5,6 +5,7 @@ final class WinnerOnline {
   final winnerViewUser = UserRecordsData();
 
   setWinner(PuzzleUpdatesEntity data) {
+    // data.winner.logo
     winnerRecordUser.set(
       data: data.winner,
       toNextTime: data.winner.stat.time,
@@ -27,7 +28,7 @@ class UserRecordsData {
   int idApp = 0;
   String nick = '';
   final image = ImageWinner();
-  int pos = 0;
+  int position = 0;
   int xp = 0;
   int time = 0;
   int toNextTime = 0;
@@ -41,7 +42,7 @@ class UserRecordsData {
   }) {
     idApp = data.idApp;
     nick = data.nick;
-    pos = data.stat.position;
+    position = data.stat.position;
     time = data.stat.time;
     xp = data.stat.xp;
     image.setLogo(data.logo);
@@ -54,7 +55,7 @@ class UserRecordsData {
     idApp = 0;
     nick = '';
     image.clear();
-    pos = 0;
+    position = 0;
     xp = 0;
     time = 0;
     toNextTime = 0;
@@ -68,7 +69,7 @@ class ImageWinner {
   var typeOriginLogo = TypeSourceImage.server;
 
   void setLogo(String logo) {
-    logo = '';
+    this.logo = logo;
   }
 
   void clear() {

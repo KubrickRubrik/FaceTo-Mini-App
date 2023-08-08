@@ -113,11 +113,11 @@
     "playersChar_4":"Игрок совершает умеренное количество комбинаций за минимальное время, проворный: мало ошибается и хорошо прогнозирует результат.",
 
     "componentWinnerPlases":"место",
-    "componentWinnerTime":"Время прохождения сцены",
+    "componentWinnerTime":"Время решения головоломки",
     "componentWinnerPlus":"Отставание от рекордсмена",
     "componentWinnerMinus":"Отрыв от следующего места в списке рекордсменов",
     "componentWinnerMinTime":"Рекордное время прохождения серии",
-    "componentWinnerDiffTime":"Разница между рекордом и временем пользователя.\r\n\"+\" отставание; \"-\" обгон.",
-    "componentWinnerRecord": "Рекорд",
+    "componentWinnerDiffTime":"Разница между рекордом и временем пользователя.\r\n(+) отставание; (-) обгон.",
+    "componentWinnerRecord": "Рекордное время решения головоломки",
     "componentNoneWinner": "Поставьте рекорд\r\nпервым в "
 }

@@ -1,3 +1,4 @@
+import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/author/author.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/info_rating.dart';
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   late final TabController tabController = TabController(length: 3, vsync: this);
   @override
   void initState() {
+    print(123);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (super.mounted) {
         // Set default parameters
@@ -37,9 +39,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         );
         // Get series
         locator<SeriesProvider>().getSeries();
+        locator<SoundController>().playSeries();
       }
     });
-
     super.initState();
   }
 

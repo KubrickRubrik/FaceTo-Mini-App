@@ -10,14 +10,13 @@ class _OnlineWinnerSection extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // if (Provider.of<SceneBloc>(context).winnerRecordUser.idApp != 0) ...[
-          //! Label
-          const _LabelWinnerSection(),
-          const SizedBox(height: 5),
-          //! RECORD USER
-          ComponentWinnerItem(RecordUser()),
-          // CM_WinnerItem(Provider.of<SceneBloc>(context).winnerRecordUser),
-          // ],
+          if (context.read<SceneProvider>().pageData.winner.data.online.winnerRecordUser.idApp != 0) ...[
+            //! Label
+            const _LabelWinnerSection(),
+            const SizedBox(height: 5),
+            //! RECORD USER
+            ComponentWinnerItem(context.read<SceneProvider>().pageData.winner.data.online.winnerRecordUser),
+          ],
           //! VIEW USER
           const _UserResult(),
         ],
@@ -119,40 +118,8 @@ class _UserResult extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5),
-        ComponentWinnerItemAuthor(RecordUser()),
-        // CM_WinnerItemAuthor(Provider.of<SceneBloc>(context).winnerViewUser),
+        ComponentWinnerItemAuthor(context.read<SceneProvider>().pageData.winner.data.online.winnerViewUser),
       ],
     );
-  }
-}
-
-///
-
-class RecordUser {
-  int? idApp = 0;
-  String nick = '';
-  // ImageProfile image = ImageProfile();
-  int pos = 0;
-  int xp = 0;
-  int time = 0;
-  int toNextTime = 0;
-  int toLastTime = 0;
-  int _diff = 0;
-
-  setData(Map data, int toNextTime, int toLastTime) {
-    // 15,11
-    idApp = data['id_app'];
-    nick = data['nick'];
-    pos = data['stat']['pos'];
-    time = data['stat']['time'];
-    xp = data['stat']['xp'];
-    // image.setLogoData(_data);
-    toNextTime = time - toNextTime;
-    _diff = toLastTime - time;
-    toLastTime = (_diff > 0) ? _diff : 0;
-  }
-
-  void clear() {
-    idApp = 0;
   }
 }
