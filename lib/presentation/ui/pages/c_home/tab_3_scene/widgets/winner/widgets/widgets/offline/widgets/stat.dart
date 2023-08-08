@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
-
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';

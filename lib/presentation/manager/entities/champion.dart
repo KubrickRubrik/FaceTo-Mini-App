@@ -1,35 +1,7 @@
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 
-<<<<<<< HEAD:lib/presentation/manager/entities/champion.dart
 class ChampionData {
-=======
-final class WinnerOnline {
-  final winnerRecordUser = UserRecordsData();
-  final winnerViewUser = UserRecordsData();
-
-  setWinner(PuzzleUpdatesEntity data) {
-    // data.winner.logo
-    winnerRecordUser.set(
-      data: data.winner,
-      toNextTime: data.winner.stat.time,
-      toLastTime: data.winner.stat.time,
-    );
-    winnerViewUser.set(
-      data: data.viewUser,
-      toNextTime: data.viewUser.stat.toNextTime,
-      toLastTime: data.viewUser.stat.toLastTime,
-    );
-  }
-
-  void clear() {
-    winnerRecordUser.clear();
-    winnerViewUser.clear();
-  }
-}
-
-class UserRecordsData {
->>>>>>> develop:lib/presentation/manager/pages/a_home/tab_3_scene/entity/winner/entity/data/entity/online.dart
   int idApp = 0;
   String nick = '';
   final image = ImageWinner();

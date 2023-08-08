@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
 import 'package:facetomini/presentation/manager/entities/champion.dart';
