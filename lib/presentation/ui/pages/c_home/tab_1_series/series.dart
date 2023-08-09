@@ -73,15 +73,18 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
           ),
         ),
         alignment: Alignment.topCenter,
-        child: Selector<SeriesProvider, StatusContent>(
-          selector: (_, Model) => Model.statusPage,
-          builder: (_, statusPage, child) {
-            return switch (statusPage) {
-              StatusContent.isLoadContent => const LoadPageSeries(),
-              StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageSeries(),
-              _ => ListContentSeries(controller: scrollController),
-            };
-          },
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Selector<SeriesProvider, StatusContent>(
+            selector: (_, Model) => Model.statusPage,
+            builder: (_, statusPage, child) {
+              return switch (statusPage) {
+                StatusContent.isLoadContent => const LoadPageSeries(),
+                StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageSeries(),
+                _ => ListContentSeries(controller: scrollController),
+              };
+            },
+          ),
         ),
       ),
     );

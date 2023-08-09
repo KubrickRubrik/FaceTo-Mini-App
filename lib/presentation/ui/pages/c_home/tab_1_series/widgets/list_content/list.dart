@@ -13,7 +13,7 @@ class ListContentSeries extends StatelessWidget {
       selector: (_, Model) => Model.pageData.listSeries.length,
       builder: (_, length, __) {
         return ListView.separated(
-          padding: const EdgeInsets.only(top: 50, bottom: 0, left: 5, right: 5),
+          padding: const EdgeInsets.only(top: 57, bottom: 32, left: 5, right: 5),
           controller: controller,
           physics: const BouncingScrollPhysics(),
           separatorBuilder: (BuildContext context, int index) {

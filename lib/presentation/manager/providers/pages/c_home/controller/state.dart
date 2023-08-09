@@ -2,9 +2,7 @@ part of 'controller.dart';
 
 mixin _State {
   TabController? _tabBarController;
-  SizePanelScene? _sizePanelScene;
   int indexTab = 0;
-  SizePanelScene get sizePanelScene => _sizePanelScene!;
   final viewAdditionalPage = ViewAdditionalPage();
 }
 

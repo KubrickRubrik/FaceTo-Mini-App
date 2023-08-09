@@ -127,7 +127,7 @@ final class PuzzleEntity {
   /// 3. Setting the angle limit for a diagonal swipe.
   void setMainSettingsPuzzle() async {
     // 1
-    playArea.aScale = ConfigNumbers.getNumRound(720 / playArea.sizePlayArea.widthPlayArea);
+    // playArea.aScale = ConfigNumbers.getNumRound(720 / playArea.sizePlayArea.widthPlayArea);
     playArea.grid.set(xCells: scene.grid.xCount, yCells: scene.grid.yCount);
     // 2 Obfuscation of the key (puzzle cells with the image will line up on it).
     keys.mixCurrentKeys(_ActionMixData.mixData(

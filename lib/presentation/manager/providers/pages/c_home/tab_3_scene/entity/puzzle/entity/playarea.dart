@@ -18,9 +18,11 @@ final class _PlayArea {
   /// Correction and adjustment of the size of the playing field and cells at the start of the game
   void adjustmentSize() {
     // Adjusting the size of the playing field
-    final wBar = ConfigNumbers.getNumRound(sizePlayArea.widthPlayArea - paddingPlayArea);
+    var wBar = ConfigNumbers.getNumRound(sizePlayArea.widthPlayArea - paddingPlayArea);
+    if (wBar > 600) wBar = 600;
     final hBar = ConfigNumbers.getNumRound(wBar / aspectRation);
     sizePlayArea.adjustment(width: wBar, height: hBar);
+    aScale = ConfigNumbers.getNumRound(720 / wBar);
     // Setting the dimensions of the matrix cell
     final wCell = ConfigNumbers.getNumRound(wBar / grid.xCountCells);
     final hCell = ConfigNumbers.getNumRound(hBar / grid.yCountCells);

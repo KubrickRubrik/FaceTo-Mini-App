@@ -7,7 +7,6 @@ final class PagesControllerProvider extends ChangeNotifier with _State {
   // Init default parameters
   void initDefaultParameters(TabController controller, Size size) {
     _tabBarController = controller;
-    _sizePanelScene = SizePanelScene(size);
   }
 
   // Swipe page/tab in any direction

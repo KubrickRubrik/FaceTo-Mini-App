@@ -38,22 +38,27 @@ class _Menu extends StatelessWidget {
       onTap: () {
         context.read<SessionProvider>().setViewMenuSettings();
       },
-      child: Container(
-        margin: const EdgeInsets.only(left: 50, right: 50, top: 70, bottom: 50),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        clipBehavior: Clip.hardEdge,
-        child: const SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ItemSettingsTheme(),
-              ItemLanguageTheme(),
-              ItemSoundTheme(),
-              ItemInfoTheme(),
-            ],
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Container(
+            margin: const EdgeInsets.only(left: 50, right: 50, top: 70, bottom: 50),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            clipBehavior: Clip.hardEdge,
+            child: const SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ItemSettingsTheme(),
+                  ItemLanguageTheme(),
+                  ItemSoundTheme(),
+                  ItemInfoTheme(),
+                ],
+              ),
+            ),
           ),
         ),
       ),

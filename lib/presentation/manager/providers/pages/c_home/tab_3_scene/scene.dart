@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:facetomini/presentation/sound/sound.dart';
-import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
@@ -35,7 +35,6 @@ final class SceneProvider extends ChangeNotifier with _State {
     //! Checking if the user is running the previous scene for the game
     if (pageData.puzzle.checkingThisIsGameWithPreviousScene(idNewSeries: scene.idSeries, idNewScene: scene.idScene)) {
       _setActions(ActionStatus.isDone, false);
-      print("Exit");
       return true;
     }
     // This part of the code is executed if the user starts the game with the parameters of a new scene
