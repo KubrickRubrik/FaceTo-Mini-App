@@ -1,3 +1,5 @@
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
@@ -78,11 +80,14 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
         swipeVector = details.localPosition.dx;
       },
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFFFFD500), Color(0xFFFE7B00)],
+            colors: ThemesController.getThemeData<List<Color>>(
+              component: TypeThemeComponent.scenesBackground,
+              val: context.read<SessionProvider>().sessionUser.settings.theme,
+            ),
           ),
         ),
         alignment: Alignment.topCenter,

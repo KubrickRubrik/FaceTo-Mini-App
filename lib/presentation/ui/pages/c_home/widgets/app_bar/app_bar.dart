@@ -15,15 +15,18 @@ class _AppBar extends StatelessWidget {
           height: 50,
           decoration: (indexTab == 2)
               ? null
-              : const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
+              : BoxDecoration(
+                  color: ThemesController.getThemeData<Color>(
+                    component: TypeThemeComponent.appBarBackground,
+                    val: context.read<SessionProvider>().sessionUser.settings.theme,
+                  ),
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(5),
                     topRight: Radius.circular(5),
                     bottomLeft: Radius.circular(15),
                     bottomRight: Radius.circular(15),
                   ),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black,
                       offset: Offset(0, 4.0),
@@ -99,7 +102,10 @@ class _TitleAppBar extends StatelessWidget {
           appBar.title,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: Color(appBar.titleColor),
+            color: ThemesController.getThemeData<Color>(
+              component: TypeThemeComponent.appBarContent,
+              val: context.read<SessionProvider>().sessionUser.settings.theme,
+            ),
             fontSize: 18,
           ),
         ),
@@ -161,10 +167,13 @@ class _InfoAppBar extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Icon(
+              child: Icon(
                 AppIcons.settings,
                 size: 24,
-                color: Color(0xFF745291),
+                color: ThemesController.getThemeData<Color>(
+                  component: TypeThemeComponent.appBarContent,
+                  val: context.read<SessionProvider>().sessionUser.settings.theme,
+                ),
               ),
             ),
           ),

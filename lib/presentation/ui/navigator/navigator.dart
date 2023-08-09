@@ -20,9 +20,10 @@ abstract final class PagesNavigator {
           name: 'init',
           path: '/',
           pageBuilder: (context, state) {
-            return const CustomTransitionPage(
+            return CustomTransitionPage(
+              key: state.pageKey,
               transitionsBuilder: _transitFade,
-              child: InitPage(),
+              child: const InitPage(),
             );
           },
         ),

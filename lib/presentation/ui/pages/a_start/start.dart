@@ -1,3 +1,4 @@
+import 'package:facetomini/core/config/entity.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/ui/components/localization/controller.dart';
 import 'package:facetomini/presentation/manager/providers/session/session.dart';
@@ -33,17 +34,21 @@ class _StartPageState extends State<StartPage> {
       create: (_) => locator<SessionProvider>(),
       builder: (context, _) {
         final sessionUser = context.read<SessionProvider>().sessionUser;
-        print("START");
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: ThemesController.set(sessionUser.settings.theme),
-          locale: LocalizationController.getByType(sessionUser.settings.locale),
-          supportedLocales: AppLocalization.supportedLocales,
-          localizationsDelegates: AppLocalization.localizationsDelegates,
-          // title: (context.nlcz != null) ? context.nlcz!.titleApp : 'New', //  "FaceTo Mini",
-          routerConfig: PagesNavigator.goRoutes(sessionUser.stateAuthorization),
-          // builder: DevicePreview.appBuilder,
-          scrollBehavior: AppScrollBehavior(),
+        return Selector<SessionProvider, ({AvailableAppLocale locale, CurrentThemeApp theme})>(
+          selector: (_, Model) => (locale: Model.sessionUser.settings.locale, theme: Model.sessionUser.settings.theme),
+          builder: (_, model, __) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: ThemesController.set(model.theme),
+              locale: LocalizationController.getByType(model.locale),
+              supportedLocales: AppLocalization.supportedLocales,
+              localizationsDelegates: AppLocalization.localizationsDelegates,
+              title: "FaceTo Mini",
+              routerConfig: PagesNavigator.goRoutes(sessionUser.stateAuthorization),
+              // builder: DevicePreview.appBuilder,
+              scrollBehavior: AppScrollBehavior(),
+            );
+          },
         );
       },
     );

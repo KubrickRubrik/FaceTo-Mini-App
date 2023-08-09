@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
@@ -65,11 +67,14 @@ class _PageTabSeriesState extends State<PageTabSeries> with AutomaticKeepAliveCl
         swipeVector = details.localPosition.dx;
       },
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF745291), Color(0xFF1b1e53)],
+            colors: ThemesController.getThemeData<List<Color>>(
+              component: TypeThemeComponent.seriesPage,
+              val: context.read<SessionProvider>().sessionUser.settings.theme,
+            ),
           ),
         ),
         alignment: Alignment.topCenter,
