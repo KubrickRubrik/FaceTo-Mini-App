@@ -13,7 +13,7 @@ abstract final class ConfigNumbers {
     };
   }
 
-  // Converting time to a suitable format
+  /// Converting time to a suitable format
   static String convertTime(int time) {
     if (time == 0) return '00:00:00 000';
 
@@ -48,6 +48,14 @@ abstract final class ConfigNumbers {
     return "${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(seconds)}  ${miliseconds(millisecinds)} ";
   }
 
+  /// Setting the correct time of the statistics graph.
+  static String setShortSecond(int? count) {
+    return switch (count) {
+      null || 0 => "",
+      _ => "${getNumRound((count / 1000), 0)} k",
+    };
+  }
+
   /// Rounding to a certain precision
-  static double getNumRound(double num) => double.parse(num.toStringAsFixed(2));
+  static double getNumRound(double nums, [int round = 2]) => double.parse(nums.toStringAsFixed(round));
 }

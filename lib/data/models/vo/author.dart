@@ -11,43 +11,30 @@ final class AuthorModel {
       : idApp = data['id_app'],
         nick = data['nick'],
         description = data['about'],
-        image = ImageAuthorModel(
-          logo: data['image']['logo'],
-          banner: data['image']['banner'],
-        ),
-        stat = StatAuthorModel(
-          rank: RankAuthorModel(
-            id: data['stat']['rank']['id'],
-            title: data['stat']['rank']['title'],
-          ),
-          level: data['stat']['level'],
-          rating: data['stat']['rating'],
-          countSub: data['stat']['count_sub'],
-        ),
-        links = (data['links'] as List).map((link) {
-          return LinkAuthorModel(
-            id: link['id'],
-            address: link['address'],
-            icon: IconAuthorModel(
-              id: link['icon']['id'],
-              redirect: link['icon']['redirect'],
-              title: link['icon']['title'],
-              url: link['icon']['url'],
-              pattern: link['icon']['pattern'],
-            ),
-          );
-        }).toList(),
+        image = ImageAuthorModel(data['image']),
+        stat = StatAuthorModel(data['stat']),
+        links = _makeListIcons(data['links']),
         follower = data['follower'];
+
+  // Forming a list of these icons
+  static List<LinkAuthorModel> _makeListIcons(List<dynamic> data) {
+    return data.map((link) {
+      return LinkAuthorModel(
+        id: link['id'],
+        address: link['address'],
+        icon: IconAuthorModel(link['icon']),
+      );
+    }).toList();
+  }
 }
 
 class ImageAuthorModel {
   final String logo;
   final String banner;
   final List<LinkAuthorModel> links = [];
-  ImageAuthorModel({
-    required this.logo,
-    required this.banner,
-  });
+  ImageAuthorModel(Map<String, dynamic> data)
+      : logo = data['logo'],
+        banner = data['banner'];
 }
 
 class StatAuthorModel {
@@ -55,12 +42,14 @@ class StatAuthorModel {
   final int level;
   final int rating;
   final int countSub;
-  StatAuthorModel({
-    required this.rank,
-    required this.level,
-    required this.rating,
-    required this.countSub,
-  });
+  StatAuthorModel(Map<String, dynamic> data)
+      : rank = RankAuthorModel(
+          id: data['rank']['id'],
+          title: data['rank']['title'],
+        ),
+        level = data['level'],
+        rating = data['rating'],
+        countSub = data['count_sub'];
 }
 
 class RankAuthorModel {
@@ -92,11 +81,10 @@ class IconAuthorModel {
   final String url;
   final String pattern;
 
-  IconAuthorModel({
-    required this.id,
-    required this.redirect,
-    required this.title,
-    required this.url,
-    required this.pattern,
-  });
+  IconAuthorModel(Map<String, dynamic> data)
+      : id = data['id'],
+        redirect = data['redirect'],
+        title = data['title'],
+        url = data['url'],
+        pattern = data['pattern'];
 }

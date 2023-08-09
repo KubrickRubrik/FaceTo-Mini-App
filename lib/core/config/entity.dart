@@ -1,16 +1,16 @@
-/// Session state of the application/user
+/// Session state of the application/user.
 enum StateApp { errorRepairs, isAuth, isNotAuth }
 
-/// Available interface themes for selection in the application
+/// Available interface themes for selection in the application.
 enum CurrentThemeApp { light, dark }
 
-/// Available languages for selection in the app
+/// Available languages for selection in the app.
 enum AvailableAppLocale { ru, en }
 
-/// Activity activity status
+/// Activity activity status.
 enum ActionStatus { isAction, isDone }
 
-/// Page loading status
+/// Page loading status.
 enum StatusContent {
   isLoadContent,
   isNoneContent,
@@ -18,22 +18,22 @@ enum StatusContent {
   isViewContent,
 }
 
-/// Image source
+/// Image source.
 enum TypeSourceImage { server, file, asset }
 
-/// Target image source
+/// Target image source.
 enum TargetSourceImage { app, series, scenes }
 
-/// To determine if it was worth caching an image from the Internet
+/// To determine if it was worth caching an image from the Internet.
 enum TypeCacheImage { cache, notCache }
 
-/// Type of toast
+/// Type of toast.
 enum TypeMassage { massage, error, warning }
 
 /// Winners section download source
 enum TypeSourceWinner { offline, online }
 
-/// Different types of puzzle cell list
+/// Different types of puzzle cell list.
 enum TypeListCellsPuzzle {
   main,
   topSide,
@@ -46,8 +46,11 @@ enum TypeListCellsPuzzle {
   rightBottomDiagonal,
 }
 
-/// Swipe puzzle type
+/// Swipe puzzle type.
 enum TypeAxisSwipe { horisontal, vertical, diagonal }
 
-/// Swipe vector/direction
+/// Swipe vector/direction.
 enum DirectionSwipe { left, right, up, down, upLeft, upRight, downLeft, downRight }
+
+/// Object type for which all winners are requested.
+enum TypeWinnersSource { series, scenes }

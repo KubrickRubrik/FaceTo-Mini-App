@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/list_content/list.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/load_content.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/no_content.dart';
-import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:provider/provider.dart';
 
 class PageTabScenes extends StatefulWidget {
@@ -87,15 +86,18 @@ class _PageTabScenesState extends State<PageTabScenes> with AutomaticKeepAliveCl
           ),
         ),
         alignment: Alignment.topCenter,
-        child: Selector<ScenesProvider, StatusContent>(
-          selector: (_, Model) => Model.statusPage,
-          builder: (_, statusPage, child) {
-            return switch (statusPage) {
-              StatusContent.isLoadContent => const LoadPageScenes(),
-              StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageScenes(),
-              _ => ListContentScenes(controller: scrollController),
-            };
-          },
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Selector<ScenesProvider, StatusContent>(
+            selector: (_, Model) => Model.statusPage,
+            builder: (_, statusPage, child) {
+              return switch (statusPage) {
+                StatusContent.isLoadContent => const LoadPageScenes(),
+                StatusContent.isEmptyContent || StatusContent.isNoneContent => const NoContentPageScenes(),
+                _ => ListContentScenes(controller: scrollController),
+              };
+            },
+          ),
         ),
       ),
     );

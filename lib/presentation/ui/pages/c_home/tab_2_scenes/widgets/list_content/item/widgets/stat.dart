@@ -14,8 +14,10 @@ class _Stat extends StatelessWidget {
           //! Time
           InkWell(
             onTap: () {
-              //! context.read<ScenesProvider>().pageData.listScenes[index].idScene
-              // Provider.of<CM_WinnersBloc>(context, listen: false).viewWinners('scene', Provider.of<CM_SceneBloc>(context, listen: false).content.idScene);
+              context.read<WinnersProvider>().getWinners(
+                    context.read<ScenesProvider>().pageData.listScenes.elementAt(index).idScene,
+                    TypeWinnersSource.scenes,
+                  );
             },
             child: Container(
               height: 50,

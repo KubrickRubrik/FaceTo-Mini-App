@@ -1,13 +1,16 @@
-import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/author/author.dart';
+import 'package:facetomini/presentation/sound/sound.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/winners/winners.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/additions/author/author.dart';
+import 'package:facetomini/presentation/ui/pages/c_home/additions/winners/winners.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/info_rating.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/scene.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/settings_panel.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
-import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_1_series/series.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_3_scene/scene.dart';
@@ -15,7 +18,6 @@ import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:provider/provider.dart';
-import 'widgets/author/author.dart';
 part 'widgets/app_bar/app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,7 +31,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   late final TabController tabController = TabController(length: 3, vsync: this);
   @override
   void initState() {
-    print(123);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (super.mounted) {
         // Set default parameters
@@ -66,6 +67,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             ChangeNotifierProvider.value(value: locator<ScenesProvider>()),
             ChangeNotifierProvider.value(value: locator<SceneProvider>()),
             ChangeNotifierProvider.value(value: locator<AuthorProvider>()),
+            ChangeNotifierProvider.value(value: locator<WinnersProvider>()),
           ],
           child: Stack(
             children: [
@@ -102,14 +104,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 child: InfoRatingApp(),
               ),
               //! Winners
-              // if (Provider.of<CM_WinnersBloc>(context).stateViewPage == ViewStatusPage.view_content)
-              //   Positioned(
-              //     top: 0,
-              //     bottom: 0,
-              //     left: 0,
-              //     right: 0,
-              //     child: CM_Winners(),
-              //   ),
+              const Positioned(
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: ComponentWinners(),
+              ),
               //! Author page
               const Positioned(
                 top: 0,

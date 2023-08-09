@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/author/author.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_1_series/series.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/winners/winners.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_1_series/series.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';

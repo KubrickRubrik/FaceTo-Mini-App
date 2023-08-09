@@ -14,55 +14,58 @@ class PageTabScene extends StatelessWidget {
       decoration: const BoxDecoration(
         color: Color(0xFFffffff),
         gradient: RadialGradient(
-          radius: 0.95,
+          radius: 1,
           colors: [
-            Color(0xFF839BA8),
+            Color.fromARGB(255, 94, 113, 123),
             Color(0xFF000000),
           ],
         ),
       ),
-      child: const Stack(
-        children: [
-          //? Loading scene
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: LoadingScene(),
-          ),
-          //? Content
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: PuzzleSection(),
-          ),
-          //? Help
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: PuzzleHelpSection(),
-          ),
-          //? View image
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: ImageSceneAdditionPage(),
-          ),
-          //? Winner
-          Positioned(
-            top: 50,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: WinnerAdditionPage(),
-          ),
-        ],
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 600),
+        child: const Stack(
+          children: [
+            //? Loading scene
+            Positioned(
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: LoadingScene(),
+            ),
+            //? Content
+            Positioned(
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: PuzzleSection(),
+            ),
+            //? Help
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: PuzzleHelpSection(),
+            ),
+            //? View image
+            Positioned(
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: ImageSceneAdditionPage(),
+            ),
+            //? Winner
+            Positioned(
+              top: 50,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: WinnerAdditionPage(),
+            ),
+          ],
+        ),
       ),
     );
   }

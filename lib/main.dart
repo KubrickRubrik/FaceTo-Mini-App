@@ -1,6 +1,6 @@
 import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/a_start/start.dart';
 import 'package:facetomini/presentation/locator/locator.dart';
 

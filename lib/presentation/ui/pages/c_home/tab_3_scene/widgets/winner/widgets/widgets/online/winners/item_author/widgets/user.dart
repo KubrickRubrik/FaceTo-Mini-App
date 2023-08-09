@@ -2,7 +2,7 @@ part of '../item.dart';
 
 class _UserData extends StatelessWidget {
   const _UserData(this.data);
-  final UserRecordsData data;
+  final ChampionData data;
 
   @override
   Widget build(BuildContext context) {

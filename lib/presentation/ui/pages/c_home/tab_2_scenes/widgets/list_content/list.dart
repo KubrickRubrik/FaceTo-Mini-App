@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_2_scenes/scenes.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/tab_2_scenes/widgets/list_content/item/item.dart';
 import 'package:provider/provider.dart';
 

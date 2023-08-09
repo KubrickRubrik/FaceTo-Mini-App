@@ -3,11 +3,13 @@ import 'package:facetomini/data/models/vo/scene.dart';
 import 'package:facetomini/data/models/vo/series.dart';
 import 'package:facetomini/data/models/vo/session.dart';
 import 'package:facetomini/data/models/vo/stat_puzzle.dart';
+import 'package:facetomini/data/models/vo/winners.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/entities/vo/series.dart';
 import 'package:facetomini/domain/entities/vo/app.dart';
 import 'package:facetomini/domain/entities/vo/author.dart';
 import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
+import 'package:facetomini/domain/entities/vo/winners.dart';
 
 /// Transformation of the 'raw' models in the entities used
 abstract final class EntitiesMapper {
@@ -164,6 +166,54 @@ abstract final class EntitiesMapper {
           toLastTime: model.viewUser.stat.toLastTime ?? 0,
         ),
       ),
+    );
+  }
+
+  //
+  static WinnersEntity setWinners(WinnersModel model) {
+    return WinnersEntity(
+      listWinner: model.listWinner.map((winner) {
+        return ChampionsEntity(
+          idApp: winner.idApp,
+          nick: winner.nick,
+          logo: winner.logo,
+          stat: StatChampionEntity(
+            position: winner.stat.position,
+            time: winner.stat.time,
+            xp: winner.stat.xp,
+          ),
+        );
+      }).toList(),
+      stat: model.stat == null
+          ? null
+          : StatAllChampionsEntity(
+              min: MinMidMaxEntity(swipe: model.stat!.min.swipe, time: model.stat!.min.time),
+              mid: MinMidMaxEntity(swipe: model.stat!.mid.swipe, time: model.stat!.mid.time),
+              max: MinMidMaxEntity(swipe: model.stat!.max.swipe, time: model.stat!.max.time),
+              graph: GraphEntity(
+                countUsersMin: model.stat!.graph.countUsersMin,
+                countUsersMax: model.stat!.graph.countUsersMax,
+                countUsers: model.stat!.graph.countUsers,
+                userStat: UserGraphStatEntity(
+                  userState: model.stat!.graph.userStat.userState,
+                  userTime: model.stat!.graph.userStat.userTime,
+                  userCountSwipe: model.stat!.graph.userStat.userCountSwipe,
+                ),
+                userCountSwipe: model.stat!.graph.userCountSwipe,
+                flexLeft: ((model.stat!.graph.countUsersMin * 100) / model.stat!.graph.countUsers).ceil(),
+                flexRight: ((model.stat!.graph.countUsersMax * 100) / model.stat!.graph.countUsers).ceil(),
+                xAxis: GAxisEntity(
+                  interval: model.stat!.graph.xAxis.interval,
+                  minLimit: model.stat!.graph.xAxis.minLimit,
+                  maxLimit: model.stat!.graph.xAxis.maxLimit,
+                ),
+                yAxis: GAxisEntity(
+                  interval: model.stat!.graph.yAxis.interval,
+                  minLimit: model.stat!.graph.yAxis.minLimit,
+                  maxLimit: model.stat!.graph.yAxis.maxLimit,
+                ),
+              ),
+            ),
     );
   }
 }

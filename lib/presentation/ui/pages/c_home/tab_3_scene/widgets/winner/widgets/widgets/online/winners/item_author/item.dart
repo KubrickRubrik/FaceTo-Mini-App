@@ -1,7 +1,7 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/tab_3_scene/entity/winner/entity/data/controller.dart';
+
+import 'package:facetomini/presentation/manager/entities/champion.dart';
 import 'package:facetomini/core/config/numbers.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
@@ -11,7 +11,7 @@ part 'widgets/stat.dart';
 
 class ComponentWinnerItemAuthor extends StatelessWidget {
   const ComponentWinnerItemAuthor(this.data, {super.key});
-  final UserRecordsData data;
+  final ChampionData data;
 
   @override
   Widget build(BuildContext context) {

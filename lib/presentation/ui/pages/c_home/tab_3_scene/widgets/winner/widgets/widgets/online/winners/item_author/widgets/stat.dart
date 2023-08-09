@@ -2,7 +2,7 @@ part of '../item.dart';
 
 class _StatData extends StatelessWidget {
   const _StatData(this.data);
-  final UserRecordsData data;
+  final ChampionData data;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class _LabelStat extends StatelessWidget {
 /// Difference
 class _DifferenceStat extends StatelessWidget {
   const _DifferenceStat(this.data);
-  final UserRecordsData data;
+  final ChampionData data;
 
   @override
   Widget build(BuildContext context) {

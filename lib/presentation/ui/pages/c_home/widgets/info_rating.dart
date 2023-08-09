@@ -3,7 +3,7 @@ import 'package:facetomini/core/config/links.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
-import 'package:facetomini/presentation/manager/pages/a_home/controller/controller.dart';
+import 'package:facetomini/presentation/manager/providers/pages/c_home/controller/controller.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';

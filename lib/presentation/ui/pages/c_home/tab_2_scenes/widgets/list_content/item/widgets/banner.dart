@@ -5,7 +5,6 @@ class _Banner extends StatelessWidget {
   final int index;
 
   void runGame(BuildContext context, SceneEntity scene) {
-    print("Tap");
     final size = MediaQuery.of(context).size;
     context.read<SceneProvider>().runPuzzleGame(scene: scene, size: size).then((isDone) {
       if (isDone == null) return;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/ui/components/localization/controller.dart';
-import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:device_preview/device_preview.dart';

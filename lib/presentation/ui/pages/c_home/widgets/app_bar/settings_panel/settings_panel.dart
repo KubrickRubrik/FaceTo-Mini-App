@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:facetomini/presentation/manager/session/session.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/widgets/item_info.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/widgets/item_sound.dart';
 import 'package:facetomini/presentation/ui/pages/c_home/widgets/app_bar/settings_panel/widgets/item_language.dart';
@@ -38,22 +38,27 @@ class _Menu extends StatelessWidget {
       onTap: () {
         context.read<SessionProvider>().setViewMenuSettings();
       },
-      child: Container(
-        margin: const EdgeInsets.only(left: 50, right: 50, top: 70, bottom: 50),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        clipBehavior: Clip.hardEdge,
-        child: const SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ItemSettingsTheme(),
-              ItemLanguageTheme(),
-              ItemSoundTheme(),
-              ItemInfoTheme(),
-            ],
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Container(
+            margin: const EdgeInsets.only(left: 50, right: 50, top: 70, bottom: 50),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            clipBehavior: Clip.hardEdge,
+            child: const SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ItemSettingsTheme(),
+                  ItemLanguageTheme(),
+                  ItemSoundTheme(),
+                  ItemInfoTheme(),
+                ],
+              ),
+            ),
           ),
         ),
       ),

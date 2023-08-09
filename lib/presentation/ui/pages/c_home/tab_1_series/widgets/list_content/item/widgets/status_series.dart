@@ -18,7 +18,10 @@ class _StatusSeries extends StatelessWidget {
           //! Best time
           InkWell(
             onTap: () {
-              // Provider.of<CM_WinnersBloc>(context, listen: false).viewWinners('series', Provider.of<CM_SeriesBloc>(context, listen: false).content.idSeries);
+              context.read<WinnersProvider>().getWinners(
+                    context.read<SeriesProvider>().pageData.listSeries.elementAt(index).idSeries,
+                    TypeWinnersSource.series,
+                  );
             },
             child: Container(
               width: 40,
