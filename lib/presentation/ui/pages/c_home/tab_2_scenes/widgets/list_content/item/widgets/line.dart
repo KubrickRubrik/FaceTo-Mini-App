@@ -8,16 +8,16 @@ class LineScene extends StatelessWidget {
     return Flex(
       direction: Axis.horizontal,
       children: [
-        Flexible(
-          flex: 3,
-          child: Container(),
-        ),
+        const Spacer(flex: 3),
         Flexible(
           flex: 4,
           child: Center(
             child: Container(
               width: 5,
-              color: Colors.white,
+              color: ThemesController.getThemeData<Color>(
+                component: TypeThemeComponent.scenesBanner,
+                val: context.read<SessionProvider>().sessionUser.settings.theme,
+              ),
             ),
           ),
         ),

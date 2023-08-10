@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/winners/winners.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';

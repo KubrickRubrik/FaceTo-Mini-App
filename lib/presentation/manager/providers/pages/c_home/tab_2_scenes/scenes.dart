@@ -1,7 +1,5 @@
-// ignore_for_file: avoid_print
-
-import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/domain/entities/vo/stat_puzzle.dart';
 import 'package:facetomini/domain/entities/vo/scene.dart';
 import 'package:facetomini/domain/use_cases/scenes.dart';
 import 'package:facetomini/core/config/entity.dart';
@@ -12,7 +10,6 @@ final class ScenesProvider extends ChangeNotifier with _State {
   final ScenesCase _scenesCase;
 
   Future<bool?> getScenes(int idSeries) async {
-    print("GET scene of SERIES $idSeries");
     if (super.actionStatus == ActionStatus.isAction) return null;
     // Return old data if condition is met
     if (pageData.isOldSeriesUsed(idSeries)) return true;

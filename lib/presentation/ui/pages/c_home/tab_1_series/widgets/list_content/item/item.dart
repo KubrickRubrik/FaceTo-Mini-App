@@ -1,3 +1,5 @@
+import 'package:facetomini/presentation/manager/providers/session/session.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/winners/winners.dart';
@@ -39,9 +41,12 @@ class ItemSeries extends StatelessWidget {
         aspectRatio: 1.7,
         child: Container(
           padding: const EdgeInsets.all(4),
-          decoration: const BoxDecoration(
-            color: Color(0xFFeeeeee),
-            boxShadow: [
+          decoration: BoxDecoration(
+            color: ThemesController.getThemeData<Color>(
+              component: TypeThemeComponent.series,
+              val: context.read<SessionProvider>().sessionUser.settings.theme,
+            ),
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black,
                 offset: Offset(0, 4.0),
@@ -49,7 +54,7 @@ class ItemSeries extends StatelessWidget {
                 spreadRadius: -8,
               ),
             ],
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(25),
               bottomLeft: Radius.circular(10),
               topRight: Radius.circular(10),

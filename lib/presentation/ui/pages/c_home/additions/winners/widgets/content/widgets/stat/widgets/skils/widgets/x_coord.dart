@@ -1,7 +1,7 @@
 part of '../../../stat.dart';
 
 class _XCoordSkils extends StatelessWidget {
-  const _XCoordSkils({super.key});
+  const _XCoordSkils();
 
   @override
   Widget build(BuildContext context) {

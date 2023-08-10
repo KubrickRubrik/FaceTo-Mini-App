@@ -65,7 +65,7 @@ class _ItemHeader extends StatelessWidget {
           Expanded(
             child: Text(
               context.lcz.themeSettings,
-              style: context.textStyle.titleMedium,
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ],
@@ -110,7 +110,7 @@ class _ItemBody extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         e.value,
-                        style: context.textStyle.titleSmall,
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                   ),

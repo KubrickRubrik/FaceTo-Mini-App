@@ -15,7 +15,6 @@ class ListContentScenes extends StatelessWidget {
         return ListView(
           padding: const EdgeInsets.only(top: 50, bottom: 0, left: 5, right: 5),
           controller: controller,
-          physics: const BouncingScrollPhysics(),
           children: List.generate(data.$2, (index) {
             return ItemScene(index);
           }),

@@ -23,7 +23,10 @@ class _Stat extends StatelessWidget {
               height: 50,
               width: 50,
               decoration: BoxDecoration(
-                color: const Color(0xFF313131),
+                color: ThemesController.getThemeData<Color>(
+                  component: TypeThemeComponent.scenesStatBackground,
+                  val: context.read<SessionProvider>().sessionUser.settings.theme,
+                ),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: const [
                   BoxShadow(
@@ -34,14 +37,17 @@ class _Stat extends StatelessWidget {
                 ],
               ),
               alignment: Alignment.center,
-              child: const Icon(
+              child: Icon(
                 AppIcons.timer,
-                color: Colors.white,
+                color: ThemesController.getThemeData<Color>(
+                  component: TypeThemeComponent.scenesStatContent,
+                  val: context.read<SessionProvider>().sessionUser.settings.theme,
+                ),
                 size: 25,
               ),
             ),
           ),
-          SizedBox(height: 15, child: Center(child: dotSpaces())),
+          SizedBox(height: 15, child: Center(child: dotSpaces(context))),
           //! Users
           InkWell(
             onTap: () {
@@ -123,7 +129,7 @@ class _Stat extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 15, child: Center(child: dotSpaces())),
+          SizedBox(height: 15, child: Center(child: dotSpaces(context))),
           //! Author
           InkWell(
             onTap: () {
@@ -135,7 +141,10 @@ class _Stat extends StatelessWidget {
               height: 50,
               width: 50,
               decoration: BoxDecoration(
-                color: const Color(0xFF313131),
+                color: ThemesController.getThemeData<Color>(
+                  component: TypeThemeComponent.scenesStatBackground,
+                  val: context.read<SessionProvider>().sessionUser.settings.theme,
+                ),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: const [
                   BoxShadow(
@@ -147,9 +156,12 @@ class _Stat extends StatelessWidget {
                 ],
               ),
               alignment: Alignment.center,
-              child: const Icon(
+              child: Icon(
                 AppIcons.user,
-                color: Color(0xFFFFFFFF),
+                color: ThemesController.getThemeData<Color>(
+                  component: TypeThemeComponent.scenesStatContent,
+                  val: context.read<SessionProvider>().sessionUser.settings.theme,
+                ),
                 size: 25,
               ),
             ),
@@ -159,13 +171,16 @@ class _Stat extends StatelessWidget {
     );
   }
 
-  Widget dotSpaces() {
+  Widget dotSpaces(BuildContext context) {
     return Container(
       width: 5,
       height: 5,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Colors.black,
+        color: ThemesController.getThemeData<Color>(
+          component: TypeThemeComponent.scenesStatBackground,
+          val: context.read<SessionProvider>().sessionUser.settings.theme,
+        ),
       ),
     );
   }

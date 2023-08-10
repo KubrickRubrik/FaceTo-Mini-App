@@ -6,14 +6,14 @@ import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:provider/provider.dart';
 
-class ItemLanguageTheme extends StatefulWidget {
-  const ItemLanguageTheme({super.key});
+class ItemSettingsLanguage extends StatefulWidget {
+  const ItemSettingsLanguage({super.key});
 
   @override
-  State<ItemLanguageTheme> createState() => ItemLanguageThemeState();
+  State<ItemSettingsLanguage> createState() => ItemSettingsLanguageState();
 }
 
-class ItemLanguageThemeState extends State<ItemLanguageTheme> {
+class ItemSettingsLanguageState extends State<ItemSettingsLanguage> {
   var isOpen = false;
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class _ItemHeader extends StatelessWidget {
           Expanded(
             child: Text(
               context.lcz.languageSettings,
-              style: context.textStyle.titleMedium,
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ],
@@ -110,7 +110,7 @@ class _ItemBody extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         e.value.title,
-                        style: context.textStyle.titleSmall,
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                   ),

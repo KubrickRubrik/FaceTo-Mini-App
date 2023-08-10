@@ -1,3 +1,5 @@
+import 'package:facetomini/core/config/entity.dart';
+import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/sound/sound.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
@@ -34,10 +36,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (super.mounted) {
         // Set default parameters
-        locator<PagesControllerProvider>().initDefaultParameters(
-          tabController,
-          context.media.size,
-        );
+        locator<PagesControllerProvider>().initDefaultParameters(tabController);
         // Get series
         locator<SeriesProvider>().getSeries();
         locator<SoundController>().playSeries();
@@ -49,7 +48,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   void dispose() {
     print("Dispose");
-    // tabController.dispose();
+    locator<PagesControllerProvider>().dispose();
     super.dispose();
   }
 
@@ -59,9 +58,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       child: Scaffold(
         body: MultiProvider(
           providers: [
-            // ChangeNotifierProvider(create: (_) => locator<ControllerPagesProvider>()),
+            // ChangeNotifierProvider(create: (_) => locator<PagesControllerProvider>()),
             // ChangeNotifierProvider(create: (_) => locator<SeriesProvider>()),
             // ChangeNotifierProvider(create: (_) => locator<ScenesProvider>()),
+            // ChangeNotifierProvider(create: (_) => locator<SceneProvider>()),
+            // ChangeNotifierProvider(create: (_) => locator<AuthorProvider>()),
+            // ChangeNotifierProvider(create: (_) => locator<WinnersProvider>()),
             ChangeNotifierProvider.value(value: locator<PagesControllerProvider>()),
             ChangeNotifierProvider.value(value: locator<SeriesProvider>()),
             ChangeNotifierProvider.value(value: locator<ScenesProvider>()),

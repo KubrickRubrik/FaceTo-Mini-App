@@ -138,10 +138,7 @@ class _LabelContact extends StatelessWidget {
                 child: SizedBox(
                   height: 30,
                   width: 30,
-                  child: CachedNetworkImage(
-                    imageUrl: ConfigLinks.parseLinks(authorLink.icon.url),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                  ),
+                  child: Image.network(ConfigLinks.parseLinks(authorLink.icon.url)),
                 ),
               ),
             ),

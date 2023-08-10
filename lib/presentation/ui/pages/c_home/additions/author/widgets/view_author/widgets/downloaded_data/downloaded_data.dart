@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/additions/author/author.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/components/toast.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:facetomini/presentation/ui/components/localization/controller.dart';
 import 'package:facetomini/core/config/links.dart';
 import 'package:facetomini/core/config/numbers.dart';

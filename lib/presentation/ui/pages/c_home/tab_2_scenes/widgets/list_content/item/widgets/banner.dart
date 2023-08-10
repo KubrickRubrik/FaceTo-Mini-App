@@ -50,7 +50,10 @@ class _Banner extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(3),
             decoration: BoxDecoration(
-              color: const Color(0xFFffffff),
+              color: ThemesController.getThemeData<Color>(
+                component: TypeThemeComponent.scenesBanner,
+                val: context.read<SessionProvider>().sessionUser.settings.theme,
+              ),
               borderRadius: BorderRadius.circular(30),
               boxShadow: const [
                 BoxShadow(

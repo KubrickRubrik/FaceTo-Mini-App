@@ -4,14 +4,14 @@ import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 import 'package:provider/provider.dart';
 
-class ItemSoundTheme extends StatefulWidget {
-  const ItemSoundTheme({super.key});
+class ItemSettingsSound extends StatefulWidget {
+  const ItemSettingsSound({super.key});
 
   @override
-  State<ItemSoundTheme> createState() => ItemSoundThemeState();
+  State<ItemSettingsSound> createState() => ItemSettingsSoundState();
 }
 
-class ItemSoundThemeState extends State<ItemSoundTheme> {
+class ItemSettingsSoundState extends State<ItemSettingsSound> {
   var isOpen = false;
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class _ItemHeader extends StatelessWidget {
           Expanded(
             child: Text(
               context.lcz.soundSettings,
-              style: context.textStyle.titleMedium,
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ],
@@ -112,7 +112,7 @@ class _ItemBody extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         e.value,
-                        style: context.textStyle.titleSmall,
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                   ),

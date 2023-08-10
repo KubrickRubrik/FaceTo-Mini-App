@@ -31,9 +31,8 @@ class _ListLinks extends StatelessWidget {
                     border: Border.all(width: 1.5, color: const Color(0xFFffffff)),
                     borderRadius: BorderRadius.circular(22),
                   ),
-                  child: CachedNetworkImage(
-                    imageUrl: ConfigLinks.parseLinks(link.icon.url),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                  child: Image.network(
+                    ConfigLinks.parseLinks(link.icon.url),
                   ),
                 ),
               );
