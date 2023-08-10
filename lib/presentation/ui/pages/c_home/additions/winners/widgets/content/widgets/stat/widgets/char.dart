@@ -1,7 +1,7 @@
 part of '../stat.dart';
 
 class _PublicChar extends StatelessWidget {
-  const _PublicChar({super.key});
+  const _PublicChar();
 
   String getTitle(BuildContext context) {
     return switch (context.read<WinnersProvider>().dataPage.winners.stat.publicState) {

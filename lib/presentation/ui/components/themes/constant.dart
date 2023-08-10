@@ -1,24 +1,5 @@
 part of 'controller.dart';
 
-const title18Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black);
-const title16Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
-const title14Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
-
-const body18Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
-const body16Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
-const body14Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
-
-const display18Light = TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white);
-
-const title18Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.blue);
-const title16Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
-const title14Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
-const body18Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 18);
-const body16Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 16);
-const body14Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 14);
-
-const display18Dark = TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white);
-
 abstract final class AppColors {
   static const white = Colors.white;
   static const black = Colors.black;
@@ -38,7 +19,7 @@ abstract final class AppColors {
   ];
 }
 
-abstract class AppImages {
+abstract final class AppImages {
   static const infoApp = "asset/app/info.png";
   static const imageFaceto = "asset/app/faceto.png";
   static const winner = "asset/winner/winner.png";

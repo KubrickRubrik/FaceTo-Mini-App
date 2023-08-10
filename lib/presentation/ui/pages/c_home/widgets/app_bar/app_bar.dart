@@ -106,6 +106,7 @@ class _TitleAppBar extends StatelessWidget {
               component: TypeThemeComponent.appBarContent,
               val: context.read<SessionProvider>().sessionUser.settings.theme,
             ),
+            fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),

@@ -17,7 +17,7 @@ class _Description extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: Text(
               about,
-              style: context.textStyle.bodySmall,
+              style: const TextStyle(fontSize: 16),
             ),
           );
         });

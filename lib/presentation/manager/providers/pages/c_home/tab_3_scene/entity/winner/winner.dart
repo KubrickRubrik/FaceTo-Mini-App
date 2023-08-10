@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';
@@ -8,7 +7,6 @@ import 'package:facetomini/domain/use_cases/scene.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_1_series/series.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_scenes/scenes.dart';
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/entity/winner/entity/data/controller.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 final class WinnerEntity {
   final data = WinnerControllerData();

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/core/config/links.dart';
 
@@ -42,18 +41,12 @@ class ComponentImage extends StatelessWidget {
           alignment: alignment,
           fit: fit,
         ),
-      _ => (typeCache == TypeCacheImage.cache)
-          ? CachedNetworkImage(
-              imageUrl: ConfigLinks.parseLinks(imagePath!),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              fit: fit,
-            )
-          : Image.network(
-              ConfigLinks.parseLinks(imagePath!),
-              scale: scale,
-              alignment: alignment,
-              fit: fit,
-            ),
+      _ => Image.network(
+          ConfigLinks.parseLinks(imagePath!),
+          scale: scale,
+          alignment: alignment,
+          fit: fit,
+        ),
     };
   }
 }

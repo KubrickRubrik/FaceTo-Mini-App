@@ -30,7 +30,7 @@ class SettingsBar extends StatelessWidget {
 }
 
 class _Menu extends StatelessWidget {
-  const _Menu({super.key});
+  const _Menu();
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +53,9 @@ class _Menu extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ItemSettingsTheme(),
-                  ItemLanguageTheme(),
-                  ItemSoundTheme(),
-                  ItemInfoTheme(),
+                  ItemSettingsLanguage(),
+                  ItemSettingsSound(),
+                  ItemSettingsInfo(),
                 ],
               ),
             ),

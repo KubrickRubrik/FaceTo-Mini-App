@@ -51,6 +51,7 @@ final class PagesControllerProvider extends ChangeNotifier with _State {
   }
 
   //
+  @override
   void dispose() {
     _tabBarController?.dispose();
   }

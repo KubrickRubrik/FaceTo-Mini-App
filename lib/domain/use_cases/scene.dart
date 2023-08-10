@@ -25,7 +25,7 @@ final class SceneCase implements SceneRepository {
   Future<({bool? data, Failure? fail})> updatePuzzleStatistics(Dto dto) async {
     print(">> 3");
     final response = await _scenesRepository.updatePuzzleStatistics(dto);
-    print(">> 4 ${response}");
+    print(">> 4 $response");
     return response;
   }
 }

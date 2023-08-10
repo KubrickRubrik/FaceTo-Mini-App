@@ -8,7 +8,7 @@ class _RatingSeries extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Provider.of<ControllerBloc>(context, listen: false).setViewInfoByRatingSeries();
+        context.read<PagesControllerProvider>().setViewInfoRatingPage();
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5),

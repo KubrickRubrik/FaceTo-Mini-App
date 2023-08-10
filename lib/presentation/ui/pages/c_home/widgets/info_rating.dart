@@ -52,17 +52,20 @@ class _ViewPageState extends State<_ViewPage> {
       onTap: () {
         context.read<PagesControllerProvider>().setViewInfoRatingPage();
       },
-      child: Container(
-        color: const Color(0xAA000000),
-        alignment: Alignment.center,
-        child: AnimatedCrossFade(
-          duration: const Duration(milliseconds: 200),
-          firstCurve: Curves.elasticInOut,
-          secondCurve: Curves.elasticInOut,
-          sizeCurve: Curves.elasticInOut,
-          firstChild: const _AboutRatingApp(),
-          secondChild: const SizedBox(),
-          crossFadeState: (stateView) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      child: DecoratedBox(
+        decoration: const BoxDecoration(
+          color: Color(0xAA000000),
+        ),
+        child: Center(
+          child: AnimatedCrossFade(
+            duration: const Duration(milliseconds: 200),
+            firstCurve: Curves.elasticInOut,
+            secondCurve: Curves.elasticInOut,
+            sizeCurve: Curves.elasticInOut,
+            firstChild: const _AboutRatingApp(),
+            secondChild: const SizedBox.shrink(),
+            crossFadeState: (stateView) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+          ),
         ),
       ),
     );
@@ -86,7 +89,7 @@ class _AboutRatingApp extends StatelessWidget {
           //! Ask by app
           const SizedBox(height: 5),
           SizedBox(
-            width: 210,
+            width: 300,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -95,43 +98,43 @@ class _AboutRatingApp extends StatelessWidget {
                 Text(
                   context.lcz.infoRatingLabel_1,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 _spaces(),
                 Text(
                   context.lcz.infoRatingLabel_2,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 _spaces(),
                 Text(
                   context.lcz.infoRatingLabel_3,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 _spaces(),
                 Text(
                   context.lcz.infoRatingLabel_4,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 _spaces(),
                 Text(
                   context.lcz.infoRatingLabel_5,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 _spaces(),
                 Text(
                   context.lcz.infoRatingLabel_6,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 _spaces(),
                 Text(
                   context.lcz.infoRatingLabel_7,
                   textAlign: TextAlign.center,
-                  style: context.textStyle.bodySmall,
+                  style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 20),
               ],

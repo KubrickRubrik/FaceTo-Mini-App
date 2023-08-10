@@ -64,6 +64,5 @@ abstract final class ThemesController {
           CurrentThemeApp.dark => const Color(0xFF313131) as T,
         };
     }
-    ;
   }
 }

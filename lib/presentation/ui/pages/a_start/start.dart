@@ -1,10 +1,9 @@
-import 'package:facetomini/core/config/entity.dart';
 import 'package:flutter/material.dart';
+import 'package:facetomini/core/config/entity.dart';
 import 'package:facetomini/presentation/ui/components/localization/controller.dart';
 import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/ui/components/themes/controller.dart';
 import 'package:flutter/gestures.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:facetomini/presentation/locator/locator.dart';
 import 'package:facetomini/presentation/ui/navigator/navigator.dart';
 import 'package:flutter_gen/gen_l10n/app_loc.dart';

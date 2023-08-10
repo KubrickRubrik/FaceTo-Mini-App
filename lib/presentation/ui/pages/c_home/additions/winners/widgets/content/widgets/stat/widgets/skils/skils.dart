@@ -1,7 +1,7 @@
 part of '../../stat.dart';
 
 class _SkilsWinnersStat extends StatelessWidget {
-  const _SkilsWinnersStat({super.key});
+  const _SkilsWinnersStat();
 
   @override
   Widget build(BuildContext context) {
