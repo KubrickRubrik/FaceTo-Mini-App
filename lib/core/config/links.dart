@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 import 'package:facetomini/core/config/entity.dart';
 
@@ -26,24 +27,24 @@ abstract final class ConfigLinks {
 
   // Preparing a link due to problems with the hosting SSL certificate
   static String parseLinks(String link) {
-    // print("Было: $link");
     String linkRes = '';
-    if (Platform.isAndroid) {
-      if (versionOs > limitAndroid) {
-        linkRes = link;
-      } else {
-        linkRes = link.replaceFirst('https', 'http');
-      }
-    } else if (Platform.isIOS) {
-      if (versionOs > limitIos) {
-        linkRes = link;
-      } else {
-        linkRes = link.replaceFirst('https', 'http');
+    if (!kIsWeb) {
+      if (Platform.isAndroid) {
+        if (versionOs > limitAndroid) {
+          linkRes = link;
+        } else {
+          linkRes = link.replaceFirst('https', 'http');
+        }
+      } else if (Platform.isIOS) {
+        if (versionOs > limitIos) {
+          linkRes = link;
+        } else {
+          linkRes = link.replaceFirst('https', 'http');
+        }
       }
     } else {
       linkRes = link.replaceFirst('https', 'http');
     }
-    // print("URL: $linkRes");
     return linkRes;
   }
 }

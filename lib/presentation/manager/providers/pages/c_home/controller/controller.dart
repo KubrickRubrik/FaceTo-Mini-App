@@ -5,7 +5,7 @@ part 'state.dart';
 
 final class PagesControllerProvider extends ChangeNotifier with _State {
   // Init default parameters
-  void initDefaultParameters(TabController controller, Size size) {
+  void initDefaultParameters(TabController controller) {
     _tabBarController = controller;
   }
 
@@ -48,5 +48,11 @@ final class PagesControllerProvider extends ChangeNotifier with _State {
   void setViewInfoWinnersPage() {
     viewAdditionalPage.setViewInfoWinnersPage();
     notifyListeners();
+  }
+
+  //
+  @override
+  void dispose() {
+    _tabBarController?.dispose();
   }
 }

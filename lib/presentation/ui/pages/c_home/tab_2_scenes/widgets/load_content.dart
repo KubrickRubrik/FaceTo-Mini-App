@@ -19,8 +19,8 @@ class LoadPageScenes extends StatelessWidget {
           };
           return Image.asset(
             image,
-            width: 30,
-            height: 30,
+            width: 40,
+            height: 40,
           );
         },
       ),

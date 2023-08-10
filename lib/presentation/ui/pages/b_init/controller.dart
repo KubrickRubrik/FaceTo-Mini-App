@@ -11,7 +11,7 @@ class InitPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           context.lcz.titleErrorApp,
-          style: context.textStyle.titleLarge,
+          style: const TextStyle(fontSize: 16),
         ),
       ),
       body: SafeArea(

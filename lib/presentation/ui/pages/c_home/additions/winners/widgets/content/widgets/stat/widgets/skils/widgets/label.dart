@@ -1,7 +1,7 @@
 part of '../../../stat.dart';
 
 class _LabelSkils extends StatelessWidget {
-  const _LabelSkils({super.key});
+  const _LabelSkils();
 
   @override
   Widget build(BuildContext context) {

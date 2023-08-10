@@ -1,3 +1,4 @@
+import 'package:get_it/get_it.dart';
 import 'package:facetomini/data/api/core/database/api.dart';
 import 'package:facetomini/data/api/core/server/api_server.dart';
 import 'package:facetomini/data/api/interfaces/api_db.dart';
@@ -30,7 +31,6 @@ import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_2_sce
 import 'package:facetomini/presentation/manager/providers/pages/c_home/tab_3_scene/scene.dart';
 import 'package:facetomini/presentation/manager/providers/session/session.dart';
 import 'package:facetomini/presentation/sound/sound.dart';
-import 'package:get_it/get_it.dart';
 
 final locator = GetIt.I;
 

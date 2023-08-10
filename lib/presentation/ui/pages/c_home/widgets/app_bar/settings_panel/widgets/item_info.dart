@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:facetomini/presentation/ui/components/extensions/econtext.dart';
 import 'package:facetomini/presentation/ui/components/icons.dart';
 
-class ItemInfoTheme extends StatefulWidget {
-  const ItemInfoTheme({super.key});
+class ItemSettingsInfo extends StatefulWidget {
+  const ItemSettingsInfo({super.key});
 
   @override
-  State<ItemInfoTheme> createState() => ItemInfoThemeState();
+  State<ItemSettingsInfo> createState() => ItemSettingsInfoState();
 }
 
-class ItemInfoThemeState extends State<ItemInfoTheme> {
+class ItemSettingsInfoState extends State<ItemSettingsInfo> {
   var isOpen = false;
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _ItemHeader extends StatelessWidget {
           Expanded(
             child: Text(
               context.lcz.infoSettings,
-              style: context.textStyle.titleMedium,
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ],

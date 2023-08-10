@@ -48,10 +48,4 @@ final class SeriesProvider extends ChangeNotifier with _State {
     statusPage = val;
     notifyListeners();
   }
-
-  // // Setting page content status when data is loaded
-  void _setStatusContentPage(StatusContent val) {
-    statusContentPage = val;
-    notifyListeners();
-  }
 }

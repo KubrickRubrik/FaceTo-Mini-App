@@ -15,7 +15,11 @@ class NoContentPageSeries extends StatelessWidget {
           child: Text(
             context.lcz.isNoContent,
             textAlign: TextAlign.center,
-            style: context.textStyle.bodyLarge,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
         ),
       ),

@@ -13,14 +13,10 @@ class LoadPageSeries extends StatelessWidget {
       child: Selector<SessionProvider, CurrentThemeApp>(
         selector: (_, Model) => Model.sessionUser.settings.theme,
         builder: (_, theme, __) {
-          final image = switch (theme) {
-            CurrentThemeApp.light => AppImages.spinDark,
-            _ => AppImages.spinLight,
-          };
           return Image.asset(
-            image,
-            width: 30,
-            height: 30,
+            AppImages.spinLight,
+            width: 40,
+            height: 40,
           );
         },
       ),

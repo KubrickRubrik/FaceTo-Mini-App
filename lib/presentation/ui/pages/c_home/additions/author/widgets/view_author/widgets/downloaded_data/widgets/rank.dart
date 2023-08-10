@@ -21,7 +21,7 @@ class _Rank extends StatelessWidget {
                 child: Text(
                   nick,
                   overflow: TextOverflow.ellipsis,
-                  style: context.textStyle.bodyLarge,
+                  style: const TextStyle(fontSize: 16),
                 ),
               );
             },

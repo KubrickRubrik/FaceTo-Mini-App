@@ -1,7 +1,7 @@
 part of '../stat.dart';
 
 class _LineGraph extends StatelessWidget {
-  const _LineGraph({super.key});
+  const _LineGraph();
 
   @override
   Widget build(BuildContext context) {

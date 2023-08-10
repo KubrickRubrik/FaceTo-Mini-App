@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:facetomini/domain/entities/dto/puzzle_stat.dart';

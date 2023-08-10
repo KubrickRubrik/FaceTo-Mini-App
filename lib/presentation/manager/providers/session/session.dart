@@ -36,9 +36,8 @@ final class SessionProvider extends ChangeNotifier with _State {
     final response = await _sessionCase.setTheme(value.name);
     _setActions(ActionStatus.isDone, false);
     if (response.fail != null || response.data == null) {
-      // sessionUser.stateAuthorization = StateApp.errorRepairs;
+      print(response.fail?.msg);
     } else {
-      // sessionUser.authorized(response.data!);
       super.sessionUser.settings.theme = value;
       notifyListeners();
     }

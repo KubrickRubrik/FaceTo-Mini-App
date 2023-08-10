@@ -1,7 +1,7 @@
 part of '../../puzzle.dart';
 
 class _AdditionalCellsControllerPuzle extends StatelessWidget {
-  const _AdditionalCellsControllerPuzle({super.key});
+  const _AdditionalCellsControllerPuzle();
 
   @override
   Widget build(BuildContext context) {

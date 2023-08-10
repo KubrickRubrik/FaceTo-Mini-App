@@ -54,3 +54,15 @@ enum DirectionSwipe { left, right, up, down, upLeft, upRight, downLeft, downRigh
 
 /// Object type for which all winners are requested.
 enum TypeWinnersSource { series, scenes }
+
+/// Theme installer component type
+enum TypeThemeComponent {
+  appBarBackground,
+  appBarContent,
+  seriesPage,
+  series,
+  scenesBackground,
+  scenesBanner,
+  scenesStatBackground,
+  scenesStatContent,
+}
