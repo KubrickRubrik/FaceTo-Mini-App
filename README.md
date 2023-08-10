@@ -1,4 +1,5 @@
 # FaceTo Mini
+A small but interesting puzzle game project written in Flutter.
 
 > The application is available for download in several stores:
 > - Google Play: [FaceTo Mini](https://play.google.com/store/apps/details?id=com.faceto.mini.facetomini&hl=ru), [FaceTo Pro](https://play.google.com/store/apps/details?id=com.faceto.app.faceto&hl=ru).
@@ -12,7 +13,7 @@ Welcome developer.
 Here you will find the implementation of my personal project of creating a puzzle game.
 
 To test the puzzle idea, a puzzle engine was first developed to determine how the puzzle would twist and fold, and then a small application was written around the engine. For a more detailed description of how the puzzle works, see the article on [Habr](https://habr.com/ru/articles/598995/).</br> 
-The application is written using the `clean architecture` pattern. In order to store all DI in one file I use service locator [GetIt](https://pub.dev/packages/get_it). The [Provider](https://pub.dev/packages/provider)  state manager is used to update the interface. 
+The application is written using the `clean architecture` pattern. In order to store all `DI` in one file I use service locator [GetIt](https://pub.dev/packages/get_it). The [Provider](https://pub.dev/packages/provider)  state manager is used to update the interface. 
 
 The content is a series of prepared images, each of which is a separate scene of the launch of the puzzle. The presented Mini version uses only images from the device. The [Pro](https://play.google.com/store/apps/details?id=com.faceto.app.faceto&hl=ru) version of the application uses images obtained from the Internet or stored on the device. This version also remembers the player's statistics to compare their puzzle solving performance with other players.
 
@@ -24,12 +25,7 @@ The content is a series of prepared images, each of which is a separate scene of
 
 ## Platforms
 
-The project was developed for playing on mobile platforms, but for a more convenient launch and testing, I tried to keep support for Web and Desktop.
-
-![Android](https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)
-![IOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
-![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
-![Windows](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)
+The project was developed for playing on mobile platforms, but for a more convenient launch and testing, I tried to keep support for Web and Desktop. Cross-platform support forced us to abandon the use of the audio player, due to an existing bug with [@staticInterop](https://github.com/KubrickRubrik/facetomini/issues/16), so the sound setting in the application is not active yet.
 
 
 ## Used packages and plugins
