@@ -24,12 +24,15 @@ jobs: # содержит пошаговое описание действий (s
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       # 2 Установил GitVersion, инструмент, используемый для управления версиями, просматривая историю Git разработчика
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.10.2
         with:
-          versionSpec: "5.x"
+          versionSpec: "5.12.x"
       - name: Verify GitVersion installation   
         run: dotnet-gitversion --version    
       - name: Use GitVersion
