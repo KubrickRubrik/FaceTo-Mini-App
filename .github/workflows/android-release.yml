@@ -32,9 +32,7 @@ jobs: # содержит пошаговое описание действий (s
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v0.10.2
         with:
-          versionSpec: "5.12.x"
-      - name: Verify GitVersion installation   
-        run: dotnet-gitversion --version    
+          versionSpec: "5.12.x" 
       - name: Use GitVersion
         id: gitversion
         uses: gittools/actions/gitversion/execute@v0.10.2
