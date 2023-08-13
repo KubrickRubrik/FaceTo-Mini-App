@@ -73,4 +73,3 @@ Previously, when developing mobile applications, I used [SqFlite](https://pub.de
    <td></td>                             <td></td> 
 </tr> 
 </table>
-
