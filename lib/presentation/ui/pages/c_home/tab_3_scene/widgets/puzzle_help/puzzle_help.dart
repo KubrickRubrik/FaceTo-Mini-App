@@ -14,28 +14,28 @@ class PuzzleHelpSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Selector<SceneProvider, double>(
-        selector: (_, Model) => Model.pageData.puzzle.playArea.sizePlayArea.heightPlayArea,
-        builder: (_, heightBar, child) {
-          return SizedBox(
-            height: (MediaQuery.of(context).size.height - heightBar - 30) / 2,
-            child: child!,
-          );
-        },
-        child: const Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              //! Grid
-              _GridScene(),
-              //! Hard diagonal
-              _SpacerDot(),
-              _HardLevel(),
-              //! Help
-              _SpacerDot(),
-              _ButtonHelp(),
-            ],
+      child: SizedBox(
+        height: 60,
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            decoration: const BoxDecoration(
+              color: Color(0x9F000000),
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+            ),
+            child: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                //! Grid
+                _GridScene(),
+                //! Hard diagonal
+                _SpacerDot(),
+                _HardLevel(),
+                //! Help
+                _SpacerDot(),
+                _ButtonHelp(),
+              ],
+            ),
           ),
         ),
       ),
