@@ -1,0 +1,125 @@
+{
+    "titleApp": "FaceTo Mini",
+
+    "titleSeriesPage": "FaceTo Mini series",
+    "titleScenesPage": "Scenes of series",
+    "titleScenePage": "Game",
+
+    "titleErrorApp": "Oops!",
+    "errorRepairsApp": "Application needs to be reinstalled",
+    "isNoContent": "No content",
+    "actionNotAvailable": "Action not available",
+
+    "themeSettings": "App theme",
+    "themeSettingsLight": "Light",
+    "themeSettingsDark": "Dark",
+
+    "languageSettings": "Language",
+
+    "soundSettings": "Voice acting",
+    "soundSettingsOn": "Turn on",
+    "soundSettingsOff": "Switch off",
+
+    "infoSettings": "Information",
+
+    "identificatorSeries": "Series identifier",
+    "countScenes": "Scenes in a series",
+
+    "usersSeries": "Users completed the series",
+
+    "graduallyScenesOpens": "Scenes of the series open gradually",
+    "allScenesOpens": "All scenes of the series are open",
+
+    "seriesAvailablePlay": "The series is available to play",
+    "seriesActive": "Series active",
+    "seriesCompleted": "Series completed",
+
+    "simplyLevelDifficult": "Easy difficulty level.\r\nAvailable diagonal swipe",
+    "hardLevelDifficult": "High difficulty.\r\nDiagonal swipe not available",
+
+    "scenesNotAvailable": "Series scenes are not available",
+    "sceneNotAvailable":"Scene not available",
+    "usersScene": "Users completed the scene",
+
+    "lockScene": "Need to complete the previous scene",
+    "infoRatingLabel_1": "Many different series of images.",
+    "infoRatingLabel_2": "Downloading series for offline play.",
+    "infoRatingLabel_3": "Setting series ratings.",
+    "infoRatingLabel_4": "Formation of a list of favorite series.",
+    "infoRatingLabel_5": "Subscribe to favorite authors.",
+    "infoRatingLabel_6": "Formation of the rank and rating of the user.",
+    "infoRatingLabel_7": "More features in the Pro version of FaceTo.",
+    "infoRatingInstall_1": "Install\r\nPro version",
+    "infoCopy": "Copied",
+
+    "noneAuthorOops": "Oops!",
+    "noneAuthorLabel": "No information\r\nabout this author",
+
+    "rank_1": "Newbie",
+    "rank_2": "Salaga",
+    "rank_3": "Neophyte",
+    "rank_4": "Enthusiast",
+    "rank_5": "Fan",
+    "rank_6": "Decided-Man",
+    "rank_7": "Perfectionist",
+    "rank_8": "Guru",
+    "rank_9": "Specialist",
+    "rank_10": "Profi",
+    "rank_11": "Genius",
+    "rank_12": "Legend",
+    "rank_13": "Cyber-cutlet",
+    "rank_14": "Your majesty",
+    "rank_15": "Prophet",
+    "rank_16": "The One",
+    "rank_17": "Titanium",
+    "rank_18": "Hand of god",
+    "rank_19": "God",
+    "rank_20": "Enlightened",
+    
+    "typeAppUser": "User",
+    "typeAppAuthor": "Аuthor",
+    "typeAppCompany": "Company",
+
+    "loadingScene":"Loading a scene",
+    
+    "gridScene":"Number X:Y elements of the scene",
+    "lowHardLevel":"High level of difficulty.\r\nDiagonal swipe not available",
+    "higtHardLevel":"Simple level of difficulty.\r\nDiagonal swipe available",
+
+    "labelWinnerScene":"Record holders",
+    "labelWinnerResultScene":"Your result",
+    "labelWinnerInfoStatistic":"Statistics",
+    "descriptionNoneWinners":"Be the first to set the\r\nrecord in ",
+
+    "minDataStatistics":"Min",
+    "midDataStatistics":"Mid",
+    "maxDataStatistics":"Max",
+    "helpBarGraph":"Distribution of the number of users by skill",
+    "helpSwipeBar":"The ratio of the number of\r\nswipes to user time",
+    
+    "labelGraph_1": "Skills",
+    "labelGraph_2": "Methodology",
+    "labelGraph2CoordX": "Num. of swipes",
+    "labelGraph2CoordY": "Time in milliseconds",
+
+    "playersCharacteristics":"Characteristics of the players",
+    "playerChar_1":"Players prefer to rush, take risks and hope for a successful combination, instead of thinking about the next.",
+    "playerChar_2":"Players prefer to think about each combination for a long time and not rush to implement it.",
+    "playerChar_3":"Players prefer not to rush, take risks and stick to cold calculation for the sake of an elegant solution.",
+    "playerChar_4":"Players prefer to think over combinations and are able to go to implementation even if there is no solution.",
+    
+    "playerCharacteristics":"Characteristics of the player",
+    "playersChar_1":"The player makes a lot of unnecessary combinations, is in a hurry: often makes mistakes and poorly predicts the result.",
+    "playersChar_2":"The player makes a moderate number of combinations: he often makes mistakes and spends a lot of time predicting the result.",
+    "playersChar_3":"The player makes a minimum of combinations, is slow: rarely makes mistakes, but spends a lot of time predicting the result.",
+    "playersChar_4":"The player makes a moderate number of combinations in the minimum time, is agile: makes few mistakes and predicts the result well.",
+
+    "componentWinnerPlases":"place",
+    "componentWinnerTime":"Puzzle time",
+    "componentWinnerPlus":"Lagging behind the record holder",
+    "componentWinnerMinus":"Break away from the next place in the list of record holders",
+    "componentWinnerMinTime":"Record of passing the series",
+    "componentWinnerDiffTime":"The difference between the record and the user's time.\r\n(+) lagging behind; (-) overtaking.",
+    "componentWinnerRecord": "Record time to solve a puzzle",
+    "componentNoneWinner": "Be the first to set the\r\nrecord in "
+}
