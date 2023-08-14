@@ -23,7 +23,7 @@ final class SceneProvider extends ChangeNotifier with _State {
   Future<bool?> runPuzzleGame({required SceneEntity scene, required Size size}) async {
     if (super.actionStatus == ActionStatus.isAction) return null;
     _setActions(ActionStatus.isAction, false);
-    if (pageData.puzzle.isOldSceneUsed(scene.idScene)) {
+    if (pageData.puzzle.isOldSceneUsed(idNewSeries: scene.idSeries, idNewScene: scene.idScene)) {
       _setActions(ActionStatus.isDone, false);
       statusAdditionPages.setDefaultParameters();
       pageData.puzzle.repeatedReturnToScene();
@@ -32,11 +32,6 @@ final class SceneProvider extends ChangeNotifier with _State {
     // Set page statuses to initial position
     statusAdditionPages.setDefaultParameters(); // hide addition page
     pageData.puzzle.setDefaultParameters(grid: scene.grid, sizeWindow: size); // [keysPuzzle] and [sizePuzzle]
-    //! Checking if the user is running the previous scene for the game
-    if (pageData.puzzle.checkingThisIsGameWithPreviousScene(idNewSeries: scene.idSeries, idNewScene: scene.idScene)) {
-      _setActions(ActionStatus.isDone, false);
-      return true;
-    }
     // This part of the code is executed if the user starts the game with the parameters of a new scene
     pageData.puzzle.setGameLaunchState(scene);
     pageData.puzzle.setMainSettingsPuzzle();

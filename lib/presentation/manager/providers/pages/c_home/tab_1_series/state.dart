@@ -4,7 +4,7 @@ mixin _State {
   final pageData = _PageData();
   //
   var actionStatus = ActionStatus.isDone;
-  var statusPage = StatusContent.isNoneContent;
+  var statusPage = StatusContent.isLoadContent;
   var statusContentPage = StatusContent.isNoneContent;
 }
 
