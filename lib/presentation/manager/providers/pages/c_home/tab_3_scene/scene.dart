@@ -22,7 +22,6 @@ final class SceneProvider extends ChangeNotifier with _State {
   /// Returns `true` when swipe to game page is allowed.
   Future<bool?> runPuzzleGame({required SceneEntity scene, required Size size}) async {
     if (super.actionStatus == ActionStatus.isAction) return null;
-    _setActions(ActionStatus.isAction, false);
     if (pageData.puzzle.isOldSceneUsed(idNewSeries: scene.idSeries, idNewScene: scene.idScene)) {
       _setActions(ActionStatus.isDone, false);
       statusAdditionPages.setDefaultParameters();

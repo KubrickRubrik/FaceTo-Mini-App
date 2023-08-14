@@ -61,6 +61,7 @@ class _Menu extends StatelessWidget {
                   ItemSettingsLanguage(),
                   ItemSettingsSound(),
                   // ItemSettingsInfo(),
+
                 ],
               ),
             ),
