@@ -27,20 +27,12 @@ abstract final class ConfigLinks {
 
   // Preparing a link due to problems with the hosting SSL certificate
   static String parseLinks(String link) {
-    String linkRes = '';
+    String linkRes = link;
     if (!kIsWeb) {
-      if (Platform.isAndroid) {
-        if (versionOs > limitAndroid) {
-          linkRes = link;
-        } else {
-          linkRes = link.replaceFirst('https', 'http');
-        }
-      } else if (Platform.isIOS) {
-        if (versionOs > limitIos) {
-          linkRes = link;
-        } else {
-          linkRes = link.replaceFirst('https', 'http');
-        }
+      if (Platform.isAndroid && versionOs <= limitAndroid) {
+        linkRes = linkRes.replaceFirst('https', 'http');
+      } else if (Platform.isIOS && versionOs <= limitIos) {
+        linkRes = link.replaceFirst('https', 'http');
       }
     } else {
       linkRes = link.replaceFirst('https', 'http');
