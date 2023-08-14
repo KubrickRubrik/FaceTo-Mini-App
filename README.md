@@ -37,39 +37,35 @@ Previously, when developing mobile applications, I used [SqFlite](https://pub.de
  <th>Purpose</th> <th>Source</th> <th>Purpose</th> <th>Source</th>
 </tr>
  <tr>
-    <td>Localization (en,ru)</td>         <td><a href='https://pub.dev/packages/device_preview'>device_preview</a></td>
-    <td>Request permissions</td>          <td><a href='https://pub.dev/packages/sqlite3_flutter_libs'>permission_handler</a></td>
+    <td>Localization (en,ru)</td>         <td><a href='https://pub.dev/packages/intl'>intl</a></td>
+   <td>Screen layout check</td>         <td><a href='https://pub.dev/packages/device_preview'>device_preview</a></td>
  </tr> 
  <tr>
-   <td>Localization (en,ru)</td>         <td><a href='https://pub.dev/packages/device_preview'>device_preview</a></td>
    <td>Request permissions</td>          <td><a href='https://pub.dev/packages/sqlite3_flutter_libs'>permission_handler</a></td>
+   <td>State manager</td>                <td><a href='https://pub.dev/packages/provider'>provider</a>     </td>
  </tr> 
  <tr> 
-   <td>State manager</td>                <td><a href='https://pub.dev/packages/provider'>provider</a>     </td>
    <td>Service Locator</td>              <td><a href='https://pub.dev/packages/get_it'>get_it</a>     </td>
+   <td>Launching a URL</td>              <td><a href='https://pub.dev/packages/url_launcher'>url_launcher</a>     </td>
  </tr> 
  <tr>
-   <td>Launching a URL</td>              <td><a href='https://pub.dev/packages/url_launcher'>url_launcher</a>     </td>
    <td>Navigation</td>                   <td><a href='https://pub.dev/packages/go_router'>go_router</a>     </td>
+   <td>Networking</td>                   <td><a href='https://pub.dev/packages/dio'>dio</a>    </td>
  </tr> 
   <tr> 
-   <td>Networking</td>                   <td><a href='https://pub.dev/packages/dio'>dio</a>    </td>
    <td>Data store </td>                  <td><a href='https://pub.dev/packages/flutter_secure_storage'>drift</a>     </td>
+   <td>Discover connectivity </td>       <td><a href='https://pub.dev/packages/connectivity_plus'>connectivity_plus</a>     </td>
 </tr> 
 <tr>
-   <td>Discover connectivity </td>       <td><a href='https://pub.dev/packages/connectivity_plus'>connectivity_plus</a>     </td>
    <td>File system usage  </td>          <td><a href='https://pub.dev/packages/path_provider'>path_provider</a></td>
+   <td>Charts</td>                       <td><a href='https://pub.dev/packages/fl_chart'>fl_chart</a></td>
 </tr> 
 <tr> 
-   <td>Charts</td>                       <td><a href='https://pub.dev/packages/fl_chart'>fl_chart</a></td>
    <td>Manipulating paths  </td>         <td><a href='https://pub.dev/packages/path'>path</a></td>
+   <td>Playing audio files </td>         <td><a href='https://pub.dev/packages/audio_in_app](https://pub.dev/packages/audioplayers'>audioplayers</a></td>
 </tr> 
  <tr> 
-   <td>Playing audio files </td>         <td><a href='https://pub.dev/packages/audio_in_app](https://pub.dev/packages/audioplayers'>audioplayers</a></td>
    <td>Assembly module with sqlite3</td> <td><a href='https://pub.dev/packages/sqlite3_flutter_libs'>sqlite3_flutter_libs</a></td>
-</tr> 
-<tr> 
-   <td>Screen layout check  </td>        <td><a href='https://pub.dev/packages/device_preview'>device_preview</a></td> 
-   <td></td>                             <td></td> 
+   <td></td>        <td></td> 
 </tr> 
 </table>
