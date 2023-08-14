@@ -15,4 +15,30 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+
+    <!-- <style name="Theme.App.Starting" parent="Theme.SplashScreen"> -->
+        <!-- Заливка фона -->
+        <!-- <item name="windowSplashScreenBackground">@color/bgColor</item>  -->
+     
+        <!-- Замены значка в центре начального окна. -->
+        <!-- <item name="windowSplashScreenAnimatedIcon">@drawable/launch_background</item> -->
+
+        <!-- Указания продолжительности анимации значка заставки.
+            Если объект можно анимировать и прорисовывать с помощью AnimationDrawable (только для andoid 12 )-->
+        <!-- <item name="windowSplashScreenAnimationDuration">1000</item> -->
+     
+        <!-- Установка фона за значком заставки (если недостаточно контраста между фоном окна и значком) -->
+        <!-- <item name="android:windowSplashScreenIconBackgroundColor">@color/...</item> -->
+
+        <!-- Отображения изображения в нижней части заставки -->
+        <!-- <item name="android:windowSplashScreenBrandingImage">@drawable/...</item> -->
+
+        <!-- Если всегда хотите, чтобы отображался анимированный значок, установите для этого значение icon_preferred. -->
+        <!-- <item name="android:windowSplashScreenBehavior">icon_preferred</item> -->
+
+        <!-- Set the theme of the Activity that directly follows your splash screen. -->
+        <!-- Required -->
+        <!-- <item name="postSplashScreenTheme">@style/Theme.App</item>
+     </style> -->
+     
 </resources>
