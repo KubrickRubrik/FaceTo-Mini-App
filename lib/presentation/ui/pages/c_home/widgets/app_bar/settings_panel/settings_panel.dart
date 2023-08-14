@@ -19,7 +19,7 @@ class SettingsBar extends StatelessWidget {
             duration: const Duration(milliseconds: 300),
             sizeCurve: Curves.ease,
             crossFadeState: (!isViewMenu) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-            firstChild: const SizedBox.shrink(),
+            firstChild: const Center(),
             secondChild: child!,
           );
         },
@@ -38,7 +38,12 @@ class _Menu extends StatelessWidget {
       onTap: () {
         context.read<SessionProvider>().setViewMenuSettings();
       },
-      child: Center(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+          color: Color(0x4C000000),
+        ),
+        alignment: Alignment.center,
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 600),
           child: Container(
@@ -55,7 +60,7 @@ class _Menu extends StatelessWidget {
                   ItemSettingsTheme(),
                   ItemSettingsLanguage(),
                   ItemSettingsSound(),
-                  ItemSettingsInfo(),
+                  // ItemSettingsInfo(),
                 ],
               ),
             ),

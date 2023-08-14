@@ -63,14 +63,12 @@ final class PuzzleEntity {
 
   /// Checking the first start when swiping the scene page.
   bool isFirstRunThisScene() => scene.useIdScene == -1;
-  // Checking if the user is running the previous scene for the game.
-  bool checkingThisIsGameWithPreviousScene({required int idNewSeries, required int idNewScene}) {
-    // true - if the new game is launched with the parameters of the old scene.
-    return (idNewSeries == scene.useIdSeries && idNewScene == scene.useIdScene && keys.isKeysPuzzleEqual());
-  }
 
-  /// Old (previously loaded) data will be returned if idScene has not changed.
-  bool isOldSceneUsed(int idNewSeires) => scene.useIdScene == idNewSeires;
+
+  /// Old (previously loaded) data will be returned if idScene has not changed and game go on (puzzle not completed).
+  bool isOldSceneUsed({required int idNewSeries, required int idNewScene}) {
+    return (idNewSeries == scene.useIdSeries && idNewScene == scene.useIdScene && !keys.isKeysPuzzleEqual());
+  }
 
   /// Waiting for puzzle cells to shift.
   Future<void> puzzleShiftWaiting(TypeAxisSwipe axis) async {

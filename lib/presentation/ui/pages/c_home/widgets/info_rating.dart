@@ -78,6 +78,7 @@ class _AboutRatingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 18),
       padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
       decoration: BoxDecoration(
         color: const Color(0xFFffffff),
@@ -88,8 +89,10 @@ class _AboutRatingApp extends StatelessWidget {
         children: [
           //! Ask by app
           const SizedBox(height: 5),
-          SizedBox(
-            width: 300,
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 280,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
