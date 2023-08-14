@@ -32,6 +32,7 @@ final class SceneProvider extends ChangeNotifier with _State {
     // Set page statuses to initial position
     statusAdditionPages.setDefaultParameters(); // hide addition page
     pageData.puzzle.setDefaultParameters(grid: scene.grid, sizeWindow: size); // [keysPuzzle] and [sizePuzzle]
+
     // This part of the code is executed if the user starts the game with the parameters of a new scene
     pageData.puzzle.setGameLaunchState(scene);
     pageData.puzzle.setMainSettingsPuzzle();

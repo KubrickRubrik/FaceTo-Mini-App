@@ -64,6 +64,7 @@ final class PuzzleEntity {
   /// Checking the first start when swiping the scene page.
   bool isFirstRunThisScene() => scene.useIdScene == -1;
 
+
   /// Old (previously loaded) data will be returned if idScene has not changed and game go on (puzzle not completed).
   bool isOldSceneUsed({required int idNewSeries, required int idNewScene}) {
     return (idNewSeries == scene.useIdSeries && idNewScene == scene.useIdScene && !keys.isKeysPuzzleEqual());
